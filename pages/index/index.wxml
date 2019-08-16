@@ -1,0 +1,6 @@
+<!--index.wxml-->
+<view class="container">
+  <radio class="red margin-left-sm"></radio>aaa
+  <view class="swiper-banner"><swiper></swiper></view>
+  <bottombar></bottombar>
+</view>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "bottombar":"/components/BottomBar/BottomBar",
+    "swiper": "/components/Swiper/Swiper"
+  }
+}

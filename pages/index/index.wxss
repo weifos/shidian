@@ -1,0 +1,11 @@
+/**index.wxss**/
+@import "/ui/main.wxss";
+@import "/ui/icon.wxss";
+
+page{
+  background-color: #f2f2f2;
+}
+.swiper-banner{
+  box-sizing: border-box;
+  padding: 20rpx;  
+}

@@ -1,0 +1,28 @@
+<!--component/BottomBar.wxml-->
+<view class="cu-bar tabbar bg-white">
+    <view class="action">
+      <view class="cuIcon-cu-image cuIcon-cu-image-1">
+        <image src="/images/icon/i1.png"></image>
+      </view>
+    </view>
+    <view class="action">
+      <view class="cuIcon-cu-image cuIcon-cu-image-2">
+        <image src="/images/icon/i2.png"></image>
+      </view>
+    </view>
+    <view class="action">
+      <view class="cuIcon-cu-image cuIcon-cu-image-3">
+        <image src="/images/icon/i3.png"></image>
+      </view>
+    </view>
+    <view class="action">
+      <view class="cuIcon-cu-image cuIcon-cu-image-4">
+        <image src="/images/icon/i4.png"></image>
+      </view>
+    </view>
+    <view class="action">
+      <view class="cuIcon-cu-image cuIcon-cu-image-user">
+        <image src="/images/user.png"></image>
+      </view>
+    </view>
+  </view>
