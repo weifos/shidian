@@ -1,6 +1,33 @@
 <!--index.wxml-->
-<view class="container">
-  <radio class="red margin-left-sm"></radio>aaa
-  <view class="swiper-banner"><swiper></swiper></view>
+<view class="container page-main">
+  <view class="banner">
+    <image src="../../images/p1.png"></image>
+  </view>
+  <!-- menu-list s -->
+  <view class="menu-list">
+    <view class="menu__item">
+      <text class="menu__title">
+        <text class="menu__title__cn">咖啡点单</text>
+        <text class="menu__title__en">Coffee order</text>
+      </text>
+      <image src="../../images/p2.png"></image>
+    </view>
+    <view class="menu__item">
+      <text class="menu__title">
+        <text class="menu__title__cn">课堂报名</text>
+        <text class="menu__title__en">Class registration</text>
+      </text>
+      <image src="../../images/p3.png"></image>
+    </view>
+    <view class="menu__item">
+      <text class="menu__title">
+        <text class="menu__title__cn">活动预约</text>
+        <text class="menu__title__en">Event reservation</text>
+      </text>
+      <image src="../../images/p4.png"></image>
+    </view>
+  </view>
+  <!-- menu-list e -->
   <bottombar></bottombar>
 </view>
+ <!-- <view class="swiper-banner"><swiper></swiper></view> -->

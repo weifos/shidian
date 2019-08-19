@@ -1,11 +1,4 @@
-/*
-  ColorUi for uniApp  v2.1.6 | by 文晓港 2019-05-31 10:44:24
-  仅供学习交流，如作它用所承受的法律责任一概与作者无关  
-  
-  *使用ColorUi开发扩展与插件时，请注明基于ColorUi开发 
-  
-  （QQ交流群：240787041）
-*/
+
 
 /* ==================
         初始化
@@ -15,6 +8,10 @@ body {
 	font-size: 28rpx;
 	color: #333333;
 	font-family: Helvetica Neue, Helvetica, sans-serif;
+}
+
+.container{
+  padding-bottom: 141rpx;
 }
 
 view,

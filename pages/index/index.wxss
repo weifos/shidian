@@ -9,3 +9,50 @@ page{
   box-sizing: border-box;
   padding: 20rpx;  
 }
+.banner{
+  width: 100%;
+  height: 546rpx; 
+  border-bottom-right-radius: 55rpx;
+  border-bottom-left-radius: 55rpx;
+  overflow: hidden;
+}
+.banner image{
+  width: 100%;
+  height: 546rpx;
+}
+
+.menu__item{
+  width:700rpx;
+  height:235rpx;
+  overflow: hidden;
+  margin:0 auto 18rpx auto;
+  background:#fff;
+  border-radius: 36rpx;
+  position: relative;
+}
+
+.menu__item image{
+  width: 466rpx;
+  height: 235rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.menu__title__cn,.menu__title__en{
+  color: #555555;
+  display: block;
+  margin-left: 43rpx;
+}
+.menu__title{
+  width: 234rpx;
+}
+.menu__title__cn{
+  font-size: 31rpx;
+  margin-top: 82rpx;
+}
+.menu__title__en{
+  font-size: 18rpx;
+}
+.menu-list{
+  margin-top:-82rpx;
+}

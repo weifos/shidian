@@ -30,7 +30,7 @@
 
 
 .cu-bar{
-  min-height: 156rpx;
+  min-height: 141rpx;
 
 }
 .cu-bar.tabbar{
