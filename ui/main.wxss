@@ -10,10 +10,6 @@ body {
 	font-family: Helvetica Neue, Helvetica, sans-serif;
 }
 
-.container{
-  padding-bottom: 141rpx;
-}
-
 view,
 scroll-view,
 swiper,

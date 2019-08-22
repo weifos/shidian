@@ -1,8 +1,18 @@
 {
   "pages": [
+    "pages/orderList/index",
+    "pages/courseDetail/courseDetail",
+    "pages/course/course",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/coffee/coffee",
+    "pages/activity/activity"
   ],
+  "usingComponents": {
+    "i-bottombar": "/components/BottomBar/BottomBar",
+    "i-swiper": "/components/Swiper/Swiper",
+    "i-greetings": "/components/Greetings/Greetings"
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

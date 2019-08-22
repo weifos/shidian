@@ -1,14 +1,5 @@
 /**index.wxss**/
-@import "/ui/main.wxss";
-@import "/ui/icon.wxss";
 
-page{
-  background-color: #f2f2f2;
-}
-.swiper-banner{
-  box-sizing: border-box;
-  padding: 20rpx;  
-}
 .banner{
   width: 100%;
   height: 546rpx; 
@@ -26,7 +17,7 @@ page{
   height:235rpx;
   overflow: hidden;
   margin:0 auto 18rpx auto;
-  background:#fff;
+  /* background:#fff; */
   border-radius: 36rpx;
   position: relative;
 }
@@ -45,13 +36,28 @@ page{
 }
 .menu__title{
   width: 234rpx;
+  position: relative;
+  height:235rpx;
+  overflow: hidden;
+}
+.menu__title:before{
+  position: absolute;
+  width: 100%;
+  height:100%;
+  top:0rpx;
+  left:0rpx;
+  background-color: #fff;
+  opacity: 0.7;
+  content:"";
 }
 .menu__title__cn{
   font-size: 31rpx;
-  margin-top: 82rpx;
+  padding-top: 82rpx;
+  position: relative;
 }
 .menu__title__en{
   font-size: 18rpx;
+  position: relative;
 }
 .menu-list{
   margin-top:-82rpx;

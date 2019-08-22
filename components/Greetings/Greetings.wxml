@@ -1,0 +1,2 @@
+<!--components/Greetings/Greetings.wxml-->
+<view class="text-greetings">晚上好。</view>

@@ -1,0 +1,57 @@
+<!--pages/courseDetail/courseDetail.wxml-->
+<view class="container page-courseDetail">
+  <view class="course-img">
+    <image src="{{content.url}}"></image>
+  </view>
+  <view class="course-intro">
+      <view class="course__title">{{content.title}}</view>
+      <view class="course__time">时间：{{content.startTime}}到{{content.endTime}} </view>
+      <view class="course__address">地点：{{content.address}}</view>
+      <view class="course__price">价格：￥{{content.price}}</view>
+  </view>
+  <view class="course-detail">
+    <image src="{{content.url}}"></image>
+    <view>{{content.detail}}</view>
+  </view>
+</view>
+<view class="tool-bar tac">
+  <button class="cu-btn round bg-gray text-white">客服</button>
+  <button class="cu-btn round bg-lightBlue text-white" bindtap="showModal" data-target="bottomModal">购买</button>
+</view>
+<!-- 弹出层 s-->
+<view class="price-bar">
+  <view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
+    <view class="cu-dialog">
+      <view class="padding-xl">
+          <view class="order__title tac">
+            {{content.title}}
+          </view>
+          <view class="order__text tac">
+            - 规格 -
+          </view>
+          <view class="order__number">
+            <view class="t-desc">参与人数</view>
+            <view class="t-detail">
+                <view class="van-stepper custom-class">
+                <view class="minus-class dib vam">-</view>
+                <input
+                  class="input-class dib vam"
+                  value="1"
+                  bindinput="onInput" />
+                <view class="plus-class dib vam">+</view>
+              </view>
+            </view>
+          </view>
+          <view class="order__price">
+            <view class="t-desc">总金额</view>
+            <view class="t-detail color-lightBlue">￥{{content.price}}</view>
+          </view>
+      </view>
+      <view class="cu-bar">
+        <button class="cu-btn round bg-gray text-white" bindtap="hideModal">取消</button>
+        <button class="cu-btn round bg-lightBlue text-white">确认提交</button>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 弹出层 e-->

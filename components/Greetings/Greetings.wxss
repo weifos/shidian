@@ -1,0 +1,8 @@
+/* components/Greetings/Greetings.wxss */
+.text-greetings{
+  font-size:45rpx;
+  line-height: 65rpx;
+  color: #707070;
+  font-weight:600;
+  padding:10rpx 0 10rpx 31rpx;
+}

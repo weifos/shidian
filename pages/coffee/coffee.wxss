@@ -1,0 +1,40 @@
+/* pages/coffee/coffee.wxss */
+
+page{
+  background-color: #fff;
+}
+.today-recommend{
+  color:#B2B2B2;
+  font-size: 27rpx;
+  margin:15rpx 0;
+}
+.coffee__item{
+  width: 703rpx;
+  height: 196rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:5rpx 5rpx 7rpx rgba(0,0,0,0.05);
+  border-radius: 30rpx;
+  overflow: hidden;
+  margin:0 auto 22rpx auto;
+}
+
+.coffee__item .item__image{
+  float: right;
+  margin-right:42rpx;
+  margin-top:7rpx;
+  margin-left:10rpx;
+}
+.coffee__item .item__image image{
+  width: 181rpx;
+  height: 181rpx;
+}
+.coffee__item .item__text{
+  width: 480rpx;
+  box-sizing: border-box;
+  padding: 25rpx 62rpx 0 49rpx;
+  color:#707070;
+}
+.coffee__item .item__desc{
+  overflow: hidden;
+  margin-top:31rpx;
+}

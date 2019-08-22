@@ -1,0 +1,80 @@
+<!--pages/course/course.wxml-->
+<view class="container page-course">
+  <i-greetings></i-greetings>
+  <view class="swiper-banner"><i-swiper></i-swiper></view>
+  <!-- i-tab s -->
+  <view class="i-tab">
+    <scroll-view scroll-x class="nav tab-t">
+      <view class="flex text-center">
+        <view class="cu-item flex-sub {{index==TabCur?'bg-lightBlue cur':''}}" wx:for="{{courseData}}" wx:key bindtap="tabSelect" data-id="{{index}}" wx:for-item="item">
+          {{item.title}}
+        </view>
+      </view>
+    </scroll-view>
+    <view class="tab-content">
+      <view class="tab-c" wx:if="{{TabCur == 0}}">
+        <view class="course-list">
+          <view class="course__item" wx:for="{{courseData[0].list}}">
+            <view class="course__image">
+              <image src="{{item.url}}"></image>
+            </view>
+            <view class="course__text">
+              <view class="course__title ellipsis">
+                {{item.title}}
+              </view>
+              <view class="course__name ellipsis">
+                {{item.name}}
+              </view>
+              <view class="course__address ellipsis2">
+                上课地点：{{item.address}}
+              </view>
+              <view class="course__time">
+                {{item.time}}
+              </view>
+              <view class="course__btns">
+                <button class="cu-btn round bg-lightBlue">去报名</button>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="tab-c" wx:if="{{TabCur == 1}}">
+        <!-- month s -->
+        <scroll-view scroll-x class="nav bg-none nav-month" scroll-with-animation scroll-left="{{scrollLeft}}">
+          <view class="cu-item {{index==TabCur2?'cur':''}}" wx:for="{{courseData[1].list}}" wx:key bindtap="tabSelect2" data-id="{{index}}">
+            {{item.month}}
+          </view>
+        </scroll-view>
+        <!-- month e -->
+        <!-- month list s -->
+            <view class="course-list course-list2" wx:for="{{courseData[1].list}}" wx:if="{{TabCur2 == index}}">
+              <view class="course__item" wx:for="{{item.list}}" wx:for-item="sItem">
+                <view class="course__image">
+                  <image src="{{sItem.url}}"></image>
+                </view>
+                <view class="course__text">
+                  <view class="course__title ellipsis">
+                    {{sItem.title}}
+                  </view>
+                  <view class="course__name ellipsis">
+                    {{sItem.name}}
+                  </view>
+                  <view class="course__address ellipsis2">
+                    上课地点：{{sItem.address}}
+                  </view>
+                  <view class="course__time">
+                    {{sItem.time}}
+                  </view>
+                  <view class="course__btns">
+                    <button class="cu-btn round bg-lightBlue">查看</button>
+                  </view>
+                </view>
+              </view>
+            </view>
+        <!-- month list e -->
+      </view>
+    </view>
+  </view>
+  <!-- i-tab e -->
+</view>
+<i-bottombar></i-bottombar>

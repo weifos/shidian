@@ -1,2 +1,123 @@
 /**app.wxss**/
+@import "/ui/main.wxss";
+@import "/ui/icon.wxss";
 
+/**单行文本溢出加...**/
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/**2行..**/
+.ellipsis2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+/**3行...**/
+.ellipsis3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.tac{text-align:center;}
+.fz33{
+  font-size: 33rpx;
+}
+.dib{display: inline-block;}
+.vat{vertical-align: top;}
+.vam{vertical-align: middle;}
+
+
+
+.bg-lightBlue{
+  background-color: #9BBAFF;
+}
+.bg-lightOrange{
+  background-color: #FCA68C
+}
+.bg-gray{
+  background-color: #B2B2B2;
+}
+.color-lightBlue{
+  color:#9BBAFF;
+}
+.bg-darkGray{
+  background-color: #707070;
+}
+.bg-lightYellow{
+  background-color: #D0B07E;
+}
+
+/**=======================**/
+page{
+  background-color: #f2f2f2;
+  font-size:22rpx;
+  color:#707070;
+}
+.container{
+  padding-bottom: 141rpx;
+}
+.swiper-banner{
+  box-sizing: border-box;
+  padding: 10rpx 20rpx 10rpx 20rpx;  
+}
+
+.i-tab{
+ padding: 0 24rpx;
+ 
+}
+.i-tab .tab-t{
+  background-color: #B2B2B2;
+}
+.i-tab .cu-item{
+  color:#fff;
+  margin:0;
+  font-size: 27rpx;
+}
+.i-tab .cu-item.cur{
+  border:none;
+}
+.minus-class,.plus-class{
+  width: 40rpx;
+  height: 40rpx;
+  background: #9BBAFF;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 38rpx;
+  color:#fff;
+  font-weight: 800;
+}
+.input-class{
+  font-size: 36rpx;
+  width: 80rpx;
+}
+
+.order-tool-bar{
+  font-size: 36rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 127rpx;
+}
+.order-tool-bar .info{
+  align-items: center;
+  display: flex;
+  text-indent: 34rpx;
+  position: relative;
+  flex: 5;
+  align-self: stretch;
+  color: #fff;
+}
+.order-tool-bar .cu-bar{
+  height: 127rpx;
+}
+.order-tool-bar .discounts{
+  font-size: 30rpx;
+  opacity: 0.8;
+}

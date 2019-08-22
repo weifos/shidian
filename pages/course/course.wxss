@@ -1,0 +1,68 @@
+/* pages/course/course.wxss */
+page{
+  background-color: #fff;
+}
+.course-list{
+  margin-top: 36rpx;
+}
+.course__item{
+  overflow: hidden;
+  margin: 0 0 36rpx 0;
+  font-size: 27rpx;
+  color: #707070;
+  height: 199rpx;
+  position: relative;
+}
+.course__image{
+  float: left;
+  margin-right: 36rpx;
+}
+.course__image image{
+  width: 197rpx;
+  height: 199rpx;
+}
+.course__time{
+  color:#9BBAFF;
+  margin-top: 20rpx;
+}
+.course__text{
+  margin-top: 5rpx;
+}
+.course__title{
+  height: 38rpx;
+}
+.course__name{
+  height: 34rpx;
+  font-size: 24rpx;
+}
+.course__address{
+  height:70rpx;
+  font-size: 24rpx;
+}
+.i-tab{
+   margin-top:40rpx;
+}
+.cu-btn{
+  height: 53rpx;
+  color: #fff;
+  font-size: 27rpx;
+  width: 147rpx;
+}
+.course__btns{
+  position: absolute;right:0;bottom:0;
+}
+.nav-month{
+  height: 120rpx;
+  line-height: 120rpx;
+}
+.nav-month .cu-item{
+  background:none;
+  color:#707070;
+}
+.nav-month .cu-item.cur{
+  background:none;
+  color:#9BBAFF;
+}
+.course-list2{
+  margin-top: 0rpx;
+}
