@@ -1,0 +1,68 @@
+/* pages/member/index/index.wxss */
+.member-head{
+  height: 299rpx;
+  position: relative;
+  overflow: hidden;
+  
+}
+member-head.login{
+  background:#B2B2B2;
+  color: #fff;
+}
+.member-head.unlogin{
+  background:#fff;
+}
+.member-bg{
+  filter:blur(20rpx);
+  position: absolute;
+  width: 800rpx;
+  height:400rpx;
+  left: -20rpx;
+  top: -20rpx;
+  opacity: 0.5;
+}
+.member__image{
+  float: left;
+  padding:72rpx 33rpx 0 78rpx;
+  z-index: 1;
+  position: relative;
+}
+.member__text{
+  padding-top:103rpx;
+  font-size: 27rpx;
+  z-index: 1;
+  position: relative;
+}
+.i-icon{
+  width: 45rpx;
+  text-align: center;
+  margin-right:42rpx;
+  margin-left:42rpx;
+}
+.list1.cu-list.grid>.cu-item{
+  padding:67rpx 0;
+}
+.list1 .item-wrap{
+  
+  width: 100%;
+  display: block;
+  font-size: 27rpx;
+}
+.list1 .icon-img{
+  width: 45rpx;
+}
+.list1 .icon-name{
+  margin-left: 42rpx;
+}
+.cu-avatar.xl{
+  width:147rpx;
+  height: 147rpx;
+}
+.head__text{
+  margin:63rpx 0 31rpx 78rpx;
+  font-size: 45rpx;
+  color: #707070;
+}
+.head__btns{
+  margin-left:78rpx;
+}

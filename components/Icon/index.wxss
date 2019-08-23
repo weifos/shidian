@@ -1,0 +1,45 @@
+/* components/Icon/index.wxss */
+.dib{
+  display: inline-block;
+  vertical-align: middle;
+}
+.icon{
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+.icon-vip{
+  width:35rpx;height:31rpx;
+}
+.icon-integral{
+width:45rpx;height:39rpx;
+}
+.icon-activity{
+width:42rpx;height:43rpx;
+}
+.icon-course{
+width:40rpx;height:42rpx;
+}
+.icon-member{
+width:42rpx;height:44rpx;
+}
+.icon-buy{
+width:37rpx;height:39rpx;
+}
+.icon-wallet{
+width:40rpx;height:38rpx;
+}
+.icon-ticket{
+width:38rpx;height:40rpx;
+}
+.icon-service{
+width:44rpx;height:34rpx;
+}
+.icon-loginout{
+width:40rpx;height:34rpx;
+}
+.icon-phone{
+width:32rpx;height:46rpx;
+}
+.icon-code{
+width:34rpx;height:34rpx;
+}

@@ -1,0 +1,34 @@
+<!--pages/member/userInfo/index.wxml-->
+<view class="container page-user-info">
+  <view class="user-form bg-white">
+      <form>
+        <view class="cu-form-group">
+          <view class="title">电话</view>
+          <input placeholder="请输入您的电话"></input>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">昵称</view>
+          <input placeholder="请输入您的昵称"></input>
+        </view>
+        <view class="cu-form-group select-sex">
+          <view class="title">性别</view>
+          	<radio-group class="block">
+              <radio checked></radio><text class="dib vam">男</text>
+              <radio></radio><text class="dib vam">女</text>
+            </radio-group>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">生日</view>
+          <picker mode="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange">
+            <view class="picker">
+              {{date}}
+            </view>
+          </picker>
+        </view>
+      </form>
+  </view>
+  <view class="form-btns">
+    <button class="cu-btn round bg-lightBlue text-white btn-save">保存资料</button>
+  </view>
+</view>
+<i-bottombar></i-bottombar>

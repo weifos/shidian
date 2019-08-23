@@ -1,0 +1,30 @@
+/* pages/member/userInfo/index.wxss */
+.page-user-info input{
+  font-size: 27rpx;
+}
+.cu-form-group{
+  padding-left: 53rpx;
+  justify-content: flex-start;
+
+}
+.cu-form-group .title{
+  padding-right: 53rpx;
+}
+.select-sex text{
+  font-size: 27rpx;
+  margin:0 45rpx 0 20rpx;
+}
+.cu-form-group picker .picker{
+  text-align: left;
+}
+.cu-form-group picker:after{
+  content: ""
+}
+.form-btns{
+  text-align: center;
+  padding: 109rpx 0 0 0;
+}
+.form-btns .btn-save{
+  width:435rpx;
+  height:80rpx;
+}

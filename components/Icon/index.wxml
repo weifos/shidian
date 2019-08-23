@@ -1,0 +1,13 @@
+<!--components/Icon/index.wxml-->
+<view class="icon-vip dib icon" wx:if="{{name == 'vip'}}" style="background-image: url(/images/icon/i15.png);"></view>
+<view class="icon-member dib icon" wx:if="{{name == 'member'}}" style="background-image: url(/images/icon/i6.png);"></view>
+<view class="icon-course dib icon" wx:if="{{name == 'course'}}" style="background-image: url(/images/icon/i9.png);"></view>
+<view class="icon-activity dib icon" wx:if="{{name == 'activity'}}" style="background-image: url(/images/icon/i5.png);"></view>
+<view class="icon-integral dib icon" wx:if="{{name == 'integral'}}" style="background-image: url(/images/icon/i8.png);"></view>
+<view class="icon-buy dib icon" wx:if="{{name == 'buy'}}" style="background-image: url(/images/icon/i7.png);"></view>
+<view class="icon-wallet dib icon" wx:if="{{name == 'wallet'}}" style="background-image: url(/images/icon/i11.png);"></view>
+<view class="icon-ticket dib icon" wx:if="{{name == 'ticket'}}" style="background-image: url(/images/icon/i10.png);"></view>
+<view class="icon-service dib icon" wx:if="{{name == 'service'}}" style="background-image: url(/images/icon/i12.png);"></view>
+<view class="icon-loginout dib icon" wx:if="{{name == 'loginout'}}" style="background-image: url(/images/icon/i13.png);"></view>
+<view class="icon-phone dib icon" wx:if="{{name == 'phone'}}" style="background-image: url(/images/icon/i14.png);"></view>
+<view class="icon-code dib icon" wx:if="{{name == 'code'}}" style="background-image: url(/images/icon/i16.png);"></view>
