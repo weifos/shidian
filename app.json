@@ -1,5 +1,9 @@
 {
   "pages": [
+    "pages/sale/index",
+    "pages/psq/index",
+    "pages/orderCheck/index",
+    "pages/ticketList/index",
     "pages/orderList/index",
     "pages/courseDetail/courseDetail",
     "pages/course/course",
@@ -7,11 +11,15 @@
     "pages/logs/logs",
     "pages/coffee/coffee",
     "pages/activity/activity"
+    
   ],
   "usingComponents": {
     "i-bottombar": "/components/BottomBar/BottomBar",
     "i-swiper": "/components/Swiper/Swiper",
-    "i-greetings": "/components/Greetings/Greetings"
+    "i-greetings": "/components/Greetings/Greetings",
+    "i-ticket": "/components/Ticket/index",
+    "i-nodata": "/components/NoData/index",
+    "i-star": "/components/Star/index"
   },
   "window": {
     "backgroundTextStyle": "light",

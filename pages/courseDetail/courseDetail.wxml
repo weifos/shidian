@@ -44,7 +44,7 @@
           </view>
           <view class="order__price">
             <view class="t-desc">总金额</view>
-            <view class="t-detail color-lightBlue">￥{{content.price}}</view>
+            <view class="t-detail text-lightBlue">￥{{content.price}}</view>
           </view>
       </view>
       <view class="cu-bar">

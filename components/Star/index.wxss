@@ -1,0 +1,12 @@
+/* components/Star/index.wxss */
+.star{
+  font-size: 0;
+  white-space: nowrap;
+}
+.icon-star{
+  display: inline-block;
+  vertical-align: top;
+  width: 18rpx;
+  height: 17rpx;
+  margin-right:9rpx;
+}

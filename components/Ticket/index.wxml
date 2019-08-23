@@ -1,0 +1,11 @@
+<!--components/Ticket/index.wxml-->
+<view class="ticket">
+  <view class="ticket__baseInfo dib vat">
+    <view class="ticket__name">{{ticketInfo.name}}</view>
+    <view class="ticket__time">{{ticketInfo.startTime}}至{{ticketInfo.endTime}}</view>
+  </view>
+  <view class="ticket__discountInfo tac dib vat">
+      <view class="ticket__discount">{{ticketInfo.discount}}折</view>
+      <view class="ticket__quota">满{{ticketInfo.quota}}元可用</view>
+  </view>
+</view>

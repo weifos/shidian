@@ -1,0 +1,81 @@
+<!--pages/sale/index.wxml-->
+<view class=" page-sale">
+  <i-greetings></i-greetings>
+  <view class="swiper-banner"><i-swiper></i-swiper></view>
+  <!-- sale-list s-->
+  <view class="sale-list">
+      <view class="tab-t">
+        <view class="tab-t__item {{index == curIndex ? 'cur' : ''}}" wx:for="{{saleData}}" wx:key="key">
+          {{item.name}}
+        </view>
+      </view>
+      <!-- tab-c s -->
+      <view class="tab-c"><view class="tab-c__wrap">
+        <view class="txt-todayRecommend">今日推荐咖啡：冰咖啡</view>
+        <view class="tab-c__item" wx:for="{{saleData[curIndex].list}}" wx:key="key">
+            <view class="item-img">
+              <image src="{{item.url}}"></image>
+            </view>
+            <view class="item-txt">
+              <view class="item-name">
+                {{item.name}}
+              </view>
+              <view class="item-star">
+                <i-star number="{{item.star}}"></i-star>
+              </view>
+              <view class="item-price">
+                <text>￥</text>{{item.price}}
+              </view>
+              <view class="item-btns">
+                <button class="cu-btn round bg-lightYellow text-white"  bindtap="showModal" data-target="bottomModal">选规格</button>
+              </view>
+            </view>
+        </view>
+      </view></view>
+      <!-- tab-c e -->
+  </view>
+  <!-- sale-list e -->
+</view>
+<!-- 底部 s -->
+<view class="order-tool-bar">
+  <view class="cu-bar tabbar">
+    <view class="bg-darkGray info">待支付￥35</view>
+    <view class="bg-lightYellow submit text-white">提交订单</view>
+  </view>
+</view>
+<!-- 底部 e -->
+<!-- 弹出层 s-->
+<view class="price-bar">
+  <view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
+    <view class="cu-dialog">
+      <view class="padding-xl">
+          <view class="order__title tac">
+            {{saleData[0].list[0].name}}
+          </view>
+          <view class="order__text tac text-lightGray">
+            - 规格 -
+          </view>
+          <view class="order__type">
+            <button class="cu-btn round line-gray" role="button" wx:for="{{saleData[0].list[0].type}}">{{item}}</button>
+          </view>
+          <view class="order__number">
+            <view class="t-detail">
+                <view class="van-stepper custom-class">
+                <view class="minus-class dib vam  bg-lightYellow">-</view>
+                <input
+                  class="input-class dib vam"
+                  value="1"
+                  bindinput="onInput" />
+                <view class="plus-class dib vam  bg-lightYellow">+</view>
+              </view>
+            </view>
+          </view>
+      </view>
+      <view class="cu-bar">
+        <button class="cu-btn round bg-gray text-white" bindtap="hideModal">取消</button>
+        <button class="cu-btn round bg-lightYellow text-white">选好了</button>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 弹出层 e-->

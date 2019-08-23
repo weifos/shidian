@@ -1,0 +1,37 @@
+<!--pages/orderCheck/index.wxml-->
+<view class="container page-orderCheck">
+  <view class="section">
+    <view class="section__title">
+      订单信息
+    </view>
+    <view class="section__content">
+      <view>订单编号：{{orderInfo.no}}</view>
+      <view>商品名称：{{orderInfo.name}}</view>
+      <view>备注：{{orderInfo.desc}}</view>
+    </view>
+  </view>
+  <view class="section">
+    <view class="align-justify">
+      <view class="fz33">优惠券<text class="no-ticket" wx:if="{{ticketInfo.length == 0}}">（暂无可用的优惠券）</text></view>
+      <view wx:if="{{ticketInfo.length > 0}}"><button class="cu-btn round line-black">选择</button></view>
+    </view>
+    <view class="tac mt20 mb20"><i-ticket class="dib" ticketInfo="{{ticketInfo[0]}}"></i-ticket></view>
+  </view>
+  <view class="section">
+    <view class="section__title">
+      支付方式
+    </view>
+    <view class="section__content">
+      <radio-group class="block">
+      <view class="radio__item"><radio checked></radio><text class="dib vam">微信支付</text></view>
+      <view class="radio__item"><radio></radio><text class="dib vam">钱包</text> <text class="txt-balance dib vam">余额：0.00</text></view>
+      </radio-group>
+    </view>
+  </view>
+</view>
+<view class="order-tool-bar">
+  <view class="cu-bar tabbar">
+    <view class="bg-darkGray info">共计￥70<text class="discounts">|  优惠6元</text></view>
+    <view class="bg-lightYellow submit text-white">支付</view>
+  </view>
+</view>

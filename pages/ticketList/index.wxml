@@ -1,0 +1,9 @@
+<!--pages/ticketList/index.wxml-->
+<view class="container page-ticketList">
+  <view class="ticket-list"  wx:if="{{ticketInfo.length >0}}">
+    <view class="ticket__item" wx:for="{{ticketInfo}}" wx:key="{{index}}">
+        <i-ticket ticketInfo="{{item}}"></i-ticket>
+    </view>
+  </view>
+  <i-nodata wx:if="{{ticketInfo.length == 0}}"></i-nodata>
+</view>

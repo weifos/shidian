@@ -1,0 +1,4 @@
+<!--components/NoData/index.wxml-->
+<view class="nodata">
+  暂无数据
+</view>

@@ -1,0 +1,46 @@
+<!--pages/psq/index.wxml-->
+<view class="page-psq">
+  <view class="psq__tips tac">
+    为了更好的为您提供符合需求的优质课程，请您勾选以下信息
+  </view>
+  <view class="psq__main bg-white">
+    <view class="user__image"><view class="cu-avatar lg round" style="background-image:url(/images/user.png);"></view></view>
+    <view class="question-content">
+      <!-- question-list s -->
+      <view class="question-list">
+        <view class="question__title fz33">
+          {{questionInfo[0].title}}
+        </view>
+        <radio-group class="block">
+          <view class="question__item" wx:for="{{questionInfo[0].list}}" wx:for-item="sItem" wx:key="index">
+            <radio class="mr20"></radio> <text class="dib vam">{{sItem}}</text>
+          </view>
+          <view class="question__item">
+            <radio class="mr20"></radio><text class="dib vam mr20">其他（请补充)</text> <input class="dib input-text vam"></input>
+          </view>
+         </radio-group>
+        </view>
+        <!-- question-list e -->
+        <!-- question-list s -->
+      <view class="question-list">
+        <view class="question__title fz33 mt40">
+          {{questionInfo[1].title}}
+        </view>
+          <view class="question__item" wx:for="{{questionInfo[1].list}}" wx:for-item="sItem" wx:key="index">
+            <checkbox class="round mr20"></checkbox> <text class="dib vam">{{sItem}}</text>
+          </view>
+          <view class="question__item">
+            <checkbox class="round mr20"></checkbox><text class="dib vam mr20">其他（请补充)</text> <input class="dib input-text vam"></input>
+          </view>
+        </view>
+        <!-- question-list e -->
+      </view>
+      
+  </view>
+  <view class="psq__btns mt20 mb20">
+    <view class="cu-bar">
+      <button class="cu-btn round bg-gray text-white" >残忍拒绝</button>
+      <button class="cu-btn round bg-lightBlue text-white">完成提交</button>
+    </view>
+  </view>
+</view>

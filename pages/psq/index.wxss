@@ -1,0 +1,38 @@
+/* pages/psq/index.wxss */
+.psq__tips{
+  padding:43rpx 0;
+  font-size:22rpx;
+}
+.psq__main{
+  position: relative;
+}
+.psq__main .user__image{
+  width: 96rpx;
+  height: 96rpx;
+  
+  overflow: hidden;
+  position: absolute;
+  top:58rpx;
+  left: 51rpx;
+}
+
+.question-content{
+  padding:58rpx 20rpx 58rpx 205rpx;
+}
+.question__title{
+  font-weight: 800;
+  margin-bottom:22rpx;
+}
+.question__item{
+  margin-bottom:22rpx;
+  font-size: 27rpx;
+}
+.input-text{border:1px solid #707070;
+width:224rpx;
+height:47rpx;}
+.psq__btns .cu-bar{
+   justify-content: center;
+}
+.psq__btns .cu-btn{
+  margin:0 20rpx;
+}

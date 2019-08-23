@@ -1,0 +1,6 @@
+/* components/NoData/index.wxss */
+.nodata{
+  text-align: center;
+  font-size: 33rpx;
+  padding-top:30%; 
+}

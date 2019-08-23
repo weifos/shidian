@@ -28,11 +28,39 @@
 .fz33{
   font-size: 33rpx;
 }
+.fz22{
+  font-size: 22rpx;
+}
 .dib{display: inline-block;}
 .vat{vertical-align: top;}
 .vam{vertical-align: middle;}
-
-
+.tac{text-align: center;}
+.align-justify{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+.mt40{
+  margin-top: 40rpx;
+}
+.mt20{
+  margin-top: 20rpx;
+}
+.mb20{
+  margin-bottom: 20rpx;
+}
+.ml20{
+  margin-left: 20rpx;
+}
+.mr20{
+  margin-right: 20rpx;
+}
+.color-lightBlue,.text-lightBlue{
+  color:#9BBAFF;
+}
+.text-lightGray{
+  color: #B2B2B2;
+}
 
 .bg-lightBlue{
   background-color: #9BBAFF;
@@ -43,9 +71,7 @@
 .bg-gray{
   background-color: #B2B2B2;
 }
-.color-lightBlue{
-  color:#9BBAFF;
-}
+
 .bg-darkGray{
   background-color: #707070;
 }
@@ -53,6 +79,23 @@
   background-color: #D0B07E;
 }
 
+/**=======================**/
+radio{ 
+  transform:scale(0.9);
+}
+.section{
+  background: #fff;
+  padding: 29rpx 36rpx;
+  margin-bottom:7rpx;
+}
+.section__title{
+  font-size: 33rpx;
+  padding-bottom: 22rpx;
+  border-bottom: 1rpx solid #707070;
+}
+.section__content{
+  padding: 36rpx 0;
+}
 /**=======================**/
 page{
   background-color: #f2f2f2;
@@ -82,7 +125,7 @@ page{
 .i-tab .cu-item.cur{
   border:none;
 }
-.minus-class,.plus-class{
+.van-stepper .minus-class,.van-stepper .plus-class{
   width: 40rpx;
   height: 40rpx;
   background: #9BBAFF;
@@ -92,10 +135,12 @@ page{
   color:#fff;
   font-weight: 800;
 }
-.input-class{
+.van-stepper .input-class{
   font-size: 36rpx;
   width: 80rpx;
+  text-align: center;
 }
+.van-stepper .bg-lightYellow.minus-class,.van-stepper .bg-lightYellow.plus-class{background-color: #D0B07E;}
 
 .order-tool-bar{
   font-size: 36rpx;

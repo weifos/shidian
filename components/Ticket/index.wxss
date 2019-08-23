@@ -1,0 +1,40 @@
+/* components/Ticket/index.wxss */
+.ticket{
+  color: #fff;
+  font-size: 0;
+  vertical-align: top;
+}
+.ticket__baseInfo{
+  width: 389rpx;
+  height: 153rpx;
+  border-radius: 18rpx;
+  background-color: #BFD3FF;
+  border-right: 1px dashed #fff;
+  font-size: 33rpx;
+  text-align: left;
+}
+.ticket__discountInfo{
+  width: 205rpx;
+  height: 153rpx;
+  border-radius: 18rpx;
+  background-color: #9BBAFF;
+  font-size: 33rpx;
+}
+.ticket__name{
+  height:75rpx;
+  margin: 16rpx 0 12rpx 24rpx;
+}
+.ticket__time{
+  margin-left: 24rpx;
+  font-size: 22rpx;
+}
+.ticket__discount{
+  font-size: 54rpx;
+  margin:16rpx 0 10rpx 0;
+}
+.ticket__quota{
+  font-size: 22rpx;
+}
+.tac{text-align: center;}
+.dib{display: inline-block;}
+.vat{vertical-align: top;}
