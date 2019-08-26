@@ -1,0 +1,24 @@
+<!--pages/member/phone/index.wxml-->
+<view class="container page-member-phone">
+    <view class="cu-list menu">
+      <view class="cu-item">
+        <view class="content">
+          <i-icon name="phone" class="dib icon-img vat ml20"></i-icon>
+          <view class="dib icon-name vam ml20"><input placeholder-class="place-holder" placeholder="请输入手机号码"></input></view>
+        </view>
+      </view>
+      <view class="cu-item">
+        <view class="content">
+          <i-icon name="code" class="dib icon-img vat ml20"></i-icon>
+          <view class="dib icon-name vam ml20"><input placeholder-class="place-holder" placeholder="请输入短信验证码"></input></view>
+          <view class="dib vam">
+            | <button class="cu-btn round line-grey btn-code">获取短信验证码</button>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="form-btns">
+      <button class="cu-btn round bg-lightBlue text-white btn-save">保存资料</button>
+    </view>
+</view>
+<i-bottombar></i-bottombar>

@@ -1,7 +1,17 @@
 <!--components/Ticket/index.wxml-->
-<view class="ticket">
+<view class="ticket ticket-2" wx:if="{{type == 'into'}}">
   <view class="ticket__baseInfo dib vat">
-    <view class="ticket__name">{{ticketInfo.name}}</view>
+    <view class="ticket__name ellipsis2">{{ticketInfo.name}}</view>
+    <view class="ticket__time">{{ticketInfo.startTime}}至{{ticketInfo.endTime}}</view>
+  </view>
+  <view class="ticket__discountInfo tac dib vat">
+      <view class="ticket__discount">入场券</view>
+      <view class="ticket__quota">点击使用</view>
+  </view>
+</view>
+<view class="ticket ticket-1" wx:else>
+  <view class="ticket__baseInfo dib vat">
+    <view class="ticket__name ellipsis">{{ticketInfo.name}}</view>
     <view class="ticket__time">{{ticketInfo.startTime}}至{{ticketInfo.endTime}}</view>
   </view>
   <view class="ticket__discountInfo tac dib vat">

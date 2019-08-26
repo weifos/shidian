@@ -1,0 +1,20 @@
+<!--pages/member/memberTicket/index.wxml-->
+<view class="container page-member-ticket">
+  <view class="title-1">
+    <text>课堂入场券</text>
+  </view>
+  <view class="ticket-list tac">
+    <view class="ticket__item dib" wx:for="{{ticketInfo}}">
+        <i-ticket ticketInfo="{{item}}" type="into"></i-ticket>
+    </view>
+  </view>
+  <view class="title-1">
+    <text>活动入场券</text>
+  </view>
+  <view class="ticket-list tac pb40">
+    <view class="ticket__item dib" wx:for="{{ticketInfo}}">
+        <i-ticket ticketInfo="{{item}}" type="into"></i-ticket>
+    </view>
+  </view>
+</view>
+<i-bottombar></i-bottombar>

@@ -1,6 +1,7 @@
 /* components/NoData/index.wxss */
 .nodata{
   text-align: center;
-  font-size: 33rpx;
-  padding-top:30%; 
+  font-size: 27rpx;
+  padding-top:40%; 
+  color: #E2E2E2;
 }

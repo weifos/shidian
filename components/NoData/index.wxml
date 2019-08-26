@@ -1,4 +1,7 @@
 <!--components/NoData/index.wxml-->
 <view class="nodata">
-  暂无数据
+  <view wx:if="{{content == ''}}">暂无数据</view>
+  <view wx:else>
+      {{content}}
+  </view>
 </view>

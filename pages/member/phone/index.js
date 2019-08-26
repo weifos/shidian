@@ -1,36 +1,11 @@
-// pages/ticketList/index.js
+// pages/member/phone/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    "ticketInfo":[
-      // {
-      // "key":"0001",
-      // "name":"咖啡券",
-      // "startTime":"2019-06-01",
-      // "endTime":"2019-06-30",
-      // "discount":"5",
-      // "quota":"0.01"
-      // },
-      // {
-      //   "key": "0001",
-      //   "name": "咖啡券",
-      //   "startTime": "2019-06-01",
-      //   "endTime": "2019-06-30",
-      //   "discount": "5",
-      //   "quota": "0.01"
-      // },
-      // {
-      //   "key": "0001",
-      //   "name": "咖啡券",
-      //   "startTime": "2019-06-01",
-      //   "endTime": "2019-06-30",
-      //   "discount": "5",
-      //   "quota": "0.01"
-      // }
-    ]
+
   },
 
   /**

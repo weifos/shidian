@@ -1,0 +1,4 @@
+/* pages/member/memberTicket/index.wxss */
+.title-1{
+  padding-top: 69rpx;
+}

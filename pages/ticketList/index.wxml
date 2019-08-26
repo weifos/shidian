@@ -5,5 +5,5 @@
         <i-ticket ticketInfo="{{item}}"></i-ticket>
     </view>
   </view>
-  <i-nodata wx:if="{{ticketInfo.length == 0}}"></i-nodata>
+  <i-nodata wx:if="{{ticketInfo.length == 0}}" content="暂无优惠券信息"></i-nodata>
 </view>

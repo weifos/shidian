@@ -1,0 +1,4 @@
+/* pages/member/orderList2/index.wxss */
+page{
+  background-color: #fff;
+}

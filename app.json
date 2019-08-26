@@ -1,6 +1,12 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/member/orderList2/index",
+    "pages/member/memberIntegral/index",
+    "pages/member/memberTicket/index",
+    "pages/member/orderList/index",
+    "pages/member/memberCard/index",
+    "pages/member/phone/index",
     "pages/member/userInfo/index",
     "pages/member/index/index",
     "pages/sale/index",

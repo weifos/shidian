@@ -38,3 +38,23 @@
 .tac{text-align: center;}
 .dib{display: inline-block;}
 .vat{vertical-align: top;}
+
+.ticket-2 .ticket__name{
+  font-size: 27rpx;
+  padding-right: 20rpx;
+}
+.ticket-2 .ticket__discount{
+  font-size: 36rpx;
+  margin-top:30rpx;
+}
+.ellipsis2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

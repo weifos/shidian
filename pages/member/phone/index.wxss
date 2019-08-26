@@ -1,0 +1,15 @@
+/* pages/member/phone/index.wxss */
+.page-member-phone .btn-code{
+  height: 50rpx;
+}
+.place-holder{
+  color: #E2E2E2;
+}
+.form-btns{
+  text-align: center;
+  padding: 257rpx 0 0 0;
+}
+.form-btns .btn-save{
+  width:435rpx;
+  height:80rpx;
+}

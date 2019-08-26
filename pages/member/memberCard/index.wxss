@@ -1,0 +1,23 @@
+/* pages/member/memberCard/index.wxss */
+.member-card image,.member-card {width: 708rpx;height: 371rpx;}
+.member-card {
+  padding: 20rpx 0;
+  margin:0 auto;
+  position: relative;
+}
+.card__text{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top:0;
+  left:0;
+}
+.card__name{
+  padding:53rpx 0 0 69rpx;
+  font-size:33rpx;
+}
+.card__level{
+  padding:179rpx 0 0 40rpx;
+  font-size:  27rpx;
+                        
+}

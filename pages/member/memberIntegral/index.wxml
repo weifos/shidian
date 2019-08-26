@@ -1,0 +1,33 @@
+<!--pages/member/memberIntegral/index.wxml-->
+<view class="container page-member-integral">
+  <view class="integral-bar tac bg-white">
+    <view>可兑换积分</view>
+    <view><i-icon name="integral"></i-icon><text class="integral__num dib vam">300</text></view>
+    <view><button class="cu-btn round sm bg-lightBlue text-white">积分规则</button></view>
+  </view>
+  <!-- i-tab2 s -->
+  <view class="i-tab2">
+    <scroll-view scroll-x class="bg-white nav text-center">
+      <view class="flex text-center">
+        <view class="cu-item flex-sub {{index==TabCur?'text-lightBlue cur':''}}" wx:for="{{integralData}}" wx:key bindtap="tabSelect" data-id="{{index}}" wx:for-item="item">
+          {{item.title}}
+        </view>
+      </view>
+    </scroll-view>
+    <view class="tab-content">
+      <view class="tab-c bg-white">
+        <view class="integral-list list-2">
+          <view class="f-item hidden" wx:key wx:for="{{integralData[TabCur].list}}" wx:if="{{integralData[TabCur].list.length > 0}}">
+            <view class="f-value fr">{{item.value}}</view>
+            <view class="f-status">{{item.status}}</view>
+            <view class="f-name ellipsis text-lightGray">{{item.name}}</view>
+            <view class="f-time mt10 text-lightGray">{{item.time}}</view>
+          </view>
+        </view>
+        <i-nodata class="nodata" wx:if="{{integralData[TabCur].list.length == 0}}" content="您还没有积分记录哦"></i-nodata>
+      </view>
+    </view>
+  </view>
+  <!-- i-tab2 e -->
+</view>
+<i-bottombar></i-bottombar>

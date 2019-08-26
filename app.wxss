@@ -31,10 +31,13 @@
 .fz22{
   font-size: 22rpx;
 }
+.db{display: block;}
 .dib{display: inline-block;}
 .vat{vertical-align: top;}
 .vam{vertical-align: middle;}
 .tac{text-align: center;}
+.hidden{overflow: hidden;}
+.bold{font-weight: bold;}
 .align-justify{
   display: flex;
   justify-content:space-between;
@@ -48,6 +51,8 @@
 .ml20{margin-left: 20rpx;}
 .mr20{ margin-right: 20rpx;}
 .mt40{margin-top: 40rpx;}
+.pb20{padding-bottom: 20rpx;}
+.pb40{padding-bottom: 40rpx;}
 
 .color-lightBlue,.text-lightBlue{color:#9BBAFF;}
 .text-lightGray{color: #B2B2B2;}
@@ -86,7 +91,37 @@ radio{
 .section__content{
   padding: 36rpx 0;
 }
+.title-1 {
+  text-align: center;
+}
+.title-1 text{
+  font-size: 33rpx;
+  color: #B2B2B2;
+  
+  height: 45rpx;
+  line-height: 45rpx;
+  position: relative;                    
+}
 
+.title-1 text:before,.title-1 text:after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 92rpx;
+  height: 2rpx;
+  
+  background-color: #B2B2B2;
+}
+.title-1 text:before{
+  left: -135rpx;
+}
+.title-1 text:after{
+  right:-135rpx;
+}
+.size-normal{
+  height: 53rpx;
+  width: 147rpx;
+}
 /**=======================**/
 page{
   background-color: #f2f2f2;
@@ -156,4 +191,63 @@ page{
 .order-tool-bar .discounts{
   font-size: 30rpx;
   opacity: 0.8;
+}
+/* .list-2 积分列表 */
+.list-2 .f-item{
+  padding:38rpx 53rpx;
+  border-bottom:2rpx solid #E2E2E2; 
+  font-size: 27rpx;
+}
+.list-2 .f-status{
+  font-size: 33rpx;
+  margin-bottom: 24rpx;
+}
+.list-2 .f-value{
+  font-size: 54rpx;
+  margin-top:40rpx;
+  color: #707070;
+}
+/* .i-tab2 */
+.i-tab2 .nav{
+  font-size: 27rpx;
+  border-bottom:4rpx solid #f2f2f2;
+}
+.i-tab2 .nav .cu-item.cur{
+  border-width: 11rpx;
+}
+/* .list-3  */
+.list-3 .f-image{
+  width: 703rpx;
+  height: 199rpx; 
+  border-radius: 36rpx;
+  overflow: hidden;
+  margin:0 auto 30rpx auto;
+}
+.list-3 image{
+  width: 703rpx;
+  height: 199rpx;  
+}
+.list-3 .f-item{
+  padding:36rpx 24rpx;
+  font-size: 27rpx;
+  position: relative;
+}
+.list-3 .f-content{
+  padding:0 10rpx;
+}
+.list-3 .f-name{
+  margin-bottom: 38rpx;
+}
+.list-3 .right-bar{
+  position: absolute;
+  bottom: 24rpx;
+  right: 34rpx;
+}
+/* nodata */
+.nodata{
+  text-align: center;
+  font-size: 27rpx;
+  padding-top:40%; 
+  color: #E2E2E2;
+  line-height: 1.8
 }
