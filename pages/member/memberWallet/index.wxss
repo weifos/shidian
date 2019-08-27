@@ -1,0 +1,42 @@
+/* pages/member/memberWallet/index.wxss */
+page{
+  background: #fff;
+}
+.sec-wallet{
+  padding:60rpx 0;
+}
+.value-bar{
+   margin:20rpx 0 40rpx 0; 
+}
+.value-bar .value{
+  font-size: 82rpx;
+  margin-left:24rpx;
+}
+.sec-wallet .cu-btn{
+  margin:0 40rpx;
+  width: 205rpx;
+  height: 58rpx;
+}
+.sec-recharge{
+  background: #F4F4F4;
+  padding-top:30rpx; 
+}
+.sec-recharge .bg-wrap{
+  background:#fff;
+  overflow: hidden;
+  border-radius:36rpx 36rpx 0px 0px;
+  
+}
+.i-tab{
+  padding: 0;
+}
+.f-wrap{
+  margin: 0 24rpx;
+}
+.list-4{
+  padding: 60rpx 43rpx;
+}
+.sec-recharge .cu-btn{
+  width:205rpx;
+  height:58rpx;
+}

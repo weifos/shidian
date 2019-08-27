@@ -1,6 +1,11 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/chat/index",
+    "pages/member/memberWallet/index",
+    "pages/member/ticketList/index",
+    "pages/member/consumeList/index",
+    "pages/member/ticketBind/index",
     "pages/member/orderList2/index",
     "pages/member/memberIntegral/index",
     "pages/member/memberTicket/index",

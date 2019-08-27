@@ -1,0 +1,12 @@
+/* pages/member/ticketBind/index.wxss */
+.page-ticket-bind .btn-code{
+  height: 50rpx;
+}
+.form-btns{
+  text-align: center;
+  padding: 103rpx 0 0 0;
+}
+.form-btns .btn-save{
+  width:435rpx;
+  height:80rpx;
+}

@@ -1,0 +1,21 @@
+<!--pages/member/ticketBind/index.wxml-->
+<view class="container page-ticket-bind">
+    <view class="cu-list menu">
+      <view class="cu-item">
+        <view class="content">
+          <i-icon name="phone" class="dib icon-img vat ml20"></i-icon>
+          <view class="dib icon-name vam ml20"><input placeholder-class="place-holder" placeholder="请输入卡号"></input></view>
+        </view>
+      </view>
+      <view class="cu-item">
+        <view class="content">
+          <i-icon name="code" class="dib icon-img vat ml20"></i-icon>
+          <view class="dib icon-name vam ml20"><input placeholder-class="place-holder" placeholder="请输入密码"></input></view>
+        </view>
+      </view>
+    </view>
+    <view class="form-btns">
+      <button class="cu-btn round bg-lightBlue text-white btn-save">确定</button>
+    </view>
+</view>
+<i-bottombar></i-bottombar>

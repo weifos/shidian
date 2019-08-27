@@ -43,3 +43,6 @@ width:32rpx;height:46rpx;
 .icon-code{
 width:34rpx;height:34rpx;
 }
+.icon-chat{
+  width:80rpx;height:80rpx;
+}

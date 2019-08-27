@@ -1,0 +1,28 @@
+<!--pages/member/consumeList/index.wxml-->
+<view class="container page-consume-list">
+    <view class="consume-list bg-white">
+      <view class="consume-item hidden" wx:key wx:for="{{list}}">
+        <view class="fr right-bar">
+             <view class="item-value dib vam">
+                {{item.value}}
+            </view>
+            <view class=" dib vam separate">
+                |
+            </view>
+            <view class="item-type dib vam">
+                {{item.type}}
+            </view>
+        </view>
+        <view class="left-bar">
+          <i-icon name="wallet" class="icon icon-wallet"></i-icon>
+          <view class="item-name">
+            {{item.name}}
+          </view>
+          <view class="item-time text-lightGray">
+            {{item.time}}
+          </view>
+        </view>
+      </view>
+    </view>
+</view>
+<i-bottombar></i-bottombar>

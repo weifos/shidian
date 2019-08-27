@@ -1,0 +1,10 @@
+/* pages/member/ticketList/index.wxss */
+page{
+  background: #fff;
+}
+.ticket-list {
+  padding: 56rpx 0;
+}
+.ticket-list .f-item{
+  padding-bottom:36rpx;
+}

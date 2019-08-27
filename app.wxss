@@ -31,6 +31,9 @@
 .fz22{
   font-size: 22rpx;
 }
+.fz27{
+  font-size: 27rpx;
+}
 .db{display: block;}
 .dib{display: inline-block;}
 .vat{vertical-align: top;}
@@ -250,4 +253,30 @@ page{
   padding-top:40%; 
   color: #E2E2E2;
   line-height: 1.8
+}
+/* place-holder  */
+.place-holder{
+  color: #E2E2E2;
+}
+/* list-4 充值列表 */
+.list-4 {
+  font-size: 0;
+  padding-left:43rpx ;
+  padding-right:43rpx ;
+}
+.list-4 .f-item{
+  height: 114rpx;
+  border: 2rpx solid #9BBAFF;
+  border-radius:36rpx;
+  background: #fff;
+  color: #9BBAFF;
+  margin:0 29rpx 29rpx 0;
+  display: inline-block;
+  width: 201rpx;
+}
+.list-4 .f-item:nth-child(3n){
+  margin-right: 0;
+}
+.list-4 .text-value{
+  padding-top: 16rpx;
 }

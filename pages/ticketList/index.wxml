@@ -1,7 +1,7 @@
 <!--pages/ticketList/index.wxml-->
-<view class="container page-ticketList">
+<view class="container page-ticketlist">
   <view class="ticket-list"  wx:if="{{ticketInfo.length >0}}">
-    <view class="ticket__item" wx:for="{{ticketInfo}}" wx:key="{{index}}">
+    <view class="ticket__item" wx:for="{{ticketInfo}}" wx:key>
         <i-ticket ticketInfo="{{item}}"></i-ticket>
     </view>
   </view>

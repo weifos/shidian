@@ -1,0 +1,26 @@
+<!--pages/member/ticketList/index.wxml-->
+<view class="container page-member-ticketList">
+<!-- i-tab2 s -->
+  <view class="i-tab2">
+    <scroll-view scroll-x class="bg-white nav text-center">
+      <view class="flex text-center">
+        <view class="cu-item flex-sub {{index==TabCur?'text-lightBlue cur':''}}" wx:for="{{orderData}}" wx:key bindtap="tabSelect" data-id="{{index}}" wx:for-item="item">
+          {{item.title}}
+        </view>
+      </view>
+    </scroll-view>
+    <view class="tab-content">
+      <view class="tab-c bg-white">
+        <view class="ticket-list tac">
+          <view class="f-item hidden" wx:key wx:for="{{orderData[TabCur].list}}" wx:if="{{orderData[TabCur].list.length > 0}}">
+           <i-ticket ticketInfo="{{item}}"></i-ticket>
+          </view>
+        </view>
+        <i-nodata content="您还没有优惠券哦~"  wx:if="{{orderData[TabCur].list.length == 0}}">
+        </i-nodata>
+      </view>
+    </view>
+  </view>
+  <!-- i-tab2 e -->
+</view>
+<i-bottombar></i-bottombar>

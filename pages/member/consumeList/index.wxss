@@ -1,0 +1,29 @@
+/* pages/member/consumeList/index.wxss */
+.consume-list{
+  font-size: 27rpx;
+}
+.consume-item{
+  padding: 36rpx;
+  border:2rpx solid #F4F4F4;
+}
+.consume-list .right-bar{
+  width:208rpx;
+  line-height: 65rpx;
+  text-align: right;
+}
+.separate{
+  margin:0 10rpx;
+}
+.left-bar{
+  padding-left: 70rpx;
+  position: relative;
+}
+.icon-wallet{
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.consume-list .item-name{
+  margin-bottom:5rpx; 
+}

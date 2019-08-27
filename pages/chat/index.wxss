@@ -1,0 +1,75 @@
+/* pages/chat/index.wxss */
+page{background: #fff;}
+.chat-head{
+  height: 120rpx;
+}
+.chat-head .time{
+  padding-top: 20rpx;
+}
+.chat-body{
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: 120rpx 0 153rpx 0;
+  width: 100%;
+  z-index: -1;
+  
+}
+.chat-bottom{
+  height: 153rpx;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background: #F4F4F4;
+}
+.body-wrap{
+  height: 100%;
+  overflow: auto;
+  border-radius:72rpx 72rpx 0px 0px;
+  background-color: #F4F4F4;
+}
+.chat-bar{
+  width:668rpx;
+  height:98rpx;
+  background:#fff;
+  border-radius:49rpx;
+  margin:10rpx auto 0 auto;
+  position: relative;
+  
+}
+.input-chat{
+  height: 98rpx;
+  line-height: 98rpx;
+  font-size:27rpx;
+  margin-top:28rpx;
+  padding:0 104rpx 0 30rpx;
+}
+.i-chat{
+  position: absolute;
+  top: 9rpx;
+  right:14rpx;
+}
+.chat-main{
+  padding: 72rpx 36rpx;
+}
+.chat-main .cu-avatar{
+  width: 65rpx;
+  height: 65rpx;
+}
+.cu-chat .cu-item>.main .content:not([class*="bg-"]) {
+  color: #707070;
+}
+.cu-chat .cu-item>.main .content:before,.cu-chat .cu-item>.main .content:after{
+  display: none;
+}
+.cu-chat .cu-item>.main{
+  margin: 0 18rpx;
+}
+.cu-chat .cu-item>.main .content{
+  border-radius:36rpx;
+  padding:20rpx 33rpx;
+  font-size: 27rpx;
+}
