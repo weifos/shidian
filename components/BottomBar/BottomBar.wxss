@@ -39,3 +39,9 @@
   width: 100%;
   left:0;
 }
+.cuIcon-cu-image .cur-img,.cuIcon-cu-image.cur .normal-img{
+  display: none;
+}
+.cuIcon-cu-image .normal-img,.cuIcon-cu-image.cur .cur-img{
+  display: inline-block;
+}

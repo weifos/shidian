@@ -3,7 +3,7 @@
     <view class="cu-list menu">
       <view class="cu-item">
         <view class="content">
-          <i-icon name="phone" class="dib icon-img vat ml20"></i-icon>
+          <i-icon name="ticket2" class="dib icon-img vat ml20"></i-icon>
           <view class="dib icon-name vam ml20"><input placeholder-class="place-holder" placeholder="请输入卡号"></input></view>
         </view>
       </view>
