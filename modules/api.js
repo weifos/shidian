@@ -1,9 +1,9 @@
 //测试环境  
-//let domain = "http://ns.api.nongshang.com/"
-//let res_domain = "https://ns.res.nongshang.com/"
+let domain = "http://sd.api.shidian.com/"
+let res_domain = "http://sd.res.shidian.com/"
 //正式环境
-let domain = "https://api.szmay.com/"
-let res_domain = "http://res.szmay.com/"
+// let domain = "https://sd.api.shidian.com/"
+// let res_domain = "http://sd.res.shidian.com/"
 
 /// <summary>
 /// 全局配置类

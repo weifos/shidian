@@ -3,54 +3,55 @@
   <!-- i-tab2 s -->
   <view class="i-tab">
     <view class="f-wrap">
-    <scroll-view scroll-x class="bg-white nav text-center tab-t">
-      <view class="flex text-center">
-        <view class="cu-item flex-sub {{index==TabCur?'bg-lightBlue cur':''}}" wx:for="{{tabData}}" wx:key bindtap="tabSelect" data-id="{{index}}" wx:for-item="item">
-          {{item.title}}
+      <scroll-view scroll-x class="bg-white nav text-center tab-t">
+        <view class="flex text-center">
+          <view class="cu-item flex-sub {{index==TabCur?'bg-lightBlue cur':''}}" wx:for="{{tabData}}" wx:key bindtap="tabSelect" data-id="{{index}}" wx:for-item="item">
+            {{item.title}}
+          </view>
         </view>
-      </view>
-    </scroll-view>
+      </scroll-view>
     </view>
     <view class="tab-content2">
       <view class="tab-c" wx:if="{{TabCur == 0}}">
-      <!-- section s -->
-      <view class="section tac sec-wallet">
-        <view class="text-bar fz27">
+        <!-- section s -->
+        <view class="section tac sec-wallet">
+          <view class="text-bar fz27">
             钱包余额
-        </view>
-        <view class="value-bar">
-          <i-icon name="wallet"></i-icon>
-          <view class="dib vam value">
-            300
+          </view>
+          <view class="value-bar">
+            <i-icon name="wallet"></i-icon>
+            <view class="dib vam value">
+              300
+            </view>
+          </view>
+          <view class="btns-bar">
+            <button class="cu-btn round bg-lightBlue text-white">储值卡绑定</button>
+            <button class="cu-btn round bg-lightBlue text-white">钱包明细</button>
           </view>
         </view>
-        <view class="btns-bar">
-          <button class="cu-btn round bg-lightBlue text-white">储值卡绑定</button>
-          <button class="cu-btn round bg-lightBlue text-white">钱包明细</button>
-        </view>
-      </view>
-       <!-- section e -->
-       <!-- section s -->
-       <view class=" sec-recharge">
+        <!-- section e -->
+        <!-- section s -->
+        <view class=" sec-recharge">
           <view class="bg-wrap">
-              <view class="list-4">
-                <view wx:for="{{tabData[0].list}}" class="f-item tac" wx:key>
-                  <view class="text-value fz33">{{item.value}}元</view>
-                  <view class="text-discount fz22">{{item.discount}}</view>
-                </view>
+            <view class="list-4">
+              <view wx:for="{{tabData[0].list}}" class="f-item tac" wx:key>
+                <view class="text-value fz33">{{item.value}}元</view>
+                <view class="text-discount fz22">{{item.discount}}</view>
               </view>
-              <view class="btns-bar tac">
-                  <button class="cu-btn round bg-lightBlue text-white fz33">去充值</button>
-              </view>
+            </view>
+            <view class="btns-bar tac">
+              <button class="cu-btn round bg-lightBlue text-white fz33">去充值</button>
+            </view>
           </view>
-       </view>
+        </view>
         <!-- section e -->
       </view>
       <view class="tab-c bg-white" wx:if="{{TabCur == 1}}">
-        付款码
+      
+        <canvas class="canvas-code" canvas-id="myQrcode" style="background:#fff;width: 200px;height: 200px;margin-left:10px;"/>
       </view>
     </view>
-  </view>
+  </view> 
   <!-- i-tab2 e -->
 </view>
 <i-bottombar></i-bottombar>

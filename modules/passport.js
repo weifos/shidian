@@ -15,7 +15,7 @@ module.exports = {
       //未过期
       success() {
         wx.getSetting({
-          success: res => {
+          success: res => { 
             if (!wx.getStorageSync('session_key') || !userInfo.openid) {
               that.wxLogin(func)
             }else{
@@ -41,7 +41,7 @@ module.exports = {
     wx.login({
       //调用接口获取登录凭证（code），包含openid，session_key
       success: function(res) {
-        if (res.code) {
+        if (res.code) { 
           wx.post(api.api_103, wx.GetSign({
             Code: res.code
           }), function(app, res) {
