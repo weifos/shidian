@@ -1,5 +1,5 @@
 /* components/Swiper/Swiper.wxss */
-swiper{
+.swiper-shadow{
   height: 402rpx;
   border-radius: 40rpx;
   overflow: hidden;

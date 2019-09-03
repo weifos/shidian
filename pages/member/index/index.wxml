@@ -5,6 +5,7 @@
     <view class="member-bg" style="background:#B2B2B2 url(/images/p8.png) no-repeat 0 -50rpx/100% auto;" wx:if="{{userInfo.login}}"></view>
     <view class="member__image">
       <view class="cu-avatar xl round" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg);"></view>
+      <button class="btn-refresh" style="background:#fff url(/images/icon/refresh.png) no-repeat center center/28rpx 28rpx;"></button>
     </view>
     <view class="member__text">
         <view class="member__name">

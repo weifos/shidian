@@ -66,3 +66,17 @@ member-head.login{
 .head__btns{
   margin-left:78rpx;
 }
+.btn-refresh{
+  background: #fff;
+  width: 48rpx;
+  height: 48rpx;
+  position: absolute;
+  right:30rpx;
+  bottom:-5rpx;
+  border-radius: 100%;
+  padding:0;
+  overflow: hidden;
+}
+.btn-refresh:after{
+  border:none;
+}

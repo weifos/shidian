@@ -6,7 +6,7 @@ Page({
    */
   data: {
     userInfo:{
-      "login":0,
+      "login":1,
       "name":"Cpandd",
       "intro":"我超喜欢十点书店的"
     },

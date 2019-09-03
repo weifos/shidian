@@ -11,6 +11,10 @@
   width: 100%;
   height: 546rpx;
 }
+.swiper-index{
+  height: 546rpx;
+  overflow: hidden;
+}
 
 .menu__item{
   width:700rpx;
