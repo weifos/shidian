@@ -1,0 +1,31 @@
+<!--pages/member/ticketDetail/index.wxml-->
+<view class="page-ticket-detail">
+  <view class="ticket-info-bar bg-white">
+    <view>
+      有效期：{{ticketInfo.time}}
+    </view>
+    <view>
+      使用条件：{{ticketInfo.condition}}
+    </view>
+    <view>
+      可用门店：{{ticketInfo.shop}}
+    </view>
+    <view>
+      使用范围：{{ticketInfo.range}}
+    </view>
+  </view>
+  <view class="ticket-image-bar tac bg-white">
+    <view class="ticket-no fz27">
+      6524459436751339520_082885514440
+    </view>
+    <view class="ticket-image-tm">
+      <image src="/images/ewm2.png"></image>
+    </view>
+    <view class="ticket-image-ewm">
+      <image src="/images/ewm.png"></image>
+    </view>
+    <view class="ticket-btns">
+      <button class="cu-btn bg-lightBlue text-white round">前往我的会员</button>
+    </view>
+  </view>
+</view>
