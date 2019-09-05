@@ -13,3 +13,4 @@
 <view class="icon-code dib icon" wx:if="{{name == 'code'}}" style="background-image: url(/images/icon/i16.png);"></view>
 <view class="icon-chat dib icon" wx:if="{{name == 'chat'}}" style="background-image: url(/images/icon/chat.png);"></view>
 <view class="icon-ticket2 dib icon" wx:if="{{name == 'ticket2'}}" style="background-image: url(/images/icon/i17.png);"></view>
+<view class="icon-paycode dib icon" wx:if="{{name == 'paycode'}}" style="background-image: url(/images/icon/i18.png);"></view>

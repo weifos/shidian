@@ -16,8 +16,8 @@ Page({
         "icon":"member"
       },
       {
-        "name": "我的课堂",
-        "icon": "course"
+        "name": "付款码",
+        "icon": "paycode"
       },
       {
         "name": "我的活动",
@@ -26,28 +26,6 @@ Page({
       {
         "name": "我的积分",
         "icon": "integral"
-      }
-    ],
-    list1:[
-      {
-        "name":"我的会员",
-        "icon":"member",
-        "url":""
-      },
-      {
-        "name": "我的课堂",
-        "icon": "course",
-        "url": ""
-      },
-      {
-        "name": "我的活动",
-        "icon": "activity",
-        "url": ""
-      },
-      {
-        "name": "我的积分",
-        "icon": "integral",
-        "url": ""
       }
     ],
     list2: [

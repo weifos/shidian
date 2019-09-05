@@ -49,4 +49,7 @@ width:34rpx;height:34rpx;
 .icon-ticket2{
   width:37rpx;height:28rpx;
 }
+.icon-paycode{
+  width:38rpx;height:38rpx;
+}
 
