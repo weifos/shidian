@@ -1,33 +1,35 @@
 <!--pages/member/index/index.wxml-->
 <view class="container page-member-index">
-<!-- login s -->
-  <view class="member-head login" wx:if="{{userInfo.login}}">
+  <!-- login s -->
+  <view class="member-head login" wx:if="{{isLogin}}">
     <view class="member-bg" style="background:#B2B2B2 url(/images/p8.png) no-repeat 0 -50rpx/100% auto;" wx:if="{{userInfo.login}}"></view>
     <view class="member__image">
-      <view class="cu-avatar xl round" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg);"></view>
-      <button class="btn-refresh" style="background:#fff url(/images/icon/refresh.png) no-repeat center center/28rpx 28rpx;"></button>
+      <view class="cu-avatar xl round" style="background-image:url({{userInfo.headimgurl}});"></view>
+      <button class="btn-refresh"  open-type="getUserInfo" bindgetuserinfo="getWxUser" style="background:#fff url(/images/icon/refresh.png) no-repeat center center/28rpx 28rpx;"></button>
     </view>
     <view class="member__text">
-        <view class="member__name">
-          <text class="dib vam mr20">{{userInfo.name}}</text>
-          <i-icon name="vip"></i-icon>
-        </view>
-        <view class="member__intro fz22 mt10">
-          {{userInfo.intro}}
-        </view>
+      <view class="member__name">
+        <text class="dib vam mr20">{{userInfo.nick_name}}</text>
+        <i-icon name="vip"></i-icon>
+      </view>
+      <view class="member__intro fz22 mt10">
+        {{userInfo.login_name}}
+      </view>
     </view>
   </view>
   <!-- login e -->
   <!-- unlogin s -->
-  <view class="member-head unlogin" wx:if="{{!userInfo.login}}">
-      <view class="head__text">欢迎使用十点书店+</view>
-      <view class="head__btns"> <button class="cu-btn round bg-lightBlue text-white">立即登录 / 注册</button></view>
+  <view class="member-head unlogin" wx:if="{{!isLogin}}">
+    <view class="head__text">欢迎使用十点书店+</view>
+    <view class="head__btns">
+      <button class="cu-btn round bg-lightBlue text-white">立即登录 / 注册</button>
+    </view>
   </view>
   <!-- unlogin e -->
 
   <view class="bg-white mt10">
     <view class="cu-list grid col-2 list1">
-      <view class="cu-item" wx:for="{{list1}}" wx:key >
+      <view class="cu-item" wx:for="{{list1}}" wx:key>
         <view class="item-wrap">
           <i-icon name="{{item.icon}}" class="dib icon-img vat"></i-icon>
           <view class="dib icon-name vam">{{item.name}}</view>
@@ -49,6 +51,15 @@
     </view>
   </view>
 
+  <!-- 快速登陆弹框 -->
+  <view class="toast_div {{isLogin ? '':'show_toast'}}">
+    <view class="toast_c">
+      <view class="tlt_shuf">当前未登录</view>
+      <view class="toast_shuf">点击一键授权快速登录</view>
+      <!-- <view class="rules">我已同意借阅规则</view> -->
+      <button class="fast_login" open-type="getPhoneNumber" bindgetphonenumber="getMobile">立即授权</button>
+    </view>
+  </view>
+
 </view>
- 
 <i-bottombar></i-bottombar>

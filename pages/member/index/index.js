@@ -10,17 +10,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isLogin: true,
     userInfo: {
-      // "login": 1,
-      // "name": "Cpandd",
-      // "intro": "我超喜欢十点书店的",
-      id: 0,
-      nick_name: null,
+      id: 0, 
+      nick_name: '未设置',
       login_name: '未登录',
-      headimgurl: 'user-unlogin.png',
+      headimgurl: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg',
     },
-    list1: [
-      {
+    list1: [{
         "name": "我的会员",
         "icon": "member"
       },
@@ -37,8 +34,7 @@ Page({
         "icon": "integral"
       }
     ],
-    list2: [
-      {
+    list2: [{
         "name": "购买记录",
         "icon": "buy",
         "url": ""
@@ -68,10 +64,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     let that = this
     //检测成功回调
-    passport.checkSession(function (openid) {
+    passport.checkSession(function(openid) {
       let wxUser = user.methods.getUser()
       if (!wxUser.login_name) {
         //加载用户信息
@@ -84,9 +80,9 @@ Page({
   /**
    * 获取手机号码
    */
-  getMobile: function (e) {
+  getMobile: function(e) {
     let that = this
-    passport.bindMobile(e, function (code, user) {
+    passport.bindMobile(e, function(code, user) {
       if (code == api.state.state_200) {
         that.setData({
           isLogin: true
@@ -112,9 +108,9 @@ Page({
   /**
    * 加载微信用户信息
    */
-  getWxUser: function (e) {
+  getWxUser: function(e) {
     let that = this
-    passport.getWxUser(e, function (code, user) {
+    passport.getWxUser(e, function(code, user) {
       if (code == api.state.state_200) {
         that.setData({
           ['userInfo.img']: appG.util.getHideMobile(user.avatarUrl)
@@ -125,10 +121,7 @@ Page({
   /**
    * 加载微信用户信息
    */
-  bindUser: function (user) {
-    this.setData({
-      userInfo: user
-    })
+  bindUser: function(user) {
     this.setData({
       ['userInfo.login_name']: appG.util.getHideMobile(user.login_name)
     })
@@ -136,7 +129,7 @@ Page({
   /**
    * 加载用户信息
    */
-  api_106: function () {
+  api_106: function() {
     let that = this
     let userInfo = user.methods.getUser()
     console.log("openid:" + userInfo.openid)
@@ -144,7 +137,7 @@ Page({
       wx.GetSign({
         OpenID: userInfo.openid
       }),
-      function (app, res) {
+      function(app, res) {
         if (res.data.Basis.State == api.state.state_200) {
           if (res.data.Result.login_name != undefined) {
             //登录
@@ -169,7 +162,7 @@ Page({
   /**
    * 打开微信付款码
    */
-  openOfflinePayView: function () {
+  openOfflinePayView: function() {
     wx.openOfflinePayView({
       appId: $this.wechatpay.appId,
       timeStamp: $this.wechatpay.timestamp,
@@ -177,13 +170,13 @@ Page({
       package: $this.wechatpay.package,
       signType: $this.wechatpay.signType,
       paySign: $this.wechatpay.paySign,
-      success: function (res) {
+      success: function(res) {
 
       },
-      fail: function (res) {
+      fail: function(res) {
 
       },
-      complete: function (res) {
+      complete: function(res) {
 
       }
     })
@@ -191,7 +184,7 @@ Page({
   /**
    * 菜单跳转
    */
-  goUrl: function (e) {
+  goUrl: function(e) {
     //跳转地址
     let url = ''
     let key = e.currentTarget.dataset.key
@@ -200,7 +193,7 @@ Page({
       case "buy":
         url = '../memberWallet/index?id=' + key
         break;
-      //我的钱包
+        //我的钱包
       case "wallet":
         url = '../memberWallet/index?id=' + key
         break;
@@ -218,49 +211,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })
