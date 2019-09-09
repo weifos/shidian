@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* components/Swiper/Swiper.wxss */
 swiper{
   height: 402rpx;
@@ -10,3 +11,17 @@ swiper image{
   width: 100%;
   height:100%;
 }
+=======
+/* components/Swiper/Swiper.wxss */
+.swiper-shadow{
+  height: 402rpx;
+  border-radius: 40rpx;
+  overflow: hidden;
+  box-shadow: 0 10rpx 15rpx rgba(0,0,0,0.3)
+}
+
+swiper image{
+  width: 100%;
+  height:100%;
+}
+>>>>>>> master

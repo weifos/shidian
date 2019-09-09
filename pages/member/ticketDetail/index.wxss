@@ -1,0 +1,28 @@
+/* pages/member/ticketDetail/index.wxss */
+.ticket-info-bar{
+  margin:15rpx 0;
+  padding:40rpx;
+  font-size: 27rpx;
+  line-height: 1.8;
+}
+.ticket-image-bar{
+ padding: 38rpx 0 74rpx 0;
+}
+.ticket-no{
+  padding: 0 0 25rpx 0;
+}
+.ticket-image-tm image{
+  width: 622rpx;
+  height: 110rpx;
+}
+.ticket-image-ewm image{
+  width: 254rpx;
+  height: 254rpx;
+}
+.ticket-image-ewm{
+  margin: 62rpx auto;
+}
+.ticket-btns .cu-btn{
+  width:435rpx;
+  height:80rpx;
+}
