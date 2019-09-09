@@ -75,11 +75,10 @@ wx.post = function (url, data, cb, ch) {
 
 //获取签名
 wx.GetSign = function (obj = {}) {
-  //获取token
-  let {
-    token
-  } = userInfo.methods.getUser()
 
+  //获取token,变量解构
+  let { token } = userInfo.methods.getUser()
+ 
   function sort(obj) {
 
     if (obj instanceof Array) {

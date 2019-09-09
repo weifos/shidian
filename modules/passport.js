@@ -89,8 +89,7 @@ module.exports = {
         }),
         function(app, res) {
           if (res.data.Basis.State == api.state.state_200) {
-            userInfo.token = res.data.Result
-            userInfo.login_name = mobile
+            userInfo = res.data.Result
             user.methods.login(userInfo)
             wx.showToast({
               title: res.data.Basis.Msg,

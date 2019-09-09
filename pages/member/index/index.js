@@ -12,7 +12,7 @@ Page({
   data: {
     isLogin: true,
     userInfo: {
-      id: 0, 
+      id: 0,
       nick_name: '未设置',
       login_name: '未登录',
       headimgurl: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg',
@@ -140,6 +140,7 @@ Page({
       function(app, res) {
         if (res.data.Basis.State == api.state.state_200) {
           if (res.data.Result.login_name != undefined) {
+            debugger
             //登录
             user.methods.login(res.data.Result)
             //绑定用户
