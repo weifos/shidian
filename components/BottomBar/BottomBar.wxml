@@ -1,32 +1,32 @@
 <!--component/BottomBar.wxml-->
 <view class="cu-bar tabbar bg-white">
-    <view class="action">
+    <navigator class="action" open-type="reLaunch" url="/pages/member/index/index">
       <view class="cuIcon-cu-image cuIcon-cu-image-1 cur">
         <view class="normal-img"><image src="/images/icon/i1.png" ></image></view>
         <view class="cur-img"><image src="/images/icon/i1_2.png"></image></view>
       </view>
-    </view>
-    <view class="action">
+    </navigator>
+    <navigator class="action" open-type="reLaunch" url="/pages/member/index/index">
       <view class="cuIcon-cu-image cuIcon-cu-image-2">
         <view class="normal-img"><image src="/images/icon/i2.png" ></image></view>
         <view class="cur-img"><image src="/images/icon/i2_2.png"></image></view>
       </view>
-    </view>
-    <view class="action">
+    </navigator>
+    <navigator class="action" open-type="reLaunch" url="/pages/member/index/index">
       <view class="cuIcon-cu-image cuIcon-cu-image-3">
         <view class="normal-img"><image src="/images/icon/i3.png" ></image></view>
         <view class="cur-img"><image src="/images/icon/i3_2.png"></image></view>
       </view>
-    </view>
-    <view class="action">
+    </navigator>
+    <navigator class="action" open-type="reLaunch" url="/pages/member/index/index">
       <view class="cuIcon-cu-image cuIcon-cu-image-4">
         <view class="normal-img"><image src="/images/icon/i4.png" ></image></view>
         <view class="cur-img"><image src="/images/icon/i4_2.png"></image></view>
       </view>
-    </view>
-    <view class="action">
-      <view class="cuIcon-cu-image cuIcon-cu-image-user">
+    </navigator>
+    <navigator class="action" open-type="reLaunch" url="/pages/member/index/index" >
+      <view class="cuIcon-cu-image cuIcon-cu-image-user" >
         <image src="/images/user.png"></image>
       </view>
-    </view>
+    </navigator>
   </view>

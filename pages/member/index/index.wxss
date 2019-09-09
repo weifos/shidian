@@ -1,82 +1,161 @@
 /* pages/member/index/index.wxss */
-.member-head{
+
+.member-head {
   height: 299rpx;
   position: relative;
   overflow: hidden;
-  
 }
-member-head.login{
-  background:#B2B2B2;
+
+member-head.login {
+  background: #b2b2b2;
   color: #fff;
 }
-.member-head.unlogin{
-  background:#fff;
+
+.member-head.unlogin {
+  background: #fff;
 }
-.member-bg{
-  filter:blur(20rpx);
+
+.member-bg {
+  filter: blur(20rpx);
   position: absolute;
   width: 800rpx;
-  height:400rpx;
+  height: 400rpx;
   left: -20rpx;
   top: -20rpx;
   opacity: 0.5;
 }
-.member__image{
+
+.member__image {
   float: left;
-  padding:72rpx 33rpx 0 78rpx;
+  padding: 72rpx 33rpx 0 78rpx;
   z-index: 1;
   position: relative;
 }
-.member__text{
-  padding-top:103rpx;
+
+.member__text {
+  padding-top: 103rpx;
   font-size: 27rpx;
   z-index: 1;
   position: relative;
 }
-.i-icon{
+
+.i-icon {
   width: 45rpx;
   text-align: center;
-  margin-right:42rpx;
-  margin-left:42rpx;
+  margin-right: 42rpx;
+  margin-left: 42rpx;
 }
-.list1.cu-list.grid>.cu-item{
-  padding:67rpx 0;
+
+.list1.cu-list.grid>.cu-item {
+  padding: 67rpx 0;
 }
-.list1 .item-wrap{
-  
+
+.list1 .item-wrap {
   width: 100%;
   display: block;
   font-size: 27rpx;
 }
-.list1 .icon-img{
+
+.list1 .icon-img {
   width: 45rpx;
 }
-.list1 .icon-name{
+
+.list1 .icon-name {
   margin-left: 42rpx;
 }
-.cu-avatar.xl{
-  width:147rpx;
+
+.cu-avatar.xl {
+  width: 147rpx;
   height: 147rpx;
 }
-.head__text{
-  margin:63rpx 0 31rpx 78rpx;
+
+.head__text {
+  margin: 63rpx 0 31rpx 78rpx;
   font-size: 45rpx;
   color: #707070;
 }
-.head__btns{
-  margin-left:78rpx;
+
+.head__btns {
+  margin-left: 78rpx;
 }
-.btn-refresh{
+
+.btn-refresh {
   background: #fff;
   width: 48rpx;
   height: 48rpx;
   position: absolute;
-  right:30rpx;
-  bottom:-5rpx;
+  right: 30rpx;
+  bottom: -5rpx;
   border-radius: 100%;
-  padding:0;
+  padding: 0;
   overflow: hidden;
 }
-.btn-refresh:after{
-  border:none;
+
+.btn-refresh:after {
+  border: none;
+}
+
+.toast_div {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: -100%;
+  left: 0;
+  opacity: 0;
+  transition: all 250ms ease-in-out;
+  z-index: 600;
+}
+
+.show_toast {
+  bottom: 0 !important;
+  opacity: 1;
+}
+
+.toast_div .toast_c {
+  width: 68%;
+  height: 330rpx;
+  border-radius: 15rpx;
+  background: #fff;
+  position: relative;
+  text-align: center;
+  color: #666;
+}
+
+.toast_div .toast_c>view {
+  font-size: 28rpx;
+}
+
+.toast_div .toast_c .tlt_shuf {
+  font-size: 40rpx;
+  color: #000;
+  padding: 25rpx 0;
+}
+
+.toast_div .toast_c .toast_shuf {
+  font-size: 32rpx;
+  color: #999;
+  padding: 10rpx 0;
+}
+
+.toast_div .toast_c .rules {
+  font-size: 32rpx;
+  color: #999;
+  padding: 15rpx 0;
+  margin-top: 15rpx;
+}
+
+.toast_div .toast_c .fast_login {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 36rpx;
+  color: #333;
+  position: absolute;
+  bottom: 0;
+  border-top: 1px solid #ebebeb;
+  background: #f1f1f1;
 }

@@ -1,5 +1,3 @@
-/**index.wxss**/
-
 .banner{
   width: 100%;
   height: 546rpx; 
@@ -64,5 +62,5 @@
   position: relative;
 }
 .menu-list{
-  margin-top:-82rpx;
+  margin-top:-82rpx; 
 }
