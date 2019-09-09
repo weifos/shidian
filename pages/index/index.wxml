@@ -1,37 +1,3 @@
-<<<<<<< HEAD
-<!--index.wxml-->
-<view class="container page-main">
-  <view class="banner">
-    <image src="../../images/p1.png"></image>
-  </view>
-  <!-- menu-list s -->
-  <view class="menu-list">
-    <view class="menu__item">
-      <view class="menu__title">
-        <text class="menu__title__cn">咖啡点单</text>
-        <text class="menu__title__en">Coffee order</text>
-      </view>
-      <image src="../../images/p2.png"></image>
-    </view>
-    <view class="menu__item">
-      <view class="menu__title">
-        <text class="menu__title__cn">课堂报名</text>
-        <text class="menu__title__en">Class registration</text>
-      </view>
-      <image src="../../images/p3.png"></image>
-    </view>
-    <view class="menu__item">
-      <view class="menu__title">
-        <text class="menu__title__cn">活动预约</text>
-        <text class="menu__title__en">Event reservation</text>
-      </view>
-      <image src="../../images/p4.png"></image>
-    </view>
-  </view>
-  <!-- menu-list e -->
-</view>
-<i-bottombar></i-bottombar>
-=======
 <!--index.wxml-->
 <view class="container page-main">
   <view class="banner">
@@ -69,5 +35,5 @@
   <!-- menu-list e -->
 </view>
 <i-bottombar></i-bottombar>
->>>>>>> master
+
  
