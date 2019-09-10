@@ -1,30 +1,30 @@
 <!--index.wxml-->
 <view class="container page-main">
   <view class="banner">
-      <swiper class="swiper-index screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
-      <swiper-item wx:for="{{swiperList}}" wx:key>
-        <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
-        <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+    <swiper class="swiper-index screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+      <swiper-item wx:for="{{banners}}" wx:key>
+        <image src="{{item.imgurl}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+        <video src="{{item.imgurl}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
       </swiper-item>
     </swiper>
   </view>
   <!-- menu-list s -->
   <view class="menu-list">
-    <view class="menu__item">
+    <view class="menu__item" data-key="coffee" bindtap="goUrl">
       <view class="menu__title">
         <text class="menu__title__cn">咖啡点单</text>
         <text class="menu__title__en">Coffee order</text>
       </view>
       <image src="../../images/p2.png"></image>
     </view>
-    <view class="menu__item">
+    <view class="menu__item" data-key="course" bindtap="goUrl">
       <view class="menu__title">
         <text class="menu__title__cn">课堂报名</text>
         <text class="menu__title__en">Class registration</text>
       </view>
       <image src="../../images/p3.png"></image>
     </view>
-    <view class="menu__item">
+    <view class="menu__item" data-key="appt" bindtap="goUrl">
       <view class="menu__title">
         <text class="menu__title__cn">活动预约</text>
         <text class="menu__title__en">Event reservation</text>
@@ -35,5 +35,3 @@
   <!-- menu-list e -->
 </view>
 <i-bottombar></i-bottombar>
-
- 

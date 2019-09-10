@@ -5,7 +5,7 @@
     <view class="member-bg" style="background:#B2B2B2 url(/images/p8.png) no-repeat 0 -50rpx/100% auto;" wx:if="{{userInfo.login}}"></view>
     <view class="member__image">
       <view class="cu-avatar xl round" style="background-image:url({{userInfo.headimgurl}});"></view>
-      <button class="btn-refresh"  open-type="getUserInfo" bindgetuserinfo="getWxUser" style="background:#fff url(/images/icon/refresh.png) no-repeat center center/28rpx 28rpx;"></button>
+      <button class="btn-refresh" open-type="getUserInfo" bindgetuserinfo="getWxUser" style="background:#fff url(/images/icon/refresh.png) no-repeat center center/28rpx 28rpx;"></button>
     </view>
     <view class="member__text">
       <view class="member__name">
@@ -29,7 +29,7 @@
 
   <view class="bg-white mt10">
     <view class="cu-list grid col-2 list1">
-      <view class="cu-item" wx:for="{{list1}}" wx:key>
+      <view class="cu-item" wx:for="{{list1}}" wx:key wx:for-item="item"  data-key="{{item.icon}}" bindtap="goUrl">
         <view class="item-wrap">
           <i-icon name="{{item.icon}}" class="dib icon-img vat"></i-icon>
           <view class="dib icon-name vam">{{item.name}}</view>

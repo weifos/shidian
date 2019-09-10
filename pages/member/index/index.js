@@ -113,7 +113,7 @@ Page({
     passport.getWxUser(e, function(code, user) {
       if (code == api.state.state_200) {
         that.setData({
-          ['userInfo.img']: appG.util.getHideMobile(user.avatarUrl)
+          ['userInfo.headimgurl']: appG.util.getHideMobile(user.avatarUrl)
         })
       }
     })
@@ -121,9 +121,12 @@ Page({
   /**
    * 加载微信用户信息
    */
-  bindUser: function(user) {
+  bindUser: function (user) {
     this.setData({
       ['userInfo.login_name']: appG.util.getHideMobile(user.login_name)
+    })
+    this.setData({
+      ['userInfo.headimgurl']: appG.util.getHideMobile(user.headimgurl)
     })
   },
   /**
@@ -184,7 +187,7 @@ Page({
   /**
    * 菜单跳转
    */
-  goUrl: function(e) {
+  goUrl: function(e) { 
     //跳转地址
     let url = ''
     let key = e.currentTarget.dataset.key
@@ -193,8 +196,12 @@ Page({
       case "buy":
         url = '../memberWallet/index?id=' + key
         break;
-        //我的钱包
+      //我的钱包
       case "wallet":
+        url = '../memberWallet/index?id=' + key
+        break;
+      //我的钱包
+      case "paycode":
         url = '../memberWallet/index?id=' + key
         break;
 

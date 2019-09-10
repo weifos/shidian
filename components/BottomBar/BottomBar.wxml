@@ -1,6 +1,6 @@
 <!--component/BottomBar.wxml-->
 <view class="cu-bar tabbar bg-white">
-    <navigator class="action" open-type="reLaunch" url="/pages/member/index/index">
+    <navigator class="action" open-type="reLaunch" url="/pages/index/index">
       <view class="cuIcon-cu-image cuIcon-cu-image-1 cur">
         <view class="normal-img"><image src="/images/icon/i1.png" ></image></view>
         <view class="cur-img"><image src="/images/icon/i1_2.png"></image></view>

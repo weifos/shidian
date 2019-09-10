@@ -515,7 +515,6 @@ module.exports = {
     },
     //获取当前路径
     getPath: function () {
-      debugger
       var pages = getCurrentPages()
       var currentPage = pages[pages.length - 1]
       return currentPage.route
