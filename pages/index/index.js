@@ -1,5 +1,3 @@
-//index.js
-//获取应用实例
 var api = require("../../modules/api.js")
 var router = require("../../modules/router.js")
 

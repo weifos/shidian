@@ -494,7 +494,7 @@ module.exports = {
       }
       return bytes;
     },
-    DecodeUtf8: function (bytes) {
+    DecodeUtf8: function(bytes) {
       var encoded = "";
       for (var i = 0; i < bytes.length; i++) {
         encoded += '%' + bytes[i].toString(16);
@@ -502,11 +502,11 @@ module.exports = {
       return decodeURIComponent(encoded)
     },
     //本地文件转成base64
-    fileToBase64: function () {
+    fileToBase64: function() {
       return new Promise((resolve, reject) => {
         const reader = new FileReader()
         reader.readAsDataURL(file)
-        reader.onload = function () {
+        reader.onload = function() {
           // 图片转base64完成后返回reader对象
           resolve(reader)
         }
@@ -514,13 +514,13 @@ module.exports = {
       })
     },
     //获取当前路径
-    getPath: function () {
+    getPath: function() {
       var pages = getCurrentPages()
       var currentPage = pages[pages.length - 1]
       return currentPage.route
     },
     //获取当前完整路径
-    getUrl: function () {
+    getUrl: function() {
       const pages = getCurrentPages()
       const currentPage = pages[pages.length - 1]
       const url = currentPage.route
@@ -797,6 +797,37 @@ module.exports = {
     isIos: function() {
       let agent = navigator.userAgent.toLowerCase();
       return /iphone|ipad|ipod/.test(agent);
+    }
+  },
+  //本地存储
+  storage: {
+    swiper: { 
+      //设置首页banner
+      setIndexBanner: function(result) {
+        //同步设置banner
+        wx.setStorageSync("index_banner", JSON.stringify(result))
+      },
+      //设置咖啡banner
+      setCoffeeBanner: function(result) {
+        //同步设置banner
+        wx.setStorageSync("coffee_banner", JSON.stringify(result))
+      },
+      //首页banner
+      getIndexBanner: function() {
+        var result = wx.getStorageSync('index_banner')
+        if (result.length) {
+          return JSON.parse(result)
+        }
+        return []
+      },
+      //获取咖啡banner
+      getCoffeeBanner: function() {
+        var result = wx.getStorageSync('coffee_banner')
+        if (result.length) {
+          return JSON.parse(result)
+        }
+        return []
+      }
     }
   }
 }

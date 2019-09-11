@@ -1,14 +1,18 @@
 <!--pages/coffee/coffee.wxml-->
 <view class="container page-coffee">
   <i-greetings></i-greetings>
-  <view class="swiper-banner"><i-swiper itemData="{{banners}}" ></i-swiper></view>
+  <view class="swiper-banner">
+    <i-swiper itemData="{{banners}}"></i-swiper>
+  </view>
   <view class="today-recommend tac">今日推荐咖啡：冰咖啡</view>
   <view class="coffee-list">
-    <view class="coffee__item" wx:for="{{catgs}}" wx:key>
-      <view class="item__image"><image src="{{item.banners}}" ></image></view>
+    <view class="coffee__item" data-id="{{item.id}}" bindtap="goUrl" wx:for="{{catgs}}" wx:for-item="item" wx:key>
+      <view class="item__image">
+        <image src="{{item.img_url}}"></image>
+      </view>
       <view class="item__text">
-        <view class="item__title fz33">{{item.banners}}</view>
-        <view class="item__desc ellipsis2"> </view>
+        <view class="item__title fz33">{{item.name}}</view>
+        <view class="item__desc ellipsis2">{{item.introduction}}</view>
       </view>
     </view>
   </view>

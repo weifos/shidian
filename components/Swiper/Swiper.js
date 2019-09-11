@@ -5,11 +5,7 @@ Component({
    */
   data: {
     cardCur: 0,
-    swiperList: [{
-      id: 0,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
-    }]
+    swiperList: []
   },
   /**
    * 组件的属性列表
@@ -22,10 +18,12 @@ Component({
   },
   observers: {
     'itemData': function(field) {
-      console.log(field)
+      //console.log(field)
       this.setData({
         swiperList: field
       })
+
+      
     }
   },
   //数据监听

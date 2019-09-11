@@ -1,4 +1,6 @@
 var api = require("../../modules/api.js")
+var router = require("../../modules/router.js")
+var appGlobal = require("../../modules/appGlobal.js")
 
 Page({
 
@@ -11,7 +13,7 @@ Page({
       "id": "1",
       "title": "精品咖啡",
       "desc": "摩卡咖啡豆平均颗粒较小，带有生姜的狂野泼辣气息、明亮独特的滋味摩卡咖啡豆平均颗粒较小，带有生姜的狂野泼辣气息、明亮独特的滋味",
-      "url": "/images/p5.png"
+      "imgurl": "/images/p5.png"
     }]
   },
 
@@ -21,6 +23,7 @@ Page({
   onLoad: function(options) {
     this.api_201()
   },
+
   /**
    * 加载首页数据
    */
@@ -39,15 +42,30 @@ Page({
           obj.type = "image"
           obj.url = obj.imgurl
         })
-        console.log(res.data.Result.banners)
+
+        //banner数据
         this_.setData({
           banners: res.data.Result.banners
         })
-        // this_.setData({
-        //   itemData: res.data.Result.banners
-        // })
+        //将banner数据写入缓存
+        appGlobal.storage.swiper.setCoffeeBanner(res.data.Result.banners)
+        //咖啡分类
+        this_.setData({
+          catgs: res.data.Result.catgs
+        }) 
       }
     });
+  },
+  /**
+   * 菜单跳转
+   */
+  goUrl: function (e) {
+    //跳转地址
+    let url = '../sale/index?id=' + e.currentTarget.dataset.id
+    //跳转
+    router.goUrl({
+      url: url
+    })
   },
 
   /**
