@@ -34,7 +34,8 @@
     "i-ticket": "/components/Ticket/index",
     "i-nodata": "/components/NoData/index",
     "i-star": "/components/Star/index",
-    "i-icon": "/components/Icon/index"
+    "i-icon": "/components/Icon/index",
+    "i-sku": "/components/SKU/SKU"
   },
   "window": {
     "backgroundTextStyle": "light",

@@ -22,8 +22,6 @@ Component({
       this.setData({
         swiperList: field
       })
-
-      
     }
   },
   //数据监听

@@ -8,6 +8,14 @@ Page({
   data: {
     //banner集合
     banners: [],
+    //是否提交订单
+    isSubmit: false,
+    //选择sku弹框
+    isSelectSKU: false,
+    //商品详情
+    productDetails: {
+      product: { name: '' }
+    },
     //每页大小
     pageSize: 10,
     //分类ID
@@ -17,17 +25,22 @@ Page({
     //页面数据
     result: []
   },
-  showModal(e) {
+  showModal() {
+    //商品ID
+    let id = e.currentTarget.dataset.id 
+    //弹出目标
     this.setData({
-      modalName: e.currentTarget.dataset.target
+      isSelectSKU: true
     })
+     
+    //加载商品SKU
+    this.api_203(id)
   },
   hideModal(e) {
     this.setData({
       modalName: null
     })
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -36,22 +49,17 @@ Page({
     this.setData({
       banners: appGlobal.storage.swiper.getCoffeeBanner()
     })
-
-    //初始化选中的类别ID
-    this.setData({
-      catgId: opt.id
-    })
-
-    this.api_202()
+    //加载数据
+    this.api_202(opt.id)
   },
 
   /**
-   * 加载数据
+   * 初始化加载
    */
-  api_202: function() {
+  api_202: function(catg_id) {
     var that = this;
     wx.post(api.api_202, wx.GetSign({
-      CatgID: that.data.catgId,
+      CatgID: catg_id,
       Size: that.data.pageSize
     }), function(app, res) {
       if (res.data.Basis.State != api.state.state_200) {
@@ -62,10 +70,62 @@ Page({
         })
       } else {
         that.setData({
-          result: res.data.Result.productList
+          result: res.data.Result.catgs
         })
 
-        that.bindPdtList(res.data.Result.catgs, res.data.Result.productList)
+        //初始化数据
+        that.initData(res.data.Result.catgs, res.data.Result.productList)
+        //设置选中类别
+        that.setCatgId(catg_id)
+      }
+    })
+  },
+
+  /**
+   * 加载商品详情
+   */
+  api_203: function(id) {
+    wx.post(api.api_203, wx.GetSign({
+      ID: id
+    }), function(app, res) {
+      if (res.data.Basis.State != api.state.state_200) {
+        wx.showToast({
+          title: res.data.Basis.Msg,
+          icon: 'none',
+          duration: 3000
+        })
+      } else {
+
+        console.log(res.data.Result)
+
+        debugger
+      }
+    })
+  },
+
+  /**
+   * 设置类别ID
+   */
+  setCatgId: function(catg_id) {
+
+    let that = this
+    //初始化选中的类别ID
+    this.setData({
+      catgId: catg_id
+    })
+
+    //更新结果集合
+    this.setData({
+      result: this.data.result
+    })
+
+    //设置选中索引
+    this.data.result.forEach(function(o, i, a) {
+      if (o.id == catg_id) {
+        that.setData({
+          curIndex: i
+        })
+        return
       }
     })
   },
@@ -73,17 +133,34 @@ Page({
   /**
    * 绑定商品数据
    */
-  bindPdtList: function(catgs, pdtList) {
-    //obj.pdtList = "image"
-    debugger
+  initData: function(catgs, pdtList) {
+    //obj.pdtList = []
     this.data.result.map(function(obj, index, arr) {
+      //分类对应的商品集合
+      obj.pdtList = []
+      //商品对应分类
       pdtList.forEach(function(o, i, a) {
-        if (obj.id == o.parent_id) {
-
+        if (obj.id == o.gcatg_id) {
+          obj.pdtList.push(o)
         }
       })
     })
 
+    //更新结果集合
+    this.setData({
+      result: this.data.result
+    })
+
+  },
+
+  /**
+   * 设置选择类别
+   */
+  selectCatg: function(e) {
+    //类别id
+    let catg_id = e.currentTarget.dataset.id
+    //设置选中类别
+    this.setCatgId(catg_id)
   },
 
   /**
