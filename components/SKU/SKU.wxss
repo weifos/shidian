@@ -1,36 +1,5 @@
-.tab-c__item image{
-  width: 145rpx;
-  height: 145rpx;
-  float: left;
-  margin:20rpx 24rpx 0 24rpx;
-}
-.page-sale .item-name{
-  font-size: 27rpx;
-  height: 38rpx;
-}
-.page-sale .item-txt{
-  margin:18rpx 18rpx 18rpx 199rpx;
-}
-.page-sale .item-price{
-  font-size: 36rpx;
-  color: #ED7457;
-}
-.page-sale .item-price text{
-  font-size: 22rpx;
-}
-.page-sale .item-btns{
-  position: absolute;
-  right:29rpx;
-  bottom:24rpx;
-}
-.page-sale .item-star{
-  height: 20rpx;
-  margin-bottom:35rpx; 
-  margin-top:5rpx;
-}
-.page-sale .cu-btn{
-  height: 49rpx;
-}
+@import "/ui/main.wxss";
+@import "/app.wxss";
 
 .order__price{
   display: flex;
