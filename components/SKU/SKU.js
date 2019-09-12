@@ -12,7 +12,8 @@ Component({
     selectSku: {
       stock: 0,
       specset: '',
-      sale_price: 0
+      sale_price: 0,
+      product_id: 0
     },
     buyCount: 1,
     specSet: [],
@@ -24,15 +25,20 @@ Component({
   properties: {
     //false加入购物车，true立即购买
     type: Boolean,
-    result: Object,
+    result: Object, 
     isShow: Boolean
   },
   observers: {
-    'isShow': function (field) {
-      //console.log(field)
+    'isShow': function(field) { 
       this.setData({
         showDialog: field
       })
+    },
+    'result': function(field) {
+      this.setData({
+        pResult: field
+      })
+      console.log(this.data.pResult)
     }
   },
 
@@ -42,11 +48,24 @@ Component({
   methods: {
     //是否关闭sku弹框
     close() {
-      this.showDialog = false
-      this.selectSku.specset = ''
-      this.selectSku.sale_price = 0
-      this.selectSku.product_id = undefined
-    }, //初始化sku
+      this.setData({
+        showDialog: false
+      })
+
+      this.setData({
+        ["selectSku.specset"]: ''
+      })
+
+      this.setData({
+        ["selectSku.sale_price"]: 0
+      })
+
+      this.setData({
+        ["selectSku.product_id"]: 0
+      })
+ 
+    }, 
+    //初始化sku
     initSku() {
       let $this = this
       let skus = this.pResult.skus

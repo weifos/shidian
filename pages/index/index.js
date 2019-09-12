@@ -52,15 +52,15 @@ Page({
     switch (key) {
       //咖啡
       case "coffee":
-        url = '../coffee/coffee?id=' + key
+        url = '../coffee/coffee'
         break;
       //课程
       case "course":
-        url = '../memberWallet/index?id=' + key
+        url = '../course/course'
         break;
       //活动预约
       case "appt":
-        url = '../memberWallet/index?id=' + key
+        url = '../activity/activity'
         break;
 
       default:

@@ -16,7 +16,11 @@ Page({
     productDetails: {
       product: {
         name: ''
-      }
+      },
+      skus: [],
+      specNames: [],
+      specValues: [],
+      specCustoms: []
     },
     //每页大小
     pageSize: 10,
@@ -26,24 +30,6 @@ Page({
     curIndex: 0,
     //页面数据
     result: []
-  },
-  showModal(e) {
-    //商品ID
-    let id = e.currentTarget.dataset.id
-    //商品类型ID
-    let tid = e.currentTarget.dataset.id
-    //弹出目标
-    this.setData({
-      isSelectSKU: true
-    })
-
-    //加载商品SKU
-    this.api_203(id, tid)
-  },
-  hideModal(e) {
-    this.setData({
-      modalName: null
-    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -88,7 +74,8 @@ Page({
   /**
    * 加载商品详情
    */
-  api_203: function (id, tid) {
+  api_203: function(id, tid, name) {
+    let that = this
     wx.post(api.api_203, wx.GetSign({
       ID: id,
       TID: tid
@@ -100,10 +87,15 @@ Page({
           duration: 3000
         })
       } else {
+        //设置商品集合
+        that.setData({
+          ["productDetails.product.name"]: name,
+          ["productDetails.skus"]: res.data.Result.skus,
+          ["productDetails.specNames"]: res.data.Result.specNames,
+          ["productDetails.specValues"]: res.data.Result.specValues,
+          ["productDetails.specCustoms"]: res.data.Result.specCustoms
+        }) 
 
-        console.log(res.data.Result)
-
-        debugger
       }
     })
   },
@@ -166,6 +158,32 @@ Page({
     let catg_id = e.currentTarget.dataset.id
     //设置选中类别
     this.setCatgId(catg_id)
+  },
+  /**
+   * 选择商品SKU
+   */
+  showModal(e) {
+    //商品ID
+    let id = e.currentTarget.dataset.id
+    //商品类型ID
+    let tid = e.currentTarget.dataset.tid
+    //商品名称
+    let name = e.currentTarget.dataset.name
+    //弹出目标
+    this.setData({
+      isSelectSKU: true
+    })
+     
+    //加载商品SKU
+    this.api_203(id, tid, name)
+  },
+  /**
+   * 关闭商品SKU
+   */
+  hideModal() {
+    this.setData({
+      isSelectSKU: false
+    })
   },
 
   /**

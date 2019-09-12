@@ -1,15 +1,15 @@
 <view class="price-bar">
-  <view class="cu-modal bottom-modal {{isShow ?'show':''}}">
+  <view class="cu-modal bottom-modal {{showDialog ?'show':''}}">
     <view class="cu-dialog">
       <view class="padding-xl">
         <view class="order__title tac">
-          {{saleData[0].list[0].name}}
+          {{pResult.product.name}}
         </view>
         <view class="order__text tac text-lightGray">
           - 规格 -
         </view>
         <view class="order__type">
-          <button class="cu-btn round line-gray" role="button" wx:for="{{saleData[0].list[0].type}}">{{item}}</button>
+          <button class="cu-btn round line-gray" role="button" wx:for="{{pResult.specNames}}" wx:for-item="item">{{item.name}}</button>
         </view>
         <view class="order__number">
           <view class="t-detail">

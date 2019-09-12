@@ -30,7 +30,7 @@
               <text>￥</text>{{item.sale_price}}
             </view>
             <view class="item-btns">
-              <button class="cu-btn round bg-lightYellow text-white" data-id="{{item.id}}" data-tid="{{item.product_type_id}}" bindtap="showModal" data-target="bottomModal">选规格</button>
+              <button class="cu-btn round bg-lightYellow text-white" data-id="{{item.id}}" data-name="{{item.name}}" data-tid="{{item.product_type_id}}" bindtap="showModal" data-target="bottomModal">选规格</button>
             </view>
           </view>
         </view>
@@ -48,11 +48,10 @@
   </view>
 </view>
 <!-- 底部 e -->
-
-<!-- <i-sku isShow="{{isSelectSKU}}" :result="productDetails" ></i-sku> -->
+<i-sku isShow="{{isSelectSKU}}" result="{{productDetails}}" ></i-sku> 
 
 <!-- 弹出sku-->
-<view class="price-bar">
+<!-- <view class="price-bar">
   <view class="cu-modal bottom-modal {{isSelectSKU ?'show':''}}">
     <view class="cu-dialog">
       <view class="padding-xl">
@@ -81,4 +80,4 @@
       </view>
     </view>
   </view>
-</view>
+</view> -->
