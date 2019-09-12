@@ -5,21 +5,35 @@
         <view class="order__title tac">
           {{pResult.product.name}}
         </view>
-        <view class="order__text tac text-lightGray">
-          - 规格 -
-        </view>
-        <view class="order__type">
-          <button class="cu-btn round line-gray" role="button" wx:for="{{pResult.specNames}}" wx:for-item="item">{{item.name}}</button>
-        </view>
-        <view class="order__number">
-          <view class="t-detail">
-            <view class="van-stepper custom-class">
-              <view class="minus-class dib vam  bg-lightYellow">-</view>
-              <input class="input-class dib vam" value="1" bindinput="onInput" />
-              <view class="plus-class dib vam  bg-lightYellow">+</view>
-            </view>
+        <!-- parameter-item s -->
+        <view class='parameter-item'>
+          <view class="order__text tac text-lightGray">
+            - 规格 -
+          </view>
+          <view class="order__type">
+            <button class="cu-btn round line-gray" role="button" wx:for="{{pResult.specNames}}" wx:for-item="item">{{item.name}}</button>
           </view>
         </view>
+         <!-- parameter-item e -->
+         <!-- parameter-item s -->
+        <view class='parameter-item'>
+          <view class="order__text tac text-lightGray">
+            - 参数2 -
+          </view>
+          <view class="order__type">
+            <button class="cu-btn round line-gray" role="button" wx:for="{{pResult.specNames}}" wx:for-item="item">{{item.name}}</button>
+          </view>
+        </view>
+         <!-- parameter-item e -->
+          <view class="order__number">
+            <view class="t-detail">
+              <view class="van-stepper custom-class">
+                <view class="minus-class dib vam  bg-lightYellow">-</view>
+                <input class="input-class dib vam" value="1" bindinput="onInput" />
+                <view class="plus-class dib vam  bg-lightYellow">+</view>
+              </view>
+            </view>
+          </view>
       </view>
       <view class="cu-bar">
         <button class="cu-btn round bg-gray text-white" bindtap="close">取消</button>

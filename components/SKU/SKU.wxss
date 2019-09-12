@@ -1,6 +1,9 @@
 @import "/ui/main.wxss";
 @import "/app.wxss";
 
+.order__title{
+  margin-bottom:10rpx;
+}
 .order__price{
   display: flex;
   justify-content:space-between;
