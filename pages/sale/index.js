@@ -14,7 +14,9 @@ Page({
     isSelectSKU: false,
     //商品详情
     productDetails: {
-      product: { name: '' }
+      product: {
+        name: ''
+      }
     },
     //每页大小
     pageSize: 10,
@@ -25,16 +27,18 @@ Page({
     //页面数据
     result: []
   },
-  showModal() {
+  showModal(e) {
     //商品ID
-    let id = e.currentTarget.dataset.id 
+    let id = e.currentTarget.dataset.id
+    //商品类型ID
+    let tid = e.currentTarget.dataset.id
     //弹出目标
     this.setData({
       isSelectSKU: true
     })
-     
+
     //加载商品SKU
-    this.api_203(id)
+    this.api_203(id, tid)
   },
   hideModal(e) {
     this.setData({
@@ -84,9 +88,10 @@ Page({
   /**
    * 加载商品详情
    */
-  api_203: function(id) {
+  api_203: function (id, tid) {
     wx.post(api.api_203, wx.GetSign({
-      ID: id
+      ID: id,
+      TID: tid
     }), function(app, res) {
       if (res.data.Basis.State != api.state.state_200) {
         wx.showToast({
