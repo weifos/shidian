@@ -42,3 +42,7 @@
 .order__number{
   text-align: right;
 }
+.cu-btn.active{
+  background-color:#D0B07E;
+  color:#fff;
+}
