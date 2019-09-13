@@ -1,0 +1,54 @@
+module.exports = {
+  /**
+   * 获取自定义名称
+   */
+  getCustomName: function(specCustoms, name_id, val_id, val) {
+    var custom_name = val
+    specCustoms.forEach(function(item, index) {
+      if (
+        name_id == item.specname_id &&
+        val_id == item.specvalue_id &&
+        item.custom_value != ''
+      ) {
+        custom_name = item.custom_value
+        return
+      }
+    })
+    return custom_name
+  },
+  /**
+   * 获取首行的sku名是否可用
+   */
+  getEnable: function(index, result, name_id, val_id) {
+    var skus = result.skus
+    var specNames = result.specNames
+    //是否可用
+    var is_enable = false
+    //获取首行规格名称id
+    var id = specNames[index].id
+    //首行规格集合
+    var specSetOne = []
+    //获取首行规格集合
+    if (id == name_id) {
+      specSetOne.push(name_id + "_" + val_id)
+    }
+
+    //当前商品存在的SKU集合
+    skus.forEach(function(item, index) {
+      //规格集合
+      var arr = item.specset.split(',')
+      //遍历集合
+      arr.forEach(function(obj, i) {
+        //遍历集合
+        specSetOne.forEach(function(o, ii) {
+          if (obj == o) {
+            is_enable = true
+            return
+          }
+        })
+      })
+    })
+ 
+    return is_enable
+  }
+}

@@ -1,4 +1,4 @@
 <!--components/Star/index.wxml-->
 <view class="star">
-  <view class="icon-star" style="background: url(/images/icon/star.png) 0 0/100% auto;" wx:for="{{number}}"></view>
+  <view class="icon-star" style="background: url(/images/icon/star.png) 0 0/100% auto;" wx:for="{{number}}" wx:key="key" ></view>
 </view>

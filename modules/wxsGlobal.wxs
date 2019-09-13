@@ -1,0 +1,133 @@
+/// <summary>
+/// 全局配置类
+/// @author   叶委  
+/// @date     2014-05-23         
+/// </summary>
+module.exports = {
+  //日期对象
+  date: {
+    //日期格式化
+    format: function(date, format) {
+      if (!format) {
+        format = "yyyy-MM-dd hh:mm:ss"
+      }
+      timestamp = parseInt(timestamp);
+      var realDate = getDate(timestamp);
+
+      function timeFormat(num) {
+        return num < 10 ? '0' + num : num;
+      }
+      var date = [
+        ["M+", timeFormat(realDate.getMonth() + 1)],
+        ["d+", timeFormat(realDate.getDate())],
+        ["h+", timeFormat(realDate.getHours())],
+        ["m+", timeFormat(realDate.getMinutes())],
+        ["s+", timeFormat(realDate.getSeconds())],
+        ["q+", Math.floor((realDate.getMonth() + 3) / 3)],
+        ["S+", realDate.getMilliseconds()],
+      ];
+      var reg1 = regYear.exec(format);
+      // console.log(reg1[0]);
+      if (reg1) {
+
+        format = format.replace(reg1[1], (realDate.getFullYear() + '').substring(4 - reg1[1].length));
+      }
+      for (var i = 0; i < date.length; i++) {
+        var k = date[i][0];
+        var v = date[i][1];
+
+        var reg2 = getRegExp("(" + k + ")").exec(format);
+        if (reg2) {
+          format = format.replace(reg2[1], reg2[1].length == 1 ?
+            v : ("00" + v).substring(("" + v).length));
+        }
+      }
+      return format
+    }
+  },
+  encodeUtf8: function(text) {
+    const code = encodeURIComponent(text);
+    const bytes = [];
+    for (var i = 0; i < code.length; i++) {
+      const c = code.charAt(i);
+      if (c === '%') {
+        const hex = code.charAt(i + 1) + code.charAt(i + 2);
+        const hexVal = parseInt(hex, 16);
+        bytes.push(hexVal);
+        i += 2;
+      } else bytes.push(c.charCodeAt(0));
+    }
+    return bytes;
+  },
+  decodeUtf8: function(bytes) {
+    var encoded = "";
+    for (var i = 0; i < bytes.length; i++) {
+      encoded += '%' + bytes[i].toString(16);
+    }
+    return decodeURIComponent(encoded)
+  },
+  //隐藏手机
+  getHideMobile: function(tel) {
+    if (tel == null || tel == undefined) return
+    var reg = getRegExp('/^(\d{3})\d{4}(\d{4})$/')
+    return tel.replace(reg, "$1****$2");
+  },
+  //字符串截取
+  cutSubString: function(str, len) {
+    if (!str.length || !len.length) {
+      return ''
+    }
+    var m = str.length
+    var l = 0
+    var temp = ''
+    for (var i = 0; i < m; i++) {
+      l++
+      if (str.charCodeAt(i) > 255) {
+        l++
+      }
+      if (l > len) {
+        return temp + '...'
+      }
+      temp += str.charAt(i)
+    }
+    return str
+  },
+  //金额格式
+  formaToMoney: function(s, n) {
+    n = n > 0 && n <= 20 ? n : 2;
+    var f = s < 0 ? "-" : ""; //判断是否为负数  
+    s = parseFloat((Math.abs(s) + "").replace(getRegExp('/[^\d\.-]/g'), "")).toFixed(n) + ""; //取绝对值处理, 更改这里n数也可确定要保留的小数位  
+    var l = s.split(".")[0].split("").reverse(),
+      r = s.split(".")[1];
+    var t = "";
+    for (var i = 0; i < l.length; i++) {
+      t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");
+    }
+    return f + t.split("").reverse().join("") + "." + r.substring(0, 2); //保留2位小数  如果要改动 把substring 最后一位数改动就可  
+  },
+  //获取小图地址
+  getImgUrl_s: function(url) {
+    if (undefined == url || url.length == 0) return ""
+    if (url.indexOf("http://") != -1) {
+      return url.replace("/Image/", "/Thm_Image/")
+    } else {
+      return url.replace("/Image/", "/Thm_Image/")
+    }
+  },
+  //获取中图地址
+  getImgUrl_m: function(url) {
+    if (undefined == url || url.length == 0) return ""
+    if (url.indexOf("http://") != -1) {
+      return url.replace("/Image/", "/Med_Image/")
+    } else {
+      return url.replace("/Image/", "/Med_Image/")
+    }
+  },
+  //获取自定义json字符串 
+  getJsonString: function(attr, datas) {
+    return JSON.stringify(app_g.Util.getJson(attr, datas));
+  },
+  parseInt: function(value) {
+    return Number(value);
+  }
+}

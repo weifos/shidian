@@ -2,7 +2,7 @@
 let domain = "http://sd.api.shidian.com/"
 let res_domain = "http://sd.res.shidian.com/"
 //正式环境
-// let domain = "https://sd.api.weifos.com/"
+//let domain = "http://sd.api.weifos.com/"
 // let res_domain = "http://sd.res.shidian.com/"
 
 /// <summary>

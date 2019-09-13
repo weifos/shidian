@@ -11,7 +11,8 @@
 		"newFeature": true,
 		"autoAudits": false,
 		"checkInvalidKey": true,
-		"coverView": true
+		"coverView": true,
+		"checkSiteMap": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.8.0",

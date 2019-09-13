@@ -43,6 +43,10 @@
   text-align: right;
 }
 .cu-btn.active{
-  background-color:#D0B07E;
+  background-color:#D0B07E !important;
+  color:#fff;
+}
+.cu-btn.disable{
+  background-color:#B2B2B2;
   color:#fff;
 }

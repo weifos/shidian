@@ -383,6 +383,26 @@ module.exports = {
     },
   },
   util: {
+    //比对sku字符串
+    compareSku: function(sku1, sku2) {
+      let exist = 0
+      let arr = sku1.split(',')
+      let arr1 = sku2.split(',')
+      //sku集合是否一致
+      if (arr.length != arr1.length) {
+        return false
+      }
+
+      arr.forEach(function(o, i) {
+        arr1.forEach(function(oo, ii) {
+          if (oo == o) {
+            exist++
+          }
+        })
+      })
+
+      return arr.length == exist
+    },
     //日期对象
     date: {
       //获取当前日期
@@ -561,12 +581,12 @@ module.exports = {
     //金额格式
     formaToMoney: function(s, n) {
       n = n > 0 && n <= 20 ? n : 2;
-      f = s < 0 ? "-" : ""; //判断是否为负数  
+      let f = s < 0 ? "-" : ""; //判断是否为负数  
       s = parseFloat((Math.abs(s) + "").replace(/[^\d\.-]/g, "")).toFixed(n) + ""; //取绝对值处理, 更改这里n数也可确定要保留的小数位  
       let l = s.split(".")[0].split("").reverse(),
         r = s.split(".")[1];
-      t = "";
-      for (i = 0; i < l.length; i++) {
+      let t = "";
+      for (let i = 0; i < l.length; i++) {
         t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");
       }
       return f + t.split("").reverse().join("") + "." + r.substring(0, 2); //保留2位小数  如果要改动 把substring 最后一位数改动就可  
@@ -801,7 +821,7 @@ module.exports = {
   },
   //本地存储
   storage: {
-    swiper: { 
+    swiper: {
       //设置首页banner
       setIndexBanner: function(result) {
         //同步设置banner
