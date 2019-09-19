@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    appId: "",
     orderInfo: {
       no: "653178123470509056",
       name: "摩卡咖啡*1 备",
@@ -90,19 +91,10 @@ Page({
           that.setData({
             orderInfo: res.data.Result.order
           })
-
-          //支付参数加载是否正常
-          if (res.data.Result.wechatpay_jsapi.State == api.state.state_200) {
-            that.setData({
-              wechatPay: JSON.parse(res.data.Result.wechatpay_jsapi.Data)
-            })
-          } else {
-            wx.showToast({
-              title: "支付加载失败",
-              icon: 'none',
-              duration: 2000
-            })
-          }
+ 
+          that.setData({
+            wechatPay: res.data.Result.wechatpay
+          })
 
         } else {
           wx.showToast({
@@ -119,16 +111,23 @@ Page({
    * 立即支付
    */
   goPay: function() {
-    let that = this
+    let that = this 
     wx.requestPayment({
-      'timeStamp': that.data.wechatPay.timestamp,
-      'nonceStr': that.data.wechatPay.nonceStr,
-      'package': that.data.wechatPay.package,
-      'signType': that.data.wechatPay.signType,
-      'paySign': that.data.wechatPay.paySign,
-      'success': function(res) {},
-      'fail': function(res) {},
-      'complete': function(res) {}
+      appId: that.data.wechatPay.appId,
+      timeStamp: that.data.wechatPay.timeStamp,
+      nonceStr: that.data.wechatPay.nonceStr,
+      package: that.data.wechatPay.package,
+      signType: that.data.wechatPay.signType,
+      paySign: that.data.wechatPay.paySign,
+      success: function(res) {
+        console.log(res)
+      },
+      fail: function(res) {
+        console.log(res)
+      },
+      complete: function(res) {
+        console.log(res)
+      }
     })
   },
   /**
