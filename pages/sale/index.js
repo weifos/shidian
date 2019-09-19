@@ -1,4 +1,6 @@
 var api = require("../../modules/api.js")
+var user = require("../../modules/userInfo.js")
+var router = require("../../modules/router.js")
 var appGlobal = require("../../modules/appGlobal.js")
 
 Page({
@@ -23,7 +25,9 @@ Page({
       specCustoms: []
     },
     //每页大小
-    pageSize: 10,
+    pageSize: 10, 
+    //购物车总金额
+    totalPrice: 0,
     //分类ID
     catgId: 0,
     //当前分类选中=索引
@@ -39,12 +43,14 @@ Page({
     this.setData({
       banners: appGlobal.storage.swiper.getCoffeeBanner()
     })
+    //加载购物车
+    this.api_302()
     //加载数据
     this.api_202(opt.id)
   },
 
   /**
-   * 初始化加载
+   * 初始化加载获
    */
   api_202: function(catg_id) {
     var that = this;
@@ -72,13 +78,41 @@ Page({
   },
 
   /**
+   * 取购物车信息
+   */
+  api_302: function() {
+    var that = this;
+    wx.post(api.api_302, wx.GetSign(), function(app, res) {
+      if (res.data.Basis.State != api.state.state_200) {
+        wx.showToast({
+          title: res.data.Basis.Msg,
+          icon: 'none',
+          duration: 3000
+        })
+      } else {
+        //小计
+        let total_price = 0
+        res.data.Result.forEach((item, index, arr) => {
+          total_price += item.count * item.product_price
+        })
+        that.setData({
+          totalPrice: total_price
+        })
+ 
+        //设置购物车信息
+        user.methods.setShoppingCart(res.data.Result)
+      }
+    })
+  },
+
+  /**
    * 加载商品详情
    */
-  api_203: function(id, tid, name) {
+  api_203: function(item) {
     let that = this
     wx.post(api.api_203, wx.GetSign({
-      ID: id,
-      TID: tid
+      ID: item.id,
+      TID: item.product_type_id
     }), function(app, res) {
       if (res.data.Basis.State != api.state.state_200) {
         wx.showToast({
@@ -89,13 +123,13 @@ Page({
       } else {
         //设置商品集合
         that.setData({
-          ["productDetails.product.name"]: name,
+          ["productDetails.product.name"]: item.name,
+          ["productDetails.product.img_url"]: item.img_url,
           ["productDetails.skus"]: res.data.Result.skus,
           ["productDetails.specNames"]: res.data.Result.specNames,
           ["productDetails.specValues"]: res.data.Result.specValues,
           ["productDetails.specCustoms"]: res.data.Result.specCustoms
-        }) 
-
+        })
       }
     })
   },
@@ -163,26 +197,28 @@ Page({
    * 选择商品SKU
    */
   showModal(e) {
-    //商品ID
-    let id = e.currentTarget.dataset.id
-    //商品类型ID
-    let tid = e.currentTarget.dataset.tid
-    //商品名称
-    let name = e.currentTarget.dataset.name
+    //商品信息 
+    let item = e.currentTarget.dataset.item
+    //加载商品SKU
+    this.api_203(item)
     //弹出目标
     this.setData({
       isSelectSKU: true
     })
-     
-    //加载商品SKU
-    this.api_203(id, tid, name)
   },
   /**
-   * 关闭商品SKU
+   * 更新购物车
    */
-  hideModal() {
-    this.setData({
-      isSelectSKU: false
+  updateSCart(e) {
+    console.log(e.detail)
+    this.api_302()
+  },
+  /**
+   * 菜单跳转
+   */
+  goUrl: function() {
+    router.goUrl({
+      url: '../shoppingCart/index'
     })
   },
 

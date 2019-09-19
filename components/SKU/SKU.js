@@ -1,4 +1,6 @@
+var api = require("../../modules/api.js")
 var appGlobal = require("../../modules/appGlobal.js")
+var user = require("../../modules/userInfo.js")
 
 Component({
 
@@ -8,6 +10,9 @@ Component({
   data: {
     imgUrl: '',
     hasSku: false,
+    //是否加入购物车
+    isJoinSCart: false,
+    //显示sku模态框
     showDialog: false,
     stock: 0,
     selectSku: {
@@ -41,10 +46,10 @@ Component({
       })
       this.init()
     },
-    'selectSku.sale_price': function(field) {
-      // this.setData({
-      //   ["selectSku.sale_price"]: appGlobal.util.formaToMoney(field, 2)
-      // })
+    'type': function(field) {
+      this.setData({
+        isJoinSCart: field
+      })
     }
   },
 
@@ -172,36 +177,23 @@ Component({
         }
       })
 
-      let result = {
-        stock: data.stock,
-        specset: data.specset,
-        sale_price: data.sale_price,
-        product_id: data.product_id
-      }
+      this.setData({
+        selectSku: data
+      })
 
+      return data
+    },
+    //提交
+    submit(is_hide_dialog) {
+      is_hide_dialog = undefined != is_hide_dialog.xx
+      //获取选中数据
+      let result = this.getSelectSkuVal()
+      //设置选中
       this.setData({
         selectSku: result
       })
-
-      return result
-    },
-    //提交
-    submit() {
-      //获取选中的集合
-      let items = this.data.pResult.specValues.filter(val => val.checked == true)
-      if (items.length < this.data.pResult.specNames.length) {
-        let name = this.data.pResult.specNames[items.length].name
-        wx.showToast({
-          title: "请选择" + name,
-          icon: 'none',
-          duration: 3000
-        })
-        return null
-      }
-      //获取选中数据
-      let result = items.map(item => item.specname_id + "_" + item.id).join(',')
-      //console.log(result)
-      return result
+      //加入购物车
+      this.api_306(is_hide_dialog)
     },
     //是否关闭sku弹框
     close() {
@@ -217,21 +209,18 @@ Component({
     //加
     add() {
       if (this.data.buyCount >= 99) return
-      let d = this.data.buyCount + 1
+      let num = this.data.buyCount + 1
       this.setData({
-        buyCount: d
+        buyCount: num
       })
-
-      this.submit()
     },
     //减
     sub() {
-      if (this.buyCount <= 1) return
+      if (this.data.buyCount <= 1) return
+      let num = this.data.buyCount - 1
       this.setData({
-        buyCount: this.data.buyCount--
+        buyCount: num
       })
-
-      this.submit()
     },
     //处理输入方式
     handleInput() {
@@ -239,6 +228,80 @@ Component({
       val.replace(/\D/g, '')
       this.setData({
         value
+      })
+    },
+    /**
+     * 加入购物车
+     */
+    api_306: function(is_hide_dialog) {
+      var that = this
+      //是否包邮
+      let is_postage = this.data.pResult.product.is_postage == undefined ? false : this.data.pResult.product.is_postage
+      //立即购买
+      if (this.data.isJoinSCart) {
+        let list = [{
+          product_id: this.data.selectSku.product_id,
+          is_postage: is_postage,
+          specset: this.data.selectSku.specset,
+          img_url: this.data.pResult.product.img_url,
+          product_name: this.data.selectSku.product_name,
+          product_en_name: this.data.selectSku.product_en_name,
+          product_price: this.data.selectSku.sale_price,
+          subtotal: this.data.selectSku.sale_price * this.data.buyCount,
+          count: this.data.buyCount
+        }]
+
+        //提交到本地存储临时数据
+        user.methods.buyNow(list)
+        //加入购物车
+      } else {
+        let that = this
+        wx.post(api.api_306,
+          wx.GetSign({
+            PID: this.data.selectSku.product_id,
+            SpecSet: this.data.selectSku.specset,
+            Count: this.data.buyCount
+          }),
+          function(vue, res) {
+            if (res.data.Basis.State == api.state.state_200) {
+              that.setData({
+                showDialog: is_hide_dialog
+              })
+              //更新父级页面事件
+              that.triggerEvent('updateSCart', res.data)
+            } else {
+              wx.showToast({
+                title: res.data.Basis.Msg,
+                icon: 'none',
+                duration: 3000
+              })
+            }
+          }
+        )
+      }
+    },
+    /**
+     * 提交订单
+     */
+    api_314: function() {
+      var that = this;
+      wx.post(api.api_314, wx.GetSign({}), function(app, res) {
+        if (res.data.Basis.State != api.state.state_200) {
+          wx.showToast({
+            title: res.data.Basis.Msg,
+            icon: 'none',
+            duration: 3000
+          })
+        } else {
+          that.setData({
+            result: res.data.Result.catgs
+          })
+
+          //初始化数据
+          that.initData(res.data.Result.catgs, res.data.Result.productList)
+          //设置选中类别
+          that.setCatgId(catg_id)
+        }
       })
     }
   }

@@ -11,9 +11,9 @@ var router = require("./modules/router.js")
 //var md5 = require("./modules/cryptojs/lib/MD5.js")
 
 App({
-  onLaunch: function () {
+  onLaunch: function() {
     //检查登录态是否过期
-    passport.checkSession(() => { })
+    passport.checkSession(() => {})
   },
   data: {
     userInfo: userInfo
@@ -23,7 +23,7 @@ App({
 /**
  * 全局提交方式
  */
-wx.post = function (url, data, cb, ch) {
+wx.post = function(url, data, cb, ch) {
   wx.showLoading({
     title: '请求中',
     mask: true
@@ -47,17 +47,19 @@ wx.post = function (url, data, cb, ch) {
 
         //删除用户信息
         wx.removeStorageSync('user_info')
-        var pages = appG.util.getUrl()
-        wx.setStorageSync("returl", pages)
+        //当前页面路径
+        var returl = appG.util.getUrl()
+        //存储到缓存
+        wx.setStorageSync("returl", returl)
         router.goUrl({
-          url: "/pages/user/index/index",
+          url: "/pages/member/index/index?backUrl=" + returl,
         })
       } else {
         cb(this, res)
       }
     },
     fail: (res) => {
-      setTimeout(function () {
+      setTimeout(function() {
         wx.hideLoading()
       }, 2000)
       wx.showToast({
@@ -74,11 +76,13 @@ wx.post = function (url, data, cb, ch) {
 
 
 //获取签名
-wx.GetSign = function (obj = {}) {
+wx.GetSign = function(obj = {}) {
 
   //获取token,变量解构
-  let { token } = userInfo.methods.getUser()
- 
+  let {
+    token
+  } = userInfo.methods.getUser()
+
   function sort(obj) {
 
     if (obj instanceof Array) {
@@ -86,7 +90,7 @@ wx.GetSign = function (obj = {}) {
       obj = obj.map((ele, index) => {
         if (ele instanceof Object) {
           var newObj = {}
-          Object.keys(ele).sort().forEach(function (key) {
+          Object.keys(ele).sort().forEach(function(key) {
             var o = ele[key]
             if (o instanceof Object) {
               o = sort(o)
@@ -101,7 +105,19 @@ wx.GetSign = function (obj = {}) {
     }
 
     var newObj = {}
-    Object.keys(obj).sort().forEach(function (key) {
+    //默认情况下，对字符串排序，是按照ASCII的大小比较的，现在，我们提出排序应该忽略大小写，按照字母序排序。要实现这个算法，
+    //不必对现有代码大加改动，只要我们能定义出忽略大小写的比较算法就可以
+    Object.keys(obj).sort((s1, s2) => {
+      let x1 = s1.toUpperCase()
+      let x2 = s2.toUpperCase()
+      if (x1 < x2) {
+        return -1
+      }
+      if (x1 > x2) {
+        return 1
+      }
+      return 0
+    }).forEach(function(key) {
       var o = obj[key]
       if (o instanceof Object) {
         o = sort(o)

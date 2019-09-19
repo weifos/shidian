@@ -3,7 +3,11 @@ module.exports = {
     openid: wx.getStorageSync('openid'),
     user: {
       token: ''
-    }
+    },
+    //购物车信息
+    sCartOrder: {},
+    //立即购买
+    buyNowOrder: {}
   },
   methods: {
     /**
@@ -75,12 +79,56 @@ module.exports = {
           }
         }
       )
+    },
+    /**
+     * 设置购物车
+     */
+    setShoppingCart(result) {
+      //写入本地缓存
+      wx.setStorageSync("sCartOrder", JSON.stringify(result))
+    },
+    /**
+     * 提交立即购买
+     */
+    buyNow(result) {
+      //写入本地缓存
+      wx.setStorageSync("buyNowOrder", JSON.stringify(result))
+    },
+    /**
+     * 获取缓存购物车
+     */
+    getShoppingCart() {
+      let item = wx.getStorageSync('sCartOrder')
+      if (item.length) {
+        return JSON.parse(item)
+      }  
+      return null
     }
   },
   created() {
-    let userInfoData = window.localStorage.getItem("user_info")
+    //登录用户信息
+    let userInfoData = wx.getStorageSync("user_info")
     if (userInfoData) {
-      this.user = JSON.parse(userInfoData)
+      that.setData({
+        user: userInfoData
+      })
     }
+ 
+    //提交购物车
+    let sCOrder = wx.getStorageSync("sCartOrder")
+    if (sCOrder) {
+      that.setData({
+        sCartOrder: sCOrder
+      })
+    }
+
+    //立即购买
+    let buyNow = wx.getStorageSync("buyNowOrder")
+    if (buyNow) {
+      that.setData({
+        buyNowOrder: sCOrder
+      })
+    }
+
   }
 }

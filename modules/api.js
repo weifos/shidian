@@ -1,8 +1,8 @@
 //测试环境  
-let domain = "http://sd.api.shidian.com/"
-let res_domain = "http://sd.res.shidian.com/"
+//let domain = "http://sd.api.shidian.com/"
+//let res_domain = "http://sd.res.shidian.com/"
 //正式环境
-//let domain = "http://sd.api.weifos.com/"
+let domain = "http://sd.api.weifos.com/"
 // let res_domain = "http://sd.res.shidian.com/"
 
 /// <summary>
@@ -63,30 +63,43 @@ module.exports = {
   api_210: domain + "210",
   //
   api_211: domain + "211",
-  //公司信息
+  //
   api_212: domain + "212",
-  //查询结果页
+  //
   api_213: domain + "213",
-  //加入收藏
+  //
   api_300: domain + "300",
-  //是否收藏
+  //
   api_301: domain + "301",
-  //取消收藏
+  //获取购物车
   api_302: domain + "302",
-  //会员申请成功
+  //更新购物车
   api_303: domain + "303",
-  //认证成功查看会员卡信息
+  //删除购物车
   api_304: domain + "304",
-  //获取借书记录
+  //
   api_305: domain + "305",
-  //获取逾期记录
+  //加入购物车
   api_306: domain + "306",
-  //支付借书罚金
+  //
   api_307: domain + "307",
-  //申请还书
+  //
   api_308: domain + "308",
-  //罚金单
+  //
   api_309: domain + "309",
+  //
+  api_310: domain + "310",
+  //
+  api_311: domain + "311",
+  //
+  api_312: domain + "312",
+  //
+  api_313: domain + "313",
+  //创建咖啡订单
+  api_314: domain + "314",
+  //微信小程序预支付订单
+  api_317: domain + "317",
+
   //状态码
   state: {
     // 系统错误

@@ -32,6 +32,6 @@
 <view class="order-tool-bar">
   <view class="cu-bar tabbar">
     <view class="bg-darkGray info">共计￥70<text class="discounts">|  优惠6元</text></view>
-    <view class="bg-lightYellow submit text-white">支付</view>
+    <view class="bg-lightYellow submit text-white" bindtap="goPay" >支付</view>
   </view>
 </view>

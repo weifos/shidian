@@ -12,7 +12,7 @@ Page({
   data: {
     isLogin: true,
     userInfo: {
-      id: 0, 
+      id: 0,
       nick_name: '未设置',
       login_name: '未登录',
       headimgurl: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg',
@@ -121,12 +121,17 @@ Page({
   /**
    * 加载微信用户信息
    */
-  bindUser: function (user) {
+  bindUser: function(user) {
+    if (user.nickname) {
+      this.setData({
+        ['userInfo.nick_name']: user.nickname
+      })
+    }
     this.setData({
       ['userInfo.login_name']: appG.util.getHideMobile(user.login_name)
     })
     this.setData({
-      ['userInfo.headimgurl']: appG.util.getHideMobile(user.headimgurl)
+      ['userInfo.headimgurl']: user.headimgurl
     })
   },
   /**
@@ -147,6 +152,18 @@ Page({
             user.methods.login(res.data.Result)
             //绑定用户
             that.bindUser(res.data.Result)
+            //如果存在重定向地址
+            let returl = wx.getStorageSync("returl")
+            if (returl != "") {
+              wx.removeStorage({
+                key: 'returl',
+                success(res) {}
+              })
+              //重定向
+              router.goUrl({
+                url: returl,
+              })
+            }
           } else {
             //弹出手机号码授权
             that.setData({
@@ -187,7 +204,7 @@ Page({
   /**
    * 菜单跳转
    */
-  goUrl: function(e) { 
+  goUrl: function(e) {
     //跳转地址
     let url = ''
     let key = e.currentTarget.dataset.key
@@ -196,11 +213,11 @@ Page({
       case "buy":
         url = '../memberWallet/index?id=' + key
         break;
-      //我的钱包
+        //我的钱包
       case "wallet":
         url = '../memberWallet/index?id=' + key
         break;
-      //我的钱包
+        //我的钱包
       case "paycode":
         url = '../memberWallet/index?id=' + key
         break;

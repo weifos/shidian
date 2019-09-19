@@ -1,0 +1,36 @@
+<wxs src='../../modules/wxsGlobal.wxs' module='gFilter' />
+
+<view class="container page-orderList">
+  <view class="order-list cu-list menu-avatar">
+    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{result}}" wx:key="key" wx:for-item="item" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+      <view class="content">
+        <view class="order__name fz33">{{item.product_name}} {{item.spec_msg}}</view>
+        <view class="order__price fz33">￥{{item.product_price}}</view>
+      </view>
+      <view class="action">
+        <view class="van-stepper custom-class">
+          <view class="minus-class dib vam" bindtap="sub" data-item="{{item}}">-</view>
+          <input class="input-class dib vam" value="{{item.count}}" bindinput="onInput" />
+          <view class="plus-class dib vam" bindtap="add" data-item="{{item}}">+</view>
+        </view>
+      </view>
+      <view class="move" bindtap="api_304" data-item="{{item}}" >
+        <view class="bg-red">删除</view>
+      </view>
+    </view>
+  </view>
+  <view class="order__remark">
+    <view class="cu-form-group align-start">
+      <view class="title">备注：</view>
+      <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput"></textarea>
+    </view>
+  </view>
+</view>
+<view class="order-tool-bar">
+  <view class="cu-bar tabbar">
+    <view class="bg-darkGray info">共计￥ {{gFilter.formaToMoney(totalPrice,2)}}
+      <!-- <text class="discounts">|  优惠6元</text> -->
+    </view>
+    <view class="bg-lightYellow submit text-white" bindtap="submit" >去结算</view>
+  </view>
+</view>

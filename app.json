@@ -20,7 +20,7 @@
     "pages/psq/index",
     "pages/orderCheck/index",
     "pages/ticketList/index",
-    "pages/orderList/index",
+    "pages/shoppingCart/index",
     "pages/courseDetail/courseDetail",
     "pages/course/course",
     "pages/logs/logs",
