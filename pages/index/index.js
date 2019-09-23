@@ -12,7 +12,7 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function() {
+  onLoad: function() { 
     this.api_200()
   },
   /**

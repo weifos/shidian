@@ -1,0 +1,45 @@
+<view class="container page-member-orderlist2">
+<!-- i-tab2 s -->
+  <view class="i-tab2">
+    <scroll-view scroll-x class="bg-white nav text-center">
+      <view class="flex text-center">
+        <view class="cu-item flex-sub {{index==TabCur?'text-lightBlue cur':''}}" wx:for="{{orderData}}" wx:key bindtap="tabSelect" data-id="{{index}}" wx:for-item="item">
+          {{item.title}}
+        </view>
+      </view>
+    </scroll-view>
+    <view class="tab-content">
+      <view class="tab-c bg-white">
+        <view class="integral-list list-3">
+          <view class="f-item hidden" wx:key wx:for="{{orderData[TabCur].list}}" wx:if="{{orderData[TabCur].list.length > 0}}">
+            <view class="f-image"><image src="{{item.url}}"></image></view>
+            <view class="f-content">
+              <view class="f-name ellipsis">{{item.name}}</view>
+              <view class="f-status text-lightGray">{{item.status}}</view>
+              <view class="no mt10 text-lightGray">{{item.no}}</view>
+              <view class="f-time mt10 text-lightGray">{{item.time}}</view>
+              <view class="right-bar">
+                <view class="f-price dib vam fz33 mr20 bold">
+                  ￥{{item.price}}
+                </view>
+                <view class="dib vam" >
+                <button class="cu-btn size-normal round bg-lightBlue text-white" wx:if="{{item.statusCode == 0}}">支付</button>
+                <button class="cu-btn size-normal round bg-gray text-white" wx:if="{{item.statusCode == 1}}">已支付</button>                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="nodata" wx:if="{{orderData[TabCur].list.length == 0}}">
+          <view>
+            您还没有购买记录
+          </view>
+          <view>
+            快去下单吧
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- i-tab2 e -->
+</view>
+<i-bottombar></i-bottombar>

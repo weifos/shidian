@@ -11,22 +11,21 @@ Page({
   data: {
     appId: "",
     orderInfo: {
-      no: "653178123470509056",
-      name: "摩卡咖啡*1 备",
-      desc: "这里是订单备注的内容",
+      serial_no: "",
+      user_coupon_id:0,
+      remarks: "",
       details: []
     },
     //微信支付参数
-    wechatPay: {
-
-    },
+    wechatPay: {},
     ticketInfo: [{
-      key: "653178123470509056",
-      name: "咖啡券",
-      startTime: "2019-06-01",
-      endTime: "2019-06-30",
-      discount: "5",
-      quota: "0.01"
+      id:0,
+      key: "",
+      name: "",
+      startTime: "",
+      endTime: "",
+      discount: "",
+      quota: ""
     }]
   },
 
@@ -34,10 +33,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(opt) {
-    //console.log(opt.no) 
+    //跳转地址 
     this.api_317(opt.no)
   },
 
+  /**
+   * 选择优惠券
+   */
+  checkTicket:function(){
+
+  },
   //提交订单
   api_314() {
 
@@ -87,11 +92,12 @@ Page({
       }),
       function(vue, res) {
         if (res.data.Basis.State == api.state.state_200) {
+            
           //订单信息
           that.setData({
             orderInfo: res.data.Result.order
           })
- 
+
           that.setData({
             wechatPay: res.data.Result.wechatpay
           })
@@ -111,7 +117,7 @@ Page({
    * 立即支付
    */
   goPay: function() {
-    let that = this 
+    let that = this
     wx.requestPayment({
       appId: that.data.wechatPay.appId,
       timeStamp: that.data.wechatPay.timeStamp,
@@ -120,13 +126,18 @@ Page({
       signType: that.data.wechatPay.signType,
       paySign: that.data.wechatPay.paySign,
       success: function(res) {
-        console.log(res)
+        if (res.errMsg = "requestPayment:ok") {
+          //跳转地址 
+          router.goUrl({
+            url: '../member/orderList/index'
+          })
+        }
       },
       fail: function(res) {
-        console.log(res)
+        //console.log(res)
       },
       complete: function(res) {
-        console.log(res)
+        //console.log(res)
       }
     })
   },
