@@ -49,4 +49,4 @@
   </view>
 </view>
 <!-- 底部 e -->
-<i-sku isShow="{{isSelectSKU}}" result="{{productDetails}}" type="{{false}}" bind:updateSCart="updateSCart"></i-sku>
+<i-sku isShow="{{isSelectSKU}}" result="{{productDetails}}" type="{{false}}"  storeId="{{store_id}}" bind:updateSCart="updateSCart"></i-sku>

@@ -47,9 +47,9 @@ module.exports = {
   api_202: domain + "202",
   //加载商品详情
   api_203: domain + "203",
-  // 
+  // 扫码点单
   api_204: domain + "204",
-  // 
+  // 课堂页数据
   api_205: domain + "205",
   // 
   api_206: domain + "206",
@@ -99,7 +99,9 @@ module.exports = {
   api_314: domain + "314",
   //微信小程序预支付订单
   api_317: domain + "317",
-
+  //订单列表
+  api_318: domain + "318",
+  
   //状态码
   state: {
     // 系统错误

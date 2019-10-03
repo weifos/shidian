@@ -22,7 +22,7 @@
   <view class="order__remark">
     <view class="cu-form-group align-start">
       <view class="title">备注：</view>
-      <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput"></textarea>
+      <textarea maxlength="-1" disabled="{{modalName!=null}}" value="{{item.count}}"  bindinput="textareaBInput"></textarea>
     </view>
   </view>
 </view>

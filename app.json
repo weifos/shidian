@@ -1,21 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/member/ticketDetail/index",
-    "pages/member/memberPayCode/index",
-    "pages/member/index/index",
     "pages/chat/index",
-    "pages/member/memberWallet/index",
-    "pages/member/ticketList/index",
-    "pages/member/consumeList/index",
-    "pages/member/ticketBind/index",
-    "pages/member/memberIntegral/index",
-    "pages/member/memberTicket/index",
-    "pages/member/orderCourseList/index",
-    "pages/member/orderList/index",
-    "pages/member/memberCard/index",
-    "pages/member/phone/index",
-    "pages/member/userInfo/index",
     "pages/sale/index",
     "pages/psq/index",
     "pages/orderCheck/index",
@@ -26,6 +12,46 @@
     "pages/logs/logs",
     "pages/coffee/coffee",
     "pages/activity/activity"
+  ],
+  "subpackages": [
+    {
+      "root": "package1",
+      "name": "pack1",
+      "pages": [
+        "pages/index/index",
+        "pages/chat/index",
+        "pages/sale/index",
+        "pages/psq/index",
+        "pages/orderCheck/index",
+        "pages/ticketList/index",
+        "pages/shoppingCart/index",
+        "pages/courseDetail/courseDetail",
+        "pages/course/course",
+        "pages/logs/logs",
+        "pages/coffee/coffee",
+        "pages/activity/activity"
+      ]
+    },
+    {
+      "root": "package2",
+      "name": "pack2",
+      "pages": [
+        "pages/member/ticketDetail/index",
+        "pages/member/memberPayCode/index",
+        "pages/member/index/index",
+        "pages/member/memberWallet/index",
+        "pages/member/ticketList/index",
+        "pages/member/consumeList/index",
+        "pages/member/ticketBind/index",
+        "pages/member/memberIntegral/index",
+        "pages/member/memberTicket/index",
+        "pages/member/orderCourseList/index",
+        "pages/member/orderList/index",
+        "pages/member/memberCard/index",
+        "pages/member/phone/index",
+        "pages/member/userInfo/index"
+      ]
+    }
   ],
   "usingComponents": {
     "i-bottombar": "/components/BottomBar/BottomBar",

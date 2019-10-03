@@ -1,5 +1,6 @@
 var api = require("../../modules/api.js")
 var router = require("../../modules/router.js")
+var user = require("../../modules/userInfo.js")
 var appGlobal = require("../../modules/appGlobal.js")
 
 Page({
@@ -9,12 +10,7 @@ Page({
    */
   data: {
     banners: [],
-    catgs: [{
-      "id": "1",
-      "title": "精品咖啡",
-      "desc": "摩卡咖啡豆平均颗粒较小，带有生姜的狂野泼辣气息、明亮独特的滋味摩卡咖啡豆平均颗粒较小，带有生姜的狂野泼辣气息、明亮独特的滋味",
-      "imgurl": "/images/p5.png"
-    }]
+    catgs: []
   },
 
   /**
@@ -29,7 +25,10 @@ Page({
    */
   api_201: function() {
     var this_ = this;
-    wx.post(api.api_201, wx.GetSign(), function(app, res) {
+    let store = user.methods.getStore()
+    wx.post(api.api_201, wx.GetSign({
+      StoreId: store.store_id
+    }), function(app, res) {
       if (res.data.Basis.State != api.state.state_200) {
         wx.showToast({
           title: res.data.Basis.Msg,
@@ -67,28 +66,24 @@ Page({
       url: url
     })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
 
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
 
   },
-
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
 
   },
-
   /**
    * 生命周期函数--监听页面卸载
    */

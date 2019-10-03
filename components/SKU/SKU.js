@@ -9,6 +9,7 @@ Component({
    */
   data: {
     imgUrl: '',
+    store_id: 0,
     hasSku: false,
     //是否加入购物车
     isJoinSCart: false,
@@ -32,7 +33,8 @@ Component({
     //false加入购物车，true立即购买
     type: Boolean,
     result: Object,
-    isShow: Boolean
+    isShow: Boolean,
+    storeId: Number
   },
   observers: {
     'isShow': function(field) {
@@ -49,6 +51,11 @@ Component({
     'type': function(field) {
       this.setData({
         isJoinSCart: field
+      })
+    },
+    'storeId': function(field) {
+      this.setData({
+        store_id: field
       })
     }
   },
@@ -191,7 +198,7 @@ Component({
       //设置选中
       this.setData({
         selectSku: result
-      })
+      }) 
       //加入购物车
       this.api_306(is_hide_dialog)
     },
@@ -240,6 +247,7 @@ Component({
       //立即购买
       if (this.data.isJoinSCart) {
         let list = [{
+          store_id: this.data.store_id,
           product_id: this.data.selectSku.product_id,
           is_postage: is_postage,
           specset: this.data.selectSku.specset,
@@ -258,6 +266,7 @@ Component({
         let that = this
         wx.post(api.api_306,
           wx.GetSign({
+            StoreId: this.data.store_id,
             PID: this.data.selectSku.product_id,
             SpecSet: this.data.selectSku.specset,
             Count: this.data.buyCount

@@ -211,7 +211,7 @@ Page({
     switch (key) {
       //购买记录
       case "buy":
-        url = '../memberWallet/index?id=' + key
+        url = '../orderList/index'
         break;
         //我的钱包
       case "wallet":
@@ -263,15 +263,13 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
-
+  onPullDownRefresh: function() { 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
   },
 
   /**

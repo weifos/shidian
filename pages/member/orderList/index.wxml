@@ -1,9 +1,11 @@
+<wxs src='../../../modules/wxsGlobal.wxs' module='gFilter' />
+
 <view class="container page-member-orderlist2">
-<!-- i-tab2 s -->
+  <!-- i-tab2 s -->
   <view class="i-tab2">
     <scroll-view scroll-x class="bg-white nav text-center">
       <view class="flex text-center">
-        <view class="cu-item flex-sub {{index==TabCur?'text-lightBlue cur':''}}" wx:for="{{orderData}}" wx:key bindtap="tabSelect" data-id="{{index}}" wx:for-item="item">
+        <view class="cu-item flex-sub {{index==tabCur?'text-lightBlue cur':''}}" wx:for="{{orderData}}" wx:key bindtap="tabSelect" data-id="{{index}}" wx:for-item="item">
           {{item.title}}
         </view>
       </view>
@@ -11,64 +13,50 @@
     <view class="tab-content">
       <view class="tab-c bg-white">
         <view class="integral-list">
-          <view class="f-item hidden" wx:key wx:for="{{orderData[TabCur].list}}" wx:if="{{orderData[TabCur].list.length > 0}}">
-            
+          <view class="f-item hidden" wx:key wx:for="{{orderData[tabCur].list}}" wx:if="{{orderData[tabCur].list.length > 0}}">
             <view class="f-content">
               <view class="row">
-                  <view class="f-time text-lightGray">{{item.time}}</view>
-                  <view class="f-status text-lightGray">{{item.status}}</view>
+                <view class="f-time text-lightGray">{{item.created_date}}</view>
+                <view class="f-status text-lightGray">{{item.type == 5?'在线支付':'线下支付'}} | {{item.is_pay?'已付款':'未付款'}} </view>
               </view>
-              <view class="row1 hidden border-top">
-                <view class="f-image"><image src="{{item.url}}"></image></view>
+              <view class="row1 hidden border-top" wx:key wx:for="{{item.details}}" wx:for-item="ditem">
+                <view class="f-image">
+                  <image src="{{ditem.img_url}}"></image>
+                </view>
                 <view class="f-info">
-                  <view class="f-name ellipsis">{{item.name}}</view>
+                  <view class="f-name ellipsis">{{ditem.product_name}} {{ditem.spec_msg}}</view>
                   <view class="price-bar">
                     <view class="f-price dib vam">
-                      ￥{{item.price}}
+                      ￥{{gFilter.formaToMoney(ditem.unit_price)}}
                     </view>
                     <view class="f-num">
-                      X1
+                      X{{ditem.count}}
                     </view>
                   </view>
                 </view>
               </view>
-              <view class="row1 hidden border-top">
-                <view class="f-image"><image src="{{item.url}}"></image></view>
-                <view class="f-info">
-                  <view class="f-name ellipsis">{{item.name}}</view>
-                  <view class="price-bar">
-                    <view class="f-price dib vam">
-                      ￥{{item.price}}
-                    </view>
-                    <view class="f-num">
-                      X1
-                    </view>
-                  </view>
-                </view>
-              </view>
-              <view class="row  border-top">
-                <view class="no text-lightGray">{{item.no}}</view>
+
+              <view class="row border-top">
+                <view class="no text-lightGray">{{item.serial_no}}</view>
               </view>
               <view class="row border-top">
-                  <view class="left-bar">
-                    共计1件商品  
-                    合计：<text class="fz33">￥1111</text>
+                <view class="left-bar">
+                  共计1件商品 合计：
+                  <text class="fz33">￥{{gFilter.formaToMoney(item.actual_amount - item.give_change_amount )}}</text>
+                </view>
+                <view class="right-bar">
+                  <view class="dib vam">
+                    <button class="cu-btn size-normal round bg-lightBlue text-white" wx:if="{{item.statusCode == 0}}">支付</button>
+                    <button class="cu-btn size-normal round bg-gray text-white" wx:if="{{item.statusCode == 1}}">已支付</button>
                   </view>
-                  <view class="right-bar">
-                
-                <view class="dib vam" >
-                <button class="cu-btn size-normal round bg-lightBlue text-white" wx:if="{{item.statusCode == 0}}">支付</button>
-                <button class="cu-btn size-normal round bg-gray text-white" wx:if="{{item.statusCode == 1}}">已支付</button>                </view>
+                </view>
               </view>
-              </view>
-              
-              
-              
-              
             </view>
+
           </view>
         </view>
-        <view class="nodata" wx:if="{{orderData[TabCur].list.length == 0}}">
+        <!-- 没有购买记录 -->
+        <view class="nodata" wx:if="{{orderData[tabCur].list.length == 0}}">
           <view>
             您还没有购买记录
           </view>
@@ -76,6 +64,7 @@
             快去下单吧
           </view>
         </view>
+
       </view>
     </view>
   </view>

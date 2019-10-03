@@ -29,7 +29,7 @@
 
   <view class="bg-white mt10">
     <view class="cu-list grid col-2 list1">
-      <view class="cu-item" wx:for="{{list1}}" wx:key wx:for-item="item"  data-key="{{item.icon}}" bindtap="goUrl">
+      <view class="cu-item" wx:for="{{list1}}" wx:key wx:for-item="item" data-key="{{item.icon}}" bindtap="goUrl">
         <view class="item-wrap">
           <i-icon name="{{item.icon}}" class="dib icon-img vat"></i-icon>
           <view class="dib icon-name vam">{{item.name}}</view>
@@ -41,9 +41,9 @@
   <view class="bg-white mt10">
     <view class="cu-list menu list2">
       <!-- cu-item s -->
-      <view class="cu-item" wx:for="{{list2}}" wx:key>
+      <view class="cu-item" wx:for="{{list2}}" wx:key data-key="{{item.icon}}" bindtap="goUrl">
         <view class="content">
-          <i-icon name="{{item.icon}}" class=" dib vat i-icon"></i-icon>
+          <i-icon name="{{item.icon}}" class="dib vat i-icon"></i-icon>
           <text class="text-grey dib vam">{{item.name}}</text>
         </view>
       </view>

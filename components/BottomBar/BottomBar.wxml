@@ -6,13 +6,13 @@
         <view class="cur-img"><image src="/images/icon/i1_2.png"></image></view>
       </view>
     </navigator>
-    <navigator class="action" open-type="reLaunch" url="/pages/member/index/index">
+    <navigator class="action" open-type="reLaunch" url="/pages/course/course">
       <view class="cuIcon-cu-image cuIcon-cu-image-2">
         <view class="normal-img"><image src="/images/icon/i2.png" ></image></view>
         <view class="cur-img"><image src="/images/icon/i2_2.png"></image></view>
       </view>
     </navigator>
-    <navigator class="action" open-type="reLaunch" url="/pages/member/index/index">
+    <navigator class="action" open-type="reLaunch" url="/pages/course/course">
       <view class="cuIcon-cu-image cuIcon-cu-image-3">
         <view class="normal-img"><image src="/images/icon/i3.png" ></image></view>
         <view class="cur-img"><image src="/images/icon/i3_2.png"></image></view>

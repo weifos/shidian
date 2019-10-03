@@ -9,6 +9,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    //对应的门店信息
+    store_id: 0,
+    //订单信息
+    order: {
+      store_id: 0,
+      remarks: '',
+      details: []
+    },
     //购物车列表
     result: [],
     //总计
@@ -20,14 +28,12 @@ Page({
       ListTouchStart: e.touches[0].pageX
     })
   },
-
   // ListTouch计算方向
   ListTouchMove(e) {
     this.setData({
       ListTouchDirection: e.touches[0].pageX - this.data.ListTouchStart > 0 ? 'right' : 'left'
     })
   },
-
   // ListTouch计算滚动
   ListTouchEnd(e) {
     if (this.data.ListTouchDirection == 'left') {
@@ -42,13 +48,13 @@ Page({
     this.setData({
       ListTouchDirection: null
     })
-  }, // ListTouch触摸开始
+  },
+  // ListTouch触摸开始
   ListTouchStart(e) {
     this.setData({
       ListTouchStart: e.touches[0].pageX
     })
   },
-
   // ListTouch计算方向
   ListTouchMove(e) {
     this.setData({
@@ -76,6 +82,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    let store = user.methods.getStore()
+    this.setData({
+      ['order.store_id']: store.store_id
+    })
+ 
     //本地存储更新购物车
     let shoppingCart = user.methods.getShoppingCart()
     this.setData({
@@ -86,7 +97,9 @@ Page({
   //加载购物车
   api_302() {
     let that = this
-    this.post(app_g.api.api_302, wx.GetSign(), function(vue, res) {
+    this.post(app_g.api.api_302, wx.GetSign({
+      StoreID: that.data.order.store_id
+    }), function(vue, res) {
       if (res.data.Basis.State == app_g.state.state_200) {
         that.setData({
           result: res.data.Result
@@ -108,7 +121,8 @@ Page({
       CID: item.id,
       Count: num,
       ProductID: item.product_id,
-      SpecSet: item.specset
+      SpecSet: item.specset,
+      StoreID: that.data.order.store_id
     }), (wx, res) => {
       cb()
     })
@@ -152,9 +166,10 @@ Page({
   checkUpdate(ele) {
     //总计临时变量
     let total = 0
+
     this.data.result.map((item, index) => {
       //更新修改
-      if (ele != null && ele != undefined && item.specset == ele.specset && item.product_id == ele.product_id ) {
+      if (ele != null && ele != undefined && item.specset == ele.specset && item.product_id == ele.product_id) {
         item = ele
       }
       //当前小计 
@@ -208,9 +223,7 @@ Page({
 
     let data = {
       IsShoppingCart: true,
-      Order:{
-        details: []
-      }
+      Order: this.data.order
     }
 
     //组装商品详情数据   
@@ -232,7 +245,7 @@ Page({
           icon: 'none',
           duration: 3000
         })
-         
+
         router.goUrl({
           url: '../orderCheck/index?no=' + res.data.Result
         })

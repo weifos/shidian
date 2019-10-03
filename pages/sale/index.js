@@ -8,6 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    //门店ID
+    store_id: 0,
     //banner集合
     banners: [],
     //是否提交订单
@@ -25,7 +27,7 @@ Page({
       specCustoms: []
     },
     //每页大小
-    pageSize: 10, 
+    pageSize: 10,
     //购物车总金额
     totalPrice: 0,
     //分类ID
@@ -43,6 +45,11 @@ Page({
     this.setData({
       banners: appGlobal.storage.swiper.getCoffeeBanner()
     })
+
+    let store = user.methods.getStore()
+    this.setData({
+      store_id: store.store_id
+    })
     //加载购物车
     this.api_302()
     //加载数据
@@ -55,6 +62,7 @@ Page({
   api_202: function(catg_id) {
     var that = this;
     wx.post(api.api_202, wx.GetSign({
+      StoreID: that.data.store_id,
       CatgID: catg_id,
       Size: that.data.pageSize
     }), function(app, res) {
@@ -82,7 +90,9 @@ Page({
    */
   api_302: function() {
     var that = this;
-    wx.post(api.api_302, wx.GetSign(), function(app, res) {
+    wx.post(api.api_302, wx.GetSign({
+      StoreID: that.data.store_id
+    }), function(app, res) {
       if (res.data.Basis.State != api.state.state_200) {
         wx.showToast({
           title: res.data.Basis.Msg,
@@ -98,7 +108,7 @@ Page({
         that.setData({
           totalPrice: total_price
         })
- 
+
         //设置购物车信息
         user.methods.setShoppingCart(res.data.Result)
       }

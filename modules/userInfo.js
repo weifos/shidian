@@ -81,10 +81,26 @@ module.exports = {
       )
     },
     /**
+     * 设置门店信息
+     */
+    setStore(result) {
+      //写入本地缓存
+      wx.setStorageSync("store", JSON.stringify(result))
+    },
+    /**
+     * 获取门店信息
+     */
+    getStore() {
+      let item = wx.getStorageSync('store')
+      if (item.length) {
+        return JSON.parse(item)
+      }
+      return null
+    },
+    /**
      * 设置购物车
      */
     setShoppingCart(result) {
-      //写入本地缓存
       wx.setStorageSync("sCartOrder", JSON.stringify(result))
     },
     /**

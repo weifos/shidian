@@ -10,7 +10,7 @@
   </view>
   <!-- menu-list s -->
   <view class="menu-list">
-    <view class="menu__item" data-key="coffee" bindtap="goUrl">
+    <view class="menu__item" data-key="coffee"  bindtap='scanCode'>
       <view class="menu__title">
         <text class="menu__title__cn">咖啡点单</text>
         <text class="menu__title__en">Coffee order</text>
