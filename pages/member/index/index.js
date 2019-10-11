@@ -141,8 +141,8 @@ Page({
     let that = this
     let userInfo = user.methods.getUser()
     console.log("openid:" + userInfo.openid)
-    wx.post(api.api_106,
-      wx.GetSign({
+    api.post(api.api_106,
+      api.getSign({
         OpenID: userInfo.openid
       }),
       function(app, res) {
@@ -212,16 +212,32 @@ Page({
       //购买记录
       case "buy":
         url = '../orderList/index'
-        break;
+        break
         //我的钱包
       case "wallet":
-        url = '../memberWallet/index?id=' + key
-        break;
-        //我的钱包
+        url = '../memberWallet/index'
+        break
+        //付款码
       case "paycode":
-        url = '../memberWallet/index?id=' + key
-        break;
-
+        url = '../memberWallet/index'
+        break
+      //我的活动
+      case "activity":
+        url = '../orderCourseList/index'
+        break
+      //我的活动
+      case "member":
+        url = '../memberCard/index'
+        break
+      //我的积分
+      case "integral":
+        url = '../memberIntegral/index'
+        break
+      //我的优惠券
+      case "ticket":
+        url = '../memberTicket/index'
+        break
+        
       default:
         break;
     }
@@ -263,14 +279,12 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() { 
-  },
+  onPullDownRefresh: function() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
-  },
+  onReachBottom: function() {},
 
   /**
    * 用户点击右上角分享

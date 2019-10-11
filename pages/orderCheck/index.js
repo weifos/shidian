@@ -5,188 +5,151 @@ var router = require("../../modules/router.js")
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    appId: "",
-    orderInfo: {
-      serial_no: "",
-      user_coupon_id:0,
-      remarks: "",
-      details: []
-    },
-    //微信支付参数
-    wechatPay: {},
-    ticketInfo: [{
-      id:0,
-      key: "",
-      name: "",
-      startTime: "",
-      endTime: "",
-      discount: "",
-      quota: ""
-    }]
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(opt) {
-    //跳转地址 
-    this.api_317(opt.no)
-  },
-
-  /**
-   * 选择优惠券
-   */
-  checkTicket:function(){
-
-  },
-  //提交订单
-  api_314() {
-
-    //支付方式,微信浏览器里面默认微信支付
-    let pay_method = 1
-    if (app_g.util.isWeixinBrowser()) {
-      //app里面默认微信app支付
-      pay_method = 5
-    }
-
-    wx.post(
-      app_g.api.api_314,
-      wx.GetSign({
-        Order: {
-          //配送还是自提
-          logistic_method: this.selectedTab ? 0 : 1,
-          user_coupon_id: this.userCoupon.id,
-          pay_method: pay_method
+    /**
+     * 页面的初始数据
+     */
+    data: {
+        appId: "",
+        orderInfo: {
+            serial_no: "",
+            user_coupon_id: 0,
+            remarks: "",
+            details: []
         },
-        Products: this.products,
-        AddressID: this.defaultAddress.id,
-        IsShoppingCart: this.isShoppingCart
-      }),
-      function(vue, res) {
-        if (res.data.Basis.State == api.state.state_200) {
-          vue.$router.push({
-            path: '/order/payOrder',
-            query: {
-              no: res.data.Result
+        //微信支付参数
+        wechatPay: {},
+        ticketInfo: [{
+            id: 0,
+            key: "",
+            name: "",
+            startTime: "",
+            endTime: "",
+            discount: "",
+            quota: ""
+        }]
+    },
+
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function (opt) {
+        //跳转地址 
+        this.api_317(opt.no)
+    },
+
+    /**
+     * 选择优惠券
+     */
+    checkTicket: function () {
+
+    },
+
+    /**
+     * 微信小程序预支付订单
+     */
+    api_317(no) {
+        let that = this
+        api.post(api.api_317,
+            api.getSign({
+                OrderNo: no
+            }),
+            function (vue, res) {
+                if (res.data.Basis.State == api.state.state_200) {
+
+                    //订单信息
+                    that.setData({
+                        orderInfo: res.data.Result.order
+                    })
+
+                    that.setData({
+                        wechatPay: res.data.Result.wechatpay
+                    })
+
+                } else {
+                    wx.showToast({
+                        title: res.data.Basis.Msg,
+                        icon: 'none',
+                        duration: 3000
+                    })
+                }
             }
-          })
-        } else {
-          vue.$vux.toast.text(res.data.Basis.Msg)
-        }
-      }
-    )
-  },
+        )
+    },
 
-  /**
-   * 微信小程序预支付订单
-   */
-  api_317(no) {
-    let that = this
-    wx.post(api.api_317,
-      wx.GetSign({
-        OrderNo: no
-      }),
-      function(vue, res) {
-        if (res.data.Basis.State == api.state.state_200) {
-            
-          //订单信息
-          that.setData({
-            orderInfo: res.data.Result.order
-          })
+    /**
+     * 立即支付
+     */
+    goPay: function () {
+        let that = this
+        wx.requestPayment({
+            appId: that.data.wechatPay.appId,
+            timeStamp: that.data.wechatPay.timeStamp,
+            nonceStr: that.data.wechatPay.nonceStr,
+            package: that.data.wechatPay.package,
+            signType: that.data.wechatPay.signType,
+            paySign: that.data.wechatPay.paySign,
+            success: function (res) {
+                if (res.errMsg = "requestPayment:ok") {
+                    //跳转地址 
+                    router.goUrl({
+                        url: '../member/orderList/index'
+                    })
+                }
+            },
+            fail: function (res) {
+                //console.log(res)
+            },
+            complete: function (res) {
+                //console.log(res)
+            }
+        })
+    },
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function () {
 
-          that.setData({
-            wechatPay: res.data.Result.wechatpay
-          })
+    },
 
-        } else {
-          wx.showToast({
-            title: res.data.Basis.Msg,
-            icon: 'none',
-            duration: 3000
-          })
-        }
-      }
-    )
-  },
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
 
-  /**
-   * 立即支付
-   */
-  goPay: function() {
-    let that = this
-    wx.requestPayment({
-      appId: that.data.wechatPay.appId,
-      timeStamp: that.data.wechatPay.timeStamp,
-      nonceStr: that.data.wechatPay.nonceStr,
-      package: that.data.wechatPay.package,
-      signType: that.data.wechatPay.signType,
-      paySign: that.data.wechatPay.paySign,
-      success: function(res) {
-        if (res.errMsg = "requestPayment:ok") {
-          //跳转地址 
-          router.goUrl({
-            url: '../member/orderList/index'
-          })
-        }
-      },
-      fail: function(res) {
-        //console.log(res)
-      },
-      complete: function(res) {
-        //console.log(res)
-      }
-    })
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
+    },
 
-  },
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide: function () {
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
+    },
 
-  },
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload: function () {
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
+    },
 
-  },
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function () {
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
+    },
 
-  },
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom: function () {
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
+    },
 
-  },
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage: function () {
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  }
+    }
 })

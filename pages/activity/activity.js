@@ -10,7 +10,7 @@ Page({
     scrollLeft: 0,
     activityData: [
       {
-        title: "课程报名",
+        title: "活动报名",
         list: [{
           "id": "1",
           "url": "/images/p6.png",
@@ -37,7 +37,7 @@ Page({
         ]
       },
       {
-        title: "往期课堂",
+        title: "往期活动",
         list: [{
           "month": "1月",
           "list": [{

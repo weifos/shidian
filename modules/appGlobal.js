@@ -828,9 +828,14 @@ module.exports = {
         wx.setStorageSync("index_banner", JSON.stringify(result))
       },
       //设置咖啡banner
-      setCoffeeBanner: function(result) {
+      setCoffeeBanner: function (result) {
         //同步设置banner
         wx.setStorageSync("coffee_banner", JSON.stringify(result))
+      },
+      //设置课程banner
+      setCourseBanner: function (result) {
+        //同步设置banner
+        wx.setStorageSync("course_banner", JSON.stringify(result))
       },
       //首页banner
       getIndexBanner: function() {
@@ -841,8 +846,16 @@ module.exports = {
         return []
       },
       //获取咖啡banner
-      getCoffeeBanner: function() {
+      getCoffeeBanner: function () {
         var result = wx.getStorageSync('coffee_banner')
+        if (result.length) {
+          return JSON.parse(result)
+        }
+        return []
+      },
+      //获取咖啡banner
+      getCourseBanner: function () {
+        var result = wx.getStorageSync('course_banner')
         if (result.length) {
           return JSON.parse(result)
         }

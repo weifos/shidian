@@ -1,0 +1,6 @@
+/* pages/orderCheck/index.wxss */
+.page-orderCheck .cu-btn{height: 53rpx;}
+.radio__item{font-size: 27rpx;margin-bottom:24rpx;}
+.radio__item text{margin:0 25rpx;}
+.txt-balance{color: #B2B2B2 ;font-size: 22rpx;}
+.no-ticket{margin-left: 18rpx;color: #B2B2B2;font-size: 22rpx;}

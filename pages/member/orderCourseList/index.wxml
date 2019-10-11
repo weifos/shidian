@@ -1,33 +1,34 @@
-<!--pages/member/orderList/index.wxml-->
+<wxs src='../../../modules/wxsGlobal.wxs' module='gFilter' />
+
 <view class="container page-member-orderlist">
   <!-- i-tab s -->
   <view class="i-tab">
     <scroll-view scroll-x class="nav tab-t">
       <view class="flex text-center">
-        <view class="cu-item flex-sub {{index==TabCur?'bg-lightBlue cur':''}}" wx:for="{{courseData}}" wx:key bindtap="tabSelect" data-id="{{index}}" wx:for-item="item">
+        <view class="cu-item flex-sub {{index==tabCur?'bg-lightBlue cur':''}}" wx:for="{{orderData}}" wx:key bindtap="tabSelect" data-id="{{index}}" wx:for-item="item">
           {{item.title}}
         </view>
       </view>
     </scroll-view>
     <view class="tab-content">
-      <view class="tab-c" wx:if="{{TabCur == 0}}">
-        <view class="course-list" wx:if="{{courseData[0].list.length >0}}">
-          <view class="course__item" wx:for="{{courseData[0].list}}" wx:key>
+      <view class="tab-c" wx:if="{{tabCur == 0}}">
+        <view class="course-list" wx:if="{{orderData[0].list.length >0}}">
+          <view class="course__item" wx:for="{{orderData[0].list}}" wx:key>
             <view class="course__image">
-              <image src="{{item.url}}"></image>
+              <image src="{{item.img_url}}"></image>
             </view>
             <view class="course__text">
               <view class="course__title ellipsis">
-                {{item.title}}
+                {{item.teacher_name}}
               </view>
               <view class="course__name ellipsis">
-                {{item.name}}
+                {{item.course_name}}
               </view>
               <view class="course__address ellipsis2">
-                上课地点：{{item.address}}
+                上课地点：{{item.province}}{{item.city}}{{item.area}}{{item.address}}
               </view>
               <view class="course__time">
-                {{item.time}}
+                {{gFilter.date.format(item.start_date,'yyyy-MM-dd')}}
               </view>
               <view class="course__btns">
                 <button class="cu-btn round bg-lightBlue text-white">券码</button>
@@ -36,13 +37,14 @@
             </view>
           </view>
         </view>
-        <view wx:if="{{courseData[0].list.length ==0}}" class="nodata tac">
-          <view>您还没有报名活动哦~</view><view>快去报名参加吧</view>
+        <view wx:if="{{orderData[0].list.length ==0}}" class="nodata tac">
+          <view>您还没有报名活动哦~</view>
+          <view>快去报名参加吧</view>
         </view>
       </view>
-      <view class="tab-c" wx:if="{{TabCur == 1}}">
-        <view class="course-list" wx:if="{{courseData[1].list.length >0}}">
-          <view class="course__item" wx:for="{{courseData[1].list}}" wx:key>
+      <view class="tab-c" wx:if="{{tabCur == 1}}">
+        <view class="course-list" wx:if="{{orderData[1].list.length >0}}">
+          <view class="course__item" wx:for="{{orderData[1].list}}" wx:key>
             <view class="course__image">
               <image src="{{item.url}}"></image>
             </view>
@@ -65,12 +67,13 @@
             </view>
           </view>
         </view>
-         <view wx:if="{{courseData[1].list.length ==0}}" class="nodata tac">
-          <view>您还没有报名活动哦~</view><view>快去报名参加吧</view>
+        <view wx:if="{{orderData[1].list.length ==0}}" class="nodata tac">
+          <view>您还没有报名活动哦~</view>
+          <view>快去报名参加吧</view>
         </view>
       </view>
     </view>
   </view>
   <!-- i-tab e -->
 </view>
-<i-bottombar></i-bottombar>
+<i-bottombar index="-1"></i-bottombar>

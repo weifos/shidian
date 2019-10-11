@@ -1,0 +1,56 @@
+<wxs src='../../modules/wxsGlobal.wxs' module='gFilter' />
+
+<view class="container page-orderCheck">
+  <view class="section">
+    <view class="section__title">
+      订单信息
+    </view>
+    <view class="section__content">
+      <view>订单编号：{{orderInfo.serial_no}}</view>
+      <view>
+        课程名称：{{orderInfo.course_name}}
+      </view>
+      <view>订单备注：{{orderInfo.remarks==null?"--":orderInfo.remarks}}</view>
+    </view>
+  </view>
+  <view class="section">
+    <view class="align-justify">
+      <view class="fz33">优惠券
+        <text class="no-ticket" wx:if="{{ticketInfo.length == 0}}">（暂无可用的优惠券）</text>
+      </view>
+      <view bindtap="checkTicket">
+        <button class="cu-btn round line-black">选择</button>
+      </view>
+    </view>
+    <view class="tac mt20 mb20" wx:if="{{ticketInfo.id > 0}}">
+      <i-ticket class="dib" ticketInfo="{{ticketInfo[0]}}"></i-ticket>
+    </view>
+  </view>
+  <view class="section">
+    <view class="section__title">
+      支付方式
+    </view>
+    <view class="section__content">
+      <radio-group class="block">
+        <view class="radio__item">
+          <radio checked></radio>
+          <text class="dib vam">微信支付</text>
+        </view>
+        <view class="radio__item">
+          <radio></radio>
+          <text class="dib vam">钱包</text>
+          <text class="txt-balance dib vam">余额：{{gFilter.formaToMoney(balance)}}</text>
+        </view>
+      </radio-group>
+    </view>
+  </view>
+</view>
+<view class="order-tool-bar">
+  <view class="cu-bar tabbar">
+    <view class="bg-darkGray info">共计￥{{gFilter.formaToMoney(orderInfo.actual_amount)}}
+      <text class="discounts" wx:if="{{orderInfo.coupon_amount>0}}">|  优惠{{gFilter.formaToMoney(orderInfo.coupon_amount)}}元</text>
+      <text class="discounts" wx:if="{{orderInfo.vip_dis_amount>0}}">|  优惠{{gFilter.formaToMoney(orderInfo.vip_dis_amount)}}元</text>
+    </view>
+    <view class="bg-lightYellow submit text-white" bindtap="goPay">支付</view>
+  </view>
+</view>

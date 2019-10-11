@@ -1,130 +1,159 @@
-// pages/member/orderList/index.js
+var api = require("../../../modules/api.js")
+var appG = require("../../../modules/appGlobal.js") 
+var user = require("../../../modules/userInfo.js")
+var router = require("../../../modules/router.js")
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    TabCur: 0,
+    tabCur: 0,
     scrollLeft: 0,
-    courseData: [
-      {
+    pageSize: 5,
+    orderData: [{
         title: "待参加",
-        list: [
-          {
-          "id": "1",
-          "url": "/images/p6.png",
-          "title": "老师名字·title",
-          "name": "课程名称",
-          "address": "这里是该课程上课的门店这里是该课程上课的门店这里是该课程上课的门店这里是该课程上课的门店",
-          "time": "2019-07-29"
-        }, {
-          "id": "2",
-          "url": "/images/p6.png",
-          "title": "老师名字·title",
-          "name": "课程名称",
-          "address": "这里是该课程上课的门店",
-          "time": "2019-07-29"
-        },
-        {
-          "id": "3",
-          "url": "/images/p6.png",
-          "title": "老师名字·title",
-          "name": "课程名称",
-          "address": "这里是该课程上课的门店",
-          "time": "2019-07-29"
-        }
-        ]
+        loading: false,
+        loadComplete: false,
+        pageIndex: 0,
+        list: []
       },
       {
         title: "已参加",
-        list: [
-          // {
-          //   "id": "1",
-          //   "url": "/images/p6.png",
-          //   "title": "老师名字·title",
-          //   "name": "课程名称",
-          //   "address": "这里是该课程",
-          //   "time": "2019-07-29"
-          // }, {
-          //   "id": "2",
-          //   "url": "/images/p6.png",
-          //   "title": "老师名字·title",
-          //   "name": "课程名称",
-          //   "address": "这里是该课程上课的门店",
-          //   "time": "2019-07-29"
-          // },
-          // {
-          //   "id": "3",
-          //   "url": "/images/p6.png",
-          //   "title": "老师名字·title",
-          //   "name": "课程名称",
-          //   "address": "这里是该课程上课的门店",
-          //   "time": "2019-07-29"
-          // },
-        ]
+        loading: false,
+        loadComplete: false,
+        pageIndex: 0,
+        list: []
       }
     ]
   },
   tabSelect(e) {
     this.setData({
-      TabCur: e.currentTarget.dataset.id,
+      tabCur: e.currentTarget.dataset.id,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
   },
   /**
+   * 加载订单数据
+   */
+  api_328: function() {
+    let that = this
+    //付款状态
+    let isPay = 0
+    //当前选中索引
+    let index = this.data.tabCur
+    //当前选中项
+    let curItem = this.data.orderData[index]
+    //是否加载中
+    let loading = curItem.loading
+    //是否加载完成
+    let loadComplete = curItem.loadComplete
+
+    if (index == 0) {
+      isPay = -1
+    } else if (index == 1) {
+      isPay = 1
+    } else if (index == 2) {
+      isPay = 0
+    }
+
+    //是否加载中，是否加载完成
+    if (!curItem.loading && !curItem.loadComplete) {
+
+      //请求接口数据
+      api.post(api.api_328, api.getSign({
+        IsPay: isPay,
+        Size: that.data.pageSize,
+        Index: curItem.pageIndex
+      }), function(app, res) {
+        if (res.data.Basis.State != api.state.state_200) {
+          wx.showToast({
+            title: res.data.Basis.Msg,
+            icon: 'none',
+            duration: 3000
+          })
+        } else {
+          curItem.loading = false
+          curItem.pageIndex = curItem.pageIndex + 1
+          res.data.Result.forEach(function(o, i) {
+            curItem.list.push(o)
+          })
+          that.setData({
+            ['orderData[' + index + ']']: curItem
+          })
+
+          //是否全部加载完毕
+          if (res.data.Result.orders.length == 0) {
+            curItem.loadComplete = true
+            that.setData({
+              ['orderData[' + index + ']']: curItem
+            })
+            wx.showToast({
+              title: '加载完成',
+              icon: 'success',
+              duration: 3000
+            })
+          }
+
+        }
+      })
+    }
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function(options) {
+    this.api_328()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

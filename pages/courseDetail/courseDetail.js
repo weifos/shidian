@@ -1,18 +1,24 @@
-// pages/courseDetail/courseDetail.js
+var api = require("../../modules/api.js")
+var router = require("../../modules/router.js")
+var appGlobal = require("../../modules/appGlobal.js")
+var wxParse = require('../../modules/wxParse/wxParse.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    content:{
-      "url":"/images/p7.png",
-      "title":"阅读星期天—中文播音主持班",
-      "startTime":"2019-05-07 19:00:00",
-      "endTime":"2019-05-12 12:00:00",
-      "address":"厦门万象城店 ",
-      "price":"899.00",
-      "detail":"详细介绍详细介绍详细介绍详细介绍详细介绍详细介绍详细介绍详细介绍详细介绍详细介绍详细介绍详细介绍详细介绍详细介绍详细介绍"
+    num: 1,
+    imgurl: "",
+    totalPrice: 0,
+    result: {
+      title: "",
+      startTime: "",
+      endTime: "",
+      address: "",
+      sale_price: 0,
+      detail: ""
     }
   },
   showModal(e) {
@@ -25,60 +31,153 @@ Page({
       modalName: null
     })
   },
+  //勾选改变更新小计
+  checkUpdate() {
+    let total = 0
+    this.setData({
+      totalPrice: this.data.result.sale_price * this.data.num
+    })
+  },
+  //加
+  add(e) {
+    let tmp = this.data.num
+    //不能大于99
+    if (tmp > 99) return
+    this.setData({
+      num: tmp + 1
+    })
+    this.checkUpdate()
+  },
+  //减
+  sub(e) {
+    let tmp = this.data.num
+    //不能小于1
+    if (tmp <= 1) return
+    let num = this.data.num - 1
+    this.setData({
+      num: tmp - 1
+    })
+    this.checkUpdate()
+  },
+  /**
+   * 加载课堂详情页数据
+   */
+  api_206: function(opt) {
+    var that = this
+    api.post(api.api_206, api.getSign({
+      ID: opt.id
+    }), function(app, res) {
+      if (res.data.Basis.State != api.state.state_200) {
+        wx.showToast({
+          title: res.data.Basis.Msg,
+          icon: 'none',
+          duration: 3000
+        })
+      } else {
+        that.setData({
+          imgurl: res.data.Result.imgurl
+        })
+
+        that.setData({
+          result: res.data.Result.course
+        })
+
+        that.setData({
+          totalPrice: res.data.Result.course.sale_price
+        })
+
+        if (res.data.Result.course.details != undefined) {
+          wxParse.wxParse('details', 'html', res.data.Result.course.details, that, 5)
+        }
+      }
+    })
+  },
+  /**
+   * 提交课程订单
+   */
+  api_326: function() {
+    var that = this
+    var order = { 
+      course_id: that.data.result.id,
+      details: []
+    }
+
+    for (let i = 0; i < that.data.num; i++) {
+      order.details.push({
+        id: 0
+      })
+    }
+ 
+    api.post(api.api_326, api.getSign({
+      Order: order
+    }), function(app, res) {
+      if (res.data.Basis.State != api.state.state_200) {
+        wx.showToast({
+          title: res.data.Basis.Msg,
+          icon: 'none',
+          duration: 3000
+        })
+      } else {
+        router.goUrl({
+          url: '../orderCourse/index?no=' + res.data.Result
+        })
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function(opt) {
+    this.api_206(opt)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

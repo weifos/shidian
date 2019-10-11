@@ -77,4 +77,4 @@
   </view>
   <!-- i-tab e -->
 </view>
-<i-bottombar></i-bottombar>
+<i-bottombar index="2"></i-bottombar>

@@ -1,4 +1,8 @@
-//测试环境  
+import appG from './appGlobal'
+import user from './userInfo'
+import md5 from './md5'
+
+//测试环境
 //let domain = "http://sd.api.shidian.com/"
 //let res_domain = "http://sd.res.shidian.com/"
 //正式环境
@@ -51,7 +55,7 @@ module.exports = {
   api_204: domain + "204",
   // 课堂页数据
   api_205: domain + "205",
-  // 
+  // 课堂详情页数据
   api_206: domain + "206",
   // 
   api_207: domain + "207",
@@ -97,11 +101,138 @@ module.exports = {
   api_313: domain + "313",
   //创建咖啡订单
   api_314: domain + "314",
-  //微信小程序预支付订单
+  //微信小程序预支付订单 咖啡订单
   api_317: domain + "317",
   //订单列表
   api_318: domain + "318",
-  
+  //课程订单生成
+  api_326: domain + "326",
+  //微信小程序预支付订单 课程订单
+  api_327: domain + "327",
+  //课程订单
+  api_328: domain + "328",
+  //获取签名
+  getSign(obj = {}) {
+    let {
+      token
+    } = user.methods.getUser()
+
+    function sort(obj) {
+      if (obj instanceof Array) {
+        //如果数组里面存放的为对象,通过map更改数组结构，排序
+        obj = obj.map((ele, index) => {
+          if (ele instanceof Object) {
+            var newObj = {}
+            Object.keys(ele).sort().forEach(function(key) {
+              var o = ele[key]
+              if (o instanceof Object) {
+                o = sort(o)
+              }
+              newObj[key] = o
+            })
+            ele = newObj
+          }
+          return ele
+        })
+        return obj
+      }
+
+      var newObj = {}
+      //默认情况下，对字符串排序，是按照ASCII的大小比较的，现在，我们提出排序应该忽略大小写，按照字母序排序。要实现这个算法，
+      //不必对现有代码大加改动，只要我们能定义出忽略大小写的比较算法就可以
+      Object.keys(obj).sort((s1, s2) => {
+        let x1 = s1.toUpperCase()
+        let x2 = s2.toUpperCase()
+        if (x1 < x2) {
+          return -1
+        }
+        if (x1 > x2) {
+          return 1
+        }
+        return 0
+      }).forEach(function(key) {
+        var o = obj[key]
+        if (o instanceof Object) {
+          o = sort(o)
+        }
+        newObj[key] = o
+      })
+      return newObj
+    }
+
+    const sign_data = {
+      Data: obj,
+      Global: {
+        IMEI: "",
+        IMSI: "",
+        IP: "",
+        OS: 3,
+        Sign: "",
+        Token: token
+      }
+    }
+
+    return {
+      Data: obj,
+      Global: {
+        IMEI: "",
+        IMSI: "",
+        IP: "",
+        OS: 3,
+        Sign: md5.md5(JSON.stringify(sort(sign_data)) + ')(4AzEdr5J6a`@#$*%'),
+        Token: token
+      }
+    }
+  },
+  //请求对象
+  post(url, data, cb, ch) {
+    wx.showLoading({
+      title: '请求中',
+      mask: true
+    })
+    wx.request({
+      url: url,
+      data: data,
+      method: "post",
+      header: {
+        //'content-type': methonType,
+        //'token': requestHandler.token // 默认值
+      },
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.Basis != undefined && res.data.Basis.State == 205 || res.data.Basis.State == 211) {
+          wx.hideLoading()
+          wx.showToast({
+            title: res.data.Basis.Msg,
+            icon: 'none',
+            duration: 3000
+          })
+          //删除用户信息
+          wx.removeStorageSync('user_info')
+          //当前页面路径
+          var returl = appG.util.getUrl()
+          //存储到缓存
+          wx.setStorageSync("returl", returl)
+          router.goUrl({
+            url: "/pages/member/index/index?backUrl=" + returl,
+          })
+        } else {
+          wx.hideLoading()
+          cb(this, res)
+        }
+      },
+      fail: (res) => {
+        setTimeout(function () {
+          wx.hideLoading()
+        }, 1000)
+        wx.showToast({
+          title: JSON.stringify(res),
+          icon: 'none',
+          duration: 3000
+        })
+      }
+    })
+  },
   //状态码
   state: {
     // 系统错误

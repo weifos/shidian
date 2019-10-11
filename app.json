@@ -9,6 +9,7 @@
     "pages/shoppingCart/index",
     "pages/courseDetail/courseDetail",
     "pages/course/course",
+    "pages/orderCourse/index",
     "pages/logs/logs",
     "pages/coffee/coffee",
     "pages/activity/activity"
