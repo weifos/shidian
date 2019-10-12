@@ -274,6 +274,10 @@ page{
   display: inline-block;
   width: 201rpx;
 }
+.list-4 .f-item.cur{
+  border: 2rpx solid red; 
+  color: rgb(204, 104, 58); 
+}
 .list-4 .f-item:nth-child(3n){
   margin-right: 0;
 }

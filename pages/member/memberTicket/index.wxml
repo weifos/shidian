@@ -4,17 +4,18 @@
     <text>课堂入场券</text>
   </view>
   <view class="ticket-list tac">
-    <view class="ticket__item dib" wx:for="{{ticketInfo}}">
-        <i-ticket ticketInfo="{{item}}" type="into"></i-ticket>
+    <view class="ticket__item dib" wx:for="{{result}}">
+      <i-ticket ticketInfo="{{item}}" type="into"></i-ticket>
     </view>
   </view>
-  <view class="title-1">
+
+  <!-- <view class="title-1">
     <text>活动入场券</text>
   </view>
   <view class="ticket-list tac pb40">
-    <view class="ticket__item dib" wx:for="{{ticketInfo}}">
-        <i-ticket ticketInfo="{{item}}" type="into"></i-ticket>
+    <view class="ticket__item dib" wx:for="{{result}}">
+        <i-ticket result="{{item}}" type="into"></i-ticket>
     </view>
-  </view>
+  </view> -->
 </view>
 <i-bottombar></i-bottombar>

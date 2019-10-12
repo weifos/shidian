@@ -34,24 +34,25 @@
         <view class=" sec-recharge">
           <view class="bg-wrap">
             <view class="list-4">
-              <view wx:for="{{tabData[0].list}}" class="f-item tac" wx:key>
-                <view class="text-value fz33">{{item.value}}元</view>
-                <view class="text-discount fz22">{{item.discount}}</view>
+              <view wx:for="{{tabData[0].list}}" data-id="{{index}}" bindtap="rechargeSelect" class="f-item tac {{index==checkIndex?'cur':''}}" wx:key>
+                <view class="text-value fz33">{{item.amount}}元</view>
+                <view class="text-discount fz22">{{item.title}} 
+                </view>
               </view>
             </view>
             <view class="btns-bar tac">
-              <button class="cu-btn round bg-lightBlue text-white fz33">去充值</button>
+              <button class="cu-btn round bg-lightBlue text-white fz33" bindtap="goRecharge">去充值</button>
             </view>
           </view>
         </view>
         <!-- section e -->
       </view>
       <view class="tab-c bg-white" wx:if="{{TabCur == 1}}">
-      
-        <canvas class="canvas-code" canvas-id="myQrcode" style="background:#fff;width: 200px;height: 200px;margin-left:10px;"/>
+
+        <canvas class="canvas-code" canvas-id="myQrcode" style="background:#fff;width: 200px;height: 200px;margin-left:10px;" />
       </view>
     </view>
-  </view> 
+  </view>
   <!-- i-tab2 e -->
 </view>
 <i-bottombar></i-bottombar>

@@ -111,6 +111,12 @@ module.exports = {
   api_327: domain + "327",
   //课程订单
   api_328: domain + "328",
+  //课程订单票据
+  api_329: domain + "329",
+  //用户立即充值列表
+  api_330: domain + "330",
+  //用户立即充值
+  api_331: domain + "331",
   //获取签名
   getSign(obj = {}) {
     let {

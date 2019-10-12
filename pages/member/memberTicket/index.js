@@ -1,91 +1,104 @@
-// pages/member/memberTicket/index.js
+var api = require("../../../modules/api.js")
+var appG = require("../../../modules/appGlobal.js")
+var user = require("../../../modules/userInfo.js")
+var router = require("../../../modules/router.js")
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    "ticketInfo": [
-      {
-        "key": "0001",
-        "name": "生活与艺术—不知道是交流 啥反正写吧啥反正写吧啥反正写吧啥反正写吧",
-        "startTime": "2019-06-01",
-        "endTime": "2019-06-30",
-        "discount": "5",
-        "quota": "0.01"
-      },
-      {
-        "key": "0001",
-        "name": "咖啡券",
-        "startTime": "2019-06-01",
-        "endTime": "2019-06-30",
-        "discount": "5",
-        "quota": "0.01"
-      },
-      {
-        "key": "0001",
-        "name": "咖啡券",
-        "startTime": "2019-06-01",
-        "endTime": "2019-06-30",
-        "discount": "5",
-        "quota": "0.01"
+    type: 0,
+    result: []
+  },
+
+  /**
+   * 加载订单票据
+   */
+  api_329: function(id) {
+    let that = this
+    //请求接口数据
+    api.post(api.api_329, api.getSign({
+      ID: id
+    }), function(app, res) {
+      if (res.data.Basis.State != api.state.state_200) {
+        wx.showToast({
+          title: res.data.Basis.Msg,
+          icon: 'none',
+          duration: 3000
+        })
+      } else {
+        //课程信息
+        let course = res.data.Result.orderCourse
+        res.data.Result.tickets.forEach(function(o, i) {
+          that.data.result.push({
+            name: course.course_name,
+            startTime: course.start_date,
+            endTime: course.end_date
+          })
+        })
+
+        that.setData({
+          ['result']: that.data.result
+        })
       }
-    ]
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function(opt) {
+    this.api_329(opt.id)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

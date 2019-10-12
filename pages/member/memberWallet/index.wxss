@@ -30,6 +30,17 @@ page{
 .i-tab{
   padding: 0;
 }
+.list-4 .f-item { 
+border: 2rpx solid #9BBAFF;
+border-radius: 36rpx;
+background: #fff;
+color: #9BBAFF;
+margin: 0 29rpx 29rpx 0;
+display: inline-block;
+width: 201rpx;
+
+}
+
 .f-wrap{
   margin: 0 24rpx;
 }

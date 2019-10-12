@@ -1,4 +1,8 @@
 var user = require("../../../modules/userInfo.js")
+var api = require("../../../modules/api.js")
+var appG = require("../../../modules/appGlobal.js")
+var passport = require("../../../modules/passport.js") 
+var router = require("../../../modules/router.js")
 import QRCode from '../../../modules/weapp-qrcode.js'
 
 Page({
@@ -8,6 +12,7 @@ Page({
    */
   data: {
     TabCur: 0,
+    checkIndex: -1,
     scrollLeft: 0,
     user_code: 0,
     timer: {
@@ -16,27 +21,7 @@ Page({
     },
     tabData: [{
         title: "我的钱包",
-        list: [{
-            "value": 100,
-            "discount": "赠送30元"
-          },
-          {
-            "value": 100,
-            "discount": "赠送30元"
-          },
-          {
-            "value": 100,
-            "discount": "赠送30元"
-          },
-          {
-            "value": 100,
-            "discount": "赠送30元"
-          },
-          {
-            "value": 100,
-            "discount": "赠送30元"
-          }
-        ]
+        list: []
       },
       {
         title: "付款码",
@@ -50,6 +35,108 @@ Page({
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
   },
+  rechargeSelect(e) {
+    this.setData({
+      checkIndex: e.currentTarget.dataset.id
+    })
+  },
+
+  //立即充值
+  goRecharge(e) {
+    let that = this
+    if (this.data.checkIndex == -1) {
+      wx.showToast({
+        title: '请选择充值金额',
+        icon: 'none',
+        duration: 3000
+      })
+      return
+    }
+
+
+    api.post(api.api_106,
+      api.getSign({
+        OpenID: userInfo.openid
+      }),
+      function (app, res) {
+        if (res.data.Basis.State == api.state.state_200) {
+          if (res.data.Result.login_name != undefined) {
+            //登录
+            user.methods.login(res.data.Result)
+            //绑定用户
+            that.bindUser(res.data.Result)
+            //如果存在重定向地址
+            let returl = wx.getStorageSync("returl")
+            if (returl != "") {
+              wx.removeStorage({
+                key: 'returl',
+                success(res) { }
+              })
+              //重定向
+              router.goUrl({
+                url: returl,
+              })
+            }
+          } else {
+            //弹出手机号码授权
+            that.setData({
+              isLogin: false
+            })
+          }
+        } else {
+          wx.showToast({
+            title: res.data.Basis.Msg,
+            icon: 'none',
+            duration: 3000
+          })
+        }
+      })
+
+    wx.requestPayment({
+      appId: that.data.wechatPay.appId,
+      timeStamp: that.data.wechatPay.timeStamp,
+      nonceStr: that.data.wechatPay.nonceStr,
+      package: that.data.wechatPay.package,
+      signType: that.data.wechatPay.signType,
+      paySign: that.data.wechatPay.paySign,
+      success: function (res) {
+        if (res.errMsg = "requestPayment:ok") {
+          //跳转地址 
+          router.goUrl({
+            url: '../member/orderCourseList/index'
+          })
+        }
+      },
+      fail: function (res) {
+        //console.log(res)
+      },
+      complete: function (res) {
+        //console.log(res)
+      }
+    })
+  },
+
+  /**
+   * 加载充值
+   */
+  api_330: function() {
+    var that = this;
+    api.post(api.api_330, api.getSign(), function(app, res) {
+      if (res.data.Basis.State != api.state.state_200) {
+        wx.showToast({
+          title: res.data.Basis.Msg,
+          icon: 'none',
+          duration: 3000
+        })
+      } else {
+  
+        that.setData({
+          ['tabData[0].list']: res.data.Result
+        })
+      }
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -59,7 +146,6 @@ Page({
     if (opt.cid != undefined) {
       cid = opt.cid
     }
-
     //获取用户信息
     let _user = user.methods.getUser()
     this.setData({
@@ -68,7 +154,10 @@ Page({
 
     this.createQRCode(this.data.user_code)
     this.startSetInter()
+    //加载充值项目
+    this.api_330()
   },
+
   /**
    * 开始计时器
    */
@@ -87,6 +176,7 @@ Page({
         });
       }, 1000);
   },
+
   /**
    * 开始计时器
    */

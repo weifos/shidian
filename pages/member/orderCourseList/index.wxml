@@ -31,7 +31,7 @@
                 {{gFilter.date.format(item.start_date,'yyyy-MM-dd')}}
               </view>
               <view class="course__btns">
-                <button class="cu-btn round bg-lightBlue text-white">券码</button>
+                <button class="cu-btn round bg-lightBlue text-white" bindtap="goTicket" data-id="{{item.id}}">券码</button>
                 <button class="cu-btn round bg-gray text-white">取消</button>
               </view>
             </view>

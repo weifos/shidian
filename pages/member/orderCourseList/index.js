@@ -1,5 +1,5 @@
 var api = require("../../../modules/api.js")
-var appG = require("../../../modules/appGlobal.js") 
+var appG = require("../../../modules/appGlobal.js")
 var user = require("../../../modules/userInfo.js")
 var router = require("../../../modules/router.js")
 
@@ -34,6 +34,7 @@ Page({
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
   },
+
   /**
    * 加载订单数据
    */
@@ -84,7 +85,7 @@ Page({
           })
 
           //是否全部加载完毕
-          if (res.data.Result.orders.length == 0) {
+          if (res.data.Result.length == 0) {
             curItem.loadComplete = true
             that.setData({
               ['orderData[' + index + ']']: curItem
@@ -99,6 +100,15 @@ Page({
         }
       })
     }
+  },
+
+  /**
+   * 查看详情
+   */
+  goTicket: function(e) {
+    router.goUrl({
+      url: '../memberTicket/index?id='+e.currentTarget.dataset.id
+    })
   },
 
   /**
