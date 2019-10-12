@@ -16,5 +16,9 @@
       </view>
     </view>
   </view>
+  <view class="member-card-content">
+    <view class="tit">会员权益</view>
+    <view class="con">出现楼层标题认为该楼层被曝光，上报每个楼层曝光的第一个素材组，以_拼接曝光的楼层名称，楼层曝光去重，同一个楼层不重复上报出现楼层标题认为该楼层被曝光，上报每个楼层曝光的第一个素材组，以_拼接曝光的楼层名称，楼层曝光去重，同一个楼层不重复上报</view>
+  </view>
 </view>
 <i-bottombar></i-bottombar>

@@ -1,5 +1,8 @@
 /* pages/member/memberCard/index.wxss */
-.member-card image,.member-card {width: 708rpx;height: 371rpx;}
+.member-card{
+  width: 708rpx;
+}
+.member-card image {width: 708rpx;height: 371rpx;}
 .member-card {
   padding: 20rpx 0;
   margin:0 auto;
@@ -20,4 +23,16 @@
   padding:179rpx 0 0 40rpx;
   font-size:  27rpx;
                         
+}
+.member-card-content{
+  background: #fff;
+  min-height:600rpx;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  font-size:26rpx;
+}
+.member-card-content .tit{
+  font-size: 33rpx;
+  text-align:center;
+  margin-bottom: 10rpx;
 }
