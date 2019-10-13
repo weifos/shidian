@@ -1,6 +1,5 @@
 var api = require("../../../modules/api.js")
 var appG = require("../../../modules/appGlobal.js")
-var passport = require("../../../modules/passport.js")
 var user = require("../../../modules/userInfo.js")
 var router = require("../../../modules/router.js")
 

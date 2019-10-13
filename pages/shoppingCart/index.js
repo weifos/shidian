@@ -241,7 +241,7 @@ Page({
         })
 
         //提交购物车
-        api.post(api.api_314, api.getSign(data), function (wx, res) {
+        api.post(api.api_314, api.getSign(data), function (th, res) {
             if (res.data.Basis.State == api.state.state_200) {
                 wx.showToast({
                     title: "提交成功",

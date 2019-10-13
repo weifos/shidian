@@ -1,7 +1,7 @@
 var user = require("../../../modules/userInfo.js")
 var api = require("../../../modules/api.js")
 var appG = require("../../../modules/appGlobal.js")
-var passport = require("../../../modules/passport.js") 
+var passport = require("../../../modules/passport.js")
 var router = require("../../../modules/router.js")
 import QRCode from '../../../modules/weapp-qrcode.js'
 
@@ -15,6 +15,8 @@ Page({
     checkIndex: -1,
     scrollLeft: 0,
     user_code: 0,
+    balance: 0,
+    serial_no: '',
     timer: {
       setInter: '',
       num: 0
@@ -29,90 +31,38 @@ Page({
       }
     ]
   },
+
   tabSelect(e) {
     this.setData({
       TabCur: e.currentTarget.dataset.id,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
   },
+
+  /**
+   * 选择充值
+   */
   rechargeSelect(e) {
     this.setData({
       checkIndex: e.currentTarget.dataset.id
     })
   },
 
-  //立即充值
-  goRecharge(e) {
-    let that = this
-    if (this.data.checkIndex == -1) {
-      wx.showToast({
-        title: '请选择充值金额',
-        icon: 'none',
-        duration: 3000
-      })
-      return
-    }
+  /**
+   * 电子钱包
+   */
+  goConsumeList() {
+    router.goUrl({
+      url: '../../member/consumeList/index'
+    })
+  },
 
-
-    api.post(api.api_106,
-      api.getSign({
-        OpenID: userInfo.openid
-      }),
-      function (app, res) {
-        if (res.data.Basis.State == api.state.state_200) {
-          if (res.data.Result.login_name != undefined) {
-            //登录
-            user.methods.login(res.data.Result)
-            //绑定用户
-            that.bindUser(res.data.Result)
-            //如果存在重定向地址
-            let returl = wx.getStorageSync("returl")
-            if (returl != "") {
-              wx.removeStorage({
-                key: 'returl',
-                success(res) { }
-              })
-              //重定向
-              router.goUrl({
-                url: returl,
-              })
-            }
-          } else {
-            //弹出手机号码授权
-            that.setData({
-              isLogin: false
-            })
-          }
-        } else {
-          wx.showToast({
-            title: res.data.Basis.Msg,
-            icon: 'none',
-            duration: 3000
-          })
-        }
-      })
-
-    wx.requestPayment({
-      appId: that.data.wechatPay.appId,
-      timeStamp: that.data.wechatPay.timeStamp,
-      nonceStr: that.data.wechatPay.nonceStr,
-      package: that.data.wechatPay.package,
-      signType: that.data.wechatPay.signType,
-      paySign: that.data.wechatPay.paySign,
-      success: function (res) {
-        if (res.errMsg = "requestPayment:ok") {
-          //跳转地址 
-          router.goUrl({
-            url: '../member/orderCourseList/index'
-          })
-        }
-      },
-      fail: function (res) {
-        //console.log(res)
-      },
-      complete: function (res) {
-        //console.log(res)
-      }
+  /**
+   * 绑定储值卡
+   */
+  goTicketBind() {
+    router.goUrl({
+      url: '../../member/ticketBind/index'
     })
   },
 
@@ -129,9 +79,91 @@ Page({
           duration: 3000
         })
       } else {
-  
         that.setData({
-          ['tabData[0].list']: res.data.Result
+          ['tabData[0].list']: res.data.Result.recharges
+        })
+        user.methods.login(res.data.Result.user)
+        that.setData({
+          balance: res.data.Result.user.balance
+        })
+      }
+    })
+  },
+
+  /**
+   * 立即充值
+   */
+  api_331(e) {
+    let that = this
+    if (this.data.checkIndex == -1) {
+      wx.showToast({
+        title: '请选择充值金额',
+        icon: 'none',
+        duration: 3000
+      })
+      return
+    }
+
+    let item = that.data.tabData[0].list[that.data.checkIndex]
+    api.post(api.api_331,
+      api.getSign({
+        ID: item.id
+      }),
+      function(app, res) {
+        if (res.data.Basis.State != api.state.state_200) {
+          wx.showToast({
+            title: res.data.Basis.Msg,
+            icon: 'none',
+            duration: 3000
+          })
+        } else {
+
+          that.setData({
+            serial_no: res.data.Result.serial_no
+          })
+
+          //微信支付
+          wx.requestPayment({
+            appId: res.data.Result.wechatpay.appId,
+            timeStamp: res.data.Result.wechatpay.timeStamp,
+            nonceStr: res.data.Result.wechatpay.nonceStr,
+            package: res.data.Result.wechatpay.package,
+            signType: res.data.Result.wechatpay.signType,
+            paySign: res.data.Result.wechatpay.paySign,
+            success: function(res) {
+              if (res.errMsg = "requestPayment:ok") {
+                that.api_332()
+              }
+            },
+            fail: function(res) {
+              //console.log(res)
+            },
+            complete: function(res) {
+              //console.log(res)
+            }
+          })
+
+        }
+      })
+  },
+
+  /**
+   * 完成充值
+   */
+  api_332: function() {
+    var that = this;
+    api.post(api.api_332, api.getSign({
+      No: that.data.serial_no
+    }), function(app, res) {
+      if (res.data.Basis.State != api.state.state_200) {
+        wx.showToast({
+          title: res.data.Basis.Msg,
+          icon: 'none',
+          duration: 3000
+        })
+      } else {
+        router.goUrl({
+          url: '../../member/index/index'
         })
       }
     });
@@ -142,18 +174,18 @@ Page({
    */
   onLoad: function(opt) {
     //优惠券
-    let cid = 0
-    if (opt.cid != undefined) {
-      cid = opt.cid
-    }
-    //获取用户信息
-    let _user = user.methods.getUser()
-    this.setData({
-      user_code: _user.user_id + '#' + cid + '#'
-    })
+    // let cid = 0
+    // if (opt.cid != undefined) {
+    //   cid = opt.cid
+    // }
+    // //获取用户信息
+    // let _user = user.methods.getUser()
+    // this.setData({
+    //   user_code: _user.user_id + '#' + cid + '#'
+    // })
 
-    this.createQRCode(this.data.user_code)
-    this.startSetInter()
+    // this.createQRCode(this.data.user_code)
+    // this.startSetInter()
     //加载充值项目
     this.api_330()
   },
@@ -185,6 +217,7 @@ Page({
     //清除计时器  即清除setInter
     clearInterval(that.data.setInter)
   },
+
   /**
    * 生成二维码
    * 用户ID#优惠券ID#时间戳
@@ -206,6 +239,7 @@ Page({
       }
     })
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

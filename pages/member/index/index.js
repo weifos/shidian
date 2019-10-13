@@ -48,18 +48,18 @@ Page({
         "name": "我的优惠券",
         "icon": "ticket",
         "url": ""
-      },
-      {
-        "name": "在线客服",
-        "icon": "service",
-        "url": ""
-      },
-      {
-        "name": "退出登录",
-        "icon": "loginout",
-        "url": ""
       }
-    ],
+      // {
+      //   "name": "在线客服",
+      //   "icon": "service",
+      //   "url": ""
+      // },
+      // {
+      //   "name": "退出登录",
+      //   "icon": "loginout",
+      //   "url": ""
+      // }
+    ]
   },
   /**
    * 生命周期函数--监听页面加载
@@ -105,6 +105,7 @@ Page({
       })
     })
   },
+
   /**
    * 加载微信用户信息
    */
@@ -118,6 +119,7 @@ Page({
       }
     })
   },
+
   /**
    * 加载微信用户信息
    */
@@ -134,6 +136,7 @@ Page({
       ['userInfo.headimgurl']: user.headimgurl
     })
   },
+
   /**
    * 加载用户信息
    */
@@ -179,6 +182,7 @@ Page({
         }
       })
   },
+
   /**
    * 打开微信付款码
    */
@@ -219,7 +223,7 @@ Page({
         break
         //付款码
       case "paycode":
-        url = '../memberWallet/index'
+        url = '../memberPayCode/index'
         break
       //我的活动
       case "activity":
@@ -235,7 +239,7 @@ Page({
         break
       //我的优惠券
       case "ticket":
-        url = '../memberTicket/index'
+        url = '../ticketList/index'
         break
         
       default:

@@ -1,8 +1,9 @@
-<!--pages/member/memberWallet/index.wxml-->
+<wxs src='../../../modules/wxsGlobal.wxs' module='gFilter' />
+
 <view class="container page-member-wallet">
   <!-- i-tab2 s -->
   <view class="i-tab">
-    <view class="f-wrap">
+    <view class="f-wrap" wx:if="{{1==2}}">
       <scroll-view scroll-x class="bg-white nav text-center tab-t">
         <view class="flex text-center">
           <view class="cu-item flex-sub {{index==TabCur?'bg-lightBlue cur':''}}" wx:for="{{tabData}}" wx:key bindtap="tabSelect" data-id="{{index}}" wx:for-item="item">
@@ -11,6 +12,7 @@
         </view>
       </scroll-view>
     </view>
+
     <view class="tab-content2">
       <view class="tab-c" wx:if="{{TabCur == 0}}">
         <!-- section s -->
@@ -21,12 +23,12 @@
           <view class="value-bar">
             <i-icon name="wallet"></i-icon>
             <view class="dib vam value">
-              300
+              {{gFilter.formaToMoney(balance)}}
             </view>
           </view>
           <view class="btns-bar">
-            <button class="cu-btn round bg-lightBlue text-white">储值卡绑定</button>
-            <button class="cu-btn round bg-lightBlue text-white">钱包明细</button>
+            <button class="cu-btn round bg-lightBlue text-white" bindtap="goTicketBind">储值卡绑定</button>
+            <button class="cu-btn round bg-lightBlue text-white" bindtap="goConsumeList">钱包明细</button>
           </view>
         </view>
         <!-- section e -->
@@ -36,19 +38,18 @@
             <view class="list-4">
               <view wx:for="{{tabData[0].list}}" data-id="{{index}}" bindtap="rechargeSelect" class="f-item tac {{index==checkIndex?'cur':''}}" wx:key>
                 <view class="text-value fz33">{{item.amount}}元</view>
-                <view class="text-discount fz22">{{item.title}} 
+                <view class="text-discount fz22">{{item.title}}
                 </view>
               </view>
             </view>
             <view class="btns-bar tac">
-              <button class="cu-btn round bg-lightBlue text-white fz33" bindtap="goRecharge">去充值</button>
+              <button class="cu-btn round bg-lightBlue text-white fz33" bindtap="api_331">去充值</button>
             </view>
           </view>
         </view>
         <!-- section e -->
       </view>
       <view class="tab-c bg-white" wx:if="{{TabCur == 1}}">
-
         <canvas class="canvas-code" canvas-id="myQrcode" style="background:#fff;width: 200px;height: 200px;margin-left:10px;" />
       </view>
     </view>

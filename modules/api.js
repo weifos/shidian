@@ -117,6 +117,12 @@ module.exports = {
   api_330: domain + "330",
   //用户立即充值
   api_331: domain + "331",
+  //用户立即充值，完成充值
+  api_332: domain + "332",
+  //电子钱包交易记录
+  api_333: domain + "333",
+  //用户优惠券
+  api_334: domain + "334",
   //获取签名
   getSign(obj = {}) {
     let {

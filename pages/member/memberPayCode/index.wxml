@@ -4,16 +4,16 @@
   <view class="member-head login" >
     <view class="member-bg" style="background:#B2B2B2 url(/images/p8.png) no-repeat 0 -50rpx/100% auto;" ></view>
     <view class="member__image">
-      <view class="cu-avatar xl round" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg);"></view>
+      <view class="cu-avatar xl round" style="background-image:url({{userInfo.headimgurl}});"></view>
       <button class="btn-refresh" style="background:#fff url(/images/icon/refresh.png) no-repeat center center/28rpx 28rpx;"></button>
     </view>
     <view class="member__text text-white">
         <view class="member__name">
-          <text class="dib vam mr20">{{userInfo.name}}</text>
+          <text class="dib vam mr20">{{userInfo.nick_name}}</text>
           <i-icon name="vip"></i-icon>
         </view>
         <view class="member__intro fz22 mt10">
-          {{userInfo.intro}}
+          {{userInfo.login_name}}
         </view>
     </view>
   </view>
@@ -32,14 +32,15 @@
   <!-- ticket-bar e -->
   <!-- ewm-bar s -->
   <view class="ewm-bar tac">
-    <view class="ewm-bar-title  fz27">
+    <view class="ewm-bar-title fz27" >
       此会员码可用于积分及支付
     </view>
     <view class="ewm-bar-image">
-      <image src="/images/ewm.png"></image>
+        <canvas class="canvas-code" canvas-id="myQrcode" style="background:#fff;width: 180px;height: 180px;margin-left:21%;" />
+      <!-- <image src="/images/ewm.png"></image> -->
     </view>
     <view class="ewm-bar-refresh fz22">
-      30 秒后刷新
+      {{30 - timer.num}} 秒后刷新
     </view>
   </view>
   <!-- ewm-bar s -->

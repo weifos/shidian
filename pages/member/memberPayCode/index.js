@@ -1,4 +1,10 @@
-// pages/member/memberPayCode/index.js
+var user = require("../../../modules/userInfo.js")
+var api = require("../../../modules/api.js")
+var appG = require("../../../modules/appGlobal.js")
+var passport = require("../../../modules/passport.js")
+var router = require("../../../modules/router.js")
+import QRCode from '../../../modules/weapp-qrcode.js'
+
 Page({
 
   /**
@@ -6,18 +12,105 @@ Page({
    */
   data: {
     userInfo: {
-      "login": 1,
-      "name": "Cpandd",
-      "intro": "我超喜欢十点书店的"
+      id: 0,
+      nick_name: '未设置',
+      login_name: '未登录',
+      headimgurl: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg',
     },
-    ticketSelected:1
+    user_code: 0,
+    timer: {
+      setInter: '',
+      num: 0
+    }
+  },
+
+  /**
+   * 开始计时器
+   */
+  startSetInter: function () {
+    let that = this;
+    //将计时器赋值给setInter
+    that.data.setInter = setInterval(
+      function () {
+        let numVal = that.data.timer.num + 1
+        if (numVal > 30) {
+          numVal = 0;
+          that.createQRCode(that.data.user_code)
+        }
+        that.setData({
+          ['timer.num']: numVal
+        });
+      }, 1000);
+  },
+
+  /**
+   * 开始计时器
+   */
+  endSetInter: function () {
+    let that = this;
+    //清除计时器  即清除setInter
+    clearInterval(that.data.setInter)
+  },
+
+  /**
+   * 生成二维码
+   * 用户ID#优惠券ID#时间戳
+   */
+  createQRCode(str) {
+    //时间戳
+    let time_ticket = new Date().getTime()
+    console.log(str + time_ticket)
+
+    new QRCode('myQrcode', {
+      text: str + time_ticket,
+      width: 180,
+      height: 180,
+      padding: 12, // 生成二维码四周自动留边宽度，不传入默认为0
+      correctLevel: QRCode.CorrectLevel.L, // 二维码可辨识度
+      callback: (res) => {
+        console.log(res.path)
+        // 接下来就可以直接调用微信小程序的api保存到本地或者将这张二维码直接画在海报上面去，看各自需求
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (opt) {
+    //优惠券
+    let cid = 0
+    if (opt.cid != undefined) {
+      cid = opt.cid
+    }
+    //获取用户信息
+    let _user = user.methods.getUser()
+    this.setData({
+      user_code: _user.user_id + '#' + cid + '#'
+    })
+    this.bindUser(_user)
+ 
+    this.createQRCode(this.data.user_code)
+    this.startSetInter()
+  },
+  /**
+   * 加载微信用户信息
+   */
+  bindUser: function (user) {
+     
+    if (user.nickname) {
+      this.setData({
+        ['userInfo.nick_name']: user.nickname
+      })
+    }
 
+    this.setData({
+      ['userInfo.login_name']: appG.util.getHideMobile(user.login_name)
+    })
+    
+    this.setData({
+      ['userInfo.headimgurl']: user.headimgurl
+    })
   },
 
   /**

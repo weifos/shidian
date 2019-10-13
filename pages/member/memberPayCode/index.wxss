@@ -62,6 +62,9 @@ member-head.login{
   width: 254rpx;
   height: 254rpx;
 }
+.ewm-bar-image {
+ align-content: center;
+}
 .ewm-bar-refresh{
   padding-top: 40rpx;
 }

@@ -47,6 +47,13 @@
           <text class="text-grey dib vam">{{item.name}}</text>
         </view>
       </view>
+      <view class="cu-item"  >
+        <button class="content" open-type="contact" style="text-algin:left;display: flex;">
+          <i-icon name="service" class="dib vat i-icon" ></i-icon>
+          <text class="text-grey dib vam">在线客服</text>
+        </button>
+      </view>
+      <!-- open-type="contact" -->
       <!-- cu-item e -->
     </view>
   </view>
