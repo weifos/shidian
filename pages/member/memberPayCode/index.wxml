@@ -36,7 +36,7 @@
       此会员码可用于积分及支付
     </view>
     <view class="ewm-bar-image">
-        <canvas class="canvas-code" canvas-id="myQrcode" style="background:#fff;width: 180px;height: 180px;margin-left:21%;" />
+        <canvas class="canvas-code" canvas-id="myQrcode" style="background:#fff;width: 180px;height: 180px;margin:0 auto;" />
       <!-- <image src="/images/ewm.png"></image> -->
     </view>
     <view class="ewm-bar-refresh fz22">

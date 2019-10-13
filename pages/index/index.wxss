@@ -41,6 +41,7 @@
   position: relative;
   height:235rpx;
   overflow: hidden;
+  border-radius: 36rpx 0 0 0;
 }
 .menu__title:before{
   position: absolute;
