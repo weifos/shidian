@@ -9,7 +9,6 @@ page {
 }
 
 .course__item {
-  overflow: hidden;
   margin: 0 0 36rpx 0;
   font-size: 27rpx;
   color: #707070;
@@ -23,13 +22,13 @@ page {
 }
 
 .course__image image {
-  width: 197rpx;
-  height: 199rpx;
+  width: 202rpx;
+  height: 202rpx;
 }
 
 .course__time {
   color: #9bbaff;
-  /* margin-top: 20rpx; */
+  margin-top: 10rpx;
 }
 
 .course__text {
@@ -42,13 +41,15 @@ page {
 }
 
 .course__name {
-  /* height: 34rpx; */
   font-size: 24rpx;
+  line-height: 1.2;
+  height:58rpx;
 }
 
 .course__address {
-  height: 64rpx;
+  height:58rpx;
   font-size: 24rpx;
+  line-height: 1.2;
 }
 
 .i-tab {
@@ -65,7 +66,7 @@ page {
 .course__btns {
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom:-5px;
 }
 
 .nav-month {
