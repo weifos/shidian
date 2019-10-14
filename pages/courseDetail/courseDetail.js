@@ -1,6 +1,6 @@
 var api = require("../../modules/api.js")
 var router = require("../../modules/router.js")
-var appGlobal = require("../../modules/appGlobal.js")
+var appG = require("../../modules/appGlobal.js")
 var wxParse = require('../../modules/wxParse/wxParse.js')
 
 Page({
@@ -78,6 +78,8 @@ Page({
           imgurl: res.data.Result.imgurl
         })
 
+        res.data.Result.course.start_date = appG.util.date.dateFormat(res.data.Result.course.start_date, 'yyyy-MM-dd hh:mm')
+        res.data.Result.course.end_date = appG.util.date.dateFormat(res.data.Result.course.end_date, 'yyyy-MM-dd hh:mm')
         that.setData({
           result: res.data.Result.course
         })

@@ -7,7 +7,7 @@
   </view>
   <view class="course-intro">
     <view class="course__title">{{result.title}}</view>
-    <view class="course__time">时间：{{gFilter.date.format(result.start_date,'yyyy-MM-dd hh:MM')}} 到 {{gFilter.date.format(result.end_date,'yyyy-MM-dd hh:MM')}}
+    <view class="course__time">时间：{{result.start_date}} 到 {{result.end_date}}
     </view>
     <view class="course__address">地点：{{result.province}}{{result.city}}{{result.county}}{{result.address}}</view>
     <view class="course__price">价格：￥{{gFilter.formaToMoney(result.sale_price)}}</view>
