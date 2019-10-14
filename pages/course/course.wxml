@@ -25,14 +25,14 @@
               <view class="course__title ellipsis">
                 {{item.name}}
               </view>
-              <view class="course__name ellipsis">
+              <view class="course__name ellipsis2">
                 {{item.intro}}
               </view>
               <view class="course__address ellipsis2">
                 上课地点：{{item.province}}{{item.city}}{{item.county}}{{item.address}}
               </view>
               <view class="course__time">
-                {{gFilter.date.format(item.start_date,'yyyy-MM-dd')}}
+                {{item.start_date}}
               </view>
               <view class="course__btns">
                 <button class="cu-btn round bg-lightBlue" bindtap='goUrl' data-id="{{item.id}}">去报名</button>
@@ -59,10 +59,10 @@
               <view class="course__title ellipsis">
                 {{item.name}}
               </view>
-              <view class="course__name ellipsis">
+              <view class="course__name ellipsis2">
                 {{item.intro}}
               </view>
-              <view class="course__address ellipsis2">
+              <view class="course__address ellipsis">
                 上课地点：{{item.address}}
               </view>
               <view class="course__time">

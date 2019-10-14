@@ -58,7 +58,7 @@ module.exports = {
   api_205: domain + "205",
   // 课堂详情页数据
   api_206: domain + "206",
-  // 
+  // 查看往期的活动或者课程
   api_207: domain + "207",
   // 
   api_208: domain + "208",

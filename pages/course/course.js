@@ -1,6 +1,6 @@
 var api = require("../../modules/api.js")
 var router = require("../../modules/router.js")
-var appGlobal = require("../../modules/appGlobal.js")
+var appG = require("../../modules/appGlobal.js")
 
 Page({
 
@@ -109,12 +109,13 @@ Page({
             })
 
             //将banner数据写入缓存
-            appGlobal.storage.swiper.setCourseBanner(res.data.Result.banners)
+            appG.storage.swiper.setCourseBanner(res.data.Result.banners)
           }
 
           curItem.loading = false
           curItem.pageIndex = curItem.pageIndex + 1
           res.data.Result.course.forEach(function(o, i) {
+            o.start_date = appG.util.date.dateFormat(o.start_date,'yyyy-MM-dd')
             curItem.list.push(o)
           })
           that.setData({

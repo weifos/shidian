@@ -424,7 +424,7 @@ module.exports = {
         return d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
       },
       //日期格式化
-      DateFormat: function(date, format) {
+      dateFormat: function(date, format) {
         var d = new Date(date.replace(/-/g, '/'));
         let o = {
           "M+": d.getMonth() + 1,
