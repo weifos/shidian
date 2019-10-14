@@ -7,9 +7,7 @@
     </view>
     <view class="section__content">
       <view>订单编号：{{orderInfo.serial_no}}</view>
-      <view wx:key="key" wx:for="{{orderInfo.details}}" wx:for-item="item">
-        商品名称：{{item.product_name}} {{item.spec_msg}}
-      </view>
+      <view wx:key="key" wx:for="{{orderInfo.details}}" wx:for-item="item">商品名称：{{item.product_name}} {{item.spec_msg}}  X{{item.count}} </view>
       <view>订单备注：{{orderInfo.remarks==null?"":orderInfo.remarks}}</view>
     </view>
   </view>

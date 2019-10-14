@@ -18,20 +18,20 @@
         <view class="activity-list">
           <view class="activity__item" wx:key wx:for="{{courseData[0].list}}">
             <view class="activity__image">
-              <image src="{{item.url}}"></image>
+              <image src="{{item.img_url}}"></image>
             </view>
             <view class="activity__text">
               <view class="activity__title ellipsis">
-                {{item.title}}
+                {{item.name}}
               </view>
               <view class="activity__name ellipsis2">
-                {{item.name}}
+                {{item.intro}}
               </view>
               <view class="activity__address ellipsis2">
                 上课地点：{{item.province}}{{item.city}}{{item.county}}{{item.address}}
               </view>
               <view class="activity__time">
-                {{gFilter.date.format(item.start_date,'yyyy-MM-dd')}}
+                {{item.start_date}}
               </view>
               <view class="activity__btns">
                 <button class="cu-btn round bg-lightOrange" bindtap='api_326' data-id="{{item.id}}">去报名</button>
