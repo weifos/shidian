@@ -8,7 +8,7 @@
       <view class="cur-img">
         <image src="/images/icon/i1_2.png"></image>
       </view>
-      <view class="nav-text">课堂</view>
+      <view class="nav-text">首页</view>
     </view>
   </view>
   <view class="action" bindtap='nav' data-url="/pages/course/course" data-index="1">
@@ -19,7 +19,7 @@
       <view class="cur-img">
         <image src="/images/icon/i2_2.png"></image>
       </view>
-      <view class="nav-text">活动</view>
+      <view class="nav-text">课程</view>
     </view>
   </view>
   <view class="action" bindtap='nav' data-url="/pages/activity/activity" data-index="2">
@@ -30,7 +30,7 @@
       <view class="cur-img">
         <image src="/images/icon/i3_2.png"></image>
       </view>
-      <view class="nav-text">咖啡</view>
+      <view class="nav-text">活动</view>
     </view>
   </view>
   <!-- <navigator class="action" open-type="reLaunch" url="/pages/member/index/index">
@@ -47,7 +47,7 @@
       <view class="cur-img">
         <image src="/images/icon/i4_2.png"></image>
       </view>
-      <view class="nav-text">我的</view>
+      <view class="nav-text">咖啡</view>
     </view>
   </view>
   <view class="action" bindtap='nav' data-url="/pages/member/index/index" data-index="3">
