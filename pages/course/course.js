@@ -115,7 +115,7 @@ Page({
           curItem.loading = false
           curItem.pageIndex = curItem.pageIndex + 1
           res.data.Result.course.forEach(function(o, i) {
-            o.start_date = appG.util.date.dateFormat(o.start_date,'yyyy-MM-dd')
+            o.start_date = appG.util.date.dateFormat(o.start_date,'yyyy-MM-dd hh:mm')
             curItem.list.push(o)
           })
           that.setData({
