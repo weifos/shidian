@@ -59,9 +59,13 @@ member-head.login {
 .list1 .icon-img {
   width: 45rpx;
 }
+.list1 .i-icon{
+  margin:0
+}
 
 .list1 .icon-name {
-  margin-left: 42rpx;
+  width: 130rpx;
+  text-align: center;
 }
 
 .cu-avatar.xl {
@@ -159,4 +163,8 @@ member-head.login {
   bottom: 0;
   border-top: 1px solid #ebebeb;
   background: #f1f1f1;
+}
+
+.icon-wrap{
+  width: 44px;
 }

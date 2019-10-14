@@ -32,7 +32,7 @@
     <view class="cu-list grid col-2 list1">
       <view class="cu-item" wx:for="{{list1}}" wx:key wx:for-item="item" data-key="{{item.icon}}" bindtap="goUrl">
         <view class="item-wrap">
-          <i-icon name="{{item.icon}}" class="dib icon-img vat"></i-icon>
+          <div class="dib icon-wrap"><i-icon name="{{item.icon}}" class="dib icon-img vat"></i-icon></div>
           <view class="dib icon-name vam">{{item.name}}</view>
         </view>
       </view>

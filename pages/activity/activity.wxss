@@ -18,12 +18,12 @@ page{
   margin-right: 36rpx;
 }
 .activity__image image{
-  width: 197rpx;
-  height: 199rpx;
+  width: 202rpx;
+  height: 202rpx;
 }
 .activity__time{
   color:#FCA68C;
-  margin-top: 20rpx;
+  margin-top: 10rpx;
 }
 .activity__text{
   margin-top: 5rpx;
@@ -33,12 +33,14 @@ page{
   font-weight: bold;
 }
 .activity__name{
-  height: 34rpx;
   font-size: 24rpx;
+  line-height: 1.2;
+  height:58rpx;
 }
 .activity__address{
-  height:70rpx;
+  height:58rpx;
   font-size: 24rpx;
+  line-height: 1.2;
 }
 .i-tab{
    margin-top:40rpx;
@@ -50,7 +52,7 @@ page{
   width: 147rpx;
 }
 .activity__btns{
-  position: absolute;right:0;bottom:0;
+  position: absolute;right:0;bottom:-5px;
 }
 .nav-month{
   height: 120rpx;

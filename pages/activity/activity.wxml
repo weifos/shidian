@@ -24,7 +24,7 @@
               <view class="activity__title ellipsis">
                 {{item.title}}
               </view>
-              <view class="activity__name ellipsis">
+              <view class="activity__name ellipsis2">
                 {{item.name}}
               </view>
               <view class="activity__address ellipsis2">
