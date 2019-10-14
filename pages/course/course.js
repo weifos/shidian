@@ -65,6 +65,7 @@ Page({
       ['courseData[1].list']: list
     })
   },
+
   /**
    * 加载课堂页数据
    */
@@ -135,7 +136,41 @@ Page({
       })
     }
   },
-  
+
+  /**
+   * 加载课程历史数据
+   */
+  api_207: function() {
+    var that = this
+    //当前选中索引
+    let index = this.data.tabCur
+    //当前选中项
+    let curItem = this.data.courseData[index]
+
+    api.post(api.api_207, api.getSign({
+      Type: 5,
+      Size: that.data.pageSize,
+      Index: that.data.courseData[0].pageIndex
+    }), function(app, res) {
+      if (res.data.Basis.State != api.state.state_200) {
+        wx.showToast({
+          title: res.data.Basis.Msg,
+          icon: 'none',
+          duration: 3000
+        })
+      } else {
+
+        curItem.loading = false
+        curItem.pageIndex = curItem.pageIndex + 1
+        res.data.Result.course.forEach(function(o, i) {
+          curItem.list.push(o)
+        })
+     
+      }
+    })
+
+  },
+
   /**
    * 菜单跳转
    */
