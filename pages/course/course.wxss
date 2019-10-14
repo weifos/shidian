@@ -30,6 +30,7 @@ page{
 }
 .course__title{
   height: 38rpx;
+  font-weight: bold;
 }
 .course__name{
   height: 34rpx;

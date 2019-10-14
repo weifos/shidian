@@ -45,3 +45,10 @@
 .cuIcon-cu-image .normal-img,.cuIcon-cu-image.cur .cur-img{
   display: inline-block;
 }
+.nav-text{
+  font-size:24rpx;
+  margin-top:5rpx;
+}
+.cur .nav-text{
+  color:#95b9fc;
+}

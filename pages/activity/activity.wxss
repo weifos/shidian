@@ -30,6 +30,7 @@ page{
 }
 .activity__title{
   height: 38rpx;
+  font-weight: bold;
 }
 .activity__name{
   height: 34rpx;
