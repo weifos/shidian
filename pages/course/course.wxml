@@ -22,18 +22,10 @@
               <image src="{{item.img_url}}" />
             </view>
             <view class="course__text">
-              <view class="course__title ellipsis">
-                {{item.name}}
-              </view>
-              <view class="course__name ellipsis2">
-                {{item.intro}}
-              </view>
-              <view class="course__address ellipsis2">
-                上课地点：{{item.province}}{{item.city}}{{item.county}}{{item.address}}
-              </view>
-              <view class="course__time">
-                {{item.start_date}}
-              </view>
+              <view class="course__title ellipsis">{{item.name}}</view>
+              <view class="course__name ellipsis2">{{item.intro}}</view>
+              <view class="course__address ellipsis2">上课地点：{{item.province}}{{item.city}}{{item.county}}{{item.address}}</view>
+              <view class="course__time">{{item.start_date}}</view>
               <view class="course__btns">
                 <button class="cu-btn round bg-lightBlue" bindtap='goUrl' data-id="{{item.id}}">去报名</button>
               </view>
@@ -44,9 +36,7 @@
       <view class="tab-c" wx:if="{{tabCur == 1}}" wx:key>
         <!-- month s -->
         <scroll-view scroll-x class="nav bg-none nav-month" scroll-with-animation scroll-left="{{scrollLeft}}">
-          <view class="cu-item {{index==tabCur2?'cur':''}}" wx:for="{{courseData[1].list}}" wx:key bindtap="tabSelect2" data-id="{{index}}">
-            {{item.month}}
-          </view>
+          <view class="cu-item {{index==tabCur2?'cur':''}}" wx:for="{{courseData[1].list}}" wx:key bindtap="tabSelect2" data-id="{{index}}">{{item.month}}</view>
         </scroll-view>
         <!-- month e -->
         <!-- month list s -->
@@ -56,18 +46,10 @@
               <image src="{{item.img_url}}" />
             </view>
             <view class="course__text">
-              <view class="course__title ellipsis">
-                {{item.name}}
-              </view>
-              <view class="course__name ellipsis2">
-                {{item.intro}}
-              </view>
-              <view class="course__address ellipsis">
-                上课地点：{{item.address}}
-              </view>
-              <view class="course__time">
-                {{item.province}}{{item.city}}{{item.county}}{{item.address}}
-              </view>
+              <view class="course__title ellipsis">{{item.name}}</view>
+              <view class="course__name ellipsis2">{{item.intro}}</view>
+              <view class="course__address ellipsis">上课地点：{{item.address}}</view>
+              <view class="course__time">{{item.province}}{{item.city}}{{item.county}}{{item.address}}</view>
               <view class="course__btns">
                 <button class="cu-btn round bg-lightBlue">查看</button>
               </view>
