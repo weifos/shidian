@@ -1,28 +1,28 @@
 <!--pages/member/memberPayCode/index.wxml-->
 <view class="container page-member-paycode">
-<!-- login s -->
-  <view class="member-head login" >
-    <view class="member-bg" style="background:#B2B2B2 url(/images/p8.png) no-repeat 0 -50rpx/100% auto;" ></view>
+  <!-- login s -->
+  <view class="member-head login">
+    <view class="member-bg" style="background:#B2B2B2 url(http://res.sdibook.com/DefaultRes/Images/p8.png) no-repeat 0 -50rpx/100% auto;"></view>
     <view class="member__image">
       <view class="cu-avatar xl round" style="background-image:url({{userInfo.headimgurl}});"></view>
-      <button class="btn-refresh" style="background:#fff url(/images/icon/refresh.png) no-repeat center center/28rpx 28rpx;"></button>
     </view>
     <view class="member__text text-white">
-        <view class="member__name">
-          <text class="dib vam mr20">{{userInfo.nick_name}}</text>
-          <i-icon name="vip"></i-icon>
-        </view>
-        <view class="member__intro fz22 mt10">
-          {{userInfo.login_name}}
-        </view>
+      <view class="member__name">
+        <text class="dib vam mr20">{{userInfo.nick_name}}</text>
+        <i-icon name="vip"></i-icon>
+      </view>
+      <view class="member__intro fz22 mt10">
+        {{userInfo.login_name}}
+      </view>
     </view>
   </view>
   <!-- login e -->
   <!-- ticket-bar s -->
   <view class="ticket-bar">
     <view class="ticket-bar-select" wx:if="{{!ticketSelected}}">
-      <button class="cu-btn round line-black fr">选择</button>
+      <button class="cu-btn round line-black fr" bindtap="selectTicket">选择</button>
       <text>优惠券</text>
+      <text wx:if="{{cid>0&&cname!=''&&tname!=''}}" style="color:#5B9AFA;margin-left:10px;">{{cname}} {{tname}}</text>
     </view>
     <view class="ticket-bar-selected" wx:if="{{ticketSelected}}">
       <view class="ticket-item fr text-lightBlue">5折咖啡券</view>
@@ -32,11 +32,11 @@
   <!-- ticket-bar e -->
   <!-- ewm-bar s -->
   <view class="ewm-bar tac">
-    <view class="ewm-bar-title fz27" >
+    <view class="ewm-bar-title fz27">
       此会员码可用于积分及支付
     </view>
     <view class="ewm-bar-image">
-        <canvas class="canvas-code" canvas-id="myQrcode" style="background:#fff;width: 180px;height: 180px;margin:0 auto;" />
+      <canvas class="canvas-code" canvas-id="myQrcode" style="background:#fff;width: 180px;height: 180px;margin:0 auto;" />
       <!-- <image src="/images/ewm.png"></image> -->
     </view>
     <view class="ewm-bar-refresh fz22">
@@ -44,5 +44,4 @@
     </view>
   </view>
   <!-- ewm-bar s -->
-  </view>
-
+</view>

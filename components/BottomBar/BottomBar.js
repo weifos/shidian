@@ -1,3 +1,4 @@
+var api = require("../../modules/api.js")
 var router = require("../../modules/router.js")
 var user = require("../../modules/userInfo.js")
 var app = getApp()

@@ -11,11 +11,12 @@ Page({
    */
   data: {
     isLogin: true,
+    refreshImg: '/images/icon/refresh.png',
     userInfo: {
       id: 0,
       nick_name: '未设置',
       login_name: '未登录',
-      headimgurl: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg',
+      headimgurl: '/images/user.png',
     },
     list1: [{
         "name": "我的会员",
@@ -66,16 +67,22 @@ Page({
    */
   onLoad: function(options) {
     let that = this
-    //检测成功回调
-    passport.checkSession(function(openid) {
-      let wxUser = user.methods.getUser()
-      if (!wxUser.login_name) {
-        //加载用户信息
-        that.api_106()
-      } else {
-        that.bindUser(wxUser)
-      }
-    })
+    let wxUser = user.methods.getUser()
+     
+    if (!wxUser.openid || wxUser.token) {
+      //检测成功回调
+      passport.checkSession(function (openid) {
+        wxUser = user.methods.getUser()
+        if (!wxUser.login_name) {
+          //加载用户信息
+          that.api_106()
+        } else {
+          that.bindUser(wxUser)
+        }
+      })
+    } else {
+      that.bindUser(wxUser)
+    }
   },
   /**
    * 获取手机号码
@@ -225,23 +232,23 @@ Page({
       case "paycode":
         url = '../memberPayCode/index'
         break
-      //我的活动
+        //我的活动
       case "activity":
         url = '../orderCourseList/index'
         break
-      //我的活动
+        //我的活动
       case "member":
         url = '../memberCard/index'
         break
-      //我的积分
+        //我的积分
       case "integral":
         url = '../memberIntegral/index'
         break
-      //我的优惠券
+        //我的优惠券
       case "ticket":
         url = '../ticketList/index'
         break
-        
+
       default:
         break;
     }

@@ -16,11 +16,14 @@ Page({
     catgs: [],
     courseData: [{
         title: "课程报名",
+        loading: false,
         pageIndex: 0,
         list: []
       },
       {
         title: "往期课堂",
+        loading: false,
+        pageIndex: 0,
         list: []
       }
     ]
@@ -60,7 +63,7 @@ Page({
     }
     this.setData({
       ['courseData[1].list']: list
-    }) 
+    })
   },
   /**
    * 加载课堂页数据
@@ -71,6 +74,7 @@ Page({
     let index = this.data.tabCur
     //当前选中项
     let curItem = this.data.courseData[index]
+
     //是否加载中
     let loading = curItem.loading
     //是否加载完成
@@ -78,8 +82,9 @@ Page({
 
     if (!curItem.loading && !curItem.loadComplete) {
       api.post(api.api_205, api.getSign({
+        Type: 5,
         Size: that.data.pageSize,
-        Index: that.data.courseData[0].pageIndex,
+        Index: that.data.courseData[0].pageIndex
       }), function(app, res) {
         if (res.data.Basis.State != api.state.state_200) {
           wx.showToast({
@@ -130,6 +135,7 @@ Page({
       })
     }
   },
+  
   /**
    * 菜单跳转
    */

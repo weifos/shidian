@@ -1,18 +1,24 @@
-// pages/member/memberCard/index.js
+var user = require("../../../modules/userInfo.js")
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    userInfo: {
+      card_no: ''
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let wxUser = user.methods.getUser()
+    this.setData({
+      ['userInfo']: wxUser
+    })
   },
 
   /**

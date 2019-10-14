@@ -2,8 +2,13 @@
 <view class="container page-member-integral">
   <view class="integral-bar tac bg-white">
     <view>可兑换积分</view>
-    <view><i-icon name="integral"></i-icon><text class="integral__num dib vam">300</text></view>
-    <view><button class="cu-btn round sm bg-lightBlue text-white">积分规则</button></view>
+    <view>
+      <i-icon name="integral"></i-icon>
+      <text class="integral__num dib vam">0</text>
+    </view>
+    <view>
+      <button class="cu-btn round sm bg-lightBlue text-white">积分规则</button>
+    </view>
   </view>
   <!-- i-tab2 s -->
   <view class="i-tab2">

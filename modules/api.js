@@ -1,5 +1,6 @@
 import appG from './appGlobal'
 import user from './userInfo'
+import router from './router'
 import md5 from './md5'
 
 //测试环境
@@ -123,6 +124,10 @@ module.exports = {
   api_333: domain + "333",
   //用户优惠券
   api_334: domain + "334",
+  //电子钱包支付课程
+  api_335: domain + "335",
+  //电子钱包支付咖啡饮品
+  api_336: domain + "336",
   //获取签名
   getSign(obj = {}) {
     let {

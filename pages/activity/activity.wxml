@@ -1,20 +1,22 @@
 <!--pages/activity/activity.wxml-->
 <view class="container page-activity">
   <i-greetings></i-greetings>
-  <view class="swiper-banner"><i-swiper></i-swiper></view>
+  <view class="swiper-banner">
+    <i-swiper itemData="{{banners}}"></i-swiper>
+  </view>
   <!-- i-tab s -->
   <view class="i-tab">
     <scroll-view scroll-x class="nav tab-t">
       <view class="flex text-center">
-        <view class="cu-item flex-sub {{index==TabCur?'bg-lightOrange cur':''}}" wx:for="{{activityData}}" wx:key bindtap="tabSelect" data-id="{{index}}" wx:for-item="item">
+        <view class="cu-item flex-sub {{index==tabCur?'bg-lightOrange cur':''}}" wx:for="{{courseData}}" wx:key bindtap="tabSelect" data-id="{{index}}" wx:for-item="item">
           {{item.title}}
         </view>
       </view>
     </scroll-view>
     <view class="tab-content">
-      <view class="tab-c" wx:if="{{TabCur == 0}}">
+      <view class="tab-c" wx:if="{{tabCur == 0}}">
         <view class="activity-list">
-          <view class="activity__item" wx:for="{{activityData[0].list}}">
+          <view class="activity__item" wx:key wx:for="{{courseData[0].list}}">
             <view class="activity__image">
               <image src="{{item.url}}"></image>
             </view>
@@ -26,51 +28,51 @@
                 {{item.name}}
               </view>
               <view class="activity__address ellipsis2">
-                上课地点：{{item.address}}
+                上课地点：{{item.province}}{{item.city}}{{item.county}}{{item.address}}
               </view>
               <view class="activity__time">
-                {{item.time}}
+                {{gFilter.date.format(item.start_date,'yyyy-MM-dd')}}
               </view>
               <view class="activity__btns">
-                <button class="cu-btn round bg-lightOrange">去报名</button>
+                <button class="cu-btn round bg-lightOrange" bindtap='api_326' data-id="{{item.id}}">去报名</button>
               </view>
             </view>
           </view>
         </view>
       </view>
-      <view class="tab-c" wx:if="{{TabCur == 1}}">
+      <view class="tab-c" wx:if="{{tabCur == 1}}">
         <!-- month s -->
         <scroll-view scroll-x class="nav bg-none nav-month" scroll-with-animation scroll-left="{{scrollLeft}}">
-          <view class="cu-item {{index==TabCur2?'cur':''}}" wx:for="{{activityData[1].list}}" wx:key bindtap="tabSelect2" data-id="{{index}}">
+          <view class="cu-item {{index==TabCur2?'cur':''}}" wx:for="{{courseData[1].list}}" wx:key bindtap="tabSelect2" data-id="{{index}}">
             {{item.month}}
           </view>
         </scroll-view>
         <!-- month e -->
         <!-- month list s -->
-            <view class="activity-list activity-list2" wx:for="{{activityData[1].list}}" wx:if="{{TabCur2 == index}}">
-              <view class="activity__item" wx:for="{{item.list}}" wx:for-item="sItem">
-                <view class="activity__image">
-                  <image src="{{sItem.url}}"></image>
-                </view>
-                <view class="activity__text">
-                  <view class="activity__title ellipsis">
-                    {{sItem.title}}
-                  </view>
-                  <view class="activity__name ellipsis">
-                    {{sItem.name}}
-                  </view>
-                  <view class="activity__address ellipsis2">
-                    上课地点：{{sItem.address}}
-                  </view>
-                  <view class="activity__time">
-                    {{sItem.time}}
-                  </view>
-                  <view class="activity__btns">
-                    <button class="cu-btn round bg-lightOrange">查看</button>
-                  </view>
-                </view>
+        <view class="activity-list activity-list2" wx:for="{{courseData[1].list}}" wx:if="{{TabCur2 == index}}">
+          <view class="activity__item" wx:for="{{item.list}}" wx:for-item="sItem">
+            <view class="activity__image">
+              <image src="{{sItem.url}}"></image>
+            </view>
+            <view class="activity__text">
+              <view class="activity__title ellipsis">
+                {{sItem.title}}
+              </view>
+              <view class="activity__name ellipsis">
+                {{sItem.name}}
+              </view>
+              <view class="activity__address ellipsis2">
+                上课地点：{{sItem.address}}
+              </view>
+              <view class="activity__time">
+                {{sItem.time}}
+              </view>
+              <view class="activity__btns">
+                <button class="cu-btn round bg-lightOrange">查看</button>
               </view>
             </view>
+          </view>
+        </view>
         <!-- month list e -->
       </view>
     </view>

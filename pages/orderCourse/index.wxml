@@ -33,11 +33,11 @@
     <view class="section__content">
       <radio-group class="block">
         <view class="radio__item">
-          <radio checked></radio>
+          <radio name="payType" bindtap="checkedPay" data-id="0" checked="{{payType == 0}}"></radio>
           <text class="dib vam">微信支付</text>
         </view>
         <view class="radio__item">
-          <radio></radio>
+          <radio name="payType" bindtap="checkedPay" data-id="1" checked="{{payType == 1}}"></radio>
           <text class="dib vam">钱包</text>
           <text class="txt-balance dib vam">余额：{{gFilter.formaToMoney(balance)}}</text>
         </view>

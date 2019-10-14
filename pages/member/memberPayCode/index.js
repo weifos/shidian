@@ -11,6 +11,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    cid: 0,
+    cname: '',
+    tname: '',
     userInfo: {
       id: 0,
       nick_name: '未设置',
@@ -27,11 +30,11 @@ Page({
   /**
    * 开始计时器
    */
-  startSetInter: function () {
+  startSetInter: function() {
     let that = this;
     //将计时器赋值给setInter
     that.data.setInter = setInterval(
-      function () {
+      function() {
         let numVal = that.data.timer.num + 1
         if (numVal > 30) {
           numVal = 0;
@@ -46,12 +49,20 @@ Page({
   /**
    * 开始计时器
    */
-  endSetInter: function () {
+  endSetInter: function() {
     let that = this;
     //清除计时器  即清除setInter
     clearInterval(that.data.setInter)
   },
 
+  /**
+   * 选择优惠券
+   */
+  selectTicket: function() {
+    router.goUrl({
+      url: '../ticketList/index?s=1'
+    })
+  },
   /**
    * 生成二维码
    * 用户ID#优惠券ID#时间戳
@@ -59,8 +70,7 @@ Page({
   createQRCode(str) {
     //时间戳
     let time_ticket = new Date().getTime()
-    console.log(str + time_ticket)
-
+    //console.log(str + time_ticket)
     new QRCode('myQrcode', {
       text: str + time_ticket,
       width: 180,
@@ -77,27 +87,35 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (opt) {
+  onLoad: function(opt) {
     //优惠券
-    let cid = 0
-    if (opt.cid != undefined) {
-      cid = opt.cid
+    if (opt.cid != undefined && opt.cname != undefined && opt.tname != undefined) {
+      this.setData({
+        cid: opt.cid
+      })
+      this.setData({
+        cname: opt.cname
+      })
+      this.setData({
+        tname: opt.tname
+      })
     }
+
     //获取用户信息
     let _user = user.methods.getUser()
     this.setData({
-      user_code: _user.user_id + '#' + cid + '#'
+      user_code: _user.user_id + '#' + this.data.cid + '#'
     })
     this.bindUser(_user)
- 
+
     this.createQRCode(this.data.user_code)
     this.startSetInter()
   },
   /**
    * 加载微信用户信息
    */
-  bindUser: function (user) {
-     
+  bindUser: function(user) {
+
     if (user.nickname) {
       this.setData({
         ['userInfo.nick_name']: user.nickname
@@ -107,7 +125,7 @@ Page({
     this.setData({
       ['userInfo.login_name']: appG.util.getHideMobile(user.login_name)
     })
-    
+
     this.setData({
       ['userInfo.headimgurl']: user.headimgurl
     })
@@ -116,49 +134,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

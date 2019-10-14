@@ -12,6 +12,7 @@ Page({
     tabCur: 0,
     scrollLeft: 0,
     pageSize: 5,
+    isSelect: false,
     orderData: [{
         type: -1,
         title: "全部",
@@ -44,7 +45,6 @@ Page({
       tabCur: e.currentTarget.dataset.id,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
-    this.api_334()
   },
 
   /**
@@ -52,86 +52,85 @@ Page({
    */
   api_334: function() {
     let that = this
-    //是否使用
-    let type = -1
-    //当前选中索引
-    let index = this.data.tabCur
-    //当前选中项
-    let curItem = this.data.orderData[index]
-    //是否加载中
-    let loading = curItem.loading
-    //是否加载完成
-    let loadComplete = curItem.loadComplete
+    //请求接口数据
+    api.post(api.api_334, api.getSign(), function(app, res) {
+      if (res.data.Basis.State != api.state.state_200) {
+        wx.showToast({
+          title: res.data.Basis.Msg,
+          icon: 'none',
+          duration: 3000
+        })
+      } else {
 
-    if (index == 0) {
-      type = -1
-    } else if (index == 1) {
-      type = 0
-    } else if (index == 2) {
-      type = 1
-    }
-    if (!curItem.loading && !curItem.loadComplete) {
-      //请求接口数据
-      api.post(api.api_334, api.getSign({
-        IsUse: type,
-        Size: that.data.pageSize,
-        Index: curItem.pageIndex
-      }), function(app, res) {
-        if (res.data.Basis.State != api.state.state_200) {
-          wx.showToast({
-            title: res.data.Basis.Msg,
-            icon: 'none',
-            duration: 3000
-          })
-        } else {
-          curItem.loading = false
-          curItem.pageIndex = curItem.pageIndex + 1
-
-          res.data.Result.forEach(function(o, i) {
-            let name = ''
-            //课程优惠券
-            if (o.module == 1) {
-              name = '课程券'
-            } else {
-              name = '咖啡饮品券'
-            }
-
-            //discount
-            curItem.list.push({
-              name: name,
-              type: o.type,
-              discount: o.amount,
-              quota: o.full_amount,
-              startTime: o.expiry_sdate,
-              endTime: o.expiry_edate
-            })
-          })
-
-          that.setData({
-            ['orderData[' + index + ']']: curItem
-          })
-
-          //是否全部加载完毕
-          if (res.data.Result.length == 0) {
-            curItem.loadComplete = true
-            that.setData({
-              ['orderData[' + index + ']']: curItem
-            })
-            wx.showToast({
-              title: '加载完成',
-              icon: 'success',
-              duration: 3000
-            })
+        let tmpAll = []
+        let tmpDisUse = []
+        let tmpUse = []
+        res.data.Result.forEach(function(o, i) {
+          let name = ''
+          //课程优惠券
+          if (o.module == 1) {
+            name = '课程券'
+          } else {
+            name = '咖啡饮品券'
           }
-        }
-      })
-    }
+
+          let ele = {
+            id: o.id,
+            name: name,
+            type: o.type,
+            discount: o.amount,
+            quota: o.full_amount,
+            startTime: o.expiry_sdate,
+            endTime: o.expiry_edate
+          }
+
+          //支付选择优惠券情况，只能选商品券
+          if (that.data.isSelect) {
+            if (o.module == 0) {
+              if (o.is_used) {
+                tmpUse.push(ele)
+              } else {
+                tmpDisUse.push(ele)
+              }
+              tmpAll.push(ele)
+            }
+          } else {
+            if (o.is_used) {
+              tmpUse.push(ele)
+            } else {
+              tmpDisUse.push(ele)
+            }
+            tmpAll.push(ele)
+          }
+        })
+
+        that.setData({
+          ['orderData[0].list']: tmpAll
+        })
+        that.setData({
+          ['orderData[1].list']: tmpDisUse
+        })
+        that.setData({
+          ['orderData[2].list']: tmpUse
+        })
+
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function(opt) {
+    if (opt.s == 1) {
+      this.setData({
+        ['isSelect']: true
+      })
+      this.setData({
+        ['tabCur']: 1
+      })
+    }
+    //加载数据
     this.api_334()
   },
 
@@ -145,9 +144,21 @@ Page({
   /**
    * 菜单跳转
    */
-  goUrl: function() {
+  checkTicket: function(item) {
+    let id = item.currentTarget.dataset.item.id
+    let name = item.currentTarget.dataset.item.name
+    let title = ''
+    let type = item.currentTarget.dataset.item.type
+    let discount = item.currentTarget.dataset.item.discount
+    //1:代金券，5：折扣券
+    if (type == 1) {
+      title = discount + '元'
+    } else if (type == 5) {
+      title = discount + '折'
+    }
+
     router.goUrl({
-      url: '../shoppingCart/index'
+      url: '../memberPayCode/index?cid=' + id + "&cname=" + name + "&tname=" + title
     })
   },
 

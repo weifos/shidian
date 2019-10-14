@@ -18,7 +18,7 @@
   </view>
 </view>
 <view class="tool-bar tac">
-  <button class="cu-btn round bg-gray text-white">客服</button>
+  <button class="cu-btn round bg-gray text-white" open-type="contact">客服</button>
   <button class="cu-btn round bg-lightBlue text-white" bindtap="showModal" data-target="bottomModal">购买</button>
 </view>
 <!-- 弹出层 s-->

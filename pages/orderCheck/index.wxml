@@ -1,4 +1,5 @@
-<!--pages/orderCheck/index.wxml-->
+<wxs src='../../modules/wxsGlobal.wxs' module='gFilter' />
+
 <view class="container page-orderCheck">
   <view class="section">
     <view class="section__title">
@@ -7,9 +8,9 @@
     <view class="section__content">
       <view>订单编号：{{orderInfo.serial_no}}</view>
       <view wx:key="key" wx:for="{{orderInfo.details}}" wx:for-item="item">
-      商品名称：{{item.product_name}} {{item.spec_msg}}
+        商品名称：{{item.product_name}} {{item.spec_msg}}
       </view>
-      <view>备注：{{orderInfo.remarks==null?"":orderInfo.remarks}}</view>
+      <view>订单备注：{{orderInfo.remarks==null?"":orderInfo.remarks}}</view>
     </view>
   </view>
   <view class="section">
@@ -17,7 +18,7 @@
       <view class="fz33">优惠券
         <text class="no-ticket" wx:if="{{ticketInfo.length == 0}}">（暂无可用的优惠券）</text>
       </view>
-      <view bindtap="checkTicket" >
+      <view bindtap="checkTicket">
         <button class="cu-btn round line-black">选择</button>
       </view>
     </view>
@@ -32,13 +33,13 @@
     <view class="section__content">
       <radio-group class="block">
         <view class="radio__item">
-          <radio checked></radio>
+          <radio name="payType" bindtap="checkedPay" data-id="0" checked="{{payType == 0}}"></radio>
           <text class="dib vam">微信支付</text>
         </view>
         <view class="radio__item">
-          <radio></radio>
+          <radio name="payType" bindtap="checkedPay" data-id="1" checked="{{payType == 1}}"></radio>
           <text class="dib vam">钱包</text>
-          <text class="txt-balance dib vam">余额：0.00</text>
+          <text class="txt-balance dib vam">余额：{{gFilter.formaToMoney(balance)}}</text>
         </view>
       </radio-group>
     </view>
@@ -46,8 +47,8 @@
 </view>
 <view class="order-tool-bar">
   <view class="cu-bar tabbar">
-    <view class="bg-darkGray info">共计￥70
-      <text class="discounts">|  优惠6元</text>
+    <view class="bg-darkGray info">共计￥{{gFilter.formaToMoney(orderInfo.actual_amount)}}
+      <!-- <text class="discounts">|  优惠6元</text> -->
     </view>
     <view class="bg-lightYellow submit text-white" bindtap="goPay">支付</view>
   </view>

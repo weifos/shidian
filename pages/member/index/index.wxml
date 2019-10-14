@@ -1,11 +1,12 @@
 <!--pages/member/index/index.wxml-->
 <view class="container page-member-index">
   <!-- login s -->
-  <view class="member-head login" wx:if="{{isLogin}}">
-    <view class="member-bg" style="background:#B2B2B2 url(/images/p8.png) no-repeat 0 -50rpx/100% auto;" wx:if="{{userInfo.login}}"></view>
+  <view class="member-head login" wx:if="{{isLogin}}" >
+    <view class="member-bg" style="background:#B2B2B2 url(http://res.sdibook.com/DefaultRes/Images/p8.png) no-repeat 0 -50rpx/100% auto;" wx:if="{{isLogin}}"></view>
     <view class="member__image">
       <view class="cu-avatar xl round" style="background-image:url({{userInfo.headimgurl}});"></view>
-      <button class="btn-refresh" open-type="getUserInfo" bindgetuserinfo="getWxUser" style="background:#fff url(/images/icon/refresh.png) no-repeat center center/28rpx 28rpx;"></button>
+      <button class="btn-refresh" open-type="getUserInfo" bindgetuserinfo="getWxUser" ></button>
+      <!-- <i-icon name="refresh"></i-icon> -->
     </view>
     <view class="member__text">
       <view class="member__name">
@@ -47,9 +48,9 @@
           <text class="text-grey dib vam">{{item.name}}</text>
         </view>
       </view>
-      <view class="cu-item"  >
+      <view class="cu-item">
         <button class="content" open-type="contact" style="text-algin:left;display: flex;">
-          <i-icon name="service" class="dib vat i-icon" ></i-icon>
+          <i-icon name="service" class="dib vat i-icon"></i-icon>
           <text class="text-grey dib vam">在线客服</text>
         </button>
       </view>

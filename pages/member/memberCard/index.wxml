@@ -1,6 +1,6 @@
 <!--pages/member/memberCard/index.wxml-->
 <view class="container page-member-card">
-  <view class="member-card" >
+  <view class="member-card">
     <image src="/images/card.png"></image>
     <view class="card__text text-white">
       <view class="card__name">
@@ -8,17 +8,17 @@
       </view>
       <view class="card__level">
         <view>
-          会员级别
+          十秒会员
         </view>
         <view>
-          1800000000
+          {{userInfo.card_no}}
         </view>
       </view>
     </view>
   </view>
   <view class="member-card-content">
     <view class="tit">会员权益</view>
-    <view class="con">出现楼层标题认为该楼层被曝光，上报每个楼层曝光的第一个素材组，以_拼接曝光的楼层名称，楼层曝光去重，同一个楼层不重复上报出现楼层标题认为该楼层被曝光，上报每个楼层曝光的第一个素材组，以_拼接曝光的楼层名称，楼层曝光去重，同一个楼层不重复上报</view>
+    <view class="con">这里写会员权益详细介绍.这里写会员权益详细介绍.这里写会员权益详细介绍.这里写会员权益详细介绍.这里写会员权益详细介绍</view>
   </view>
 </view>
 <i-bottombar></i-bottombar>
