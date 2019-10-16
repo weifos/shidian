@@ -128,6 +128,8 @@ module.exports = {
   api_335: domain + "335",
   //电子钱包支付咖啡饮品
   api_336: domain + "336",
+  //绑定储值卡
+  api_337: domain + "337",
   //获取签名
   getSign(obj = {}) {
     let {

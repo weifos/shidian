@@ -40,18 +40,18 @@
         </scroll-view>
         <!-- month e -->
         <!-- month list s -->
-        <view class="course-list course-list2" wx:key wx:for="{{courseData[1].list}}" wx:if="{{tabCur2 == index}}">
-          <view class="course__item" wx:key wx:for="{{item.list}}" wx:for-item="item">
+        <view class="course-list course-list2" wx:key wx:for="{{courseData[1].list}}" wx:for-item="item" wx:if="{{tabCur2 == index}}">
+          <view class="course__item" wx:key wx:for="{{item.items}}" wx:for-item="sItem">
             <view class="course__image">
-              <image src="{{item.img_url}}" />
+              <image src="{{sItem.img_url}}" />
             </view>
             <view class="course__text">
-              <view class="course__title ellipsis">{{item.name}}</view>
-              <view class="course__name ellipsis2">{{item.intro}}</view>
-              <view class="course__address ellipsis">上课地点：{{item.address}}</view>
-              <view class="course__time">{{item.province}}{{item.city}}{{item.county}}{{item.address}}</view>
+              <view class="course__title ellipsis">{{sItem.name}}</view>
+              <view class="course__name ellipsis2">{{sItem.intro}}</view>
+              <view class="course__address ellipsis">上课地点：{{sItem.province}}{{sItem.city}}{{sItem.county}}{{sItem.address}}</view>
+              <view class="course__time">{{sItem.start_date}}</view>
               <view class="course__btns">
-                <button class="cu-btn round bg-lightBlue">查看</button>
+                <button class="cu-btn round bg-lightBlue" bindtap='goUrl' data-id="{{sItem.id}}">查看</button>
               </view>
             </view>
           </view>

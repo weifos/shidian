@@ -446,7 +446,7 @@ module.exports = {
         return format;
       },
       //json格式日期处理
-      ChangeDateFormat: function(time) {
+      changeDateFormat: function(time) {
         if (time != null) {
           if (time.indexOf('T') != -1) {
             return time.substr(0, time.indexOf('T'));
@@ -459,7 +459,7 @@ module.exports = {
         return "";
       },
       //json格式日期处理（时分秒）
-      ChangeCompleteDateFormat: function(time) {
+      changeCompleteDateFormat: function(time) {
         if (time != null) {
           if (time.indexOf('T') != -1) {
             if (time.indexOf('.') != -1) {
@@ -475,7 +475,7 @@ module.exports = {
         return "";
       },
       //json格式日期处理（时分秒）
-      ChangeComDateFormat: function(time) {
+      changeComDateFormat: function(time) {
         if (time != null) {
           if (time.indexOf('T') != -1) {
             if (time.indexOf('.') != -1) {
@@ -490,10 +490,10 @@ module.exports = {
         }
         return "";
       }, //时间比较
-      CompareDate: function(t1, t2) {
-        t1 = new Date(this.ChangeDateFormat(t1));
-        t2 = new Date(this.ChangeDateFormat(t2));
-        return t1 > t2;
+      compareDate: function(t1, t2) {
+        t1 = new Date(Date.parse(t1))
+        t2 = new Date(Date.parse(t2))
+        return t1 > t2
       },
       //时间比较
       CompareDateNow: function(t1) {

@@ -19,7 +19,7 @@ module.exports = {
         //wx.setStorage 的同步版本
         wx.setStorageSync("user_info", JSON.stringify(result))
       } catch (err) {
-        app.showToast({
+        wx.showToast({
           title: err,
           icon: 'none',
           duration: 3000

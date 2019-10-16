@@ -34,8 +34,8 @@ Page({
         res.data.Result.tickets.forEach(function(o, i) {
           that.data.result.push({
             name: course.course_name,
-            startTime: course.start_date,
-            endTime: course.end_date
+            startTime: appG.util.date.dateFormat(course.start_date, 'yyyy-MM-dd hh:mm'),
+            endTime: appG.util.date.dateFormat(course.end_date, 'yyyy-MM-dd hh:mm')
           })
         })
 

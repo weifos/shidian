@@ -31,11 +31,14 @@ Page({
         "icon": "activity"
       },
       {
-        "name": "我的积分",
-        "icon": "integral"
+        "name": "我的课堂",
+        "icon": "course"
       }
     ],
     list2: [{
+        "name": "我的积分",
+        "icon": "integral"
+      }, {
         "name": "购买记录",
         "icon": "buy",
         "url": ""
@@ -68,10 +71,10 @@ Page({
   onLoad: function(options) {
     let that = this
     let wxUser = user.methods.getUser()
-     
+
     if (!wxUser.openid || wxUser.token) {
       //检测成功回调
-      passport.checkSession(function (openid) {
+      passport.checkSession(function(openid) {
         wxUser = user.methods.getUser()
         if (!wxUser.login_name) {
           //加载用户信息
@@ -234,9 +237,13 @@ Page({
         break
         //我的活动
       case "activity":
-        url = '../orderCourseList/index'
+        url = '../orderCourseList/index?tid=5'
         break
-        //我的活动
+        //我的课程
+      case "course":
+        url = '../orderCourseList/index?tid=1'
+        break
+        //我的会员卡
       case "member":
         url = '../memberCard/index'
         break
@@ -248,6 +255,7 @@ Page({
       case "ticket":
         url = '../ticketList/index'
         break
+
 
       default:
         break;

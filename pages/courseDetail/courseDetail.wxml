@@ -16,9 +16,10 @@
     <template is="wxParse" data="{{wxParseData:details.nodes}}" />
   </view>
 </view>
-<view class="tool-bar tac">
+<view class="tool-bar tac" wx:if="{{!isOverdue}}">
   <button class="cu-btn round bg-gray text-white" open-type="contact">客服</button>
-  <button class="cu-btn round bg-lightBlue text-white" bindtap="showModal" data-target="bottomModal">购买</button>
+  <button wx:if="{{result.type==5}}" class="cu-btn round bg-lightBlue text-white" bindtap="showModal" data-target="bottomModal">购买</button>
+  <button wx:if="{{result.type==1}}" class="cu-btn round bg-lightBlue text-white" bindtap="api_326">报名</button>
 </view>
 <!-- 弹出层 s-->
 <view class="price-bar">

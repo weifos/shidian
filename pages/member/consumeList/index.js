@@ -1,6 +1,5 @@
 var api = require("../../../modules/api.js")
 var user = require("../../../modules/userInfo.js")
-var router = require("../../../modules/router.js")
 var appGlobal = require("../../../modules/appGlobal.js")
 
 Page({
@@ -48,7 +47,7 @@ Page({
           that.setData({
             list: that.data.list
           })
-
+ 
           //是否全部加载完毕
           if (res.data.Result.length == 0) {
             that.data.loadComplete = true
