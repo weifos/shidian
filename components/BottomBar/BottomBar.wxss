@@ -52,3 +52,6 @@
 .cur .nav-text{
   color:#95b9fc;
 }
+.cuIcon-cu-image-3.cur .nav-text{
+  color:#FCA68C;
+}

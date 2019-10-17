@@ -8,8 +8,8 @@
     </view>
   </view>
   <view class="ticket__discountInfo tac dib vat">
-    <view class="ticket__discount">入场券</view>
-    <view class="ticket__quota">点击使用</view>
+    <view class="ticket__discount">点击使用</view>
+    <view class="ticket__quota" style="margin-top:5px;">退款</view>
   </view>
 </view>
 <view class="ticket ticket-1" wx:else>

@@ -1,71 +1,89 @@
 /* pages/course/course.wxss */
-page{
+
+page {
   background-color: #fff;
 }
-.course-list{
+
+.course-list {
   margin-top: 36rpx;
 }
-.course__item{
-  /* overflow: hidden; */
+
+.course__item {
   margin: 0 0 36rpx 0;
   font-size: 27rpx;
   color: #707070;
   height: 199rpx;
   position: relative;
 }
-.course__image{
+
+.course__image {
   float: left;
   margin-right: 36rpx;
 }
-.course__image image{
+
+.course__image image {
   width: 202rpx;
   height: 202rpx;
 }
-.course__time{
-  color:#9BBAFF;
+
+.course__time {
+  color: #9bbaff;
   margin-top: 10rpx;
 }
-.course__text{
+
+.course__text {
   margin-top: 5rpx;
 }
-.course__title{
+
+.course__title {
   height: 38rpx;
   font-weight: bold;
 }
-.course__name{
+
+.course__name {
   font-size: 24rpx;
   line-height: 1.2;
   height:58rpx;
 }
-.course__address{
+
+.course__address {
   height:58rpx;
   font-size: 24rpx;
   line-height: 1.2;
 }
-.i-tab{
-   margin-top:40rpx;
+
+.i-tab {
+  margin-top: 40rpx;
 }
-.cu-btn{
+
+.cu-btn {
   height: 53rpx;
   color: #fff;
   font-size: 27rpx;
   width: 147rpx;
 }
-.course__btns{
-  position: absolute;right:0;bottom:-5px;
+
+.course__btns {
+  position: absolute;
+  right: 0;
+  bottom:-5px;
 }
-.nav-month{
+
+.nav-month {
   height: 120rpx;
   line-height: 120rpx;
 }
-.nav-month .cu-item{
-  background:none;
-  color:#707070;
+
+.nav-month .cu-item {
+  background: none;
+  color: #707070;
 }
-.nav-month .cu-item.cur{
-  background:none;
-  color:#9BBAFF;
+
+.nav-month .cu-item.cur {
+  background: none;
+  color: #9bbaff;
 }
-.course-list2{
+
+.course-list2 {
   margin-top: 0rpx;
 }

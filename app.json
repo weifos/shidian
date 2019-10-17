@@ -1,25 +1,19 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/chat/index",
+    "pages/sale/index",
+    "pages/psq/index",
+    "pages/orderCheck/index",
+    "pages/ticketList/index",
+    "pages/shoppingCart/index",
+    "pages/courseDetail/courseDetail",
+    "pages/course/course",
+    "pages/logs/logs",
+    "pages/coffee/coffee",
+    "pages/activity/activity"
   ],
   "subpackages": [
-    {
-      "root": "package1",
-      "name": "pack1",
-      "pages": [
-        "pages/chat/index",
-        "pages/sale/index",
-        "pages/psq/index",
-        "pages/orderCheck/index",
-        "pages/ticketList/index",
-        "pages/shoppingCart/index",
-        "pages/courseDetail/courseDetail",
-        "pages/course/course",
-        "pages/logs/logs",
-        "pages/coffee/coffee",
-        "pages/activity/activity"
-      ]
-    },
     {
       "root": "pages/member/",
       "name": "member",

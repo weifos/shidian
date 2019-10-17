@@ -42,16 +42,30 @@ Component({
     },
     scanCode: function() {
       var that = this
-      // 调起扫码
-      wx.scanCode({
-        success(res) {
-          if (res.result) {
-            //查询对应的吧台和门店信息
-            that.api_204(res.result)
-          }
+      wx.showModal({
+        title: '提示',
+        content: '请扫描门店二维码确定您所在门店',
+        showCancel: true,
+        cancelText: '取消',
+        //cancelColor: '取消按钮的文本颜色，默认#000000',
+        confirmText: '确认',
+        //confirmColor: '却惹按钮的文本颜色，默认#000000',
+        success: function(res) {
+          if (res.confirm) {
+            // 调起扫码
+            wx.scanCode({
+              success(res) {
+                if (res.result) {
+                  //查询对应的吧台和门店信息
+                  that.api_204(res.result)
+                }
+              }
+            })
+          } else if (res.cancel) {}
         }
       })
     },
+
     /**
      * 扫码点单
      */

@@ -1,15 +1,22 @@
 module.exports = {
 
   goUrl(object) {
-    if (getCurrentPages().length > 4) {
+    if (getCurrentPages().length > 9) {
       //会将旧页面出栈，再将需要跳转到的页面入栈
-      this.redirectTo(object)
+      if (object.url == '/pages/index/index') {
+        //wx.reLaunch(object)
+        wx.navigateTo(object)
+      } else {
+        wx.redirectTo(object)
+      }
     } else {
       //不会将旧页面出栈
-      wx.navigateTo(object)
+      if (object.url == '/pages/index/index') {
+        wx.reLaunch(object)
+      } else {
+        wx.navigateTo(object)
+      }
     }
-    
-    //wx.reLaunch(object)
   },
 
   // 其他跳转不处理

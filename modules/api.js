@@ -58,7 +58,7 @@ module.exports = {
   api_205: domain + "205",
   // 课堂详情页数据
   api_206: domain + "206",
-  // 
+  // 查看往期的活动或者课程
   api_207: domain + "207",
   // 
   api_208: domain + "208",
@@ -128,6 +128,8 @@ module.exports = {
   api_335: domain + "335",
   //电子钱包支付咖啡饮品
   api_336: domain + "336",
+  //绑定储值卡
+  api_337: domain + "337",
   //获取签名
   getSign(obj = {}) {
     let {

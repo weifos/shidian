@@ -109,8 +109,9 @@ Page({
       function(vue, res) {
         if (res.data.Basis.State == api.state.state_200) {
           setTimeout(function() {
+            debugger
             router.goUrl({
-              url: '../member/orderCourseList/index'
+              url: '../member/orderCourseList/index?tid=' + that.data.orderInfo.type
             })
           }, 1000)
         } else {
@@ -144,7 +145,7 @@ Page({
           if (res.errMsg = "requestPayment:ok") {
             //跳转地址 
             router.goUrl({
-              url: '../member/orderCourseList/index'
+              url: '../member/orderCourseList/index?tid=' + that.data.orderInfo.type
             })
           }
         },

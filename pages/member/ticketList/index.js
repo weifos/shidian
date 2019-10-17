@@ -80,8 +80,8 @@ Page({
             type: o.type,
             discount: o.amount,
             quota: o.full_amount,
-            startTime: o.expiry_sdate,
-            endTime: o.expiry_edate
+            startTime: appG.util.date.dateFormat(o.expiry_sdate, 'yyyy-MM-dd'),
+            endTime: appG.util.date.dateFormat(o.expiry_edate, 'yyyy-MM-dd')
           }
 
           //支付选择优惠券情况，只能选商品券

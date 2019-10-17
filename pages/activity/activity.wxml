@@ -18,23 +18,15 @@
         <view class="activity-list">
           <view class="activity__item" wx:key wx:for="{{courseData[0].list}}">
             <view class="activity__image">
-              <image src="{{item.url}}"></image>
+              <image src="{{item.img_url}}"></image>
             </view>
             <view class="activity__text">
-              <view class="activity__title ellipsis">
-                {{item.title}}
-              </view>
-              <view class="activity__name ellipsis2">
-                {{item.name}}
-              </view>
-              <view class="activity__address ellipsis2">
-                上课地点：{{item.province}}{{item.city}}{{item.county}}{{item.address}}
-              </view>
-              <view class="activity__time">
-                {{gFilter.date.format(item.start_date,'yyyy-MM-dd')}}
-              </view>
+              <view class="activity__title ellipsis">{{item.name}}</view>
+              <view class="activity__name ellipsis2">{{item.intro}}</view>
+              <view class="activity__address ellipsis2">上课地点：{{item.province}}{{item.city}}{{item.county}}{{item.address}}</view>
+              <view class="activity__time">{{item.start_date}}</view>
               <view class="activity__btns">
-                <button class="cu-btn round bg-lightOrange" bindtap='api_326' data-id="{{item.id}}">去报名</button>
+                <button class="cu-btn round bg-lightOrange" bindtap='goUrl' data-id="{{item.id}}">去报名</button>
               </view>
             </view>
           </view>
@@ -43,30 +35,20 @@
       <view class="tab-c" wx:if="{{tabCur == 1}}">
         <!-- month s -->
         <scroll-view scroll-x class="nav bg-none nav-month" scroll-with-animation scroll-left="{{scrollLeft}}">
-          <view class="cu-item {{index==TabCur2?'cur':''}}" wx:for="{{courseData[1].list}}" wx:key bindtap="tabSelect2" data-id="{{index}}">
-            {{item.month}}
-          </view>
+          <view class="cu-item {{index==tabCur2?'cur':''}}" wx:for="{{courseData[1].list}}" wx:key bindtap="tabSelect2" data-id="{{index}}">{{item.month}}</view>
         </scroll-view>
         <!-- month e -->
         <!-- month list s -->
-        <view class="activity-list activity-list2" wx:for="{{courseData[1].list}}" wx:if="{{TabCur2 == index}}">
-          <view class="activity__item" wx:for="{{item.list}}" wx:for-item="sItem">
+        <view class="activity-list activity-list2" wx:key wx:for="{{courseData[1].list}}" wx:if="{{tabCur2 == index}}">
+          <view class="activity__item" wx:key wx:for="{{item.items}}" wx:for-item="sItem">
             <view class="activity__image">
               <image src="{{sItem.url}}"></image>
             </view>
             <view class="activity__text">
-              <view class="activity__title ellipsis">
-                {{sItem.title}}
-              </view>
-              <view class="activity__name ellipsis">
-                {{sItem.name}}
-              </view>
-              <view class="activity__address ellipsis2">
-                上课地点：{{sItem.address}}
-              </view>
-              <view class="activity__time">
-                {{sItem.time}}
-              </view>
+              <view class="activity__title ellipsis">{{sItem.name}}</view>
+              <view class="activity__name ellipsis">{{sItem.intro}}</view>
+              <view class="activity__address ellipsis2">上课地点：{{sItem.province}}{{sItem.city}}{{sItem.county}}{{sItem.address}}</view>
+              <view class="activity__time">{{sItem.start_date}}</view>
               <view class="activity__btns">
                 <button class="cu-btn round bg-lightOrange">查看</button>
               </view>

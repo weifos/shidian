@@ -1,6 +1,6 @@
 var api = require("../../modules/api.js")
 var router = require("../../modules/router.js")
-var appGlobal = require("../../modules/appGlobal.js")
+var appG = require("../../modules/appGlobal.js")
 
 Page({
 
@@ -9,7 +9,7 @@ Page({
    */
   data: {
     tabCur: 0,
-    TabCur2: 0,
+    tabCur2: 0,
     pageSize: 6,
     scrollLeft: 0,
     banners: [],
@@ -22,9 +22,6 @@ Page({
       },
       {
         title: "往期活动",
-        loading: false,
-        pageIndex: 0,
-        loadComplete: false,
         list: []
       }
     ]
@@ -38,9 +35,10 @@ Page({
   },
   tabSelect2(e) {
     this.setData({
-      TabCur2: e.currentTarget.dataset.id,
+      tabCur2: e.currentTarget.dataset.id,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
+    this.api_207()
   },
 
   /**
@@ -53,7 +51,8 @@ Page({
     for (let i = 0; i < tMonth; i++) {
       list.push({
         month: i + 1 + "月",
-        list: []
+        loadComplete: false,
+        items: []
       })
     }
     this.setData({
@@ -103,12 +102,13 @@ Page({
             })
 
             //将banner数据写入缓存
-            appGlobal.storage.swiper.setCourseBanner(res.data.Result.banners)
+            appG.storage.swiper.setCourseBanner(res.data.Result.banners)
           }
 
           curItem.loading = false
           curItem.pageIndex = curItem.pageIndex + 1
           res.data.Result.course.forEach(function(o, i) {
+            o.start_date = appG.util.date.dateFormat(o.start_date, 'yyyy-MM-dd hh:mm')
             curItem.list.push(o)
           })
           that.setData({
@@ -126,6 +126,41 @@ Page({
               duration: 3000
             })
           }
+        }
+      })
+    }
+  },
+
+  /**
+   * 加载课程历史数据
+   */
+  api_207: function () {
+    var that = this
+    //当前选中索引
+    let index = this.data.tabCur2
+    //当前选中项
+    let curItem = this.data.courseData[1].list[index]
+    //如果没加载过
+    if (!curItem.loadComplete) {
+      api.post(api.api_207, api.getSign({
+        Type: 1,
+        Month: index + 1
+      }), function (app, res) {
+        if (res.data.Basis.State != api.state.state_200) {
+          wx.showToast({
+            title: res.data.Basis.Msg,
+            icon: 'none',
+            duration: 3000
+          })
+        } else {
+          curItem.loadComplete = true
+          res.data.Result.forEach(function (o, i) {
+            o.start_date = appG.util.date.dateFormat(o.start_date, 'yyyy-MM-dd hh:mm')
+            curItem.items.push(o)
+          })
+          that.setData({
+            ['courseData[1].list[' + index + ']']: curItem
+          })
         }
       })
     }
@@ -167,6 +202,7 @@ Page({
       }
     })
   },
+  
   /**
    * 菜单跳转
    */

@@ -1,6 +1,6 @@
 var api = require("../../modules/api.js")
 var router = require("../../modules/router.js")
-var appGlobal = require("../../modules/appGlobal.js")
+var appG = require("../../modules/appGlobal.js")
 var wxParse = require('../../modules/wxParse/wxParse.js')
 
 Page({
@@ -12,6 +12,7 @@ Page({
     num: 1,
     imgurl: "",
     totalPrice: 0,
+    isOverdue: false,
     result: {
       title: "",
       startTime: "",
@@ -78,6 +79,17 @@ Page({
           imgurl: res.data.Result.imgurl
         })
 
+        //appG.util.date.dateFormat
+        let dateNow = appG.util.date.getDateTimeNow()
+        //是否过期
+        if (appG.util.date.compareDate(dateNow, res.data.Result.course.start_date)) {
+          that.setData({
+            isOverdue: true
+          })
+        }
+
+        res.data.Result.course.start_date = appG.util.date.dateFormat(res.data.Result.course.start_date, 'yyyy-MM-dd hh:mm')
+        res.data.Result.course.end_date = appG.util.date.dateFormat(res.data.Result.course.end_date, 'yyyy-MM-dd hh:mm')
         that.setData({
           result: res.data.Result.course
         })
@@ -97,7 +109,7 @@ Page({
    */
   api_326: function() {
     var that = this
-    var order = { 
+    var order = {
       course_id: that.data.result.id,
       details: []
     }
@@ -107,7 +119,7 @@ Page({
         id: 0
       })
     }
- 
+
     api.post(api.api_326, api.getSign({
       Order: order
     }), function(app, res) {
@@ -118,9 +130,15 @@ Page({
           duration: 3000
         })
       } else {
-        router.goUrl({
-          url: '../orderCourse/index?no=' + res.data.Result
-        })
+        if (that.data.result.type == 5) {
+          router.goUrl({
+            url: '../orderCourse/index?no=' + res.data.Result
+          })
+        } else {
+          router.goUrl({
+            url: '../member/orderCourseList/index?no=' + res.data.Result + "&tid=" + that.data.result.type
+          })
+        }
       }
     })
   },

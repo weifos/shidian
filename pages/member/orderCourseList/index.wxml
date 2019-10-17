@@ -14,21 +14,21 @@
       <view class="tab-c" wx:if="{{tabCur == 0}}">
         <view class="course-list" wx:if="{{orderData[0].list.length >0}}">
           <view class="course__item" wx:for="{{orderData[0].list}}" wx:key>
-            <view class="course__image">
+            <view class="course__image" bindtap="goDetails" data-item="{{item}}">
               <image src="{{item.img_url}}"></image>
             </view>
             <view class="course__text">
-              <view class="course__title ellipsis">
+              <view class="course__title ellipsis" bindtap="goDetails" data-item="{{item}}">
                 {{item.teacher_name}}
               </view>
-              <view class="course__name ellipsis">
+              <view class="course__name ellipsis" bindtap="goDetails" data-item="{{item}}">
                 {{item.course_name}}
               </view>
-              <view class="course__address ellipsis2">
+              <view class="course__address ellipsis2" bindtap="goDetails" data-item="{{item}}">
                 上课地点：{{item.province}}{{item.city}}{{item.area}}{{item.address}}
               </view>
-              <view class="course__time">
-                {{gFilter.date.format(item.start_date,'yyyy-MM-dd')}}
+              <view class="course__time" bindtap="goDetails" data-item="{{item}}">
+                {{item.start_date}}
               </view>
               <view class="course__btns">
                 <button class="cu-btn round bg-lightBlue text-white" bindtap="goTicket" data-id="{{item.id}}">券码</button>

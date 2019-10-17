@@ -10,6 +10,8 @@ Page({
    */
   data: {
     tabCur: 0,
+    //1：活动，5：课程
+    type_id: 1,
     scrollLeft: 0,
     pageSize: 5,
     orderData: [{
@@ -64,6 +66,7 @@ Page({
 
       //请求接口数据
       api.post(api.api_328, api.getSign({
+        TypeID: that.data.type_id,
         IsPay: isPay,
         Size: that.data.pageSize,
         Index: curItem.pageIndex
@@ -78,6 +81,7 @@ Page({
           curItem.loading = false
           curItem.pageIndex = curItem.pageIndex + 1
           res.data.Result.forEach(function(o, i) {
+            o.start_date = appG.util.date.dateFormat(o.start_date, 'yyyy-MM-dd hh:mm')
             curItem.list.push(o)
           })
           that.setData({
@@ -103,18 +107,39 @@ Page({
   },
 
   /**
+   * 查看券码详情
+   */
+  goDetails: function(e) {
+    let url = ''
+    let item = e.currentTarget.dataset.item
+    //1：活动
+    if (item.type == 1) {
+      url = '../../activity/activity?id='
+      //5：课程
+    } else if (item.type == 5) {
+      url = '../../course/course?id='
+    }
+    router.goUrl({
+      url: url + item.course_id
+    })
+  },
+
+  /**
    * 查看详情
    */
   goTicket: function(e) {
     router.goUrl({
-      url: '../memberTicket/index?id='+e.currentTarget.dataset.id
+      url: '../memberTicket/index?id=' + e.currentTarget.dataset.id
     })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function(opt) {
+    this.setData({
+      ['type_id']: opt.tid
+    })
     this.api_328()
   },
 

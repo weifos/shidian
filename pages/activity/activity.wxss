@@ -6,7 +6,6 @@ page{
   margin-top: 36rpx;
 }
 .activity__item{
-  overflow: hidden;
   margin: 0 0 36rpx 0;
   font-size: 27rpx;
   color: #707070;
