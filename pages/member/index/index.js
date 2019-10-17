@@ -71,8 +71,8 @@ Page({
   onLoad: function(options) {
     let that = this
     let wxUser = user.methods.getUser()
-
-    if (!wxUser.openid || wxUser.token) {
+ 
+    if (!wxUser.openid || !wxUser.token) {
       //检测成功回调
       passport.checkSession(function(openid) {
         wxUser = user.methods.getUser()
@@ -142,6 +142,7 @@ Page({
     this.setData({
       ['userInfo.login_name']: appG.util.getHideMobile(user.login_name)
     })
+   
     this.setData({
       ['userInfo.headimgurl']: user.headimgurl
     })
