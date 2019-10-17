@@ -68,3 +68,9 @@ page{
 .activity-list2{
   margin-top: 0rpx;
 }
+.tab-content{
+  padding: 0 20rpx;
+}
+.i-tab2 .tab-t{
+  border-bottom:2rpx solid #e0e0e0;
+}

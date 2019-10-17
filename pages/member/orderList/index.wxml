@@ -1,6 +1,6 @@
 <wxs src='../../../modules/wxsGlobal.wxs' module='gFilter' />
 
-<view class="container page-member-orderlist2">
+<view class="container page-member-orderlist2 bg-white">
   <!-- i-tab2 s -->
   <view class="i-tab2">
     <scroll-view scroll-x class="bg-white nav text-center">
@@ -48,6 +48,7 @@
                   <view class="dib vam">
                     <button class="cu-btn size-normal round bg-lightBlue text-white" wx:if="{{item.statusCode == 0}}">支付</button>
                     <button class="cu-btn size-normal round bg-gray text-white" wx:if="{{item.statusCode == 1}}">已支付</button>
+                    
                   </view>
                 </view>
               </view>

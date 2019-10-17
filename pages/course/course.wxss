@@ -6,6 +6,7 @@ page {
 
 .course-list {
   margin-top: 36rpx;
+  padding:0 20rpx;
 }
 
 .course__item {
@@ -86,4 +87,7 @@ page {
 
 .course-list2 {
   margin-top: 0rpx;
+}
+.i-tab2 .tab-t{
+  border-bottom:2rpx solid #e0e0e0;
 }

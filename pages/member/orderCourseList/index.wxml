@@ -5,7 +5,7 @@
   <view class="i-tab">
     <scroll-view scroll-x class="nav tab-t">
       <view class="flex text-center">
-        <view class="cu-item flex-sub {{index==tabCur?'bg-lightBlue cur':''}}" wx:for="{{orderData}}" wx:key bindtap="tabSelect" data-id="{{index}}" wx:for-item="item">
+        <view class="cu-item flex-sub {{index==tabCur?'bg-lightBlue cur text-white':''}}" wx:for="{{orderData}}" wx:key bindtap="tabSelect" data-id="{{index}}" wx:for-item="item">
           {{item.title}}
         </view>
       </view>
@@ -31,6 +31,7 @@
                 {{item.start_date}}
               </view>
               <view class="course__btns">
+              <button class="cu-btn round bg-white">取消</button>
                 <button class="cu-btn round bg-lightBlue text-white" bindtap="goTicket" data-id="{{item.id}}">券码</button>
                 <!-- <button class="cu-btn round bg-gray text-white">取消</button> -->
               </view>

@@ -1,6 +1,6 @@
 <wxs src='../../modules/wxsGlobal.wxs' module='gFilter' />
 
-<view class="ticket ticket-2" wx:if="{{type == 'into'}}">
+<view class="ticket ticket-2 {{used == true ? 'used' : ''}}" wx:if="{{type == 'into'}}">
   <view class="ticket__baseInfo dib vat">
     <view class="ticket__name ellipsis2">{{ticketInfo.name}}</view>
     <view class="ticket__time">
@@ -12,7 +12,7 @@
     <view class="ticket__quota" style="margin-top:5px;">退款</view>
   </view>
 </view>
-<view class="ticket ticket-1" wx:else>
+<view class="ticket ticket-1 {{used == true ? 'used' : ''}}" wx:else>
   <view class="ticket__baseInfo dib vat">
     <view class="ticket__name ellipsis">{{ticketInfo.name}}</view>
     <view class="ticket__time">

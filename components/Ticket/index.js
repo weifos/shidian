@@ -5,7 +5,8 @@ Component({
    */
   properties: {
     ticketInfo: Object,
-    type:String
+    type:String,
+    used:Boolean
   },
 
   /**

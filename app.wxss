@@ -145,19 +145,19 @@ page{
  
 }
 .i-tab .tab-t{
-  /* background-color: #B2B2B2; */
-  border-bottom:1px solid #e0e0e0; 
+  background-color: #B2B2B2;
+  /* border-bottom:1px solid #e0e0e0;  */
 }
 .i-tab .cu-item{
-  /* color:#444; */
+  color:#fff;
   margin:0;
   font-size: 27rpx;
 }
 .i-tab .cu-item.cur{
-  /* border:none; */
-  font-size:33rpx;
+  border:none;
+  /* /* font-size:33rpx; */
   font-weight: bold;
-  border-width: 8rpx; 
+  /* border-width: 8rpx;  */
 }
 .van-stepper .minus-class,.van-stepper .plus-class{
   width: 40rpx;
@@ -222,6 +222,7 @@ page{
 }
 .i-tab2 .nav .cu-item.cur{
   border-width: 11rpx;
+  font-weight: bold;
 }
 /* .list-3  */
 .list-3 .f-image{

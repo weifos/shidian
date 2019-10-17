@@ -45,9 +45,29 @@ width: 201rpx;
   margin: 0 24rpx;
 }
 .list-4{
-  padding: 60rpx 43rpx;
+  padding: 60rpx 43rpx 10rpx 43rpx;
 }
 .sec-recharge .cu-btn{
   width:205rpx;
   height:58rpx;
+}
+.other-price-view{
+  padding: 0 43rpx 60rpx 43rpx;
+  font-size: 28rpx;
+}
+.other-price-view .input-other{
+  border:2rpx solid #9BBAFF;
+  height: 70rpx;
+  line-height: 70rpx;
+  padding: 0 20rpx;
+  width: 400rpx;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 40rpx;
+  margin-right:10rpx;
+  font-size: 24rpx;
+}
+.placeholder{
+  color: #ddd;
+
 }

@@ -58,3 +58,9 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.used .ticket__baseInfo{
+  background-color: #d6d6d6;
+}
+.used .ticket__discountInfo{
+  background-color:#bbbbbb;
+}
