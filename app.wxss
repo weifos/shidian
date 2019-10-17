@@ -59,6 +59,7 @@
 
 .color-lightBlue,.text-lightBlue{color:#9BBAFF;}
 .text-lightGray{color: #B2B2B2;}
+.text-lightOrange{color: #FCA68C}
 
 .bg-lightBlue{
   background-color: #9BBAFF;
@@ -144,15 +145,19 @@ page{
  
 }
 .i-tab .tab-t{
-  background-color: #B2B2B2;
+  /* background-color: #B2B2B2; */
+  border-bottom:1px solid #e0e0e0; 
 }
 .i-tab .cu-item{
-  color:#fff;
+  /* color:#444; */
   margin:0;
   font-size: 27rpx;
 }
 .i-tab .cu-item.cur{
-  border:none;
+  /* border:none; */
+  font-size:33rpx;
+  font-weight: bold;
+  border-width: 8rpx; 
 }
 .van-stepper .minus-class,.van-stepper .plus-class{
   width: 40rpx;
