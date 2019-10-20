@@ -1,6 +1,6 @@
 <wxs src='../../modules/wxsGlobal.wxs' module='gFilter' />
 
-<view class="ticket ticket-2 {{used == true ? 'used' : ''}}" wx:if="{{type == 'into'}}">
+<view class="ticket ticket-2 {{ticketInfo.is_used ? 'used' : ''}}" wx:if="{{type == 'into'}}">
   <view class="ticket__baseInfo dib vat">
     <view class="ticket__name ellipsis2">{{ticketInfo.name}}</view>
     <view class="ticket__time">
@@ -12,7 +12,7 @@
     <view class="ticket__quota" style="margin-top:5px;">退款</view>
   </view>
 </view>
-<view class="ticket ticket-1 {{used == true ? 'used' : ''}}" wx:else>
+<view class="ticket ticket-1 {{ticketInfo.is_used ? 'used' : ''}}" wx:else>
   <view class="ticket__baseInfo dib vat">
     <view class="ticket__name ellipsis">{{ticketInfo.name}}</view>
     <view class="ticket__time">
@@ -21,8 +21,8 @@
   </view>
   <view class="ticket__discountInfo tac dib vat">
     <view class="ticket__discount">
-      <text wx:if='{{ticketInfo.type==5}}' >{{ticketInfo.discount}}折</text>
-      <text wx:if='{{ticketInfo.type==1}}' >{{ticketInfo.discount}}元</text>
+      <text wx:if='{{ticketInfo.type==5}}'>{{ticketInfo.discount}}折</text>
+      <text wx:if='{{ticketInfo.type==1}}'>{{ticketInfo.discount}}元</text>
     </view>
     <view class="ticket__quota">满{{ticketInfo.quota}}元可用</view>
   </view>

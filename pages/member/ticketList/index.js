@@ -78,6 +78,7 @@ Page({
             id: o.id,
             name: name,
             type: o.type,
+            is_used: false,
             discount: o.amount,
             quota: o.full_amount,
             startTime: appG.util.date.dateFormat(o.expiry_sdate, 'yyyy-MM-dd'),
@@ -88,6 +89,7 @@ Page({
           if (that.data.isSelect) {
             if (o.module == 0) {
               if (o.is_used) {
+                ele.is_used = true
                 tmpUse.push(ele)
               } else {
                 tmpDisUse.push(ele)
@@ -96,6 +98,7 @@ Page({
             }
           } else {
             if (o.is_used) {
+              ele.is_used = true
               tmpUse.push(ele)
             } else {
               tmpDisUse.push(ele)

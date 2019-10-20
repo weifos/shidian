@@ -71,7 +71,7 @@ Page({
   onLoad: function(options) {
     let that = this
     let wxUser = user.methods.getUser()
- 
+  
     if (!wxUser.openid || !wxUser.token) {
       //检测成功回调
       passport.checkSession(function(openid) {
