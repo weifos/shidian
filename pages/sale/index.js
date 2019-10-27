@@ -16,6 +16,10 @@ Page({
     isSubmit: false,
     //选择sku弹框
     isSelectSKU: false,
+    //是否加载完成
+    loading: true,
+    //首次加载
+    isInit: true,
     //商品详情
     productDetails: {
       product: {
@@ -35,8 +39,16 @@ Page({
     //当前分类选中=索引
     curIndex: 0,
     //页面数据
-    result: []
+    result: [{  
+      loading: false,
+      firstLoad: true,
+      loadComplete: false,
+      pageIndex: 0,
+      totalPage: 0,
+      list: []
+    }]
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -45,44 +57,98 @@ Page({
     this.setData({
       banners: appGlobal.storage.swiper.getCoffeeBanner()
     })
-
     let store = user.methods.getStore()
     this.setData({
       store_id: store.store_id
     })
+    //设置类别ID
+    this.setCatgId(opt.id)
     //加载购物车
     this.api_302()
     //加载数据
-    this.api_202(opt.id)
+    this.api_202()
   },
 
   /**
-   * 初始化加载获
+   * 初始化加载获商品信息
    */
-  api_202: function(catg_id) {
-    var that = this;
-    api.post(api.api_202, api.getSign({
-      StoreID: that.data.store_id,
-      CatgID: catg_id,
-      Size: that.data.pageSize
-    }), function(app, res) {
-      if (res.data.Basis.State != api.state.state_200) {
-        wx.showToast({
-          title: res.data.Basis.Msg,
-          icon: 'none',
-          duration: 3000
-        })
-      } else {
-        that.setData({
-          result: res.data.Result.catgs
-        })
+  api_202: function() {
+    var that = this
+    //当前操作的分类
+    var curItem = that.data.result[that.data.curIndex]
+    //是否加载中
+    if (!curItem.loading && curItem.pageIndex < curItem.totalPage || curItem.firstLoad) {
+      //加载完成
+      curItem.loading = true
+      //请求接口
+      api.post(api.api_202, api.getSign({
+        Index: curItem.pageIndex,
+        StoreID: that.data.store_id,
+        CatgID: that.data.catgId,
+        IsInit: that.data.isInit,
+        Size: that.data.pageSize
+      }), function(app, res) {
+        if (res.data.Basis.State != api.state.state_200) {
+          wx.showToast({
+            title: res.data.Basis.Msg,
+            icon: 'none',
+            duration: 3000
+          })
+        } else {
+          curItem.loading = false
+          curItem.pageIndex = curItem.pageIndex + 1
+          //初始化加载
+          if (that.data.isInit) {
+            curItem.list = []
+            res.data.Result.catgs.map((ele, i) => {
+              ele.loading = false
+              ele.firstLoad = true 
+              ele.totalPage = 0
+              ele.pageIndex = 0
+              ele.list = []
 
-        //初始化数据
-        that.initData(res.data.Result.catgs, res.data.Result.productList)
-        //设置选中类别
-        that.setCatgId(catg_id)
-      }
-    })
+              //设置分类对应选中
+              if (that.data.catgId == ele.id) {
+                //设置当前分类对应商品总行数
+                let totalRow = res.data.Result.totalRow
+                ele.firstLoad = false
+                ele.pageIndex = 1
+                //设置当前选中分类
+                that.setData({
+                  curIndex: i
+                })
+                ele.totalPage = parseInt(totalRow / that.data.pageSize) + (totalRow % that.data.pageSize == 0 ? 0 : 1)
+                res.data.Result.productList.forEach(function(o, i) {
+                  ele.list.push(o)
+                })
+              }
+              
+              that.setData({
+                isInit: false
+              })
+            })
+            //设置选中分类
+            //that.setCatgId(catg_id)
+            //初始化数据
+            that.setData({
+              result: res.data.Result.catgs
+            })
+            console.log(res.data.Result.catgs)
+          } else {
+            //首次加载
+            curItem.firstLoad = false
+            //console.log(curItem)
+            res.data.Result.productList.forEach(function (o, i) {
+              curItem.list.push(o)
+            })
+          
+            that.setData({
+              ['result[' + that.data.curIndex + ']']: curItem
+            })
+          }
+        }
+      })
+    }
   },
 
   /**
@@ -175,30 +241,7 @@ Page({
       }
     })
   },
-
-  /**
-   * 绑定商品数据
-   */
-  initData: function(catgs, pdtList) {
-    //obj.pdtList = []
-    this.data.result.map(function(obj, index, arr) {
-      //分类对应的商品集合
-      obj.pdtList = []
-      //商品对应分类
-      pdtList.forEach(function(o, i, a) {
-        if (obj.id == o.gcatg_id) {
-          obj.pdtList.push(o)
-        }
-      })
-    })
-
-    //更新结果集合
-    this.setData({
-      result: this.data.result
-    })
-
-  },
-
+ 
   /**
    * 设置选择类别
    */
@@ -207,7 +250,14 @@ Page({
     let catg_id = e.currentTarget.dataset.id
     //设置选中类别
     this.setCatgId(catg_id)
+    //当前操作的分类
+    var curItem = this.data.result[this.data.curIndex]
+    if (curItem.firstLoad){
+      //加载数据
+      this.api_202()
+    }
   },
+
   /**
    * 选择商品SKU
    */
@@ -221,12 +271,14 @@ Page({
       isSelectSKU: true
     })
   },
+
   /**
    * 更新购物车
    */
   updateSCart(e) {
     this.api_302()
   },
+
   /**
    * 菜单跳转
    */
@@ -241,7 +293,7 @@ Page({
       return
     }
     router.goUrl({
-        url: '../shoppingCart/index'
+      url: '../shoppingCart/index'
     })
   },
 
@@ -276,17 +328,23 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
-
-  },
+  onPullDownRefresh: function() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function() {},
 
+  /**
+   * 咖啡下拉局部滚动
+   */
+  productScroll: function(e) {
+    //console.log(e.detail.scrollTop)
+    if (e.detail.scrollTop > 305) {
+      let catgId = this.data.catgId
+      this.api_202(catgId)
+    }
   },
-
   /**
    * 用户点击右上角分享
    */

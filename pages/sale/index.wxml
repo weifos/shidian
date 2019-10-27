@@ -14,9 +14,9 @@
     </view>
     <!-- tab-c s -->
     <view class="tab-c">
-      <view class="tab-c__wrap">
+      <scroll-view bindscroll="productScroll" scroll-y="true" class="tab-c__wrap">
         <!-- <view class="txt-todayRecommend">今日推荐咖啡：冰咖啡</view> -->
-        <view class="tab-c__item" wx:for="{{result[curIndex].pdtList}}" wx:for-item="item" wx:key="key">
+        <view class="tab-c__item" wx:for="{{result[curIndex].list}}" wx:for-item="item" wx:key="key">
           <view class="item-img">
             <image src="{{item.img_url}}"></image>
           </view>
@@ -35,7 +35,7 @@
             </view>
           </view>
         </view>
-      </view>
+      </scroll-view>
     </view>
     <!-- tab-c e -->
   </view>

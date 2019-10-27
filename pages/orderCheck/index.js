@@ -61,9 +61,12 @@ Page({
    */
   api_317(no) {
     let that = this
+    let store = user.methods.getStore()
+
     api.post(api.api_317,
       api.getSign({
-        OrderNo: no
+        OrderNo: no,
+        StoreID: store.store_id
       }),
       function(vue, res) {
         if (res.data.Basis.State == api.state.state_200) {
