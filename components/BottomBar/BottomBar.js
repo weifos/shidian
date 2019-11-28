@@ -84,7 +84,7 @@ Component({
           //设置扫码门店信息
           user.methods.setStore(res.data.Result)
           router.goUrl({
-            url: '../coffee/coffee'
+            url: '/pages/coffee/coffee'
           })
         }
       });

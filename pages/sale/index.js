@@ -39,7 +39,7 @@ Page({
     //当前分类选中=索引
     curIndex: 0,
     //页面数据
-    result: [{  
+    result: [{
       loading: false,
       firstLoad: true,
       loadComplete: false,
@@ -102,7 +102,7 @@ Page({
             curItem.list = []
             res.data.Result.catgs.map((ele, i) => {
               ele.loading = false
-              ele.firstLoad = true 
+              ele.firstLoad = true
               ele.totalPage = 0
               ele.pageIndex = 0
               ele.list = []
@@ -115,14 +115,14 @@ Page({
                 ele.pageIndex = 1
                 //设置当前选中分类
                 that.setData({
-                  curIndex: i
-                })
-                ele.totalPage = parseInt(totalRow / that.data.pageSize) + (totalRow % that.data.pageSize == 0 ? 0 : 1)
+                    curIndex: i
+                  })
+                  .ele.totalPage = parseInt(totalRow / that.data.pageSize) + (totalRow % that.data.pageSize == 0 ? 0 : 1)
                 res.data.Result.productList.forEach(function(o, i) {
                   ele.list.push(o)
                 })
               }
-              
+
               that.setData({
                 isInit: false
               })
@@ -138,10 +138,10 @@ Page({
             //首次加载
             curItem.firstLoad = false
             //console.log(curItem)
-            res.data.Result.productList.forEach(function (o, i) {
+            res.data.Result.productList.forEach(function(o, i) {
               curItem.list.push(o)
             })
-          
+
             that.setData({
               ['result[' + that.data.curIndex + ']']: curItem
             })
@@ -241,7 +241,7 @@ Page({
       }
     })
   },
- 
+
   /**
    * 设置选择类别
    */
@@ -252,7 +252,7 @@ Page({
     this.setCatgId(catg_id)
     //当前操作的分类
     var curItem = this.data.result[this.data.curIndex]
-    if (curItem.firstLoad){
+    if (curItem.firstLoad) {
       //加载数据
       this.api_202()
     }

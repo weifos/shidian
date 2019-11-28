@@ -383,6 +383,13 @@ module.exports = {
     },
   },
   util: {
+    //占位符
+    getPlaceholder: function(str1, str2) {
+      if (str1.toString().length >= str2.toString().length) {
+        let tmp = str1.substring(0, str1.length - str2.toString().length)
+        return tmp + str2
+      }
+    },
     //比对sku字符串
     compareSku: function(sku1, sku2) {
       let exist = 0
@@ -619,23 +626,23 @@ module.exports = {
       }
     },
     //获取页面请求参数
-    getUrlParam: function(name) {
-      let search = window.location.search;
-      let hash = window.location.hash;
-      if (search.length) {
-        let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-        let r = search.substr(1).match(reg);
-        if (r != null) return unescape(decodeURI(r[2]));
-        return null;
-      } else if (hash.length) {
-        let reg = new RegExp(name + '=([^&]+)')
-        let match = reg.exec(hash)
-        if (match) {
-          return match[1]
-        }
-        return match
+    getUrlParam: function(path, name) {
+      var url = path.toString()　　　
+      var arrObj = url.split("?")
+      if (arrObj.length > 1) {　　　　　　
+        var arrPara = arrObj[1].split("&")　　　　
+        var arr　　　　　
+        for (var i = 0; i < arrPara.length; i++) {　　　　　　　　
+          arr = arrPara[i].split("=")　　　　　　
+          if (arr != null && arr[0] == name) {　　　　　　　　　　
+            return arr[1]　　　　　　
+          }
+        }　
+        return ""　　　
+      }　　　　
+      else {　　　　　　
+        return ""　　　
       }
-      return null;
     },
     //获取页面请求参数中的ID
     getRequestId: function(name) {
@@ -828,12 +835,12 @@ module.exports = {
         wx.setStorageSync("index_banner", JSON.stringify(result))
       },
       //设置咖啡banner
-      setCoffeeBanner: function (result) {
+      setCoffeeBanner: function(result) {
         //同步设置banner
         wx.setStorageSync("coffee_banner", JSON.stringify(result))
       },
       //设置课程banner
-      setCourseBanner: function (result) {
+      setCourseBanner: function(result) {
         //同步设置banner
         wx.setStorageSync("course_banner", JSON.stringify(result))
       },
@@ -846,7 +853,7 @@ module.exports = {
         return []
       },
       //获取咖啡banner
-      getCoffeeBanner: function () {
+      getCoffeeBanner: function() {
         var result = wx.getStorageSync('coffee_banner')
         if (result.length) {
           return JSON.parse(result)
@@ -854,7 +861,7 @@ module.exports = {
         return []
       },
       //获取咖啡banner
-      getCourseBanner: function () {
+      getCourseBanner: function() {
         var result = wx.getStorageSync('course_banner')
         if (result.length) {
           return JSON.parse(result)

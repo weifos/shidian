@@ -1,4 +1,3 @@
-<!--component/BottomBar.wxml-->
 <view class="cu-bar tabbar bg-white">
   <view class="action" bindtap='nav' data-url="/pages/index/index" data-index="0">
     <view class="cuIcon-cu-image cuIcon-cu-image-1 {{tabIndex == 0?' cur':''}}">

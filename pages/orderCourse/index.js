@@ -111,7 +111,6 @@ Page({
       function(vue, res) {
         if (res.data.Basis.State == api.state.state_200) {
           setTimeout(function() {
-            debugger
             router.goUrl({
               url: '../member/orderCourseList/index?tid=' + that.data.orderInfo.type
             })

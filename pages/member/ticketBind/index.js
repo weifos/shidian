@@ -66,7 +66,7 @@ Page({
           duration: 3000
         })
       } else {
-        debugger
+         
         router.goUrl({
           url: '../index/index'
         })

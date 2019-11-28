@@ -104,7 +104,7 @@ Page({
     //获取用户信息
     let _user = user.methods.getUser()
     this.setData({
-      user_code: _user.user_id + '#' + this.data.cid + '#'
+      user_code: _user.user_id + 'p' + this.data.cid + 'p'
     })
     this.bindUser(_user)
 
