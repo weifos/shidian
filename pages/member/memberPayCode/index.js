@@ -103,11 +103,16 @@ Page({
 
     //获取用户信息
     let _user = user.methods.getUser()
+    //获取用户ID信息
+    let str1 = appG.util.getPlaceholder('000000000000000', _user.user_id)
+    //获取用户优惠券
+    let str2 = appG.util.getPlaceholder('000000000000000', this.data.cid)
+     
+    //设置付款码
     this.setData({
-      user_code: _user.user_id + 'p' + this.data.cid + 'p'
+      user_code: str1 + str2
     })
     this.bindUser(_user)
-
     this.createQRCode(this.data.user_code)
     this.startSetInter()
   },

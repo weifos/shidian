@@ -1,4 +1,5 @@
 var api = require("../../modules/api.js")
+var appG = require("../../modules/appGlobal.js")
 var router = require("../../modules/router.js")
 var user = require("../../modules/userInfo.js")
 var app = getApp()
@@ -55,24 +56,26 @@ Component({
             // 调起扫码
             wx.scanCode({
               success(res) {
-                if (res.result) {
-                  //查询对应的吧台和门店信息
-                  that.api_204(res.result)
-                }
+                let store_id = appG.util.getUrlParam(res.path, "store_id")
+                let bar_counter_id = appG.util.getUrlParam(res.path, "bar_counter_id")
+                that.api_204({
+                  store_id: store_id,
+                  bar_counter_id: bar_counter_id
+                })
               }
             })
           } else if (res.cancel) {}
         }
       })
     },
-
     /**
      * 扫码点单
      */
-    api_204: function(no) {
+    api_204: function(result) {
       var that = this
       api.post(api.api_204, api.getSign({
-        No: no
+        StoreID: result.store_id,
+        BarCounterID: result.bar_counter_id
       }), function(app, res) {
         if (res.data.Basis.State != api.state.state_200) {
           wx.showToast({
