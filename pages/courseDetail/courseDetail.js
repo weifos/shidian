@@ -78,7 +78,7 @@ Page({
         that.setData({
           imgurl: res.data.Result.imgurl
         })
-
+ 
         //appG.util.date.dateFormat
         let dateNow = appG.util.date.getDateTimeNow()
         //是否过期
@@ -130,13 +130,14 @@ Page({
           duration: 3000
         })
       } else {
+        let param = '?no=' + res.data.Result.serial_no + '&store_id=' + res.data.Result.store_id
         if (that.data.result.type == 5) {
           router.goUrl({
-            url: '../orderCourse/index?no=' + res.data.Result
+            url: '../orderCourse/index' + param
           })
         } else {
           router.goUrl({
-            url: '../member/orderCourseList/index?no=' + res.data.Result + "&tid=" + that.data.result.type
+            url: '../member/orderCourseList/index' + param + "&tid=" + that.data.result.type
           })
         }
       }

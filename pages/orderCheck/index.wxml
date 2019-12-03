@@ -1,5 +1,4 @@
 <wxs src='../../modules/wxsGlobal.wxs' module='gFilter' />
-
 <view class="container page-orderCheck">
   <view class="section">
     <view class="section__title">

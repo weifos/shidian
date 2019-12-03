@@ -17,6 +17,7 @@ Page({
     user_code: 0,
     balance: 0,
     serial_no: '',
+    amount: '',
     timer: {
       setInter: '',
       num: 0
@@ -30,6 +31,11 @@ Page({
         list: []
       }
     ]
+  },
+  bindAmountInput: function(e) {
+    this.setData({
+      amount: e.detail.value
+    })
   },
 
   tabSelect(e) {
@@ -45,6 +51,17 @@ Page({
   rechargeSelect(e) {
     this.setData({
       checkIndex: e.currentTarget.dataset.id
+    })
+  },
+
+  /**
+   * 选择充值
+   */
+  selectInput(e) {
+    let that = this
+    console.log(that.data.tabData[0].list.length)
+    this.setData({
+      checkIndex: that.data.tabData[0].list.length
     })
   },
 
@@ -67,7 +84,77 @@ Page({
   },
 
   /**
-   * 加载充值
+   * 立即充值
+   */
+  goRecharge() {
+    let that = this
+    if (this.data.checkIndex == that.data.tabData[0].list.length) {
+      if (!appG.verifyStr.isLGZeroPrice(that.data.amount)) {
+        wx.showToast({
+          title: '充值金额范围1至10000',
+          icon: 'none',
+          duration: 3000
+        })
+        return
+      }
+    }
+
+    if (this.data.checkIndex == -1) {
+      wx.showToast({
+        title: '请选择充值金额',
+        icon: 'none',
+        duration: 3000
+      })
+      return
+    }
+
+    let item = that.data.tabData[0].list[that.data.checkIndex]
+    api.post(api.api_331,
+      api.getSign({
+        ID: item == undefined ? 0 : item.id,
+        Amount: that.data.amount
+      }),
+      function(app, res) {
+        if (res.data.Basis.State != api.state.state_200) {
+          wx.showToast({
+            title: res.data.Basis.Msg,
+            icon: 'none',
+            duration: 3000
+          })
+        } else {
+
+          that.setData({
+            serial_no: res.data.Result.serial_no
+          })
+
+          //微信支付
+          wx.requestPayment({
+            appId: res.data.Result.wechatpay.appId,
+            timeStamp: res.data.Result.wechatpay.timeStamp,
+            nonceStr: res.data.Result.wechatpay.nonceStr,
+            package: res.data.Result.wechatpay.package,
+            signType: res.data.Result.wechatpay.signType,
+            paySign: res.data.Result.wechatpay.paySign,
+            success: function(res) {
+              if (res.errMsg = "requestPayment:ok") {
+                that.api_332()
+              }
+            },
+            fail: function(res) {
+              //console.log(res)
+            },
+            complete: function(res) {
+              //console.log(res)
+            }
+          })
+
+        }
+      })
+
+  },
+
+  /**
+   * 加载充值列表
    */
   api_330: function() {
     var that = this;
@@ -155,13 +242,16 @@ Page({
     api.post(api.api_332, api.getSign({
       No: that.data.serial_no
     }), function(app, res) {
-      if (res.data.Basis.State != api.state.state_200) {
+      if (res.data.Basis.State != api.state.state_200) { 
         wx.showToast({
           title: res.data.Basis.Msg,
           icon: 'none',
           duration: 3000
         })
       } else {
+        // if (getCurrentPages().length != 0) {
+        //   getCurrentPages()[getCurrentPages().length - 1].onLoad()
+        // }
         router.goUrl({
           url: '../../member/index/index'
         })

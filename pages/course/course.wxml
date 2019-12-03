@@ -23,7 +23,10 @@
             </view>
             <view class="course__text">
               <view class="course__title ellipsis">{{item.name}}</view>
-              <view class="course__name ellipsis2">{{item.intro}}</view>
+              <view class="course__name ellipsis" style="height:38rpx;">{{item.teacher_name}}·{{item.teacher_title}}</view>
+              <view class="course__name ellipsis" style="height:38rpx;">
+              {{gFilter.cutSubString(item.intro,36)}}
+              </view>
               <view class="course__address ellipsis2">上课地点：{{item.province}}{{item.city}}{{item.county}}{{item.address}}</view>
               <view class="course__time">{{item.start_date}}</view>
               <view class="course__btns">

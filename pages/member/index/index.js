@@ -27,11 +27,11 @@ Page({
         "icon": "paycode"
       },
       {
-        "name": "我的活动",
+        "name": "我的课堂",
         "icon": "activity"
       },
       {
-        "name": "我的课堂",
+        "name": "我的活动",
         "icon": "course"
       }
     ],

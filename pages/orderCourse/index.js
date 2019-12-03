@@ -40,8 +40,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(opt) {
-    //跳转地址 
-    this.api_327(opt.no)
+    this.api_327(opt.no, opt.store_id)
   },
 
   /**
@@ -63,13 +62,12 @@ Page({
   /**
    * 微信小程序预支付订单
    */
-  api_327(no) {
+  api_327(no, store_id) {
     let that = this
-    let store = user.methods.getStore()
     api.post(api.api_327,
       api.getSign({
         OrderNo: no,
-        StoreID: store.store_id
+        StoreID: store_id
       }),
       function(vue, res) {
         if (res.data.Basis.State == api.state.state_200) {

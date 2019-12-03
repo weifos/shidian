@@ -42,9 +42,11 @@
                 </view>
               </view>
             </view>
-            <!-- <view class="other-price-view text-lightBlue"><input placeholder="其它金额" placeholder-class="placeholder" class="input-other"></input>元</view> -->
+            <view class="other-price-view text-lightBlue">
+              <input placeholder="其它金额" type="number" bindtap="selectInput" placeholder-class="placeholder" bindinput="bindAmountInput" class="input-other"  style="{{checkIndex==tabData[0].list.length?'border: 2rpx solid red;':''}}"></input>元
+            </view>
             <view class="btns-bar tac">
-              <button class="cu-btn round bg-lightBlue text-white fz33" bindtap="api_331">去充值</button>
+              <button class="cu-btn round bg-lightBlue text-white fz33" bindtap="goRecharge">去充值</button>
             </view>
           </view>
         </view>

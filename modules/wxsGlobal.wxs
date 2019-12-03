@@ -111,7 +111,7 @@ module.exports = {
   },
   //字符串截取
   cutSubString: function(str, len) {
-    if (!str.length || !len.length) {
+    if (!str.length) {
       return ''
     }
     var m = str.length

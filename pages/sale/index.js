@@ -61,6 +61,7 @@ Page({
     this.setData({
       store_id: store.store_id
     })
+
     //设置类别ID
     this.setCatgId(opt.id)
     //加载购物车
@@ -97,6 +98,7 @@ Page({
         } else {
           curItem.loading = false
           curItem.pageIndex = curItem.pageIndex + 1
+           
           //初始化加载
           if (that.data.isInit) {
             curItem.list = []
@@ -115,9 +117,10 @@ Page({
                 ele.pageIndex = 1
                 //设置当前选中分类
                 that.setData({
-                    curIndex: i
-                  })
-                  .ele.totalPage = parseInt(totalRow / that.data.pageSize) + (totalRow % that.data.pageSize == 0 ? 0 : 1)
+                  curIndex: i
+                })
+
+                ele.totalPage = parseInt(totalRow / that.data.pageSize) + (totalRow % that.data.pageSize == 0 ? 0 : 1)
                 res.data.Result.productList.forEach(function(o, i) {
                   ele.list.push(o)
                 })
@@ -308,7 +311,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    if(!this.data.isInit){
+      this.api_302() 
+    }
   },
 
   /**

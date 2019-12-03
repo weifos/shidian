@@ -315,7 +315,20 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-
+    // let pages = getCurrentPages(); //页面栈
+    // let beforePage = pages[pages.length - 2]
+ 
+    // wx.navigateTo({       //非tabBar页面的跳转
+    //   url: '/' + beforePage.route,
+    //   success: function () {
+    //     if (beforePage.route == 'pages/sale/index') {
+    //       beforePage.api_302()
+    //     }
+    //   },
+    //   fail: (err) => {
+    //     console.log(err)
+    //   }
+    // })
   },
 
   /**

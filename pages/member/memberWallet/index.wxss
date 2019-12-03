@@ -2,6 +2,9 @@
 page{
   background: #fff;
 }
+.cur{
+  border: 2rpx solid red;
+}
 .sec-wallet{
   padding:60rpx 0;
 }

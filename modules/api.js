@@ -7,7 +7,7 @@ import md5 from './md5'
 //let domain = "http://sd.api.shidian.com/"
 //let res_domain = "http://sd.res.shidian.com/"
 //正式环境
-let domain = "http://api.sdibook.com/"
+let domain = "https://api.sdibook.com/"
 let res_domain = "http://res.sdibook.com/"
 
 /// <summary>
