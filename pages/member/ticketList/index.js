@@ -12,7 +12,16 @@ Page({
     tabCur: 0,
     scrollLeft: 0,
     pageSize: 5,
+    //流水号
+    serial_no: '',
+    //是否选中优惠券
     isSelect: false,
+    //是否是扫码场景
+    isPayCode: false,
+    //门店ID
+    store_id: 0,
+    //支付时指定查看的优惠券类型
+    module: -1,
     orderData: [{
         type: -1,
         title: "全部",
@@ -66,30 +75,35 @@ Page({
         let tmpDisUse = []
         let tmpUse = []
         res.data.Result.forEach(function(o, i) {
-          let name = ''
-          //课程优惠券
-          if (o.module == 1) {
-            name = '课程券'
-          } else {
-            name = '咖啡饮品券'
-          }
-
           let ele = {
             id: o.id,
-            name: name,
+            name: '',
             type: o.type,
-            is_used: false,
+            is_used: o.is_used,
             discount: o.amount,
             quota: o.full_amount,
             startTime: appG.util.date.dateFormat(o.expiry_sdate, 'yyyy-MM-dd'),
             endTime: appG.util.date.dateFormat(o.expiry_edate, 'yyyy-MM-dd')
           }
+          //图书优惠券
+          if (o.module == 1) {
+            ele.name = '图书优惠券'
+            //咖啡饮品券
+          } else if (o.module == 2) {
+            ele.name = '咖啡饮品券'
+            //3：好物优惠券
+          } else if (o.module == 3) {
+            ele.name = '好物优惠券'
+            //4：课堂优惠券
+          } else if (o.module == 4) {
+            ele.name = '课堂优惠券'
+          }
 
+          ele.module = o.module
           //支付选择优惠券情况，只能选商品券
           if (that.data.isSelect) {
-            if (o.module == 0) {
+            if (o.module == ele.module) {
               if (o.is_used) {
-                ele.is_used = true
                 tmpUse.push(ele)
               } else {
                 tmpDisUse.push(ele)
@@ -97,8 +111,7 @@ Page({
               tmpAll.push(ele)
             }
           } else {
-            if (o.is_used) {
-              ele.is_used = true
+            if (ele.is_used) {
               tmpUse.push(ele)
             } else {
               tmpDisUse.push(ele)
@@ -125,14 +138,37 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(opt) {
+
     if (opt.s == 1) {
       this.setData({
-        ['isSelect']: true
+        isSelect: true
       })
       this.setData({
-        ['tabCur']: 1
+        tabCur: 1
       })
     }
+
+    //流水号
+    if (opt.sn != undefined) {
+      this.setData({
+        serial_no: opt.sn
+      })
+    }
+
+    //付款码使用的场景，课堂券不能用
+    if (opt.isPayCode != undefined) {
+      this.setData({
+        isPayCode: opt.isPayCode
+      })
+    }
+
+    //优惠券商品线类型
+    if (opt.m != undefined) {
+      this.setData({
+        module: opt.m
+      })
+    }
+
     //加载数据
     this.api_334()
   },
@@ -160,9 +196,28 @@ Page({
       title = discount + '折'
     }
 
-    router.goUrl({
-      url: '../memberPayCode/index?cid=' + id + "&cname=" + name + "&tname=" + title
-    })
+    //付款码场景
+    if (this.data.isPayCode) {
+      router.goUrl({
+        url: '../memberPayCode/index?cid=' + id + "&cname=" + name + "&tname=" + title
+      })
+    } else {
+      //课程支付页面跳转
+      if (this.data.module == 4) {
+        let param = '?no=' + this.data.serial_no + '&cid=' + id + "&cname=" + name + "&tname=" + title
+        router.goUrl({
+          url: '../../orderCourse/index' + param
+        })
+
+        //咖啡饮品
+      } else if (this.data.module == 2) {
+        let param = '?no=' + this.data.serial_no + '&cid=' + id + "&cname=" + name + "&tname=" + title
+        router.goUrl({
+          url: '../../orderCheck/index' + param
+        })
+      }
+    }
+
   },
 
   /**

@@ -112,7 +112,7 @@ Page({
     api.post(api.api_331,
       api.getSign({
         ID: item == undefined ? 0 : item.id,
-        Amount: that.data.amount
+        Amount: that.data.amount == '' ? 0 : that.data.amount
       }),
       function(app, res) {
         if (res.data.Basis.State != api.state.state_200) {

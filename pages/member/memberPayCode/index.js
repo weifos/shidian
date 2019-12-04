@@ -60,9 +60,10 @@ Page({
    */
   selectTicket: function() {
     router.goUrl({
-      url: '../ticketList/index?s=1'
+      url: '../ticketList/index?s=1&isPayCode=true'
     })
   },
+
   /**
    * 生成二维码
    * 用户ID#优惠券ID#时间戳
@@ -107,7 +108,7 @@ Page({
     let str1 = appG.util.getPlaceholder('000000000000000', _user.user_id)
     //获取用户优惠券
     let str2 = appG.util.getPlaceholder('000000000000000', this.data.cid)
-     
+
     //设置付款码
     this.setData({
       user_code: str1 + str2
@@ -116,6 +117,7 @@ Page({
     this.createQRCode(this.data.user_code)
     this.startSetInter()
   },
+  
   /**
    * 加载微信用户信息
    */

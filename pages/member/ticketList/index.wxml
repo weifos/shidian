@@ -13,7 +13,7 @@
       <view class="tab-c bg-white">
         <view class="ticket-list tac">
           <view class="f-item hidden" wx:key wx:for="{{orderData[tabCur].list}}" wx:if="{{orderData[tabCur].list.length > 0}}">
-            <i-ticket ticketInfo="{{item}}" bindtap="checkTicket" data-item="{{item}}"></i-ticket>
+            <i-ticket wx:if="{{(item.module == module && module != -1) || module == -1}}" ticketInfo="{{item}}" bindtap="checkTicket" data-item="{{item}}"></i-ticket>
           </view>
         </view>
         <i-nodata content="您还没有优惠券哦~" wx:if="{{orderData[tabCur].list.length == 0}}">

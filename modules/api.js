@@ -130,6 +130,10 @@ module.exports = {
   api_336: domain + "336",
   //绑定储值卡
   api_337: domain + "337",
+  //微信小程序支付课程订单
+  api_338: domain + "338",
+  //微信小程序预支付咖啡订单
+  api_339: domain + "339",
   //获取签名
   getSign(obj = {}) {
     let {

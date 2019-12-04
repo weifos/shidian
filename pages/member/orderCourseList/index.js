@@ -133,6 +133,21 @@ Page({
     })
   },
 
+
+  /**
+   * 去支付
+   */
+  goPay: function(e) {
+    let item = e.currentTarget.dataset.item
+    let param = '?no=' + item.serial_no + '&store_id=' + item.store_id
+    if (item.type == 5) {
+      router.goUrl({
+        url: '../../orderCourse/index' + param
+      })
+    }
+  },
+
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -142,6 +157,7 @@ Page({
     })
     this.api_328()
   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -16,7 +16,8 @@
         <text class="no-ticket" wx:if="{{ticketInfo.length == 0}}">（暂无可用的优惠券）</text>
       </view>
       <view bindtap="checkTicket">
-        <button class="cu-btn round line-black">选择</button>
+        <text wx:if="{{cid>0&&cname!=''&&tname!=''}}" style="color:#5B9AFA;margin-right:10px;">{{cname}} {{tname}}</text>
+        <button class="cu-btn round line-black" bindtap="selectTicket">选择</button>
       </view>
     </view>
     <view class="tac mt20 mb20" wx:if="{{ticketInfo.id > 0}}">

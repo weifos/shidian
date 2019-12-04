@@ -1,7 +1,7 @@
 <!--pages/member/memberTicket/index.wxml-->
 <view class="container page-member-ticket">
   <view class="title-1">
-    <text>课堂入场券</text>
+    <text>入场券</text>
   </view>
   <view class="ticket-list tac">
     <view class="ticket__item dib" wx:for="{{result}}">
