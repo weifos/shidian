@@ -70,4 +70,4 @@
   </view>
 
 </view>
-<i-bottombar index="-1"></i-bottombar>
+<i-bottombar index="-1" headUrl="{{userInfo.headimgurl}}"></i-bottombar>

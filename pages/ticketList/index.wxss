@@ -1,8 +1,0 @@
-/* pages/ticketList/index.wxss */
-.ticket-list{
-  padding-top: 54rpx;
-}
-.ticket__item{
-  width: 595rpx;
-  margin:0 auto 36rpx auto;
-}

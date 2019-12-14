@@ -117,6 +117,11 @@ module.exports = {
       wxuser.openid = userInfo.openid
       wxuser.headimgurl = e.detail.userInfo.avatarUrl
       wxuser.nickname = e.detail.userInfo.nickName
+      wxuser.language = e.detail.userInfo.language
+      wxuser.country = e.detail.userInfo.country
+      wxuser.province = e.detail.userInfo.province
+      wxuser.city = e.detail.userInfo.city
+      wxuser.sex = e.detail.userInfo.gender
       api.post(api.api_105, api.getSign({
           WeChatUser: wxuser
         }),

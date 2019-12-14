@@ -48,8 +48,7 @@
 <view class="order-tool-bar">
   <view class="cu-bar tabbar">
     <view class="bg-darkGray info">共计￥{{gFilter.formaToMoney(orderInfo.actual_amount)}}
-      <text class="discounts" wx:if="{{orderInfo.coupon_amount>0}}">|  优惠{{gFilter.formaToMoney(orderInfo.coupon_amount)}}元</text>
-      <text class="discounts" wx:if="{{orderInfo.vip_dis_amount>0}}">|  优惠{{gFilter.formaToMoney(orderInfo.vip_dis_amount)}}元</text>
+      <text class="discounts" wx:if="{{orderInfo.total_amount-orderInfo.actual_amount>0}}">|  优惠{{gFilter.formaToMoney(orderInfo.total_amount-orderInfo.actual_amount)}}元</text>
     </view>
     <view class="bg-lightYellow submit text-white" bindtap="goPay">支付</view>
   </view>

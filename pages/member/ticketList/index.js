@@ -11,6 +11,11 @@ Page({
   data: {
     tabCur: 0,
     scrollLeft: 0,
+    //选择优惠券时是否达到使用条件
+    useFullAmount: 0,
+    //满减金额
+    amount: 0,
+    //每页大小
     pageSize: 5,
     //流水号
     serial_no: '',
@@ -79,9 +84,11 @@ Page({
             id: o.id,
             name: '',
             type: o.type,
+            serial_no: o.serial_no,
             is_used: o.is_used,
             discount: o.amount,
             quota: o.full_amount,
+            remark: o.remark,
             startTime: appG.util.date.dateFormat(o.expiry_sdate, 'yyyy-MM-dd'),
             endTime: appG.util.date.dateFormat(o.expiry_edate, 'yyyy-MM-dd')
           }
@@ -169,6 +176,13 @@ Page({
       })
     }
 
+    //金额
+    if (opt.amount != undefined) {
+      this.setData({
+        useFullAmount: opt.amount
+      })
+    }
+
     //加载数据
     this.api_334()
   },
@@ -183,41 +197,60 @@ Page({
   /**
    * 菜单跳转
    */
-  checkTicket: function(item) {
-    let id = item.currentTarget.dataset.item.id
-    let name = item.currentTarget.dataset.item.name
-    let title = ''
-    let type = item.currentTarget.dataset.item.type
-    let discount = item.currentTarget.dataset.item.discount
-    //1:代金券，5：折扣券
-    if (type == 1) {
-      title = discount + '元'
-    } else if (type == 5) {
-      title = discount + '折'
-    }
+  checkTicket: function(e) {
 
-    //付款码场景
-    if (this.data.isPayCode) {
-      router.goUrl({
-        url: '../memberPayCode/index?cid=' + id + "&cname=" + name + "&tname=" + title
-      })
-    } else {
-      //课程支付页面跳转
-      if (this.data.module == 4) {
-        let param = '?no=' + this.data.serial_no + '&cid=' + id + "&cname=" + name + "&tname=" + title
-        router.goUrl({
-          url: '../../orderCourse/index' + param
-        })
+    //小程序内部选择使用
+    if (this.data.isSelect) {
+      //未达到金额使用条件
+      if (this.data.useFullAmount < e.currentTarget.dataset.item.quota) return
+      let id = e.currentTarget.dataset.item.id
+      let name = e.currentTarget.dataset.item.name
+      let title = ''
+      let type = e.currentTarget.dataset.item.type
+      let discount = e.currentTarget.dataset.item.discount
 
-        //咖啡饮品
-      } else if (this.data.module == 2) {
-        let param = '?no=' + this.data.serial_no + '&cid=' + id + "&cname=" + name + "&tname=" + title
-        router.goUrl({
-          url: '../../orderCheck/index' + param
-        })
+      //1:代金券，5：折扣券
+      if (type == 1) {
+        title = discount + '元'
+      } else if (type == 5) {
+        title = discount + '折'
+      } else if (type == 10) {
+        title = '买一赠一'
+      } else if (type == 15) {
+        title = '免费券'
       }
-    }
 
+      //付款码场景
+      if (this.data.isPayCode) {
+        router.goUrl({
+          url: '../memberPayCode/index?cid=' + id + "&cname=" + name + "&tname=" + title
+        })
+      } else {
+        //课程支付页面跳转
+        if (this.data.module == 4) {
+          let param = '?no=' + this.data.serial_no + '&cid=' + id + "&cname=" + name + "&tname=" + title
+          router.goUrl({
+            url: '../../orderCourse/index' + param
+          })
+
+          //咖啡饮品
+        } else if (this.data.module == 2) {
+          let param = '?no=' + this.data.serial_no + '&cid=' + id + "&cname=" + name + "&tname=" + title
+          router.goUrl({
+            url: '../../orderCheck/index' + param
+          })
+        }
+      }
+
+      //小程序外部扫码使用
+    } else {
+
+      let item = e.currentTarget.dataset.item
+      router.goUrl({
+        url: '../ticketDetail/index?no=' + item.serial_no
+      })
+
+    }
   },
 
   /**

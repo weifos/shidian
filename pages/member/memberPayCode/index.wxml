@@ -18,7 +18,7 @@
   </view>
   <!-- login e -->
   <!-- ticket-bar s -->
-  <view class="ticket-bar">
+  <view class="ticket-bar" style="display:none;">
     <view class="ticket-bar-select" wx:if="{{!ticketSelected}}">
       <button class="cu-btn round line-black fr" bindtap="selectTicket">选择</button>
       <text>优惠券</text>

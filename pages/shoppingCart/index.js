@@ -102,7 +102,7 @@ Page({
     api.post(api.api_303, api.getSign({
       CID: item.id,
       Count: num,
-      ProductID: item.product_id,
+      StoProductID: item.sto_product_id,
       SpecSet: item.specset,
       StoreID: that.data.order.store_id
     }), (wx, res) => {
@@ -211,9 +211,9 @@ Page({
       IsShoppingCart: true,
       Order: this.data.order
     }
-
+ 
     //处理提交失败，重复点击，会附加多条数据
-    data.Order.details = []
+    data.Order.store_details = []
     //组装商品详情数据   
     this.data.result.forEach((item, index) => {
       let detail = {
@@ -223,7 +223,7 @@ Page({
         spec_msg: item.spec_msg,
         count: item.count
       }
-      data.Order.details.push(detail)
+      data.Order.store_details.push(detail)
     })
     console.log(data.Order)
     //提交购物车

@@ -169,6 +169,7 @@ Page({
         that.setData({
           ['tabData[0].list']: res.data.Result.recharges
         })
+      
         user.methods.login(res.data.Result.user)
         that.setData({
           balance: res.data.Result.user.balance
@@ -242,7 +243,7 @@ Page({
     api.post(api.api_332, api.getSign({
       No: that.data.serial_no
     }), function(app, res) {
-      if (res.data.Basis.State != api.state.state_200) { 
+      if (res.data.Basis.State != api.state.state_200) {
         wx.showToast({
           title: res.data.Basis.Msg,
           icon: 'none',

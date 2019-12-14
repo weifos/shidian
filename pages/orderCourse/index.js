@@ -221,7 +221,7 @@ Page({
    */
   selectTicket: function() {
     router.goUrl({
-      url: '../member/ticketList/index?s=1&m=4&sn=' + this.data.orderInfo.serial_no
+      url: '../member/ticketList/index?s=1&m=4&sn=' + this.data.orderInfo.serial_no + '&amount=' + this.data.orderInfo.actual_amount
     })
   },
 

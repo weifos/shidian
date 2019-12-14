@@ -8,17 +8,19 @@
       </view>
       <view class="card__level">
         <view>
-          十秒会员
+          {{userInfo.card_name}}
         </view>
         <view>
-          {{userInfo.card_no}}
+          {{userInfo.login_name}}
         </view>
       </view>
     </view>
   </view>
   <view class="member-card-content">
     <view class="tit">会员权益</view>
-    <view class="con">这里写会员权益详细介绍.这里写会员权益详细介绍.这里写会员权益详细介绍.这里写会员权益详细介绍.这里写会员权益详细介绍</view>
+    <view class="con">
+      <image src="http://res.sdibook.com/DefaultRes/Images/quanyi.jpeg" style="height:850px;"></image>
+    </view>
   </view>
 </view>
 <i-bottombar></i-bottombar>

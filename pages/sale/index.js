@@ -119,7 +119,7 @@ Page({
                 that.setData({
                   curIndex: i
                 })
-
+ 
                 ele.totalPage = parseInt(totalRow / that.data.pageSize) + (totalRow % that.data.pageSize == 0 ? 0 : 1)
                 res.data.Result.productList.forEach(function(o, i) {
                   ele.list.push(o)
@@ -205,8 +205,8 @@ Page({
         that.setData({
           //门店商品ID
           ["productDetails.product.id"]: item.id,
-          //平台商品ID
           ["productDetails.product.product_id"]: item.product_id,
+          ["productDetails.product.product_type_id"]: item.product_type_id,
           ["productDetails.product.name"]: item.name,
           ["productDetails.product.img_url"]: item.img_url,
           ["productDetails.skus"]: res.data.Result.skus,

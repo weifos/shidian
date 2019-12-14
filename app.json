@@ -5,7 +5,6 @@
     "pages/sale/index",
     "pages/psq/index",
     "pages/orderCheck/index",
-    "pages/ticketList/index",
     "pages/shoppingCart/index",
     "pages/courseDetail/courseDetail",
     "pages/course/course",
@@ -48,7 +47,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "十点书店",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"

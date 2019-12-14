@@ -9,13 +9,21 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    index: Number
+    index: Number,
+    headUrl: String
   },
   observers: {
     'index': function(field) {
       this.setData({
         tabIndex: field
       })
+    },
+    'headUrl': function(field) {
+      if (field != null && field.length > 30) {
+        this.setData({
+          headimgurl: field
+        })
+      }
     }
   },
   /**
@@ -41,6 +49,9 @@ Component({
         ['app.data.btIndex']: app.data.btIndex
       })
     },
+    /**
+     * 扫码
+     */
     scanCode: function() {
       var that = this
       wx.showModal({
@@ -87,10 +98,16 @@ Component({
           //设置扫码门店信息
           user.methods.setStore(res.data.Result)
           router.goUrl({
-            url: '/pages/coffee/coffee'
+            url: '/pages/coffee/coffee?store_id=' + res.data.Result.store_id + "&bar_counter_id=" + res.data.Result.bar_counter_id
           })
         }
       });
     }
+  },
+  ready: function () {
+    let url = user.methods.getUser().headimgurl == undefined ? "/images/user.png" : user.methods.getUser().headimgurl
+    this.setData({
+      headimgurl: url
+    })
   }
 })

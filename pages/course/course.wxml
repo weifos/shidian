@@ -27,7 +27,7 @@
               <view class="course__name ellipsis" style="height:38rpx;">
               {{gFilter.cutSubString(item.intro,36)}}
               </view>
-              <view class="course__address ellipsis2">上课地点：{{item.province}}{{item.city}}{{item.county}}{{item.address}}</view>
+              <view class="course__address ellipsis2">上课地点：{{item.store_name}}</view>
               <view class="course__time">{{item.start_date}}</view>
               <view class="course__btns">
                 <button class="cu-btn round bg-lightBlue" bindtap='goUrl' data-id="{{item.id}}">去报名</button>
@@ -51,7 +51,7 @@
             <view class="course__text">
               <view class="course__title ellipsis">{{sItem.name}}</view>
               <view class="course__name ellipsis2">{{sItem.intro}}</view>
-              <view class="course__address ellipsis">上课地点：{{sItem.province}}{{sItem.city}}{{sItem.county}}{{sItem.address}}</view>
+              <view class="course__address ellipsis">上课地点：{{sItem.store_name}}</view>
               <view class="course__time">{{sItem.start_date}}</view>
               <view class="course__btns">
                 <button class="cu-btn round bg-lightBlue" bindtap='goUrl' data-id="{{sItem.id}}">查看</button>

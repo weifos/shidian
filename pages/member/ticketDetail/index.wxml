@@ -1,6 +1,6 @@
 <!--pages/member/ticketDetail/index.wxml-->
 <view class="page-ticket-detail">
-  <view class="ticket-info-bar bg-white">
+  <view class="ticket-info-bar bg-white" style="display:none;">
     <view>
       有效期：{{ticketInfo.time}}
     </view>
@@ -16,16 +16,16 @@
   </view>
   <view class="ticket-image-bar tac bg-white">
     <view class="ticket-no fz27">
-      6524459436751339520_082885514440
+      {{ticketInfo.no}}
     </view>
-    <view class="ticket-image-tm">
-      <image src="/images/ewm2.png"></image>
+    <view>
+      <canvas canvas-id="barcode" style="height:50px; margin-left:auto; margin-right:auto; text-algin:center;"></canvas>
     </view>
     <view class="ticket-image-ewm">
-      <image src="/images/ewm.png"></image>
+      <canvas class="canvas-code" canvas-id="myQrcode" style="background:#fff;width: 180px;height: 180px;margin:0 auto;" />
     </view>
     <view class="ticket-btns">
-      <button class="cu-btn bg-lightBlue text-white round">前往我的会员</button>
+      <button class="cu-btn bg-lightBlue text-white round" bindtap="goUrl" >前往我的会员</button>
     </view>
   </view>
 </view>
