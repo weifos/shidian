@@ -31,13 +31,13 @@ Page({
    * 开始计时器
    */
   startSetInter: function() {
-    let that = this;
+    let that = this
     //将计时器赋值给setInter
     that.data.setInter = setInterval(
       function() {
         let numVal = that.data.timer.num + 1
         if (numVal > 30) {
-          numVal = 0;
+          numVal = 0
           that.createQRCode(that.data.user_code)
         }
         that.setData({
@@ -114,8 +114,15 @@ Page({
       user_code: str1 + str2
     })
     this.bindUser(_user)
+ 
     this.createQRCode(this.data.user_code)
-    this.startSetInter()
+    //this.startSetInter()
+
+    setTimeout(() => {
+      this.createQRCode(this.data.user_code)
+      this.startSetInter()
+    }, 1000)
+
   },
   
   /**

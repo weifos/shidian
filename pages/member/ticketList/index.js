@@ -82,7 +82,7 @@ Page({
         res.data.Result.forEach(function(o, i) {
           let ele = {
             id: o.id,
-            name: '',
+            name: o.name,
             type: o.type,
             serial_no: o.serial_no,
             is_used: o.is_used,
@@ -92,18 +92,17 @@ Page({
             startTime: appG.util.date.dateFormat(o.expiry_sdate, 'yyyy-MM-dd'),
             endTime: appG.util.date.dateFormat(o.expiry_edate, 'yyyy-MM-dd')
           }
-          //图书优惠券
-          if (o.module == 1) {
-            ele.name = '图书优惠券'
-            //咖啡饮品券
+
+          if (o.module == 0) {
+            ele.remark = '通用券'
+          } else if (o.module == 1) {
+            ele.remark = '图书优惠券'
           } else if (o.module == 2) {
-            ele.name = '咖啡饮品券'
-            //3：好物优惠券
+            ele.remark = '咖啡饮品券'
           } else if (o.module == 3) {
-            ele.name = '好物优惠券'
-            //4：课堂优惠券
+            ele.remark = '好物优惠券'
           } else if (o.module == 4) {
-            ele.name = '课堂优惠券'
+            ele.remark = '课堂优惠券'
           }
 
           ele.module = o.module
@@ -150,11 +149,12 @@ Page({
       this.setData({
         isSelect: true
       })
-      this.setData({
-        tabCur: 1
-      })
     }
 
+    this.setData({
+      tabCur: 1
+    })
+    
     //流水号
     if (opt.sn != undefined) {
       this.setData({
@@ -244,12 +244,12 @@ Page({
 
       //小程序外部扫码使用
     } else {
-
       let item = e.currentTarget.dataset.item
-      router.goUrl({
-        url: '../ticketDetail/index?no=' + item.serial_no
-      })
-
+      if (!item.is_used) {
+        router.goUrl({
+          url: '../ticketDetail/index?no=' + item.serial_no
+        })
+      }
     }
   },
 

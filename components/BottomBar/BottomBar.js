@@ -104,7 +104,7 @@ Component({
       });
     }
   },
-  ready: function () {
+  ready: function() {
     let url = user.methods.getUser().headimgurl == undefined ? "/images/user.png" : user.methods.getUser().headimgurl
     this.setData({
       headimgurl: url

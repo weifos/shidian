@@ -45,7 +45,7 @@
 }
 .ticket-2 .ticket__discount{
   font-size: 36rpx;
-  margin-top:30rpx;
+  margin-top:50rpx;
 }
 .ellipsis2 {
   display: -webkit-box;

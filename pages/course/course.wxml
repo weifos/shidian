@@ -3,8 +3,9 @@
 <view class="container page-course">
   <i-greetings></i-greetings>
   <view class="swiper-banner">
-    <i-swiper itemData="{{banners}}"></i-swiper>
-  </view>
+    <i-swiper itemData="{{banners}}" data-id="{{index}}"></i-swiper>
+  </view> 
+
   <!-- i-tab s -->
   <view class="i-tab2">
     <scroll-view scroll-x class="nav tab-t">
@@ -25,7 +26,7 @@
               <view class="course__title ellipsis">{{item.name}}</view>
               <view class="course__name ellipsis" style="height:38rpx;">{{item.teacher_name}}·{{item.teacher_title}}</view>
               <view class="course__name ellipsis" style="height:38rpx;">
-              {{gFilter.cutSubString(item.intro,36)}}
+                {{gFilter.cutSubString(item.intro,36)}}
               </view>
               <view class="course__address ellipsis2">上课地点：{{item.store_name}}</view>
               <view class="course__time">{{item.start_date}}</view>

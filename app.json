@@ -42,7 +42,8 @@
     "i-nodata": "/components/NoData/index",
     "i-star": "/components/Star/index",
     "i-icon": "/components/Icon/index",
-    "i-sku": "/components/SKU/SKU"
+    "i-sku": "/components/SKU/SKU",
+    "i-select": "/components/Select/index"
   },
   "window": {
     "backgroundTextStyle": "light",

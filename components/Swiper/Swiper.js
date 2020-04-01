@@ -1,4 +1,4 @@
-// components/Swiper/Swiper.js
+var router = require("../../modules/router.js")
 Component({
   /**
    * 组件的初始数据
@@ -26,7 +26,7 @@ Component({
   },
   //数据监听
   attached: function(e) {
-  
+
   },
   /**
    * 组件的方法列表
@@ -100,6 +100,22 @@ Component({
           swiperList: list
         })
       }
+    },
+
+    /**
+     * banner点击事件
+     */
+    bannerSelect(e) {
+      let item = e.currentTarget.dataset.item
+      //课程详情
+      if (item.content_type == 6) {
+        let url = '../courseDetail/courseDetail?id=' + item.content_value
+        //跳转
+        router.goUrl({
+          url: url
+        })
+      }
     }
+
   }
 })

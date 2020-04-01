@@ -96,6 +96,7 @@ Page({
         Size: that.data.pageSize,
         Index: that.data.courseData[0].pageIndex
       }), function(app, res) {
+
         if (res.data.Basis.State != api.state.state_200) {
           wx.showToast({
             title: res.data.Basis.Msg,

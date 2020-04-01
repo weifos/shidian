@@ -18,6 +18,14 @@ Page({
     balance: 0,
     serial_no: '',
     amount: '',
+    banners: [],
+    options: [],
+    //选择的门店ID
+    select_id: -1,
+    def_options: {
+      id: '-1',
+      name: '请选择充值门店'
+    },
     timer: {
       setInter: '',
       num: 0
@@ -31,11 +39,6 @@ Page({
         list: []
       }
     ]
-  },
-  bindAmountInput: function(e) {
-    this.setData({
-      amount: e.detail.value
-    })
   },
 
   tabSelect(e) {
@@ -84,6 +87,35 @@ Page({
   },
 
   /**
+   * 绑定充值输入
+   */
+  bindAmountInput: function(e) {
+    var that = this
+    that.formatNum(e)
+    let value = e.detail.value
+    console.log(value)
+    that.setData({
+      amount: value
+    })
+  },
+  formatNum(e) {
+    e.detail.value = e.detail.value.replace(/^(\-)*(\d+)\.(\d{6}).*$/, '$1$2.$3')
+    e.detail.value = e.detail.value.replace(/[\u4e00-\u9fa5]+/g, ""); //清除汉字
+    e.detail.value = e.detail.value.replace(/[^\d.]/g, ""); //清楚非数字和小数点
+    e.detail.value = e.detail.value.replace(/^\./g, ""); //验证第一个字符是数字而不是  
+    e.detail.value = e.detail.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", "."); //只保留第一个小数点, 清除多余的 
+  },
+
+  change(e) {
+    
+    //设置选择门店ID
+    this.setData({
+      select_id: e.detail.id
+    })
+ 
+  },
+
+  /**
    * 立即充值
    */
   goRecharge() {
@@ -108,10 +140,20 @@ Page({
       return
     }
 
+    if (that.data.select_id == -1) {
+      wx.showToast({
+        title: '请选择充值门店',
+        icon: 'none',
+        duration: 3000
+      })
+      return
+    }
+  
     let item = that.data.tabData[0].list[that.data.checkIndex]
     api.post(api.api_331,
       api.getSign({
         ID: item == undefined ? 0 : item.id,
+        StoreID: that.data.select_id,
         Amount: that.data.amount == '' ? 0 : that.data.amount
       }),
       function(app, res) {
@@ -154,6 +196,26 @@ Page({
   },
 
   /**
+   * 充值明细banner
+   */
+  api_208: function() {
+    var that = this
+    api.post(api.api_208, api.getSign(), function(app, res) {
+      if (res.data.Basis.State == api.state.state_200) {
+
+        that.setData({
+          options: res.data.Result.stores
+        })
+
+        that.setData({
+          banners: res.data.Result.banners
+        })
+      }
+    });
+  },
+
+
+  /**
    * 加载充值列表
    */
   api_330: function() {
@@ -169,7 +231,7 @@ Page({
         that.setData({
           ['tabData[0].list']: res.data.Result.recharges
         })
-      
+
         user.methods.login(res.data.Result.user)
         that.setData({
           balance: res.data.Result.user.balance
@@ -177,6 +239,7 @@ Page({
       }
     })
   },
+
 
   /**
    * 立即充值
@@ -260,6 +323,7 @@ Page({
     });
   },
 
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -279,6 +343,8 @@ Page({
     // this.startSetInter()
     //加载充值项目
     this.api_330()
+    //加载banner明细
+    this.api_208()
   },
 
   /**

@@ -12,8 +12,8 @@
       <view>订单备注：{{orderInfo.remarks==null?"--":orderInfo.remarks}}</view>
     </view>
   </view>
-  <view class="section">
-    <view class="align-justify">
+  <view class="section" wx:if="{{orderInfo.course.is_use_coupon}}">
+    <view class="align-justify" >
       <view class="fz33">优惠券
         <text class="no-ticket" wx:if="{{ticketInfo.length == 0}}">（暂无可用的优惠券）</text>
       </view>

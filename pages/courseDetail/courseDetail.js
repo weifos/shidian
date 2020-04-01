@@ -10,6 +10,8 @@ Page({
    */
   data: {
     num: 1,
+    //已报名数量
+    reg_num: 0,
     imgurl: "",
     //单价
     price: 0,
@@ -22,6 +24,7 @@ Page({
       endTime: "",
       address: "",
       sale_price: 0,
+      up_limit: 0,
       detail: ""
     }
   },
@@ -89,14 +92,14 @@ Page({
   //加
   add(e) {
     let tmp = this.data.num
-    //不能大于99
-    if (tmp > 99) return
+    //不能大于99,或者当前报名人数加上已报名人数大于该课程报名上限
+    if (tmp > 99 || tmp + 1 + this.data.reg_num > this.data.result.up_limit) return
     this.setData({
       num: tmp + 1
     })
     this.checkUpdate()
   },
-  
+
   //减
   sub(e) {
     let tmp = this.data.num
@@ -114,8 +117,16 @@ Page({
    */
   api_206: function(opt) {
     var that = this
+    let id = 0
+    if (opt.id != undefined) {
+      id = opt.id
+    } else {
+      const scene = decodeURIComponent(opt.scene)
+      id = appG.util.getRequestId(scene, "id")
+    }
+
     api.post(api.api_206, api.getSign({
-      ID: opt.id
+      ID: id
     }), function(app, res) {
       if (res.data.Basis.State != api.state.state_200) {
         wx.showToast({
@@ -136,6 +147,11 @@ Page({
             isOverdue: true
           })
         }
+
+        //已报名人数
+        that.setData({
+          reg_num: res.data.Result.reg_num
+        })
 
         res.data.Result.course.start_date = appG.util.date.dateFormat(res.data.Result.course.start_date, 'yyyy-MM-dd hh:mm')
         res.data.Result.course.end_date = appG.util.date.dateFormat(res.data.Result.course.end_date, 'yyyy-MM-dd hh:mm')
@@ -166,6 +182,13 @@ Page({
    * 提交课程订单
    */
   api_326: function() {
+ 
+    //剩余可报名人数
+    let residue_num = this.data.result.up_limit - this.data.reg_num
+    if (this.num - residue_num > 0) {
+      return;
+    }
+
     var that = this
     var order = {
       course_id: that.data.result.id,

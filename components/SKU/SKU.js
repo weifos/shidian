@@ -67,7 +67,7 @@ Component({
     //初始化
     init: function() {
       if (this.data.pResult.product.id != undefined) {
-        if (this.data.pResult.product_type_id > 0) {
+        if (this.data.pResult.product.product_type_id > 0) {
           if (this.data.pResult.specNames.length == 0) return
           //获取首行规格名称id
           let one_name_id = this.data.pResult.specNames[0].id
@@ -99,6 +99,7 @@ Component({
       this.setData({
         pResult: this.data.pResult
       })
+       
       //判断下一行索引是否大于数组总长度 
       if (i + 1 > this.data.pResult.specNames.length - 1) {
         //全部选中
@@ -132,6 +133,10 @@ Component({
 
         //在sku集合里面获取首行可点的规格
         skus.forEach(function(item, index) {
+          if (item.stock <= 0) {
+            obj.is_enable = false
+            return
+          }
           let exist = 0
           let pass = false
           let arr = checkedVal.split(',')

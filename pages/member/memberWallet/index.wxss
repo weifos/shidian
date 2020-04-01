@@ -72,5 +72,14 @@ width: 201rpx;
 }
 .placeholder{
   color: #ddd;
+}
 
+.select_placeholder { 
+  height: 110rpx;
+  line-height: 70rpx;
+  padding: 20rpx 42rpx 10rpx 42rpx;
+  width: 400rpx; 
+  vertical-align: middle; 
+  margin-right:10rpx;
+  font-size: 24rpx;
 }

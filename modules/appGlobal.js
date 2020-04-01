@@ -645,10 +645,10 @@ module.exports = {
       }
     },
     //获取页面请求参数中的ID
-    getRequestId: function(name) {
-      let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-      r = window.location.search.substr(1).match(reg);
-      if (r != null) return unescape(decodeURI(r[2]));
+    getRequestId: function(url, name) {
+      let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
+      let r = url.match(reg)
+      if (r != null) return unescape(decodeURI(r[2]))
       return 0;
     },
     //获取Html前缀参数

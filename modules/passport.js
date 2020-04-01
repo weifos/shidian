@@ -1,8 +1,10 @@
 var api = require("./api.js")
+var app_g = require("./appGlobal.js")
 var WXBizDataCrypt = require('./WXBizDataCrypt.js')
 var user = require("./userInfo.js")
 
 module.exports = {
+
   /**
    * 检查登录态是否过期
    */
@@ -33,6 +35,7 @@ module.exports = {
       }
     })
   },
+
   /**
    * 用户数据初始化
    */
@@ -66,6 +69,7 @@ module.exports = {
       }
     })
   },
+
   /**
    * 绑定手机号码
    */
@@ -106,6 +110,7 @@ module.exports = {
         })
     }
   },
+
   /**
    * 获取小程序用户信息
    */
@@ -117,6 +122,7 @@ module.exports = {
       wxuser.openid = userInfo.openid
       wxuser.headimgurl = e.detail.userInfo.avatarUrl
       wxuser.nickname = e.detail.userInfo.nickName
+      //wxuser.nickname = encodeURI(wxuser.nickname)
       wxuser.language = e.detail.userInfo.language
       wxuser.country = e.detail.userInfo.country
       wxuser.province = e.detail.userInfo.province
@@ -128,12 +134,13 @@ module.exports = {
         function(app, res) {
           if (res.data.Basis.State == api.state.state_200) {
             userInfo.img = wxuser.headimgurl
-            userInfo.nickname = wxuser.nickname
+            userInfo.nickname = decodeURI(wxuser.nickname)
             user.methods.login(userInfo)
             wx.showToast({
               title: res.data.Basis.Msg,
               duration: 2000
             })
+
           } else {
             wx.showToast({
               title: res.data.Basis.Msg,
@@ -145,6 +152,7 @@ module.exports = {
         })
     }
   },
+
   /**
    * 用户授权页面
    */
@@ -153,4 +161,5 @@ module.exports = {
       url: '../../passport/authorize/authorize'
     })
   }
+  
 }

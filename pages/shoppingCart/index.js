@@ -211,7 +211,10 @@ Page({
       IsShoppingCart: true,
       Order: this.data.order
     }
- 
+
+    //此处为桌号
+    data.Order.bar_no = user.methods.getStore().bar_counter_no
+
     //处理提交失败，重复点击，会附加多条数据
     data.Order.store_details = []
     //组装商品详情数据   
@@ -225,7 +228,7 @@ Page({
       }
       data.Order.store_details.push(detail)
     })
-    console.log(data.Order)
+ 
     //提交购物车
     api.post(api.api_314, api.getSign(data), function(th, res) {
       if (res.data.Basis.State == api.state.state_200) {

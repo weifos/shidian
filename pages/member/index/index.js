@@ -141,7 +141,7 @@ Page({
     this.setData({
       ['userInfo.login_name']: appG.util.getHideMobile(user.login_name)
     })
-   
+
     this.setData({
       ['userInfo.headimgurl']: user.headimgurl
     })
@@ -161,6 +161,8 @@ Page({
       function(app, res) {
         if (res.data.Basis.State == api.state.state_200) {
           if (res.data.Result.login_name != undefined) {
+            //昵称
+            res.data.Result.nickname = decodeURI(res.data.Result.nickname)
             //登录
             user.methods.login(res.data.Result)
             //绑定用户

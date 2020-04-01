@@ -4,7 +4,7 @@
     <view>可兑换积分</view>
     <view>
       <i-icon name="integral"></i-icon>
-      <text class="integral__num dib vam">0</text>
+      <text class="integral__num dib vam"> {{point}}</text>
     </view>
     <view>
       <!-- <button class="cu-btn round sm bg-lightBlue text-white">积分规则</button> -->

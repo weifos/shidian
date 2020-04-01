@@ -132,5 +132,16 @@ Page({
         url: url
       })
     }
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return {
+      title: "十点书店会员服务",
+      path: "pages/index/index",
+      imageUrl: 'http://res.sdibook.com/DefaultRes/Images/mini_share.png'
+    }
   }
 })

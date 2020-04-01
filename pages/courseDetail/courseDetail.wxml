@@ -6,7 +6,7 @@
     <image src="{{imgurl}}" />
   </view>
   <view class="course-intro">
-    <view class="course__title">{{result.title}}</view>
+    <view class="course__title">{{result.name}}</view>
     <view class="course__time">时间：{{result.start_date}} 到 {{result.end_date}}
     </view>
     <view class="course__address">地点：{{result.province}}{{result.city}}{{result.county}}{{result.address}}</view>
@@ -32,8 +32,12 @@
         <view class="order__text tac">
           - 详情 -
         </view>
+        <view class="order__price">
+          <view class="t-desc">剩余名额</view>
+          <view class="t-detail" style="color:red;">{{result.up_limit - reg_num}}</view>
+        </view>
         <view class="order__number">
-          <view class="t-desc">参与人数</view>
+          <view class="t-desc">报名人数</view>
           <view class="t-detail">
             <view class="van-stepper custom-class">
               <view class="minus-class dib vam" bindtap="sub">-</view>
@@ -43,13 +47,13 @@
           </view>
         </view>
         <view class="order__price">
-          <view class="t-desc">总金额</view>
+          <view class="t-desc">报名金额</view>
           <view class="t-detail text-lightBlue">￥{{gFilter.formaToMoney(totalPrice)}}</view>
         </view>
       </view>
       <view class="cu-bar">
         <button class="cu-btn round bg-gray text-white" bindtap="hideModal">取消</button>
-        <button class="cu-btn round bg-lightBlue text-white" bindtap="api_326">确认提交</button>
+        <button class="cu-btn round {{num > (result.up_limit - reg_num) ? 'bg-gray' : 'bg-lightBlue'}} text-white" bindtap="api_326">确认提交</button>
       </view>
     </view>
   </view>

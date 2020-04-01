@@ -32,25 +32,35 @@
           </view>
         </view>
         <!-- section e -->
+
         <!-- section s -->
         <view class=" sec-recharge">
           <view class="bg-wrap">
-            <view class="list-4">
+            <view class="select_placeholder text-lightBlue">
+              <i-select id="select" style="padding-top:10rpx;" defaultOption="{{def_options}}" options="{{options}}" key="id" text="name" bind:change="change">
+              </i-select>
+            </view>
+            <view class="list-4" style="padding-top:0rpx;">
               <view wx:for="{{tabData[0].list}}" data-id="{{index}}" bindtap="rechargeSelect" class="f-item tac {{index==checkIndex?'cur':''}}" wx:key>
                 <view class="text-value fz33">{{item.amount}}元</view>
-                <view class="text-discount fz22">{{item.title}}
-                </view>
+                <view class="text-discount fz22">{{item.title}}</view>
               </view>
             </view>
             <view class="other-price-view text-lightBlue">
-              <input placeholder="其它金额" type="number" bindtap="selectInput" placeholder-class="placeholder" bindinput="bindAmountInput" class="input-other"  style="{{checkIndex==tabData[0].list.length?'border: 2rpx solid red;':''}}"></input>元
+              <input maxlength="9" placeholder="其它金额" value='{{amount}}' bindinput="bindAmountInput" type="String" bindtap="selectInput" placeholder-class="placeholder" class="input-other" style="{{checkIndex==tabData[0].list.length?'border: 2rpx solid red;':''}}"></input>元
             </view>
             <view class="btns-bar tac">
               <button class="cu-btn round bg-lightBlue text-white fz33" bindtap="goRecharge">去充值</button>
             </view>
+
+            <!-- 充值banner -->
+            <view style="margin-top:5px;width:100%;">
+              <image wx:for="{{banners}}" wx:for-item="item" src="{{item.imgurl}}" style="width:100%;"></image>
+            </view>
           </view>
         </view>
         <!-- section e -->
+
       </view>
       <view class="tab-c bg-white" wx:if="{{TabCur == 1}}">
         <canvas class="canvas-code" canvas-id="myQrcode" style="background:#fff;width: 200px;height: 200px;margin-left:10px;" />

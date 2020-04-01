@@ -42,6 +42,7 @@ Page({
       tabCur: e.currentTarget.dataset.id,
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
+     
     this.api_318()
   },
 
@@ -67,13 +68,13 @@ Page({
     let loading = curItem.loading
     //是否加载完成
     let loadComplete = curItem.loadComplete
-
+ 
     if (index == 0) {
       isPay = -1
     } else if (index == 1) {
-      isPay = 1
-    } else if (index == 2) {
       isPay = 0
+    } else if (index == 2) {
+      isPay = 1
     }
 
     //是否加载中，是否加载完成

@@ -26,7 +26,10 @@ Page({
       vip_dis_amount: 0,
       actual_amount: 0,
       remarks: "",
-      details: []
+      details: [],
+      course:{
+        is_use_coupon:false
+      }
     },
     //微信支付参数
     wechatPay: {},
