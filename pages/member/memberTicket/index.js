@@ -38,7 +38,7 @@ Page({
             endTime: appG.util.date.dateFormat(course.end_date, 'yyyy-MM-dd hh:mm')
           })
         })
-
+   
         that.setData({
           ['result']: that.data.result
         })
