@@ -12,6 +12,7 @@ Page({
    */
   data: {
     TabCur: 0,
+    is_recharge_ing: false,
     checkIndex: -1,
     scrollLeft: 0,
     user_code: 0,
@@ -107,12 +108,12 @@ Page({
   },
 
   change(e) {
-    
+
     //设置选择门店ID
     this.setData({
       select_id: e.detail.id
     })
- 
+
   },
 
   /**
@@ -148,7 +149,15 @@ Page({
       })
       return
     }
-  
+
+    if (this.data.is_recharge_ing) {
+      return
+    }
+
+    that.setData({
+      is_recharge_ing: true
+    })
+
     let item = that.data.tabData[0].list[that.data.checkIndex]
     api.post(api.api_331,
       api.getSign({
@@ -183,10 +192,15 @@ Page({
               }
             },
             fail: function(res) {
+              console.log('fail')
               //console.log(res)
             },
             complete: function(res) {
+              console.log('complete')
               //console.log(res)
+              that.setData({
+                is_recharge_ing: false
+              })
             }
           })
 

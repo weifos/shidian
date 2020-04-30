@@ -4,7 +4,7 @@
   <i-greetings></i-greetings>
   <view class="swiper-banner">
     <i-swiper itemData="{{banners}}" data-id="{{index}}"></i-swiper>
-  </view> 
+  </view>
 
   <!-- i-tab s -->
   <view class="i-tab2">
@@ -28,7 +28,12 @@
               <view class="course__name ellipsis" style="height:38rpx;">
                 {{gFilter.cutSubString(item.intro,36)}}
               </view>
-              <view class="course__address ellipsis2">上课地点：{{item.store_name}}</view>
+              <view wx:if="{{item.address == null || item.address == '' }}">
+                <view class="course__address ellipsis2">上课地点：{{item.store_name}}</view>
+              </view>
+              <view wx:else>
+                <view class="course__address ellipsis2">上课地点：{{item.address}}</view>
+              </view>
               <view class="course__time">{{item.start_date}}</view>
               <view class="course__btns">
                 <button class="cu-btn round bg-lightBlue" bindtap='goUrl' data-id="{{item.id}}">去报名</button>
@@ -52,7 +57,12 @@
             <view class="course__text">
               <view class="course__title ellipsis">{{sItem.name}}</view>
               <view class="course__name ellipsis2">{{sItem.intro}}</view>
-              <view class="course__address ellipsis">上课地点：{{sItem.store_name}}</view>
+              <view wx:if="{{sItem.address==null || sItem.address=='' }}">
+                <view class="course__address ellipsis">上课地点：{{sItem.store_name}}</view>
+              </view>
+              <view wx:else>
+                <view class="course__address ellipsis">上课地点：{{sItem.address}}</view>
+              </view>
               <view class="course__time">{{sItem.start_date}}</view>
               <view class="course__btns">
                 <button class="cu-btn round bg-lightBlue" bindtap='goUrl' data-id="{{sItem.id}}">查看</button>

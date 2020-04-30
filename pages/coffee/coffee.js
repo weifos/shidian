@@ -17,13 +17,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(opt) {
+    if (!opt.scan) {
+      var result = {
+        store_id: opt.store_id,
+        bar_counter_id: opt.bar_counter_id
+      }
+      user.methods.setStore(result)
+    }
+     
     this.api_201(opt.store_id, opt.bar_counter_id)
   },
 
   /**
    * 加载首页数据
    */
-  api_201: function (sId, barId) {
+  api_201: function(sId, barId) {
     var this_ = this
     let store = user.methods.getStore()
     api.post(api.api_201, api.getSign({
@@ -41,7 +49,7 @@ Page({
           obj.type = "image"
           obj.url = obj.imgurl
         })
-
+ 
         //banner数据
         this_.setData({
           banners: res.data.Result.banners
@@ -74,6 +82,7 @@ Page({
   onReady: function() {
 
   },
+
   /**
    * 生命周期函数--监听页面显示
    */

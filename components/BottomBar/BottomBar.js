@@ -97,8 +97,10 @@ Component({
         } else {
           //设置扫码门店信息
           user.methods.setStore(res.data.Result)
+
+
           router.goUrl({
-            url: '/pages/coffee/coffee?store_id=' + res.data.Result.store_id + "&bar_counter_id=" + res.data.Result.bar_counter_id
+            url: '/pages/coffee/coffee?store_id=' + res.data.Result.store_id + "&bar_counter_id=" + res.data.Result.bar_counter_id+"&scan=1"
           })
         }
       });

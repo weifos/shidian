@@ -54,6 +54,27 @@
 					"pathName": "pages/courseDetail/courseDetail",
 					"query": "scene=id%3D23",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "/pages/coffee/coffee",
+					"query": "store_id=1&bar_counter_id=10",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "/pages/coffee/coffee",
+					"query": "store_id=1&bar_counter_id=1",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "调试微信扫码",
+					"pathName": "pages/coffee/coffee",
+					"query": "store_id=3&bar_counter_id=22",
+					"scene": null
 				}
 			]
 		}
