@@ -21,6 +21,7 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
+		"useIsolateContext": true,
 		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
@@ -125,6 +126,13 @@
 					"id": -1,
 					"name": "pages/index/index",
 					"pathName": "pages/index/index",
+					"query": "store_id=1&bar_counter_id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "/pages/coffee/coffee",
+					"pathName": "/pages/coffee/coffee",
 					"query": "store_id=1&bar_counter_id=1",
 					"scene": null
 				}

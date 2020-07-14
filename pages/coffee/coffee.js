@@ -22,6 +22,7 @@ Page({
         store_id: opt.store_id,
         bar_counter_id: opt.bar_counter_id
       }
+      
       user.methods.setStore(result)
     }
      
