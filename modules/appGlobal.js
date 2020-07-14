@@ -498,8 +498,11 @@ module.exports = {
         return "";
       }, //时间比较
       compareDate: function(t1, t2) {
+        //格式化为了兼容IOS写法
+        t1 = this.dateFormat(t1,"yyyy/MM/dd hh:mm:ss")
+        t2 = this.dateFormat(t2, "yyyy/MM/dd hh:mm:ss")
         t1 = new Date(Date.parse(t1))
-        t2 = new Date(Date.parse(t2))
+        t2 = new Date(Date.parse(t2)) 
         return t1 > t2
       },
       //时间比较

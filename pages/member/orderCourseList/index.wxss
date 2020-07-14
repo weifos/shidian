@@ -44,9 +44,9 @@ page{
 }
 .cu-btn{
   height: 53rpx;
-  font-size: 27rpx;
-  width: 113rpx;
-  margin-left:20rpx;
+  font-size: 24rpx;
+  width: 110rpx;
+  margin-left:10rpx;
 }
 .nodata{
   color: #E2E2E2;

@@ -35,10 +35,12 @@ Page({
         "icon": "course"
       }
     ],
-    list2: [{
+    list2: [
+      {
         "name": "我的积分",
         "icon": "integral"
-      }, {
+      },
+      {
         "name": "购买记录",
         "icon": "buy",
         "url": ""
@@ -112,9 +114,12 @@ Page({
           wx.removeStorageSync('returl')
         }
       })
+
+      router.goUrl({
+        url: '../userInfo/index'
+      })
     })
   },
-
   /**
    * 加载微信用户信息
    */
@@ -128,7 +133,14 @@ Page({
       }
     })
   },
-
+  /**
+   * 修改会员资料
+   */
+  goEdit: function () {
+    router.goUrl({
+      url: '../userInfo/index'
+    })
+  },
   /**
    * 加载微信用户信息
    */
@@ -146,7 +158,6 @@ Page({
       ['userInfo.headimgurl']: user.headimgurl
     })
   },
-
   /**
    * 加载用户信息
    */
@@ -194,7 +205,6 @@ Page({
         }
       })
   },
-
   /**
    * 打开微信付款码
    */
@@ -233,6 +243,10 @@ Page({
       case "wallet":
         url = '../memberWallet/index'
         break
+        //会员码
+      case "code":
+        url = '../memberCode/index'
+        break
         //付款码
       case "paycode":
         url = '../memberPayCode/index'
@@ -258,7 +272,6 @@ Page({
         url = '../ticketList/index'
         break
 
-
       default:
         break;
     }
@@ -275,21 +288,18 @@ Page({
   onReady: function() {
 
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
 
   },
-
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
 
   },
-
   /**
    * 生命周期函数--监听页面卸载
    */

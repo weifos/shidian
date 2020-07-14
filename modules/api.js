@@ -4,13 +4,13 @@ import router from './router'
 import md5 from './md5'
 
 // 测试环境
-// let domain = "http://sd.api.shidian.com/"
-// let res_domain =  "http://test.res.sdibook.com/"
-// //正式环境
-let domain = "https://api.sdibook.com/"
-let res_domain = "http://res.shidian.com/"
+let domain = "http://sd.api.shidian.com/"
+let res_domain = "http://test.res.sdibook.com/"
+// 正式环境
+// let domain = "https://api.sdibook.com/"
+// let res_domain = "http://res.shidian.com/"
 
-/// <summary>
+/// <summary> 
 /// 全局配置类
 /// @author   叶委  
 /// @date     2014-05-23         
@@ -82,7 +82,7 @@ module.exports = {
   api_303: domain + "303",
   //删除购物车
   api_304: domain + "304",
-  //
+  //加载优惠券票据明细
   api_305: domain + "305",
   //加入购物车
   api_306: domain + "306",
@@ -136,6 +136,8 @@ module.exports = {
   api_339: domain + "339",
   //积分交易列表
   api_340: domain + "340",
+  //课程订单申请中
+  api_341: domain + "341",
   //获取签名
   getSign(obj = {}) {
     let {
@@ -148,7 +150,7 @@ module.exports = {
         obj = obj.map((ele, index) => {
           if (ele instanceof Object) {
             var newObj = {}
-            Object.keys(ele).sort().forEach(function(key) {
+            Object.keys(ele).sort().forEach(function (key) {
               var o = ele[key]
               if (o instanceof Object) {
                 o = sort(o)
@@ -175,7 +177,7 @@ module.exports = {
           return 1
         }
         return 0
-      }).forEach(function(key) {
+      }).forEach(function (key) {
         var o = obj[key]
         if (o instanceof Object) {
           o = sort(o)
@@ -196,7 +198,7 @@ module.exports = {
         Token: token
       }
     }
-    
+
     return {
       Data: obj,
       Global: {
@@ -226,7 +228,6 @@ module.exports = {
       success: (res) => {
         wx.hideLoading()
         if (res.data.Basis != undefined && res.data.Basis.State == 205 || res.data.Basis.State == 211) {
-          wx.hideLoading()
           wx.showToast({
             title: res.data.Basis.Msg,
             icon: 'none',
@@ -242,12 +243,11 @@ module.exports = {
             url: "/pages/member/index/index?backUrl=" + returl,
           })
         } else {
-          wx.hideLoading()
           cb(this, res)
         }
       },
       fail: (res) => {
-        setTimeout(function() {
+        setTimeout(function () {
           wx.hideLoading()
         }, 1000)
         wx.showToast({

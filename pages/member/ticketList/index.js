@@ -62,7 +62,7 @@ Page({
   },
 
   /**
-   * 加载订单票据
+   * 加载用户优惠券数据
    */
   api_334: function() {
     let that = this
@@ -198,7 +198,6 @@ Page({
    * 菜单跳转
    */
   checkTicket: function(e) {
-
     //小程序内部选择使用
     if (this.data.isSelect) {
       //未达到金额使用条件

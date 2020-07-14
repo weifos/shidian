@@ -13,6 +13,7 @@ Page({
     cid: 0,
     cname: '',
     tname: '',
+    isPayIng: false,
     balance: 0,
     //微信支付，还是电子钱包支付
     payType: 0,
@@ -27,8 +28,8 @@ Page({
       actual_amount: 0,
       remarks: "",
       details: [],
-      course:{
-        is_use_coupon:false
+      course: {
+        is_use_coupon: false
       }
     },
     //微信支付参数
@@ -147,6 +148,9 @@ Page({
             icon: 'none',
             duration: 3000
           })
+          that.setData({
+            isPayIng: false
+          })
         }
       }
     )
@@ -180,11 +184,16 @@ Page({
                 })
               }
             },
+            //失败执行
             fail: function(res) {
               //console.log(res)
             },
+            //无论怎样都是执行
             complete: function(res) {
               //console.log(res)
+              that.setData({
+                isPayIng: false
+              })
             }
           })
 
@@ -204,12 +213,24 @@ Page({
    */
   goPay: function() {
     let that = this
-    //电子钱包支付
-    if (that.data.payType == 1) {
-      that.api_335()
-    } else {
-      that.api_338()
+
+    if (!that.data.isPayIng) {
+      //是否支付中
+      that.setData({
+        isPayIng: true
+      })
+      //电子钱包支付
+      if (that.data.payType == 1) {
+        that.api_335()
+      } else {
+        that.api_338()
+      }
     }
+
+    //是否支付中
+    // that.setData({
+    //   isPayIng: false
+    // })
   },
 
   /**

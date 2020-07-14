@@ -11,14 +11,12 @@ Component({
     type: String,
     used: Boolean
   },
-
   /**
    * 组件的初始数据
    */
   data: {
 
   },
-
   /**
    * 组件的方法列表
    */
@@ -27,7 +25,7 @@ Component({
      * 申请退款
      */
     appRefund: function() {
-      var that = this
+      var that = this 
       wx.showModal({
         title: '提示',
         content: '确认申请退款吗？',
@@ -44,6 +42,7 @@ Component({
         }
       })
     }
+    
   }
 
 })

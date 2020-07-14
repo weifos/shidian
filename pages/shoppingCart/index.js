@@ -228,7 +228,7 @@ Page({
       }
       data.Order.store_details.push(detail)
     })
- 
+  
     //提交购物车
     api.post(api.api_314, api.getSign(data), function(th, res) {
       if (res.data.Basis.State == api.state.state_200) {

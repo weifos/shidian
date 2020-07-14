@@ -212,6 +212,7 @@ Component({
       this.setData({
         selectSku: result
       })
+ 
       //加入购物车
       this.api_306(is_hide_dialog)
     },

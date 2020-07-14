@@ -13,7 +13,7 @@
     <view class="course__price">价格：￥{{gFilter.formaToMoney(result.sale_price)}}</view>
   </view>
   <view class="course-detail">
-    <template is="wxParse" data="{{wxParseData:details.nodes}}" />
+    <template is="wxParse" data="{{wxParseData:details.nodes}}"   />
   </view>
 </view>
 <view class="tool-bar tac" wx:if="{{!isOverdue}}">

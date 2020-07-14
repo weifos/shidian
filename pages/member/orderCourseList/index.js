@@ -133,7 +133,6 @@ Page({
     })
   },
 
-
   /**
    * 去支付
    */
@@ -145,6 +144,47 @@ Page({
         url: '../../orderCourse/index' + param
       })
     }
+  },
+
+
+  /**
+   * 退款申请
+   */
+  refundApply: function(e) {
+    let that = this
+    let id = e.currentTarget.dataset.id
+    wx.showModal({
+      title: '提示',
+      content: '确认申请退款吗？',
+      showCancel: true,
+      cancelText: '取消',
+      confirmText: '确认',
+      success: function(res) {
+        if (res.confirm) {
+          api.post(api.api_341, api.getSign({
+            ID: id
+          }), function(app, res) {
+            if (res.data.Basis.State == api.state.state_200) {
+              that.data.orderData[0].list.forEach(function(item, index) {
+                if (item.id == id) {
+                  item.refund_status = 2
+                  return
+                }
+              })
+              that.setData({
+                ["orderData[0].list"]: that.data.orderData[0].list
+              })
+            } else { 
+              wx.showToast({
+                title: res.data.Basis.Msg,
+                icon: 'none',
+                duration: 3000
+              })
+            }
+          })
+        } else if (res.cancel) {}
+      }
+    })
   },
 
 

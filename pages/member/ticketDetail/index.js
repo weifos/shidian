@@ -1,5 +1,6 @@
-var appG = require("../../../modules/appGlobal.js")
-var router = require("../../../modules/router.js")
+var api = require("../../../modules/api.js")
+var appG = require("../../../modules/appGlobal.js") 
+var router = require("../../../modules/router.js") 
 import QRCode from '../../../modules/weapp-qrcode.js'
 import barCode from '../../../modules/barcodeindex.js'
 
@@ -32,6 +33,33 @@ Page({
       this.createQRCode(opt.no)
       this.createBarCode(opt.no)
     }, 1000)
+
+
+    this.api_305(opt.no)
+  },
+
+  /**
+   * 加载优惠券票据明细
+   */
+  api_305: function(no) {
+    let that = this
+      //请求接口数据
+      api.post(api.api_305, api.getSign({
+        No: no
+      }), function(app, res) {
+        if (res.data.Basis.State != api.state.state_200) {
+          wx.showToast({
+            title: res.data.Basis.Msg,
+            icon: 'none',
+            duration: 3000
+          })
+        } else {
+          res.data.Result.expiry_sdate = appG.util.date.dateFormat(res.data.Result.expiry_sdate, 'yyyy-MM-dd hh:mm')
+          res.data.Result.expiry_edate = appG.util.date.dateFormat(res.data.Result.expiry_edate, 'yyyy-MM-dd hh:mm')
+           
+          that.setData({  ticketInfo: res.data.Result })
+        }
+      })
   },
 
   /**

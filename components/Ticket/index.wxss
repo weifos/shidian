@@ -70,7 +70,7 @@
 .ticket__tk{
   position: absolute;
   width: 100%;
-  height: 50rpx;
-  line-height: 50rpx;
+  /* height: 50rpx;
+  line-height: 50rpx; */
   border-top:1rpx dashed #fff;
 }

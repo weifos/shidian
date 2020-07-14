@@ -63,7 +63,7 @@ Page({
    */
   selectTicket: function () {
     router.goUrl({
-      url: '../member/ticketList/index?s=1&m=2&sn=' + this.data.orderInfo.serial_no
+      url: '../member/ticketList/index?s=1&m=2&sn=' + this.data.orderInfo.serial_no + '&amount=' + this.data.orderInfo.total_amount
     })
   },
  
@@ -100,19 +100,22 @@ Page({
           that.setData({
             balance: res.data.Result.user.balance
           })
-
+ 
           let disAmount = 0
           let actual_amount = res.data.Result.order.actual_amount
+          let total_amount = res.data.Result.order.total_amount
           if (that.data.tname.indexOf('元') != -1) {
             disAmount = parseFloat(that.data.tname.replace('元'))
             res.data.Result.order.coupon_amount = disAmount
-            res.data.Result.order.actual_amount = actual_amount - disAmount
+            res.data.Result.order.actual_amount = total_amount - disAmount
           }
 
           if (that.data.tname.indexOf('折') != -1) {
             disAmount = parseFloat(that.data.tname.replace('折'))
-            res.data.Result.order.coupon_amount = actual_amount * ((10 - disAmount) / 10).toFixed(2)
-            res.data.Result.order.actual_amount = actual_amount - res.data.Result.order.coupon_amount
+            //res.data.Result.order.coupon_amount = actual_amount * ((10 - disAmount) / 10).toFixed(2)
+            //res.data.Result.order.actual_amount = actual_amount - res.data.Result.order.coupon_amount
+            res.data.Result.order.coupon_amount = total_amount * ((10 - disAmount) / 10).toFixed(2)
+            res.data.Result.order.actual_amount = total_amount - res.data.Result.order.coupon_amount
           }
 
           //订单信息
@@ -176,7 +179,6 @@ Page({
       }),
       function (vue, res) {
         if (res.data.Basis.State == api.state.state_200) {
-
           wx.requestPayment({
             appId: res.data.Result.wechatpay.appId,
             timeStamp: res.data.Result.wechatpay.timeStamp,

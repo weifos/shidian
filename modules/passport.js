@@ -43,11 +43,18 @@ module.exports = {
     let wxuser = user.methods.getUser()
     wx.login({
       //调用接口获取登录凭证（code），包含openid，session_key
-      success: function(res) {
+      success: function (res) {
         if (res.code) {
+          let store = user.methods.getStore()
+          let store_id = 0
+          if(store != null){
+            store_id = store.store_id
+          }
+           
           api.post(api.api_103, api.getSign({
-            Code: res.code
-          }), function(app, res) {
+            Code: res.code,
+            StoreId: store_id
+          }), function (app, res) {
             if (res.data.Basis.State == api.state.state_200) {
               //session_key 写入缓存
               wx.setStorage({
@@ -73,7 +80,7 @@ module.exports = {
   /**
    * 绑定手机号码
    */
-  bindMobile: function(e, func) {
+  bindMobile: function (e, func) {
     var this_ = this
     var userInfo = user.methods.getUser()
     if (e.detail.errMsg === "getPhoneNumber:ok") {
@@ -91,7 +98,7 @@ module.exports = {
           OpenID: userInfo.openid,
           Mobile: mobile
         }),
-        function(app, res) {
+        function (app, res) {
           if (res.data.Basis.State == api.state.state_200) {
             userInfo = res.data.Result
             user.methods.login(userInfo)
@@ -110,7 +117,6 @@ module.exports = {
         })
     }
   },
-
   /**
    * 获取小程序用户信息
    */
@@ -122,6 +128,7 @@ module.exports = {
       wxuser.openid = userInfo.openid
       wxuser.headimgurl = e.detail.userInfo.avatarUrl
       wxuser.nickname = e.detail.userInfo.nickName
+      wxuser.nickname = wxuser.nickname.replace(/[^a-zA-Z0-9_\u4e00-\u9fa5|,]+/g, "*")
       //wxuser.nickname = encodeURI(wxuser.nickname)
       wxuser.language = e.detail.userInfo.language
       wxuser.country = e.detail.userInfo.country
@@ -131,7 +138,7 @@ module.exports = {
       api.post(api.api_105, api.getSign({
           WeChatUser: wxuser
         }),
-        function(app, res) {
+        function (app, res) {
           if (res.data.Basis.State == api.state.state_200) {
             userInfo.img = wxuser.headimgurl
             userInfo.nickname = decodeURI(wxuser.nickname)
@@ -161,5 +168,5 @@ module.exports = {
       url: '../../passport/authorize/authorize'
     })
   }
-  
+
 }

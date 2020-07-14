@@ -42,4 +42,4 @@
 </view>
 <view class="icon-paycode dib icon" wx:if="{{name == 'paycode'}}">
 <image src="/images/icon/i18.png"></image>
-</view>
+</view> 

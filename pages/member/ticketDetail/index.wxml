@@ -1,17 +1,20 @@
 <!--pages/member/ticketDetail/index.wxml-->
 <view class="page-ticket-detail">
-  <view class="ticket-info-bar bg-white" style="display:none;">
+  <view class="ticket-info-bar bg-white" >
     <view>
-      有效期：{{ticketInfo.time}}
+      有效期：{{ticketInfo.expiry_sdate + "至" + ticketInfo.expiry_edate}}
     </view>
     <view>
-      使用条件：{{ticketInfo.condition}}
+      使用条件：{{"满"+ticketInfo.full_amount+"元使用"}}
     </view>
     <view>
-      可用门店：{{ticketInfo.shop}}
+      可用门店：{{ticketInfo.store_name == ""?"不限":ticketInfo.store_name}}
     </view>
     <view>
-      使用范围：{{ticketInfo.range}}
+      参与商品：{{ticketInfo.use_pdt_module}}
+    </view>
+    <view>
+      使用范围：{{ticketInfo.use_module}}
     </view>
   </view>
   <view class="ticket-image-bar tac bg-white">

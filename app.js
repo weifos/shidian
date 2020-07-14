@@ -11,7 +11,15 @@ var router = require("./modules/router.js")
 //var md5 = require("./modules/cryptojs/lib/MD5.js")
 
 App({
-  onLaunch: function() {
+  onLaunch: function(opt) {
+    if(opt.query.store_id != undefined){
+      var result = {
+        store_id: opt.query.store_id,
+        bar_counter_id: 0
+      }
+      userInfo.methods.setStore(result)
+    }
+
     //检查登录态是否过期
     passport.checkSession(() => {})
   },

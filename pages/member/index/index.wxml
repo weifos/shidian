@@ -5,7 +5,7 @@
     <view class="member-bg" style="background:#B2B2B2 url(http://res.sdibook.com/DefaultRes/Images/p8.png) no-repeat 0 -50rpx/100% auto;" wx:if="{{isLogin}}"></view>
     <view class="member__image">
       <view class="cu-avatar xl round" style="background-image:url({{userInfo.headimgurl}});"></view>
-      <button class="btn-refresh" open-type="getUserInfo" bindgetuserinfo="getWxUser" ></button>
+      <button class="btn-refresh" open-type="getUserInfo" bindgetuserinfo="getWxUser" style="z-index:2000" ></button>
       <!-- <i-icon name="refresh"></i-icon> -->
     </view>
     <view class="member__text">
@@ -16,6 +16,15 @@
       <view class="member__intro fz22 mt10">
         {{userInfo.login_name}}
       </view>
+      <view class="member__intro fz22 mt10" style="color:#9BBAFF;" bindtap="goEdit">
+        修改资料
+      </view>
+    </view>
+    <view class="member__code" data-key="code" bindtap="goUrl">
+       <image class="member_qr_code xl" src="/images/icon/i19.png" />
+         <view class="member__name">
+          <text class="dib vam">会员码</text>
+        </view>
     </view>
   </view>
   <!-- login e -->
@@ -30,7 +39,7 @@
 
   <view class="bg-white mt10">
     <view class="cu-list grid col-2 list1">
-      <view class="cu-item" wx:for="{{list1}}" wx:key wx:for-item="item" data-key="{{item.icon}}" bindtap="goUrl">
+      <view class="cu-item" wx:for="{{list1}}" wx:key="id"  wx:for-item="item" data-key="{{item.icon}}" bindtap="goUrl">
         <view class="item-wrap">
           <div class="dib icon-wrap"><i-icon name="{{item.icon}}" class="dib icon-img vat"></i-icon></div>
           <view class="dib icon-name vam">{{item.name}}</view>
@@ -42,7 +51,7 @@
   <view class="bg-white mt10">
     <view class="cu-list menu list2">
       <!-- cu-item s -->
-      <view class="cu-item" wx:for="{{list2}}" wx:key data-key="{{item.icon}}" bindtap="goUrl">
+      <view class="cu-item" wx:for="{{list2}}" wx:key="id" data-key="{{item.icon}}" bindtap="goUrl">
         <view class="content">
           <i-icon name="{{item.icon}}" class="dib vat i-icon"></i-icon>
           <text class="text-grey dib vam">{{item.name}}</text>

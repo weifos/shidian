@@ -14,7 +14,13 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function() {
+  onLoad: function(opt) {
+    if (!opt.store_id) {
+      var result = {
+        store_id: opt.store_id,
+        bar_counter_id: opt.bar_counter_id
+      }
+    }
     this.api_200()
   },
   /**

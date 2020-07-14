@@ -15,6 +15,7 @@ Page({
     imgurl: "",
     //单价
     price: 0,
+    applyIng: false,
     totalPrice: 0,
     ladder_prices: [],
     isOverdue: false,
@@ -138,9 +139,10 @@ Page({
         that.setData({
           imgurl: res.data.Result.imgurl
         })
-
+ 
         //appG.util.date.dateFormat
         let dateNow = appG.util.date.getDateTimeNow()
+
         //是否过期
         if (appG.util.date.compareDate(dateNow, res.data.Result.course.start_date)) {
           that.setData({
@@ -209,6 +211,9 @@ Page({
       })
       return
     }
+    
+    if(that.data.applyIng) return
+    this.setData({ applyIng: true  })
 
     api.post(api.api_326, api.getSign({
       Order: order

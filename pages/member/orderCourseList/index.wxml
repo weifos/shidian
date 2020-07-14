@@ -19,21 +19,34 @@
             </view>
             <view class="course__text">
               <view class="course__title ellipsis" bindtap="goDetails" data-item="{{item}}">
-                {{item.teacher_name}}
-              </view>
-              <view class="course__name ellipsis" bindtap="goDetails" data-item="{{item}}">
-                {{item.course_name}}
+                {{item.teacher_name}}——{{item.course_name}}
               </view>
               <view class="course__address ellipsis2" bindtap="goDetails" data-item="{{item}}">
                 上课地点：{{item.province}}{{item.city}}{{item.area}}{{item.address}}
+              </view>
+              <view class="course__name ellipsis" wx:if="{{!item.is_pay && item.type_id==5 }}">
+                待支付
+              </view>
+              <view class="course__name ellipsis" wx:if="{{item.is_pay && item.refund_status==0 && item.type_id==5 }}">
+                已支付
+              </view>
+              <view class="course__name ellipsis" wx:if="{{item.is_pay && item.refund_status==2 && item.type_id==5 }}">
+                退款申请中
+              </view>
+              <view class="course__name ellipsis" wx:if="{{item.is_pay && item.refund_status==1 && item.type_id==5 }}">
+                部分退款
+              </view>
+              <view class="course__name ellipsis" wx:if="{{item.is_pay && item.refund_status==10 && item.type_id==5 }}">
+                退款完成
               </view>
               <view class="course__time" bindtap="goDetails" data-item="{{item}}">
                 {{item.start_date}}
               </view>
               <view class="course__btns">
                 <!-- <button class="cu-btn round bg-white">取消</button> -->
-                <button wx:if="{{item.is_pay}}" class="cu-btn round bg-lightBlue text-white" bindtap="goTicket" data-id="{{item.id}}">查看</button>
-                <button wx:if="{{!item.is_pay}}" class="cu-btn round bg-lightBlue text-white" bindtap="goPay" data-item="{{item}}">支付</button>
+                <button wx:if="{{item.is_pay || item.type==1}}" class="cu-btn round bg-lightBlue text-white" bindtap="goTicket" data-id="{{item.id}}">查看</button>
+                <button wx:if="{{item.is_pay && item.type==5 && (item.refund_status==0||item.refund_status==1)}}" class="cu-btn round bg-lightBlue text-white" bindtap="refundApply" data-id="{{item.id}}">退款</button>
+                <button wx:if="{{!item.is_pay && item.type==5}}" class="cu-btn round bg-lightBlue text-white" bindtap="goPay" data-item="{{item}}">支付</button>
                 <!-- <button class="cu-btn round bg-gray text-white">取消</button> -->
               </view>
             </view>

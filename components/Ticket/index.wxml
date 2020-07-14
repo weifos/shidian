@@ -9,7 +9,10 @@
   </view>
   <view class="ticket__discountInfo tac dib vat">
     <view class="ticket__discount" data-item="{{ticketInfo}}">点击使用</view>
-    <!-- <view class="ticket__quota ticket__tk" data-item="{{ticketInfo}}" style="margin-top:5px;">申请退款</view> -->
+    <!-- <view class="ticket__discount" data-item="{{ticketInfo}}" wx:if="{{!ticketInfo.is_used}}">点击使用</view>
+    <view class="ticket__discount" data-item="{{ticketInfo}}" wx:else>已使用</view>
+    <view class="ticket__quota ticket__tk" wx:if="{{!ticketInfo.is_used && !ticketInfo.is_refund}}" bindtap="appRefund" data-item="{{ticketInfo}}" style="margin-top:5px;">申请退款</view>
+   -->
   </view>
 </view>
 <view data-item="{{ticketInfo}}" bindtap="ticketDetails" class="ticket ticket-1 {{ticketInfo.is_used ? 'used' : ''}} {{isSelect && useFullAmount < ticketInfo.quota?'used':'' }}" wx:else>
