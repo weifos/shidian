@@ -4,6 +4,7 @@ import router from './router'
 import md5 from './md5'
 
 // 测试环境
+ 
 let domain = "http://sd.api.shidian.com/"
 let res_domain = "http://test.res.sdibook.com/"
 // 正式环境

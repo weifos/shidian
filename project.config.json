@@ -130,16 +130,21 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 10,
 					"name": "/pages/coffee/coffee",
-					"pathName": "/pages/coffee/coffee",
+					"pathName": "pages/coffee/coffee",
 					"query": "store_id=1&bar_counter_id=1",
 					"scene": null
 				},
 				{
 					"id": -1,
+<<<<<<< HEAD
 					"name": "调试微信扫码点单",
 					"pathName": "pages/coffee/coffee",
+=======
+					"name": "pages/index/index",
+					"pathName": "/pages/coffee/coffee",
+>>>>>>> 32d224bde6a0806b60d5e75a57fdfbe5ecc843e2
 					"query": "store_id=1&bar_counter_id=10",
 					"scene": null
 				}
