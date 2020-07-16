@@ -17,13 +17,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(opt) {
+    //如果是打开微信的扫一扫情况
     if (!opt.scan) {
       var result = {
         store_id: opt.store_id,
         bar_counter_id: opt.bar_counter_id
       }
-      
-      user.methods.setStore(result)
+      this.api_204(result)
     }
      
     this.api_201(opt.store_id, opt.bar_counter_id)
@@ -63,6 +63,27 @@ Page({
         })
       }
     });
+  },
+  /**
+   * 扫码点单
+   */
+  api_204: function(result) {
+    var that = this
+    api.post(api.api_204, api.getSign({
+      StoreID: result.store_id,
+      BarCounterID: result.bar_counter_id
+    }), function(app, res) {
+      if (res.data.Basis.State != api.state.state_200) {
+        wx.showToast({
+          title: res.data.Basis.Msg,
+          icon: 'none',
+          duration: 3000
+        })
+      } else {
+        //设置扫码门店信息
+        user.methods.setStore(res.data.Result)
+      }
+    })
   },
 
   /**

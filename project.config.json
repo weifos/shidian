@@ -22,7 +22,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -134,6 +134,13 @@
 					"name": "/pages/coffee/coffee",
 					"pathName": "/pages/coffee/coffee",
 					"query": "store_id=1&bar_counter_id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "调试微信扫码点单",
+					"pathName": "pages/coffee/coffee",
+					"query": "store_id=1&bar_counter_id=10",
 					"scene": null
 				}
 			]
