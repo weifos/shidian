@@ -130,10 +130,17 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 10,
 					"name": "/pages/coffee/coffee",
-					"pathName": "/pages/coffee/coffee",
+					"pathName": "pages/coffee/coffee",
 					"query": "store_id=1&bar_counter_id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "/pages/coffee/coffee",
+					"query": "store_id=1&bar_counter_id=10",
 					"scene": null
 				}
 			]

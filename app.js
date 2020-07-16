@@ -15,7 +15,7 @@ App({
     if(opt.query.store_id != undefined){
       var result = {
         store_id: opt.query.store_id,
-        bar_counter_id: opt.bar_counter_id == undefined ? 0 : opt.bar_counter_id
+        bar_counter_id: opt.query.bar_counter_id == undefined ? 0 : opt.query.bar_counter_id
       }
       userInfo.methods.setStore(result)
     }
