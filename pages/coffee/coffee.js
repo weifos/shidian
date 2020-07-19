@@ -17,7 +17,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(opt) {
-    debugger
     if (!opt.scan) {
       var result = {
         store_id: opt.store_id,
