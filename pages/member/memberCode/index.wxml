@@ -1,0 +1,26 @@
+<view class="container page-member-paycode">
+  <view class="member-head login">
+    <view class="member-bg" style="background:#B2B2B2 url(http://res.sdibook.com/DefaultRes/Images/p8.png) no-repeat 0 -50rpx/100% auto;"></view>
+    <view class="member__image">
+      <view class="cu-avatar xl round" style="background-image:url({{userInfo.headimgurl}});"></view>
+    </view>
+    <view class="member__text text-white">
+      <view class="member__name">
+        <text class="dib vam mr20">{{userInfo.nick_name}}</text>
+        <i-icon name="vip"></i-icon>
+      </view>
+      <view class="member__intro fz22 mt10">
+        {{userInfo.login_name}}
+      </view>
+    </view>
+  </view>
+  
+  <view class="ewm-bar tac">
+    <view class="ewm-bar-title fz27">
+      此码为会员码
+    </view>
+    <view class="ewm-bar-image">
+      <canvas class="canvas-code"  canvas-id="myQrcode" style="background:#fff;width: 180px;height: 180px;margin:0 auto;" />
+    </view> 
+  </view> 
+</view>
