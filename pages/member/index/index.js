@@ -17,6 +17,7 @@ Page({
       nick_name: '未设置',
       login_name: '未登录',
       headimgurl: '/images/user.png',
+      card_img_url: '/images/card.png',
     },
     list1: [{
         "name": "我的会员",
@@ -156,6 +157,10 @@ Page({
 
     this.setData({
       ['userInfo.headimgurl']: user.headimgurl
+    })
+
+    this.setData({
+      ['userInfo.cardimgurl']: user.card_img_url
     })
   },
   /**

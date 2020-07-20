@@ -24,7 +24,7 @@ Page({
    */
   onLoad: function() {
     let _user = user.methods.getUser()
-    if(_user.birth == undefined){
+    if(_user.birth == undefined ){
       this.setData({
         isEditBirth: true
       }) 

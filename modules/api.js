@@ -4,12 +4,20 @@ import router from './router'
 import md5 from './md5'
 
 // 测试环境
+<<<<<<< HEAD
  
 // let domain = "http://sd.api.shidian.com/"
 // let res_domain = "http://test.res.sdibook.com/"
 // 正式环境
 let domain = "https://api.sdibook.com/"
 let res_domain = "http://res.shidian.com/"
+=======
+let domain = "http://sd.api.shidian.com/"
+let res_domain = "http://test.res.sdibook.com/"
+// 正式环境
+//let domain = "https://api.sdibook.com/"
+//let res_domain = "http://res.shidian.com/"
+>>>>>>> 250fbfc864587196e874d2b4102d50e3d95b2fee
 
 /// <summary> 
 /// 全局配置类

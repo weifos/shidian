@@ -106,6 +106,13 @@ module.exports = {
               title: res.data.Basis.Msg,
               duration: 2000
             })
+          
+            res.data.Result.register_msg.forEach(function (o, i) {
+              wx.showToast({
+                title: o,
+                duration: 2000
+              })
+            })
           } else {
             wx.showToast({
               title: res.data.Basis.Msg,

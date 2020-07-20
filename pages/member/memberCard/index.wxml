@@ -1,7 +1,7 @@
 <!--pages/member/memberCard/index.wxml-->
 <view class="container page-member-card">
   <view class="member-card">
-    <image src="/images/card.png"></image>
+    <image src="{{userInfo.card_img_url}}"></image>
     <view class="card__text text-white">
       <view class="card__name">
         十点书店会员卡

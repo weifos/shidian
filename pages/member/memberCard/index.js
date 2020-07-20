@@ -7,7 +7,8 @@ Page({
    */
   data: {
     userInfo: {
-      card_no: ''
+      card_no: '',
+      card_img_url: '/images/card.png',
     }
   },
 
