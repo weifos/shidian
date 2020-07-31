@@ -20,7 +20,7 @@ Page({
         store_id: opt.store_id,
         bar_counter_id: opt.bar_counter_id
       }
-      userInfo.methods.setStore(result)
+      user.methods.setStore(result)
     }
     this.api_200()
   },
