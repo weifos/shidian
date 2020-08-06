@@ -10,11 +10,12 @@
     <view>
       可用门店：{{ticketInfo.store_name == ""?"不限":ticketInfo.store_name}}
     </view>
-    <view>
+    <!-- <view>
       参与商品：{{ticketInfo.use_pdt_module}}
-    </view>
+    </view> -->
     <view>
-      使用范围：{{ticketInfo.use_module}}
+      <!-- 使用范围：{{ticketInfo.use_module}} -->
+      适用范围：{{ticketInfo.intro}}
     </view>
   </view>
   <view class="ticket-image-bar tac bg-white">
