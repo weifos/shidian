@@ -1,5 +1,6 @@
 var api = require("../../../modules/api.js")
 var router = require("../../../modules/router.js")
+const { util } = require("../../../modules/appGlobal.js")
 
 Page({
 
@@ -8,9 +9,9 @@ Page({
    */
   data: {
     no: '',
-    psw: ''
+    psw: '',
+    btnClicked:false
   },
-
 
   /**
    * 绑定输入
@@ -34,7 +35,8 @@ Page({
    * 加载订单数据
    */
   api_337: function() {
-    let that = this
+    let that = this   
+
     //储值卡编号
     if (!that.data.no.length) {
       wx.showToast({
@@ -54,24 +56,30 @@ Page({
       return
     }
  
+    //设置不可点击
+    util.setBtnClicked(this,true)
+
     //请求接口数据
     api.post(api.api_337, api.getSign({
       No: that.data.no,
       Psw: that.data.psw
     }), function(app, res) {
+     
       if (res.data.Basis.State != api.state.state_200) {
         wx.showToast({
           title: res.data.Basis.Msg,
           icon: 'none',
           duration: 3000
         })
+        //设置可点击
+        util.setBtnClicked(that,false)
       } else {
          
         router.goUrl({
           url: '../index/index'
-        })
-    
+        })    
       }
+      
     })
 
   },
