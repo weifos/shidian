@@ -19,7 +19,7 @@
     </view>
   </view>
   <view class="form-btns">
-    <button class="cu-btn round bg-lightBlue text-white btn-save" bindtap="api_337">确定</button>
+    <button class="cu-btn round bg-lightBlue text-white btn-save" disabled="{{btnClicked}}" bindtap="api_337">确定</button>
   </view>
 </view>
 <i-bottombar></i-bottombar>

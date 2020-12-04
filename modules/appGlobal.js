@@ -827,6 +827,22 @@ module.exports = {
     isIos: function() {
       let agent = navigator.userAgent.toLowerCase();
       return /iphone|ipad|ipod/.test(agent);
+    },
+    //设置按钮是否可点击(防止重复点击)
+    setBtnClicked:function(self,is_clicked){
+      if(is_clicked){
+        //设置不可点击
+        self.setData({
+          btnClicked: true
+        })
+      }else{
+        //设置可点击
+        setTimeout( ()=> {
+          self.setData({
+            btnClicked: false
+          })
+        }, 1000)
+      }
     }
   },
   //本地存储
