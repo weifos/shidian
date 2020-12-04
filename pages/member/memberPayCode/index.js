@@ -106,6 +106,7 @@ Page({
     let _user = user.methods.getUser()
     //获取用户ID信息
     let str1 = appG.util.getPlaceholder('000000000000000', _user.user_id)
+    //let str1 = appG.util.getPlaceholder('000000000000000', 71349)
     //获取用户优惠券
     let str2 = appG.util.getPlaceholder('000000000000000', this.data.cid)
 
