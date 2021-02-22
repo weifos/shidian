@@ -11,28 +11,40 @@
   <!-- menu-list s -->
   <view class="menu-list">
     <view class="menu__item" data-key="coffee"  bindtap='scanCode'>
-    <image src="../../images/i2.png"></image>
+    <image src="http://res.sdibook.com/DefaultRes/Images/i1.png"></image>
       <view class="menu__title">
         <text class="menu__title__cn">咖啡点单</text>
-        
       </view>
-      
     </view>
     <view class="menu__item" data-key="course" bindtap="goUrl">
-     <image src="../../images/i3.png"></image>
+     <image src="http://res.sdibook.com/DefaultRes/Images/i2.png"></image>
       <view class="menu__title">
         <text class="menu__title__cn">课堂报名</text>
-      
       </view>
-     
     </view>
     <view class="menu__item" data-key="appt" bindtap="goUrl">
-     <image src="../../images/i4.png"></image>
+     <image src="http://res.sdibook.com/DefaultRes/Images/i3.png"></image>
       <view class="menu__title">
         <text class="menu__title__cn">活动预约</text>
-        
       </view>
-     
+    </view>
+    <view class="menu__item" data-key="appt" bindtap="toMemberChangeCredit">
+     <image src="http://res.sdibook.com/DefaultRes/Images/i4.png"></image>
+      <view class="menu__title">
+        <text class="menu__title__cn">会员服务</text>
+      </view>
+    </view>
+    <view class="menu__item" data-key="appt" bindtap="toListenMini">
+     <image src="http://res.sdibook.com/DefaultRes/Images/i5.png"></image>
+      <view class="menu__title">
+        <text class="menu__title__cn">会员听书</text>
+      </view>
+    </view>
+    <view class="menu__item" data-key="coupon" bindtap="goUrl">
+     <image src="http://res.sdibook.com/DefaultRes/Images/i6.png"></image>
+      <view class="menu__title">
+        <text class="menu__title__cn">会员优惠券</text>
+      </view>
     </view>
   </view>
   <!-- menu-list e -->

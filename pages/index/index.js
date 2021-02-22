@@ -1,7 +1,7 @@
 var api = require("../../modules/api.js")
 var appG = require("../../modules/appGlobal.js")
 var router = require("../../modules/router.js")
-var user = require("../../modules/userInfo.js") 
+var user = require("../../modules/userInfo.js")
 
 Page({
   data: {
@@ -9,12 +9,12 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
   },
-  onLoad: function(opt) {
+  onLoad: function (opt) {
     if (!opt.store_id) {
       var result = {
         store_id: opt.store_id,
@@ -27,9 +27,9 @@ Page({
   /**
    * 加载首页数据
    */
-  api_200: function() {
+  api_200: function () {
     var this_ = this;
-    api.post(api.api_200, api.getSign(), function(app, res) {
+    api.post(api.api_200, api.getSign(), function (app, res) {
       if (res.data.Basis.State != api.state.state_200) {
         wx.showToast({
           title: res.data.Basis.Msg,
@@ -39,7 +39,7 @@ Page({
       } else {
 
         //返回的数组扩展属性
-        res.data.Result.banners.map(function(obj, index, arr) {
+        res.data.Result.banners.map(function (obj, index, arr) {
           obj.type = "image"
         })
 
@@ -58,7 +58,7 @@ Page({
     api.post(api.api_204, api.getSign({
       StoreID: result.store_id,
       BarCounterID: result.bar_counter_id
-    }), function(app, res) {
+    }), function (app, res) {
       if (res.data.Basis.State != api.state.state_200) {
         wx.showToast({
           title: res.data.Basis.Msg,
@@ -72,13 +72,12 @@ Page({
           url: '/pages/coffee/coffee?store_id=' + res.data.Result.store_id + "&bar_counter_id=" + res.data.Result.bar_counter_id + "&scan=1"
         })
       }
-    });
+    })
   },
-
   /**
    * 扫码点单
    */
-  scanCode: function() {
+  scanCode: function () {
     var that = this
     wx.showModal({
       title: '提示',
@@ -88,7 +87,7 @@ Page({
       //cancelColor: '取消按钮的文本颜色，默认#000000',
       confirmText: '确认',
       //confirmColor: '却惹按钮的文本颜色，默认#000000',
-      success: function(res) {
+      success: function (res) {
         if (res.confirm) {
           // 调起扫码
           wx.scanCode({
@@ -104,14 +103,14 @@ Page({
               }
             }
           })
-        } else if (res.cancel) {}
+        } else if (res.cancel) { }
       }
     })
   },
   /**
    * 菜单跳转
    */
-  goUrl: function(e) {
+  goUrl: function (e) {
     //跳转地址
     let url = ''
     let key = e.currentTarget.dataset.key
@@ -121,13 +120,18 @@ Page({
       case "coffee":
         url = '../coffee/coffee'
         break;
-        //课程
+      //课程
       case "course":
         url = '../course/course'
         break;
-        //活动预约
+      //活动预约
       case "appt":
         url = '../activity/activity'
+        break;
+      //用户优惠券列表
+      case "coupon":
+        url = '../member/ticketList/index'
+        url = '../wpaysuccess/index'
         break;
 
       default:
@@ -140,7 +144,6 @@ Page({
       })
     }
   },
-
   /**
    * 用户点击右上角分享
    */
@@ -150,5 +153,38 @@ Page({
       path: "pages/index/index",
       imageUrl: 'http://res.sdibook.com/DefaultRes/Images/mini_share.png'
     }
+  },
+  /**
+   * 【会员服务】拉起图书查询&积分兑换小程序
+   */
+  toMemberChangeCredit: function () {
+    wx.navigateToMiniProgram({
+      appId: 'wxc0bea5f07c0ffc58',
+      path: 'page/index/index',
+      extraData: {
+        foo: 'bar'
+      },
+      envVersion: 'develop',
+      success(res) {
+        // 打开成功
+      }
+    })
+  },
+  /**
+   * 【会员服务】拉起十点读书小程序（用来兑换激活听书会员）
+   */
+  toListenMini: function () {
+    wx.navigateToMiniProgram({
+      appId: 'wx2a27f5bd63d8e772',
+      path: 'page/index/index',
+      extraData: {
+        foo: 'bar'
+      },
+      envVersion: 'develop',
+      success(res) {
+        // 打开成功
+      }
+    })
   }
+
 })

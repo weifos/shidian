@@ -10,7 +10,8 @@
     "pages/course/course",
     "pages/logs/logs",
     "pages/coffee/coffee",
-    "pages/activity/activity"
+    "pages/activity/activity",
+    "pages/wpaysuccess/index"
   ],
   "subpackages": [
     {
