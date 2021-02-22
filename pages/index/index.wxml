@@ -11,25 +11,28 @@
   <!-- menu-list s -->
   <view class="menu-list">
     <view class="menu__item" data-key="coffee"  bindtap='scanCode'>
+    <image src="../../images/i2.png"></image>
       <view class="menu__title">
         <text class="menu__title__cn">咖啡点单</text>
-        <text class="menu__title__en">Coffee order</text>
+        
       </view>
-      <image src="../../images/p2.png"></image>
+      
     </view>
     <view class="menu__item" data-key="course" bindtap="goUrl">
+     <image src="../../images/i3.png"></image>
       <view class="menu__title">
         <text class="menu__title__cn">课堂报名</text>
-        <text class="menu__title__en">Class registration</text>
+      
       </view>
-      <image src="../../images/p3.png"></image>
+     
     </view>
     <view class="menu__item" data-key="appt" bindtap="goUrl">
+     <image src="../../images/i4.png"></image>
       <view class="menu__title">
         <text class="menu__title__cn">活动预约</text>
-        <text class="menu__title__en">Event reservation</text>
+        
       </view>
-      <image src="../../images/p4.png"></image>
+     
     </view>
   </view>
   <!-- menu-list e -->

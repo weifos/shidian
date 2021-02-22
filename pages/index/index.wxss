@@ -1,61 +1,45 @@
 .banner{
   width: 100%;
-  height: 546rpx; 
-  border-bottom-right-radius: 55rpx;
-  border-bottom-left-radius: 55rpx;
+  height: 372rpx; 
   overflow: hidden;
 }
 .banner image{
   width: 100%;
-  height: 546rpx;
+  height: 372rpx;
 }
 .swiper-index{
-  height: 546rpx;
+  height: 372rpx;
   overflow: hidden;
 }
 
 .menu__item{
-  width:700rpx;
-  height:235rpx;
+  width:339rpx;
   overflow: hidden;
-  margin:0 auto 18rpx auto;
-  /* background:#fff; */
-  border-radius: 36rpx;
+  margin:0 0 20rpx 0;
+  background:#fff;
   position: relative;
+  border-radius: 20rpx;
 }
 
 .menu__item image{
-  width: 466rpx;
-  height: 235rpx;
-  position: absolute;
-  right: 0;
-  top: 0;
+  width: 100%;
+  height: 202rpx;
+  vertical-align: top;
 }
 .menu__title__cn,.menu__title__en{
   color: #555555;
   display: block;
-  margin-left: 43rpx;
 }
 .menu__title{
-  width: 234rpx;
   position: relative;
-  height:235rpx;
+  height:74rpx;
   overflow: hidden;
+  text-align: center
 }
-.menu__title:before{
-  position: absolute;
-  width: 100%;
-  height:100%;
-  top:0rpx;
-  left:0rpx;
-  background-color: #fff;
-  opacity: 0.7;
-  content:"";
-  border-radius: 36rpx 0 0 0;
-}
+
 .menu__title__cn{
   font-size: 31rpx;
-  padding-top: 82rpx;
+  padding-top: 12rpx;
   position: relative;
 }
 .menu__title__en{
@@ -63,5 +47,10 @@
   position: relative;
 }
 .menu-list{
-  margin-top:-82rpx; 
+  margin-top:20rpx; 
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 12px;
+  box-sizing: border-box;
 }
