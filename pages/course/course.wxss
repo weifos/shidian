@@ -89,5 +89,6 @@ page {
   margin-top: 0rpx;
 }
 .i-tab2 .tab-t{
+  height: 100rpx;
   border-bottom:2rpx solid #e0e0e0;
 }

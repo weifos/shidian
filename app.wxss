@@ -25,8 +25,14 @@
   overflow: hidden;
 }
 .tac{text-align:center;}
+.fz50{
+  font-size: 50rpx;
+}
 .fz33{
   font-size: 33rpx;
+}
+.fz31{
+  font-size: 31rpx;
 }
 .fz22{
   font-size: 22rpx;
@@ -145,6 +151,7 @@ page{
  
 }
 .i-tab .tab-t{
+  height: 100rpx;
   background-color: #B2B2B2;
   /* border-bottom:1px solid #e0e0e0;  */
 }

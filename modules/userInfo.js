@@ -98,10 +98,20 @@ module.exports = {
       return null
     },
     /**
-     * 设置购物车
+     * 获取支付成功地址
      */
-    setShoppingCart(result) {
-      wx.setStorageSync("sCartOrder", JSON.stringify(result))
+    getPaySuccess() {
+      let item = wx.getStorageSync('paySuccess')
+      if (item.length) {
+        return JSON.parse(item)
+      }
+      return null
+    },
+    /**
+     * 设置支付成功地址
+     */
+    setPaySuccess(result) {
+      wx.setStorageSync("paySuccess", JSON.stringify(result))
     },
     /**
      * 提交立即购买
@@ -111,7 +121,13 @@ module.exports = {
       wx.setStorageSync("buyNowOrder", JSON.stringify(result))
     },
     /**
-     * 获取缓存购物车
+     * 设置购物车
+     */
+    setShoppingCart(result) {
+      wx.setStorageSync("sCartOrder", JSON.stringify(result))
+    },
+    /**
+     * 获取购物车
      */
     getShoppingCart() {
       let item = wx.getStorageSync('sCartOrder')

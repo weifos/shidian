@@ -1,30 +1,29 @@
 <!-- index.wxml -->
 <view class="container page-wpaysuccess">
-    <view class="tips">
-        <image src="{{iconSuccess}}" class="icon-success" />
-        <text class="tips-text">支付成功</text>
+  <view class="tips">
+    <image src="{{iconSuccess}}" class="icon-success" />
+    <text class="tips-text">支付成功</text>
+  </view>
+  <view class="info">
+    <view class="info__item">
+      <text class="info__item-name ">交易单号</text>
+      <text class="info__item-value">{{paySuccess.no}}</text>
     </view>
-    <view class="info">
-        <view class="info__item">
-            <text class="info__item-name ">商品</text>
-            <text class="info__item-value">茶点卡-微信专享版</text>
-        </view>
-        <view class="info__item">
-            <text class="info__item-name ">交易单号</text>
-            <text class="info__item-value">茶点卡-微信专享版</text>
-        </view>
-        <view class="info__item">
-            <text class="info__item-name ">交易时间</text>
-            <text class="info__item-value">茶点卡-微信专享版</text>
-        </view>
-        <view class="info__item">
-            <text class="info__item-name ">银行类型</text>
-            <text class="info__item-value">茶点卡-微信专享版</text>
-        </view>
-        <view class="info__item">
-            <text class="info__item-name ">当前状态</text>
-            <text class="info__item-value">茶点卡-微信专享版</text>
-        </view>
+    <view class="info__item">
+      <text class="info__item-name ">获得积分</text>
+      <text class="info__item-value">{{paySuccess.point}}</text>
     </view>
-    <view class="total">￥3.00</view>
+    <view class="info__item" v-if="paySuccess.type > 0">
+      <text class="info__item-name ">钱包余额</text>
+      <text class="info__item-value">{{paySuccess.balance}}</text>
+    </view>
+    <view class="info__item">
+      <text class="info__item-name ">交易时间</text>
+      <text class="info__item-value">{{paySuccess.created_time}}</text>
+    </view>
+  </view>
+  <view class="total">￥{{paySuccess.amount}}</view>
+  <view class="form-btns tac">
+    <button class="cu-btn round bg-lightBlue text-white btn-save" style="width:80%;" bindtap="goUrl">确定</button>
+  </view>
 </view>

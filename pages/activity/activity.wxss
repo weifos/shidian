@@ -72,5 +72,6 @@ page{
   padding: 0 20rpx;
 }
 .i-tab2 .tab-t{
+  height: 100rpx;
   border-bottom:2rpx solid #e0e0e0;
 }

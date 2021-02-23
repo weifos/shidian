@@ -13,7 +13,7 @@
     display: inline-block;
     vertical-align: middle;
     font-size: 42rpx;
-    color: rgb(100, 214, 176);
+    color:#33a954;
     margin-left: 20rpx;
 }
 .page-wpaysuccess .info{
@@ -34,6 +34,7 @@
     color: #000;
     padding-right: 30rpx;
     margin-top: 20rpx;
+    margin-bottom: 40rpx;
 }
 .page-wpaysuccess  .info__item-value{
     color: #000;

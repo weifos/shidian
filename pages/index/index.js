@@ -131,7 +131,6 @@ Page({
       //用户优惠券列表
       case "coupon":
         url = '../member/ticketList/index'
-        url = '../wpaysuccess/index'
         break;
 
       default:
