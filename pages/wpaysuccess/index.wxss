@@ -1,0 +1,40 @@
+/* pages/wpaysuccess/index.wxss */
+.page-wpaysuccess .tips{
+    text-align: center;
+    padding: 50px 0;
+}
+.page-wpaysuccess .icon-success {
+    width: 120rpx;
+    height: 120rpx;  
+    display: inline-block;
+    vertical-align: middle;
+}
+.page-wpaysuccess .tips-text{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 42rpx;
+    color: rgb(100, 214, 176);
+    margin-left: 20rpx;
+}
+.page-wpaysuccess .info{
+    padding: 20rpx 20rpx 38rpx 20rpx;
+    border-top:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+}
+.page-wpaysuccess .info__item{
+    padding: 18rpx 20rpx 0 20rpx;
+    display: flex;
+    justify-content: space-between;
+    font-size: 28rpx;
+}
+.page-wpaysuccess .total{
+    text-align: right;
+    font-size: 80rpx;
+    font-weight: bold;
+    color: #000;
+    padding-right: 30rpx;
+    margin-top: 20rpx;
+}
+.page-wpaysuccess  .info__item-value{
+    color: #000;
+}
