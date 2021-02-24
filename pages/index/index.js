@@ -159,7 +159,7 @@ Page({
   toMemberChangeCredit: function () {
     wx.navigateToMiniProgram({
       appId: 'wxc0bea5f07c0ffc58',
-      path: 'page/index/index',
+      path: 'pages/home/home',
       extraData: {
         foo: 'bar'
       },

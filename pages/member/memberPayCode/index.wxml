@@ -40,7 +40,7 @@
       <!-- <image src="/images/ewm.png"></image> -->
     </view>
     <view class="ewm-bar-refresh fz22">
-      {{30 - timer.num}} 秒后刷新
+      {{60 - timer.num}} 秒后刷新
     </view>
   </view>
   <!-- ewm-bar s -->

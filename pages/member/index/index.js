@@ -155,10 +155,11 @@ Page({
       ['userInfo.login_name']: appG.util.getHideMobile(user.login_name)
     })
 
-    this.setData({
-      ['userInfo.headimgurl']: user.headimgurl
-    })
-
+    if(user.headimgurl){
+      this.setData({
+        ['userInfo.headimgurl']: user.headimgurl  
+      })
+    }
     this.setData({
       ['userInfo.cardimgurl']: user.card_img_url
     })

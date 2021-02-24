@@ -107,7 +107,8 @@ Component({
     }
   },
   ready: function() {
-    let url = user.methods.getUser().headimgurl == undefined ? "/images/user.png" : user.methods.getUser().headimgurl
+    let _url = user.methods.getUser().headimgurl
+    let url = _url == undefined || _url== "" ? "/images/user.png" : url
     this.setData({
       headimgurl: url
     })

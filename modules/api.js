@@ -5,11 +5,11 @@ import md5 from './md5'
 
 // // 测试环境
 // let domain = "http://sd.api.shidian.com/"
-// let domain = "http://sd.api.shidian.com/"
-// let res_domain = "http://test.res.sdibook.com/"
+let domain = "http://sd.api.shidian.com/"
+let res_domain = "http://test.res.sdibook.com/"
 // // 正式环境
-let domain = "https://api.sdibook.com/"
-let res_domain = "http://res.shidian.com/"
+// let domain = "https://api.sdibook.com/"
+// let res_domain = "http://res.shidian.com/"
 
 /// <summary> 
 /// 全局配置类

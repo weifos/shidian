@@ -11,7 +11,7 @@
     </view>
     <view class="info__item">
       <text class="info__item-name ">获得积分</text>
-      <text class="info__item-value">{{paySuccess.point}}</text>
+      <text class="info__item-value">{{paySuccess.point}}积分</text>
     </view>
     <view class="info__item" v-if="paySuccess.type > 0">
       <text class="info__item-name ">钱包余额</text>

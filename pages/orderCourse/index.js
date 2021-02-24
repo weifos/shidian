@@ -48,7 +48,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(opt) {
+  onLoad: function (opt) {
 
     //优惠券
     if (opt.cid != undefined && opt.cname != undefined && opt.tname != undefined) {
@@ -70,7 +70,7 @@ Page({
   /**
    * 选择支付方式
    */
-  checkedPay: function(e) {
+  checkedPay: function (e) {
     this.setData({
       payType: e.currentTarget.dataset.id
     })
@@ -86,7 +86,7 @@ Page({
         OrderNo: no,
         UserCouponId: that.data.cid
       }),
-      function(vue, res) {
+      function (vue, res) {
         if (res.data.Basis.State == api.state.state_200) {
 
           //加载用户电子钱包余额
@@ -134,13 +134,26 @@ Page({
         UserCouponId: that.data.cid,
         No: that.data.orderInfo.serial_no
       }),
-      function(vue, res) {
+      function (vue, res) {
         if (res.data.Basis.State == api.state.state_200) {
-          setTimeout(function() {
-            router.goUrl({
-              url: '../member/orderCourseList/index?tid=' + that.data.orderInfo.type
-            })
-          }, 1000)
+          let user_info = user.methods.getUser()
+          //支付成功对象
+          let paySuccess = {
+            type: 1,
+            no: that.data.orderInfo.serial_no,
+            point: parseInt(res.data.Result.amount),
+            amount: res.data.Result.amount,
+            created_time: res.data.Result.created_time,
+            balance: user_info.balance - parseInt(res.data.Result.amount),
+            url: '../member/orderCourseList/index?tid=' + that.data.orderInfo.type
+          }
+
+          //写入支付成功对象
+          user.methods.setPaySuccess(paySuccess)
+
+          //跳转到支付成功页面
+          router.goUrl({ url: '../wpaysuccess/index' })
+    
         } else {
           wx.showToast({
             title: res.data.Basis.Msg,
@@ -164,9 +177,9 @@ Page({
         OrderNo: that.data.orderInfo.serial_no,
         UserCouponId: that.data.cid
       }),
-      function(vue, res) {
+      function (vue, res) {
         if (res.data.Basis.State == api.state.state_200) {
-
+          let actual_amount = res.data.Result.order.actual_amount
           wx.requestPayment({
             appId: res.data.Result.wechatpay.appId,
             timeStamp: res.data.Result.wechatpay.timeStamp,
@@ -174,20 +187,37 @@ Page({
             package: res.data.Result.wechatpay.package,
             signType: res.data.Result.wechatpay.signType,
             paySign: res.data.Result.wechatpay.paySign,
-            success: function(res) {
+            success: function (res) {
               if (res.errMsg = "requestPayment:ok") {
-                //跳转地址 
-                router.goUrl({
+                let time = appG.util.date.getDateTimeNow()
+                let time1 = appG.util.date.dateFormat(time, 'yyyy-MM-dd hh:mm:ss')
+                let user_info = user.methods.getUser()
+                //支付成功对象
+                let paySuccess = {
+                  type: 0,
+                  no: that.data.orderInfo.serial_no,
+                  point: parseInt(actual_amount),
+                  amount: actual_amount,
+                  created_time: time1,
+                  balance: user_info.balance,
+                  //跳转地址 
                   url: '../member/orderCourseList/index?tid=' + that.data.orderInfo.type
-                })
+                }
+
+                //写入支付成功对象
+                user.methods.setPaySuccess(paySuccess)
+
+                //跳转到支付成功页面
+                router.goUrl({ url: '../wpaysuccess/index' })
+ 
               }
             },
             //失败执行
-            fail: function(res) {
+            fail: function (res) {
               //console.log(res)
             },
             //无论怎样都是执行
-            complete: function(res) {
+            complete: function (res) {
               //console.log(res)
               that.setData({
                 isPayIng: false
@@ -209,7 +239,7 @@ Page({
   /**
    * 立即支付
    */
-  goPay: function() {
+  goPay: function () {
     let that = this
 
     if (!that.data.isPayIng) {
@@ -234,14 +264,14 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 选择优惠券
    */
-  selectTicket: function() {
+  selectTicket: function () {
     router.goUrl({
       url: '../member/ticketList/index?s=1&m=4&sn=' + this.data.orderInfo.serial_no + '&amount=' + this.data.orderInfo.actual_amount
     })
@@ -250,21 +280,21 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
     let that = this
     let path = getCurrentPages()[getCurrentPages().length - 1].route
     //用户中心订单列表过来
@@ -282,21 +312,21 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

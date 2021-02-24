@@ -18,7 +18,7 @@ Page({
       id: 0,
       nick_name: '未设置',
       login_name: '未登录',
-      headimgurl: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg',
+      headimgurl: '/images/user.png',
     },
     user_code: 0,
     timer: {
@@ -36,7 +36,7 @@ Page({
     that.data.setInter = setInterval(
       function() {
         let numVal = that.data.timer.num + 1
-        if (numVal > 30) {
+        if (numVal > 60) {
           numVal = 0
           that.createQRCode(that.data.user_code)
         }
@@ -141,9 +141,12 @@ Page({
       ['userInfo.login_name']: appG.util.getHideMobile(user.login_name)
     })
 
-    this.setData({
-      ['userInfo.headimgurl']: user.headimgurl
-    })
+    if(user.headimgurl){
+      this.setData({
+        ['userInfo.headimgurl']: user.headimgurl
+      })
+    }
+
   },
 
   /**
