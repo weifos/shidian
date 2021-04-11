@@ -35,12 +35,19 @@
     <view class="ewm-bar-title fz27">
       此会员码可用于积分及支付
     </view>
+    <view class="padding-tb-xs fz27">
+      余额：{{userInfo.balance}}
+    </view>
     <view class="ewm-bar-image">
       <canvas class="canvas-code"  canvas-id="myQrcode" style="background:#fff;width: 180px;height: 180px;margin:0 auto;" />
       <!-- <image src="/images/ewm.png"></image> -->
     </view>
-    <view class="ewm-bar-refresh fz22">
+
+    <view class="padding-tb-sm fz22">
       {{60 - timer.num}} 秒后刷新
+    </view>
+    <view class="padding-tb-sm fz27" bindtap="goMemberCode" style="color:#9BBAFF;">
+      查看会员码
     </view>
   </view>
   <!-- ewm-bar s -->

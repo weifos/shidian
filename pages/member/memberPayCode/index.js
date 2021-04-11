@@ -1,8 +1,7 @@
 var user = require("../../../modules/userInfo.js")
-var api = require("../../../modules/api.js")
 var appG = require("../../../modules/appGlobal.js")
-var passport = require("../../../modules/passport.js")
 var router = require("../../../modules/router.js")
+
 import QRCode from '../../../modules/weapp-qrcode.js'
 
 Page({
@@ -30,11 +29,11 @@ Page({
   /**
    * 开始计时器
    */
-  startSetInter: function() {
+  startSetInter: function () {
     let that = this
     //将计时器赋值给setInter
     that.data.setInter = setInterval(
-      function() {
+      function () {
         let numVal = that.data.timer.num + 1
         if (numVal > 60) {
           numVal = 0
@@ -49,7 +48,7 @@ Page({
   /**
    * 开始计时器
    */
-  endSetInter: function() {
+  endSetInter: function () {
     let that = this;
     //清除计时器  即清除setInter
     clearInterval(that.data.setInter)
@@ -58,7 +57,7 @@ Page({
   /**
    * 选择优惠券
    */
-  selectTicket: function() {
+  selectTicket: function () {
     router.goUrl({
       url: '../ticketList/index?s=1&isPayCode=true'
     })
@@ -88,7 +87,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(opt) {
+  onLoad: function (opt) {
     //优惠券
     if (opt.cid != undefined && opt.cname != undefined && opt.tname != undefined) {
       this.setData({
@@ -109,13 +108,13 @@ Page({
     //let str1 = appG.util.getPlaceholder('000000000000000', 71349)
     //获取用户优惠券
     let str2 = appG.util.getPlaceholder('000000000000000', this.data.cid)
-
+ 
     //设置付款码
     this.setData({
       user_code: str1 + str2
     })
     this.bindUser(_user)
- 
+
     this.createQRCode(this.data.user_code)
     //this.startSetInter()
 
@@ -125,11 +124,11 @@ Page({
     }, 1000)
 
   },
-  
+
   /**
    * 加载微信用户信息
    */
-  bindUser: function(user) {
+  bindUser: function (user) {
 
     if (user.nickname) {
       this.setData({
@@ -141,60 +140,72 @@ Page({
       ['userInfo.login_name']: appG.util.getHideMobile(user.login_name)
     })
 
-    if(user.headimgurl){
+    if (user.headimgurl) {
       this.setData({
         ['userInfo.headimgurl']: user.headimgurl
       })
     }
 
+    this.setData({
+      ['userInfo.balance']: user.balance
+    })
+  },
+
+  /**
+   * 查看会员码
+   */
+  goMemberCode: function () {
+    router.goUrl({
+      url: '../memberCode/index'
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

@@ -39,12 +39,21 @@ Page({
   },
 
   /**
+   * 查看付款码
+   */
+  goPayCode: function () {
+    router.goUrl({
+      url: '../memberPayCode/index'
+    })
+  },
+
+  /**
    * 生成二维码
    * 用户ID#优惠券ID#时间戳
    */
   createQRCode(str) { 
     new QRCode('myQrcode', {
-      text: str+'WeChatMini',
+      text: str,
       width: 180,
       height: 180,
       padding: 12, // 生成二维码四周自动留边宽度，不传入默认为0

@@ -11,26 +11,27 @@ Page({
     pageIndex: 0,
     pageSize: 10,
     loading: false,
+    totalPage: 0,
     loadComplete: false,
+    firstLoad:true,
     list: []
   },
-
   /**
    * 加载订单数据
    */
-  api_333: function() {
+  api_333: function () {
     let that = this
     //是否加载中
     let loading = that.data.loading
     //是否加载完成
     let loadComplete = that.data.loadComplete
     //是否加载中，是否加载完成
-    if (!that.data.loading && !that.data.loadComplete) {
+    if (!that.data.loading && !that.data.loadComplete && that.data.pageIndex < that.data.totalPage || that.data.firstLoad) {
       //请求接口数据
       api.post(api.api_333, api.getSign({
         Size: that.data.pageSize,
         Index: that.data.pageIndex
-      }), function(app, res) {
+      }), function (app, res) {
         if (res.data.Basis.State != api.state.state_200) {
           wx.showToast({
             title: res.data.Basis.Msg,
@@ -39,15 +40,22 @@ Page({
           })
         } else {
           that.data.loading = false
+          that.setData({
+            firstLoad: false
+          })
+
+          //总行数
+          let totalRow = res.data.Result.totalRow
           that.data.pageIndex = that.data.pageIndex + 1
-          res.data.Result.forEach(function(o, i) {
+          that.data.totalPage = parseInt(totalRow / that.data.pageSize) + (totalRow % that.data.pageSize == 0 ? 0 : 1)
+          res.data.Result.data.forEach(function (o, i) {
             that.data.list.push(o)
           })
- 
+
           that.setData({
             list: that.data.list
           })
- 
+
           //是否全部加载完毕
           if (res.data.Result.length == 0) {
             that.data.loadComplete = true
@@ -61,6 +69,7 @@ Page({
       })
     }
   },
+
 
   /**
    * 生命周期函数--监听页面加载

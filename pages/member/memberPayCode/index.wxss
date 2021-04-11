@@ -56,7 +56,7 @@ member-head.login{
   border-top:10rpx solid #F4F4F4 ;
 }
 .ewm-bar-title{
-  padding:103rpx 0 51rpx 0;
+  padding:103rpx 0 10rpx 0;
 }
 .ewm-bar-image image{
   width: 254rpx;

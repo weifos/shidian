@@ -22,5 +22,8 @@
     <view class="ewm-bar-image">
       <canvas class="canvas-code"  canvas-id="myQrcode" style="background:#fff;width: 180px;height: 180px;margin:0 auto;" />
     </view> 
+    <view class="ewm-bar-refresh fz27" bindtap="goPayCode" style="color:#9BBAFF;">
+      查看付款码
+    </view>
   </view> 
 </view>

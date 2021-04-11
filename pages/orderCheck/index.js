@@ -133,41 +133,49 @@ Page({
    */
   api_336() {
     let that = this
+    if (!that.data.isPaying) {
+      //设置支付中状态
+      that.setData({ isPaying: true })
+      api.post(api.api_336,
+        api.getSign({
+          UserCouponId: that.data.cid,
+          No: that.data.orderInfo.serial_no,
+          StoreID: that.data.orderInfo.store_id
+        }),
+        function (vue, res) {
+          if (res.data.Basis.State == api.state.state_200) {
+            let user_info = user.methods.getUser()
+            //支付成功对象
+            let paySuccess = {
+              type: 1,
+              no: that.data.orderInfo.serial_no,
+              point: parseInt(res.data.Result.amount),
+              amount: res.data.Result.amount,
+              created_time: res.data.Result.created_time,
+              balance: user_info.balance - parseInt(res.data.Result.amount),
+              url: '../member/orderList/index'
+            }
 
-    api.post(api.api_336,
-      api.getSign({
-        UserCouponId: that.data.cid,
-        No: that.data.orderInfo.serial_no,
-        StoreID: that.data.orderInfo.store_id
-      }),
-      function (vue, res) {
-        if (res.data.Basis.State == api.state.state_200) {
-          let user_info = user.methods.getUser()
-          //支付成功对象
-          let paySuccess = {
-            type: 1,
-            no: that.data.orderInfo.serial_no,
-            point: parseInt(res.data.Result.amount),
-            amount: res.data.Result.amount,
-            created_time: res.data.Result.created_time,
-            balance: user_info.balance - parseInt(res.data.Result.amount),
-            url: '../member/orderList/index'
+            //写入支付成功对象
+            user.methods.setPaySuccess(paySuccess)
+
+            //跳转到支付成功页面
+            router.goUrl({ url: '../wpaysuccess/index' })
+          } else if (res.data.Basis.State == 658) {
+            wx.showToast({ title: res.data.Basis.Msg, icon: 'none', duration: 3000 })
+            router.goUrl({ url: '../member/orderList/index' })
+          } else {
+            wx.showToast({ title: res.data.Basis.Msg, icon: 'none', duration: 3000 })
           }
 
-          //写入支付成功对象
-          user.methods.setPaySuccess(paySuccess)
-
-          //跳转到支付成功页面
-          router.goUrl({ url: '../wpaysuccess/index' })
-        } else if (res.data.Basis.State == 658) {
-          wx.showToast({ title: res.data.Basis.Msg, icon: 'none', duration: 3000 })
-          router.goUrl({ url: '../member/orderList/index' })
-        } else {
-          wx.showToast({ title: res.data.Basis.Msg, icon: 'none', duration: 3000 })
+          setTimeout(function () {
+            that.setData({ isPaying: false })
+          }, 1000)
         }
-      }
-    )
+      )
+    }
   },
+
   /**
    * 微信小程序预支付咖啡订单
    */
