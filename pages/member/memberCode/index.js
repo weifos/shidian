@@ -53,7 +53,7 @@ Page({
    */
   createQRCode(str) { 
     new QRCode('myQrcode', {
-      text: str,
+      text: str+'WeChatMini',
       width: 180,
       height: 180,
       padding: 12, // 生成二维码四周自动留边宽度，不传入默认为0
