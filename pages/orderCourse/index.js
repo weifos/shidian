@@ -101,12 +101,20 @@ Page({
             disAmount = parseFloat(that.data.tname.replace('元'))
             res.data.Result.order.coupon_amount = disAmount
             res.data.Result.order.actual_amount = actual_amount - disAmount
+            //优惠力度大于整单金额
+            if (res.data.Result.order.actual_amount < 0) {
+              res.data.Result.order.actual_amount = 0
+            }
           }
 
           if (that.data.tname.indexOf('折') != -1) {
             disAmount = parseFloat(that.data.tname.replace('折'))
             res.data.Result.order.coupon_amount = actual_amount * ((10 - disAmount) / 10).toFixed(2)
             res.data.Result.order.actual_amount = actual_amount - res.data.Result.order.coupon_amount
+            //优惠力度大于整单金额
+            if (res.data.Result.order.actual_amount < 0) {
+              res.data.Result.order.actual_amount = 0
+            }
           }
 
           //订单信息
@@ -153,7 +161,7 @@ Page({
 
           //跳转到支付成功页面
           router.goUrl({ url: '../wpaysuccess/index' })
-    
+
         } else {
           wx.showToast({
             title: res.data.Basis.Msg,
@@ -189,27 +197,7 @@ Page({
             paySign: res.data.Result.wechatpay.paySign,
             success: function (res) {
               if (res.errMsg = "requestPayment:ok") {
-                let time = appG.util.date.getDateTimeNow()
-                let time1 = appG.util.date.dateFormat(time, 'yyyy-MM-dd hh:mm:ss')
-                let user_info = user.methods.getUser()
-                //支付成功对象
-                let paySuccess = {
-                  type: 0,
-                  no: that.data.orderInfo.serial_no,
-                  point: parseInt(actual_amount),
-                  amount: actual_amount,
-                  created_time: time1,
-                  balance: user_info.balance,
-                  //跳转地址 
-                  url: '../member/orderCourseList/index?tid=' + that.data.orderInfo.type
-                }
-
-                //写入支付成功对象
-                user.methods.setPaySuccess(paySuccess)
-
-                //跳转到支付成功页面
-                router.goUrl({ url: '../wpaysuccess/index' })
- 
+                that.paySuccess(that.data.orderInfo.serial_no, actual_amount, that.data.orderInfo.type)
               }
             },
             //失败执行
@@ -225,7 +213,12 @@ Page({
             }
           })
 
-        } else {
+          //使用优惠券免单
+        } else if (res.data.Basis.State == 578) {
+          let actual_amount = res.data.Result.order.actual_amount
+          that.paySuccess(that.data.orderInfo.serial_no, actual_amount, that.data.orderInfo.type)
+        }
+        else {
           wx.showToast({
             title: res.data.Basis.Msg,
             icon: 'none',
@@ -259,6 +252,35 @@ Page({
     // that.setData({
     //   isPayIng: false
     // })
+  },
+
+  /**
+   * 支付成功跳转
+   */
+  paySuccess: function (serial_no, actual_amount, order_type) {
+    let that = this
+
+    let time = appG.util.date.getDateTimeNow()
+    let time1 = appG.util.date.dateFormat(time, 'yyyy-MM-dd hh:mm:ss')
+    let user_info = user.methods.getUser()
+
+    //支付成功对象
+    let paySuccess = {
+      type: 0,
+      no: serial_no,
+      point: parseInt(actual_amount),
+      amount: actual_amount,
+      created_time: time1,
+      balance: user_info.balance,
+      //跳转地址 
+      url: '../member/orderCourseList/index?tid=' + order_type
+    }
+
+    //写入支付成功对象
+    user.methods.setPaySuccess(paySuccess)
+
+    //跳转到支付成功页面
+    router.goUrl({ url: '../wpaysuccess/index' })
   },
 
   /**

@@ -14,6 +14,11 @@ Page({
     pageSize: 6,
     banners: [],
     catgs: [],
+    options: [],
+    def_options: {
+      id: '-1',
+      name: '请选择门店'
+    },
     courseData: [{
         title: "课程报名",
         loading: false,
@@ -56,6 +61,14 @@ Page({
     this.api_207()
   },
 
+  /**
+   * 选择门店
+   */
+  rechargeSelect(e) {
+    this.setData({
+      checkIndex: e.currentTarget.dataset.id
+    })
+  },
   /**
    * 加载今年历史月份
    */

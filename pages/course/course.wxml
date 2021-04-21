@@ -10,13 +10,19 @@
   <view class="i-tab2">
     <scroll-view scroll-x class="nav tab-t">
       <view class="flex text-center">
-        <view class="cu-item flex-sub {{index==tabCur?'text-lightBlue cur':''}}" wx:for="{{courseData}}" wx:key bindtap="tabSelect" data-id="{{index}}" wx:for-item="item">
+        <view class="cu-item flex-sub {{index==tabCur?'text-lightBlue cur':''}}" wx:for="{{courseData}}" wx:key
+          bindtap="tabSelect" data-id="{{index}}" wx:for-item="item">
           {{item.title}}
         </view>
       </view>
     </scroll-view>
     <view class="tab-content">
       <view class="tab-c" wx:if="{{tabCur == 0}}">
+        <view class="select_placeholder text-lightBlue" style="display:none;">
+          <i-select id="select" style="padding-top:10rpx;" defaultOption="{{def_options}}" options="{{options}}"
+            key="id" text="name" bind:change="change">
+          </i-select>
+        </view>
         <view class="course-list">
           <view class="course__item" wx:key wx:for="{{courseData[0].list}}">
             <view class="course__image">
@@ -24,7 +30,8 @@
             </view>
             <view class="course__text">
               <view class="course__title ellipsis">{{item.name}}</view>
-              <view class="course__name ellipsis" style="height:38rpx;">{{item.teacher_name}}·{{item.teacher_title}}</view>
+              <view class="course__name ellipsis" style="height:38rpx;">{{item.teacher_name}}·{{item.teacher_title}}
+              </view>
               <view class="course__name ellipsis" style="height:38rpx;">
                 {{gFilter.cutSubString(item.intro,36)}}
               </view>
@@ -45,11 +52,13 @@
       <view class="tab-c" wx:if="{{tabCur == 1}}" wx:key>
         <!-- month s -->
         <scroll-view scroll-x class="nav bg-none nav-month" scroll-with-animation scroll-left="{{scrollLeft}}">
-          <view class="cu-item {{index==tabCur2?'cur':''}}" wx:for="{{courseData[1].list}}" wx:key bindtap="tabSelect2" data-id="{{index}}">{{item.month}}</view>
+          <view class="cu-item {{index==tabCur2?'cur':''}}" wx:for="{{courseData[1].list}}" wx:key bindtap="tabSelect2"
+            data-id="{{index}}">{{item.month}}</view>
         </scroll-view>
         <!-- month e -->
         <!-- month list s -->
-        <view class="course-list course-list2" wx:key wx:for="{{courseData[1].list}}" wx:for-item="item" wx:if="{{tabCur2 == index}}">
+        <view class="course-list course-list2" wx:key wx:for="{{courseData[1].list}}" wx:for-item="item"
+          wx:if="{{tabCur2 == index}}">
           <view class="course__item" wx:key wx:for="{{item.items}}" wx:for-item="sItem">
             <view class="course__image">
               <image src="{{sItem.img_url}}" />

@@ -53,6 +53,7 @@
   align-items: center;
 }
 
+.mt5{margin-top: 5rpx;}
 .mt10{margin-top: 10rpx;}
 .mb10{margin-bottom: 10rpx;}
 .mt20{margin-top: 20rpx;}

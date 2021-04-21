@@ -37,7 +37,7 @@ member-head.login {
   float: right; 
   z-index: 10;
   position: absolute;
-  margin-top: -80rpx;
+  margin-top: -110rpx;
   margin-left: 85%;
 }
 
@@ -48,7 +48,7 @@ member-head.login {
 
 
 .member__text {
-  padding-top: 80rpx;
+  padding-top: 60rpx;
   font-size: 27rpx;
   z-index: 1;
   position: relative;

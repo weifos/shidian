@@ -160,9 +160,34 @@ Page({
         ['userInfo.headimgurl']: user.headimgurl  
       })
     }
+    
+    //会员卡背景
     this.setData({
       ['userInfo.cardimgurl']: user.card_img_url
     })
+
+    //等级名称
+    if(user.card_name){
+      this.setData({
+        ['userInfo.card_name']: user.card_name
+      })
+    }else{
+      this.setData({
+        ['userInfo.card_name']: '--'
+      })
+    }
+    
+    //过期时间
+    if(user.expire_date){
+      this.setData({
+        ['userInfo.expire_date']: user.expire_date
+      })
+    }else{
+      this.setData({
+        ['userInfo.expire_date']: '--'
+      })
+    }
+    
   },
   /**
    * 加载用户信息

@@ -45,7 +45,7 @@
               <view class="course__btns">
                 <!-- <button class="cu-btn round bg-white">取消</button> -->
                 <button wx:if="{{item.is_pay || item.type==1}}" class="cu-btn round bg-lightBlue text-white" bindtap="goTicket" data-id="{{item.id}}">查看</button>
-                <button wx:if="{{item.is_pay && item.type==5 && (item.refund_status==0||item.refund_status==1)}}" class="cu-btn round bg-lightBlue text-white" bindtap="refundApply" data-id="{{item.id}}">退款</button>
+                <button wx:if="{{item.is_pay && item.type==5 && item.actual_amount > 0 && (item.refund_status==0||item.refund_status==1)}}" class="cu-btn round bg-lightBlue text-white" bindtap="refundApply" data-id="{{item.id}}">退款</button>
                 <button wx:if="{{!item.is_pay && item.type==5}}" class="cu-btn round bg-lightBlue text-white" bindtap="goPay" data-item="{{item}}">支付</button>
                 <!-- <button class="cu-btn round bg-gray text-white">取消</button> -->
               </view>

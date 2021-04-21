@@ -13,11 +13,17 @@
         <text class="dib vam mr20">{{userInfo.nick_name}}</text>
         <i-icon name="vip"></i-icon>
       </view>
-      <view class="member__intro fz22 mt10">
+      <view class="member__intro fz22 mt5">
         {{userInfo.login_name}}
       </view>
-      <view class="member__intro fz22 mt10" style="color:#9BBAFF;" bindtap="goEdit">
+      <view class="member__intro fz22 mt5" style="color:#9BBAFF;" bindtap="goEdit">
         修改资料
+      </view>
+      <view class="member__intro fz22 mt5" >
+        当前等级:{{userInfo.card_name}}
+      </view>
+      <view class="member__intro fz22 mt5" >
+        到期时间:{{userInfo.expire_date}}
       </view>
     </view>
     <view class="member__code" data-key="code" bindtap="goUrl">
