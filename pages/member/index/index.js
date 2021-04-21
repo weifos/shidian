@@ -72,21 +72,23 @@ Page({
    */
   onLoad: function(options) {
     let that = this
-    let wxUser = user.methods.getUser()
-    if (!wxUser.openid || !wxUser.token) {
-      //检测成功回调
-      passport.checkSession(function(openid) {
-        wxUser = user.methods.getUser()
-        if (!wxUser.login_name) {
-          //加载用户信息
-          that.api_106()
-        } else {
-          that.bindUser(wxUser)
-        }
-      })
-    } else {
-      that.bindUser(wxUser)
-    }
+    that.api_106()
+
+    // let wxUser = user.methods.getUser()
+    // if (!wxUser.openid || !wxUser.token) {
+    //   //检测成功回调
+    //   passport.checkSession(function(openid) {
+    //     wxUser = user.methods.getUser()
+    //     if (!wxUser.login_name) {
+    //       //加载用户信息
+    //       that.api_106()
+    //     } else {
+    //       that.bindUser(wxUser)
+    //     }
+    //   })
+    // } else {
+    //   that.bindUser(wxUser)
+    // }
   },
   
   /**
