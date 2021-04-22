@@ -5,7 +5,8 @@
     <view class="member-bg" style="background:#B2B2B2 url(http://res.sdibook.com/DefaultRes/Images/p8.png) no-repeat 0 -50rpx/100% auto;" wx:if="{{isLogin}}"></view>
     <view class="member__image">
       <view class="cu-avatar xl round" style="background-image:url({{userInfo.headimgurl}});"></view>
-      <button class="btn-refresh" open-type="getUserInfo" bindgetuserinfo="getWxUser" style="z-index:2000" ></button>
+      <button class="btn-refresh" bindtap="getWxUser" style="z-index:2000" ></button>
+      <!-- <button class="btn-refresh" open-type="getUserInfo" bindgetuserinfo="getWxUser" style="z-index:2000" ></button> -->
       <!-- <i-icon name="refresh"></i-icon> -->
     </view>
     <view class="member__text">

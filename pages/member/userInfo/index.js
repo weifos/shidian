@@ -108,7 +108,7 @@ Page({
           duration: 2000
         })
 
-        that.api_106() 
+        that.api_106()
       } else { 
         wx.showToast({
           title: res.data.Basis.Msg,

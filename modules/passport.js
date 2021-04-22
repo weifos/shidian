@@ -130,18 +130,18 @@ module.exports = {
   getWxUser(e, func) {
     let that = this
     var userInfo = user.methods.getUser()
-    if (e.detail.errMsg == 'getUserInfo:ok') {
+    if (e.errMsg == 'getUserProfile:ok') {
       var wxuser = {}
       wxuser.openid = userInfo.openid
-      wxuser.headimgurl = e.detail.userInfo.avatarUrl
-      wxuser.nickname = e.detail.userInfo.nickName
+      wxuser.headimgurl = e.userInfo.avatarUrl
+      wxuser.nickname = e.userInfo.nickName
       wxuser.nickname = wxuser.nickname.replace(/[^a-zA-Z0-9_\u4e00-\u9fa5|,]+/g, "*")
       //wxuser.nickname = encodeURI(wxuser.nickname)
-      wxuser.language = e.detail.userInfo.language
-      wxuser.country = e.detail.userInfo.country
-      wxuser.province = e.detail.userInfo.province
-      wxuser.city = e.detail.userInfo.city
-      wxuser.sex = e.detail.userInfo.gender
+      wxuser.language = e.userInfo.language
+      wxuser.country = e.userInfo.country
+      wxuser.province = e.userInfo.province
+      wxuser.city = e.userInfo.city
+      wxuser.sex = e.userInfo.gender
       api.post(api.api_105, api.getSign({
           WeChatUser: wxuser
         }),
@@ -162,7 +162,7 @@ module.exports = {
               duration: 3000
             })
           }
-          func(res.data.Basis.State, e.detail.userInfo)
+          func(res.data.Basis.State, e.userInfo)
         })
     }
   },
