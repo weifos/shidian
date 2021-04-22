@@ -133,9 +133,9 @@ Page({
       // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       desc: '用于完善会员资料',
       success: (e) => {
-        passport.getWxUser(e, function (code, user) {
+        passport.getWxUser(e, function (code, res_user) {
           if (code == api.state.state_200) {
-            // TO DO
+            that.bindUser(res_user)
           }
         })
       }

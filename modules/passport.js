@@ -162,7 +162,7 @@ module.exports = {
               duration: 3000
             })
           }
-          func(res.data.Basis.State, e.userInfo)
+          func(res.data.Basis.State, userInfo)
         })
     }
   },
