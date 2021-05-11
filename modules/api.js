@@ -30,8 +30,10 @@ module.exports = {
   api_104: domain + "104",
   //第三步，小程序注册，授权完善微信用户数据 
   api_105: domain + "105",
-  //加载用户数据
+  //自动登录
   api_106: domain + "106",
+  //加载用户数据
+  api_107: domain + "107",
   //发送验证码
   api_110: domain + "110",
   //用户登录
@@ -230,6 +232,7 @@ module.exports = {
             icon: 'none',
             duration: 3000
           })
+
           //删除用户信息
           wx.removeStorageSync('user_info')
           //当前页面路径

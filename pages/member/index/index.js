@@ -82,11 +82,11 @@ Page({
           //加载用户信息
           that.api_106()
         } else {
-          that.api_101()
+          that.api_107()
         }
       })
     } else {
-      that.api_101()
+      that.api_107()
     }
   },
 
@@ -141,6 +141,7 @@ Page({
       }
     })
   },
+
   /**
    * 修改会员资料
    */
@@ -149,6 +150,7 @@ Page({
       url: '../userInfo/index'
     })
   },
+
   /**
    * 加载微信用户信息
    */
@@ -200,15 +202,14 @@ Page({
   /**
    * 加载用户信息
    */
-  api_101: function () {
+  api_107: function () {
     let that = this
-    let userInfo = user.methods.getUser()
-    api.post(api.api_101,
-      api.getSign({ OpenID: userInfo.openid }),
+    api.post(api.api_107, api.getSign(),
       function (app, res) {
         if (res.data.Basis.State == api.state.state_200) {
           //绑定用户
           that.bindUser(res.data.Result)
+          user.methods.login(res.data.Result)
         }
       })
   },

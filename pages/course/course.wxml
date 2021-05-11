@@ -18,7 +18,7 @@
     </scroll-view>
     <view class="tab-content">
       <view class="tab-c" wx:if="{{tabCur == 0}}">
-        <view class="select_placeholder text-lightBlue" style="display:none;">
+        <view class="select_placeholder text-lightBlue" >
           <i-select id="select" style="padding-top:10rpx;" defaultOption="{{def_options}}" options="{{options}}"
             key="id" text="name" bind:change="change">
           </i-select>
