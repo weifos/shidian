@@ -5,7 +5,7 @@ page {
 }
 
 .course-list {
-  margin-top: 16rpx;
+  margin-top: 6rpx;
   padding:0 20rpx;
 }
 
@@ -110,8 +110,8 @@ page {
   display: inline-flex;
   width: 4.267vw;
   height: 4.267vw;
-  margin: 3vw 2.667vw;
+  margin: 3.4vw 2.667vw;
 }
 .input-search{
-  min-height:2rem;line-height:34rpx;font-size:28rpx;
+  height:80rpx;font-size:28rpx;
 }
