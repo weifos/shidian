@@ -75,3 +75,28 @@ page{
   height: 100rpx;
   border-bottom:2rpx solid #e0e0e0;
 }
+
+.select_placeholder { 
+  height: 46rpx;
+  line-height: 70rpx;
+  padding: 3rpx 0rpx 2rpx 20rpx;
+  width: 40%; 
+  vertical-align: middle; 
+  margin-right:10rpx;
+  font-size: 24rpx;
+}
+
+.icon {
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+.icon-search {
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  width: 4.267vw;
+  height: 4.267vw;
+  margin: 3vw 2.667vw;
+}
+.input-search{
+  min-height:2rem;line-height:34rpx;font-size:28rpx;
+}

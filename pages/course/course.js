@@ -17,6 +17,8 @@ Page({
     options: [],
     //选择门店ID
     select_id: -1,
+    //查询关键词
+    keyword: '',
     def_options: {
       id: '-1',
       name: '请选择门店'
@@ -106,6 +108,7 @@ Page({
         Type: 5,
         Size: that.data.pageSize,
         StoreID: that.data.select_id,
+        KeyWord: that.data.keyword,
         Index: that.data.courseData[0].pageIndex
       }), function (app, res) {
 
@@ -235,6 +238,38 @@ Page({
     })
 
     that.api_205()
+  },
+
+  /**
+   * 门店选择切换
+   */
+  inputSearch: function (e) {
+    let that = this
+
+    //当前选中索引
+    let index = that.data.tabCur
+    let curItem = that.data.courseData[index]
+    curItem.pageIndex = 0
+    curItem.loadComplete = false
+    curItem.list = []
+    that.setData({
+      ['courseData[' + index + ']']: curItem
+    })
+
+    that.api_205()
+  },
+
+  /**
+ * 绑定充值输入
+ */
+  bindInput: function (e) {
+    var that = this
+    let value = e.detail.value
+    that.setData({
+      keyword: value
+    })
+    
+    console.log(value)
   },
 
   /**

@@ -15,11 +15,18 @@
     </scroll-view>
     <view class="tab-content">
       <view class="tab-c" wx:if="{{tabCur == 0}}">
-        <view class="select_placeholder text-lightBlue" >
-          <i-select id="select" style="padding-top:10rpx;" defaultOption="{{def_options}}" options="{{options}}"
-            key="id" text="name" bind:change="change">
-          </i-select>
+        <view style="display: flex;">
+          <view class="select_placeholder text-lightBlue">
+            <i-select id="select" style="padding-top:10rpx;width:100rpx;" defaultOption="{{def_options}}"
+              options="{{options}}" key="id" text="name" bind:change="change">
+            </i-select>
+          </view>
+          <text class="icon icon-search" bindtap='inputSearch'
+            style="background-image:url(http://res.sdibook.com/DefaultRes/Images/VUE/static/icon/icon_search.png);"></text>
+          <input type="text" placeholder="请输搜索入关键词" value="{{keyword}}" bindinput="bindInput" class="input-search" maxlength="30" />
         </view>
+
+
         <view class="activity-list">
           <view class="activity__item" wx:key wx:for="{{courseData[0].list}}">
             <view class="activity__image">

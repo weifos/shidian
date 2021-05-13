@@ -1,3 +1,4 @@
+var api = require("../../../modules/api.js")
 var user = require("../../../modules/userInfo.js")
 var appG = require("../../../modules/appGlobal.js")
 var router = require("../../../modules/router.js")
@@ -13,6 +14,7 @@ Page({
     cid: 0,
     cname: '',
     tname: '',
+    checkPayInter: null,
     userInfo: {
       id: 0,
       nick_name: '未设置',
@@ -32,26 +34,16 @@ Page({
   startSetInter: function () {
     let that = this
     //将计时器赋值给setInter
-    that.data.setInter = setInterval(
-      function () {
-        let numVal = that.data.timer.num + 1
-        if (numVal > 60) {
-          numVal = 0
-          that.createQRCode(that.data.user_code)
-        }
-        that.setData({
-          ['timer.num']: numVal
-        });
-      }, 1000);
-  },
-
-  /**
-   * 开始计时器
-   */
-  endSetInter: function () {
-    let that = this;
-    //清除计时器  即清除setInter
-    clearInterval(that.data.setInter)
+    that.data.setInter = setInterval(() => {
+      let numVal = that.data.timer.num + 1
+      if (numVal > 60) {
+        numVal = 0
+        that.createQRCode(that.data.user_code)
+      }
+      that.setData({
+        ['timer.num']: numVal
+      })
+    }, 1000)
   },
 
   /**
@@ -108,20 +100,27 @@ Page({
     //let str1 = appG.util.getPlaceholder('000000000000000', 71349)
     //获取用户优惠券
     let str2 = appG.util.getPlaceholder('000000000000000', this.data.cid)
- 
+
     //设置付款码
     this.setData({
       user_code: str1 + str2
     })
     this.bindUser(_user)
 
+    //创建付款码
     this.createQRCode(this.data.user_code)
-    //this.startSetInter()
 
+    //打开页面一秒后刷新下付款，兼容华为手机
     setTimeout(() => {
       this.createQRCode(this.data.user_code)
       this.startSetInter()
     }, 1000)
+
+    //打开页面三秒后开始查询是否成功
+    setTimeout(() => {
+      clearInterval(this.data.checkPayInter)
+      this.startCheckPay()
+    }, 3000)
 
   },
 
@@ -160,6 +159,69 @@ Page({
     })
   },
 
+
+  /**
+   * 开始计时器
+   */
+  startCheckPay: function () {
+    let that = this
+    //将计时器间隔1秒重复执行
+    that.data.checkPayInter = setInterval(() => {
+      that.api_399()
+    }, 2000)
+  },
+
+
+  /**
+   * 查询电子钱包支付是否成功
+   */
+  api_399: function () {
+    let that = this
+    wx.request({
+      url: api.api_399,
+      data: api.getSign(),
+      method: "post",
+      header: {},
+      success: (res) => {
+        if (res.data.Basis.State == api.state.state_200) {
+          if (res.data.Result.order_no != undefined) {
+            let user_info = user.methods.getUser()
+            //支付成功对象
+            let paySuccess = {
+              type: 1,
+              no: res.data.Result.order_no,
+              point: parseInt(res.data.Result.amount),
+              amount: res.data.Result.amount,
+              created_time: res.data.Result.created_date,
+              balance: user_info.balance - parseInt(res.data.Result.amount),
+              url: '../member/orderList/index'
+            }
+
+            //写入支付成功对象
+            user.methods.setPaySuccess(paySuccess)
+
+            //跳转到支付成功页面
+            router.goUrl({ url: '../../wpaysuccess/index' })
+          }
+        } else {
+          wx.showToast({
+            title: res.data.Basis.Msg,
+            icon: 'none',
+            duration: 3000
+          })
+        }
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: JSON.stringify(res),
+          icon: 'none',
+          duration: 3000
+        })
+      }
+    })
+  },
+
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -185,7 +247,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    clearInterval(this.data.checkPayInter)
   },
 
   /**
