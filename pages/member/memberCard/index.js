@@ -20,6 +20,7 @@ Page({
   onLoad: function (options) {
     this.api_106() 
     let wxUser = user.methods.getUser()
+    wxUser.card_img_url = userInfo.card_img_url
     this.setData({
       ['userInfo']: wxUser
     })

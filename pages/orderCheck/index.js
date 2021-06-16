@@ -158,7 +158,7 @@ Page({
 
             //写入支付成功对象
             user.methods.setPaySuccess(paySuccess)
-
+ 
             //跳转到支付成功页面
             router.goUrl({ url: '../wpaysuccess/index' })
           } else if (res.data.Basis.State == 658) {
@@ -217,7 +217,7 @@ Page({
 
                 //写入支付成功对象
                 user.methods.setPaySuccess(paySuccess)
-
+ 
                 //跳转到支付成功页面
                 router.goUrl({ url: '../wpaysuccess/index' })
               }

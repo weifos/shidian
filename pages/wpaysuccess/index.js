@@ -25,7 +25,7 @@ Page({
   onLoad: function (options) {
     //支付成功对象
     let data = user.methods.getPaySuccess()
-
+    data.balance = data.balance.toFixed(2)
     this.setData({
       paySuccess: data
     })
