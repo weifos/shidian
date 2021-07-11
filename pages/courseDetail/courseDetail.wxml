@@ -11,6 +11,7 @@
     </view>
     <view class="course__address">地点：{{result.province}}{{result.city}}{{result.county}}{{result.address}}</view>
     <view class="course__price">价格：￥{{gFilter.formaToMoney(result.sale_price)}}</view>
+    <view class="course__price" wx:if="{{result.vip_sale_price > 0}}">会员价格：￥{{gFilter.formaToMoney(result.vip_sale_price)}}</view>
   </view>
   <view class="course-detail">
     <template is="wxParse" data="{{wxParseData:details.nodes}}"   />
