@@ -22,17 +22,28 @@ Component({
    */
   methods: {
     /**
+     * 点击使用
+     */
+    toUse: function (e) {
+      var that = this
+      let item = e.currentTarget.dataset.item
+      //将当前票据写入到本地缓存中
+      wx.setStorageSync("course_ticket", JSON.stringify(item))
+      //跳转到课程票据详情页
+      router.goUrl({ url: '../courseTicket/index' })
+    },
+    /**
      * 申请退款
      */
-    appRefund: function() {
-      var that = this 
+    appRefund: function () {
+      var that = this
       wx.showModal({
         title: '提示',
         content: '确认申请退款吗？',
         showCancel: true,
         cancelText: '取消',
         confirmText: '确认',
-        success: function(res) {
+        success: function (res) {
           // 确认
           if (res.confirm) {
 
@@ -42,7 +53,9 @@ Component({
         }
       })
     }
-    
+
+
+
   }
 
 })

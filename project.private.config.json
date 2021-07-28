@@ -1,0 +1,66 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "pages/index/index",
+          "pathName": "pages/courseDetail/courseDetail",
+          "query": "scene=id%3D23",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/courseDetail/courseDetail",
+          "pathName": "/pages/coffee/coffee",
+          "query": "store_id=1&bar_counter_id=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "store_id=1&bar_counter_id=1",
+          "scene": null
+        },
+        {
+          "id": 10,
+          "name": "/pages/coffee/coffee",
+          "pathName": "pages/coffee/coffee",
+          "query": "store_id=1&bar_counter_id=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "调试微信扫码点单",
+          "pathName": "pages/coffee/coffee",
+          "query": "store_id=1&bar_counter_id=10",
+          "scene": null
+        },
+        {
+          "name": "模拟版本更新",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

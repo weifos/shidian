@@ -182,9 +182,7 @@ Page({
    * 提交课程订单
    */
   api_326: function (e) {
-
     var that = this
-
     var order = {
       course_id: e.currentTarget.dataset.id,
       details: [{
@@ -214,6 +212,7 @@ Page({
         }, 1000)
       }
     })
+    
   },
 
   /**

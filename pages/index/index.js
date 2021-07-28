@@ -131,6 +131,13 @@ Page({
       //用户优惠券列表
       case "coupon":
         url = '../member/ticketList/index'
+        let tmp_arr = user.methods.getPushMsg()
+        if (tmp_arr) {
+          wx.requestSubscribeMessage({
+            tmplIds: tmp_arr.coupons_tmp_ids,
+            success(res) { }
+          })
+        }
         break;
 
       default:

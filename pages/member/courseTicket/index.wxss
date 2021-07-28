@@ -1,0 +1,63 @@
+/* pages/member/memberPayCode/index.wxss */
+page{
+  background: #fff;
+}
+.ticket-info-bar{
+  margin:15rpx 0;
+  padding:40rpx;
+  font-size: 27rpx;
+  line-height: 1.8;
+}
+.member-bg{
+  filter:blur(20rpx);
+  position: absolute;
+  width: 800rpx;
+  height:400rpx;
+  left: -20rpx;
+  top: -20rpx;
+  opacity: 0.5;
+}
+.member__image{
+  float: left;
+  padding:72rpx 33rpx 0 78rpx;
+  z-index: 1;
+  position: relative;
+}
+.member__text{
+  padding-top:83rpx;
+  font-size: 27rpx;
+  z-index: 1;
+  position: relative;
+}
+.i-icon{
+  width: 45rpx;
+  text-align: center;
+  margin-right:42rpx;
+  margin-left:42rpx;
+}
+.ticket-bar-select,.ticket-bar-selected{
+  overflow: hidden;
+  padding:30rpx 65rpx;
+  border-top:10rpx solid #F4F4F4 ;
+  font-size: 27rpx;
+}
+.ticket-bar-select .cu-btn{
+  height: 42rpx;
+   font-size: 27rpx;
+}
+.ewm-bar{
+  border-top:10rpx solid #F4F4F4 ;
+}
+.ewm-bar-title{
+  padding:83rpx 0 10rpx 0;
+}
+.ewm-bar-image image{
+  width: 254rpx;
+  height: 254rpx;
+}
+.ewm-bar-image {
+ align-content: center;
+}
+.ewm-bar-refresh{
+  padding-top: 40rpx;
+}

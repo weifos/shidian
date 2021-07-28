@@ -33,6 +33,7 @@ Page({
         let course = res.data.Result.orderCourse
         res.data.Result.tickets.forEach(function(o, i) {
           that.data.result.push({
+            id:o.id,
             name: course.course_name,
             startTime: appG.util.date.dateFormat(course.start_date, 'yyyy-MM-dd hh:mm'),
             endTime: appG.util.date.dateFormat(course.end_date, 'yyyy-MM-dd hh:mm')

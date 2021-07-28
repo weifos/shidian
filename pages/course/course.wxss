@@ -29,7 +29,7 @@ page {
 
 .course__time {
   color: #9bbaff;
-  margin-top: 10rpx;
+  /* margin-top: 10rpx; */
 }
 
 .course__text {

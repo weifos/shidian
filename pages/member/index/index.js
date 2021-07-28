@@ -220,7 +220,6 @@ Page({
   api_106: function () {
     let that = this
     let userInfo = user.methods.getUser()
-    console.log("openid:" + userInfo.openid)
     api.post(api.api_106,
       api.getSign({
         OpenID: userInfo.openid
@@ -273,15 +272,9 @@ Page({
       package: $this.wechatpay.package,
       signType: $this.wechatpay.signType,
       paySign: $this.wechatpay.paySign,
-      success: function (res) {
-
-      },
-      fail: function (res) {
-
-      },
-      complete: function (res) {
-
-      }
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { }
     })
   },
 
@@ -328,6 +321,13 @@ Page({
       //我的优惠券
       case "ticket":
         url = '../ticketList/index'
+        let tmp_arr = user.methods.getPushMsg()
+        if (tmp_arr) {
+          wx.requestSubscribeMessage({
+            tmplIds: tmp_arr.coupons_tmp_ids,
+            success(res) { }
+          })
+        }
         break
 
       default:

@@ -31,7 +31,8 @@
         "orderList/index",
         "memberCard/index",
         "phone/index",
-        "userInfo/index"
+        "userInfo/index",
+        "courseTicket/index"
       ]
     }
   ],

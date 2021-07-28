@@ -3,7 +3,7 @@
 <view class="container page-course">
   <i-greetings></i-greetings>
   <view class="swiper-banner">
-    <i-swiper itemData="{{banners}}" data-id="{{index}}"  ></i-swiper>
+    <i-swiper itemData="{{banners}}" data-id="{{index}}" ></i-swiper>
   </view>
 
   <!-- i-tab s -->
@@ -26,7 +26,8 @@
           </view>
           <text class="icon icon-search" bindtap='inputSearch'
             style="background-image:url(http://res.sdibook.com/DefaultRes/Images/VUE/static/icon/icon_search.png);"></text>
-          <input type="text" placeholder="请输搜索入关键词" value="{{keyword}}" bindinput="bindInput" class="input-search" maxlength="30" />
+          <input type="text" placeholder="请输搜索入关键词" value="{{keyword}}" bindinput="bindInput" class="input-search"
+            maxlength="30" />
         </view>
 
         <view class="course-list">
@@ -36,16 +37,21 @@
             </view>
             <view class="course__text">
               <view class="course__title ellipsis">{{item.name}}</view>
-              <view class="course__name ellipsis" style="height:38rpx;">{{item.teacher_name}}·{{item.teacher_title}}
+              <view class="course__name ellipsis" style="height:34rpx;">{{item.teacher_name}}·{{item.teacher_title}}
               </view>
-              <view class="course__name ellipsis" style="height:38rpx;">
+              <view class="course__name ellipsis" style="height:34rpx;">
                 {{gFilter.cutSubString(item.intro,36)}}
               </view>
               <view wx:if="{{item.address == null || item.address == '' }}">
-                <view class="course__address ellipsis2">上课地点：{{item.store_name}}</view>
+                <view class="course__address ellipsis" style="height:34rpx;">上课地点：{{item.store_name}}</view>
               </view>
               <view wx:else>
-                <view class="course__address ellipsis2">上课地点：{{item.address}}</view>
+                <view class="course__address ellipsis" style="height:34rpx;">上课地点：{{item.address}}</view>
+              </view>
+              <view class="course__address ellipsis" style="height:34rpx;color:red;">￥{{item.sale_price}},
+                <text style="color:red;"
+                  wx:if="{{item.vip_sale_price == undefined || item.vip_sale_price == null || item.vip_sale_price ==0}}">会员价：--</text>
+                <text wx:else>会员价格：{{item.vip_sale_price}}</text>
               </view>
               <view class="course__time">{{item.start_date}}</view>
               <view class="course__btns">
@@ -55,7 +61,7 @@
           </view>
         </view>
       </view>
-      <view class="tab-c" wx:if="{{tabCur == 1}}" >
+      <view class="tab-c" wx:if="{{tabCur == 1}}">
         <!-- month s -->
         <scroll-view scroll-x class="nav bg-none nav-month" scroll-with-animation scroll-left="{{scrollLeft}}">
           <view class="cu-item {{index==tabCur2?'cur':''}}" wx:for="{{courseData[1].list}}" wx:key bindtap="tabSelect2"

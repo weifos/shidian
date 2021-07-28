@@ -1,4 +1,5 @@
 var api = require("../../modules/api.js")
+var user = require("../../modules/userInfo.js")
 var router = require("../../modules/router.js")
 var appG = require("../../modules/appGlobal.js")
 var wxParse = require('../../modules/wxParse/wxParse.js')
@@ -79,14 +80,30 @@ Page({
           }
         }
       } else {
-        that.setData({
-          totalPrice: this.data.result.sale_price
-        })
+        //如果存在会员价
+        if (this.data.result.vip_sale_price > 0) {
+          this.setData({
+            totalPrice: this.data.result.vip_sale_price
+          })
+        } else {
+          that.setData({
+            totalPrice: this.data.result.sale_price
+          })
+        }
       }
     } else {
-      this.setData({
-        totalPrice: this.data.result.sale_price * this.data.num
-      })
+
+      //如果存在会员价
+      if (this.data.result.vip_sale_price > 0) {
+        this.setData({
+          totalPrice: this.data.result.vip_sale_price * this.data.num
+        })
+      } else {
+        this.setData({
+          totalPrice: this.data.result.sale_price * this.data.num
+        })
+      }
+
     }
   },
 
@@ -116,7 +133,7 @@ Page({
   /**
    * 加载课堂详情页数据
    */
-  api_206: function(opt) {
+  api_206: function (opt) {
     var that = this
     let id = 0
     if (opt.id != undefined) {
@@ -128,7 +145,7 @@ Page({
 
     api.post(api.api_206, api.getSign({
       ID: id
-    }), function(app, res) {
+    }), function (app, res) {
       if (res.data.Basis.State != api.state.state_200) {
         wx.showToast({
           title: res.data.Basis.Msg,
@@ -139,7 +156,7 @@ Page({
         that.setData({
           imgurl: res.data.Result.imgurl
         })
- 
+
         //appG.util.date.dateFormat
         let dateNow = appG.util.date.getDateTimeNow()
 
@@ -170,9 +187,17 @@ Page({
           })
         }
 
-        that.setData({
-          totalPrice: res.data.Result.course.sale_price
-        })
+        //如果存在会员价
+        if (res.data.Result.course.vip_sale_price > 0) {
+          that.setData({
+            totalPrice: res.data.Result.course.vip_sale_price
+          })
+        } else {
+          that.setData({
+            totalPrice: res.data.Result.course.sale_price
+          })
+        }
+
         if (res.data.Result.course.details != undefined) {
           wxParse.wxParse('details', 'html', res.data.Result.course.details, that, 5)
         }
@@ -183,8 +208,8 @@ Page({
   /**
    * 提交课程订单
    */
-  api_326: function() {
- 
+  api_326: function () {
+
     //剩余可报名人数
     let residue_num = this.data.result.up_limit - this.data.reg_num
     if (this.num - residue_num > 0) {
@@ -211,13 +236,13 @@ Page({
       })
       return
     }
-    
-    if(that.data.applyIng) return
-    this.setData({ applyIng: true  })
+
+    if (that.data.applyIng) return
+    this.setData({ applyIng: true })
 
     api.post(api.api_326, api.getSign({
       Order: order
-    }), function(app, res) {
+    }), function (app, res) {
       if (res.data.Basis.State != api.state.state_200) {
         wx.showToast({
           title: res.data.Basis.Msg,
@@ -225,12 +250,26 @@ Page({
           duration: 3000
         })
       } else {
+        let tmp_arr = user.methods.getPushMsg()
         let param = '?no=' + res.data.Result.serial_no + '&store_id=' + res.data.Result.store_id
+        //课程
         if (that.data.result.type == 5) {
+          if (tmp_arr) {
+            wx.requestSubscribeMessage({
+              tmplIds: tmp_arr.course_tmp_ids,
+              success(res) { }
+            })
+          }
           router.goUrl({
             url: '../orderCourse/index' + param
           })
         } else {
+          if (tmp_arr) {
+            wx.requestSubscribeMessage({
+              tmplIds: tmp_arr.aty_tmp_ids,
+              success(res) { }
+            })
+          }
           router.goUrl({
             url: '../member/orderCourseList/index' + param + "&tid=" + that.data.result.type
           })
@@ -242,8 +281,8 @@ Page({
   /**
    * 数组降序
    */
-  desc: function(property) {
-    return function(a, b) {
+  desc: function (property) {
+    return function (a, b) {
       var value1 = a[property];
       var value2 = b[property];
       return value2 - value1
@@ -253,8 +292,8 @@ Page({
   /**
    * 数组升序
    */
-  asc: function(property) {
-    return function(a, b) {
+  asc: function (property) {
+    return function (a, b) {
       var value1 = a[property];
       var value2 = b[property];
       return value1 - value2
@@ -264,56 +303,56 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(opt) {
+  onLoad: function (opt) {
     this.api_206(opt)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

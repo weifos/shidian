@@ -1,0 +1,26 @@
+<!--pages/member/memberPayCode/index.wxml-->
+<view class="container page-member-paycode">
+  <view class="ticket-info-bar bg-white" >
+    <view> {{courseTicket.name}}   </view>
+    <view>
+      有效期：{{courseTicket.startTime}}至{{courseTicket.endTime}}
+    </view>
+  </view>
+
+  <!-- ewm-bar s -->
+  <view class="ewm-bar tac">
+    <view class="ewm-bar-title fz27" style="color:#9BBAFF;">
+      向现场店员出示此二维码
+    </view>
+    <view class="ewm-bar-image">
+      <canvas class="canvas-code"  canvas-id="myQrcode" style="background:#fff;width: 180px;height: 180px;margin:0 auto;" />
+    </view>
+    <view class="padding-tb-sm fz22">
+      {{60 - timer.num}} 秒后刷新
+    </view>
+    <view class="padding-tb-sm fz27" bindtap="goMemberCode" style="color:#9BBAFF;display:none;">
+      查看会员码
+    </view>
+  </view>
+  <!-- ewm-bar s -->
+</view>

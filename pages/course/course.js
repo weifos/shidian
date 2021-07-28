@@ -215,6 +215,20 @@ Page({
       url: url
     })
   },
+  
+
+  /**
+   * banner点击事件
+   */
+  bannerClick: function (e) {
+    let that = this
+    let url = '../courseDetail/courseDetail?id=' + item.content_value
+    //跳转
+    router.goUrl({
+      url: url
+    })
+  },
+
 
   /**
    * 门店选择切换

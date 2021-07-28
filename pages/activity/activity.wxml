@@ -1,4 +1,4 @@
-<!--pages/activity/activity.wxml-->
+<wxs src='../../modules/wxsGlobal.wxs' module='gFilter' />
 <view class="container page-activity">
   <i-greetings></i-greetings>
   <view class="swiper-banner">
@@ -54,12 +54,12 @@
         <view class="activity-list activity-list2" wx:key wx:for="{{courseData[1].list}}" wx:if="{{tabCur2 == index}}">
           <view class="activity__item" wx:key wx:for="{{item.items}}" wx:for-item="sItem">
             <view class="activity__image">
-              <image src="{{sItem.url}}"></image>
+              <image src="{{sItem.img_url}}"></image>
             </view>
             <view class="activity__text">
               <view class="activity__title ellipsis">{{sItem.name}}</view>
               <view class="activity__name ellipsis">{{sItem.intro}}</view>
-              <view class="activity__address ellipsis2">上课地点：{{sItem.province}}{{sItem.city}}{{sItem.county}}{{sItem.address}}</view>
+              <view class="activity__address ellipsis2">上课地点：{{gFilter.cutSubString(sItem.province+sItem.city+sItem.county+sItem.address,28)}}</view>
               <view class="activity__time">{{sItem.start_date}}</view>
               <view class="activity__btns">
                 <button class="cu-btn round bg-lightOrange">查看</button>
