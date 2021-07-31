@@ -10,16 +10,18 @@
     <view class="course__time">时间：{{result.start_date}} 到 {{result.end_date}}
     </view>
     <view class="course__address">地点：{{result.province}}{{result.city}}{{result.county}}{{result.address}}</view>
-    <view class="course__price">价格：￥{{gFilter.formaToMoney(result.sale_price)}}</view>
-    <view class="course__price" wx:if="{{result.vip_sale_price > 0}}">会员价格：￥{{gFilter.formaToMoney(result.vip_sale_price)}}</view>
+    <view class="course__price" style="color: #9bbaff;">价格：￥{{gFilter.formaToMoney(result.sale_price)}}</view>
+    <view class="course__price" style="color: #9bbaff;" wx:if="{{result.vip_sale_price > 0}}">
+      会员价格：￥{{gFilter.formaToMoney(result.vip_sale_price)}}</view>
   </view>
   <view class="course-detail">
-    <template is="wxParse" data="{{wxParseData:details.nodes}}"   />
+    <template is="wxParse" data="{{wxParseData:details.nodes}}" />
   </view>
 </view>
 <view class="tool-bar tac" wx:if="{{!isOverdue}}">
   <button class="cu-btn round bg-gray text-white" open-type="contact">客服</button>
-  <button wx:if="{{result.type==5}}" class="cu-btn round bg-lightBlue text-white" bindtap="showModal" data-target="bottomModal">购买</button>
+  <button wx:if="{{result.type==5}}" class="cu-btn round bg-lightBlue text-white" bindtap="showModal"
+    data-target="bottomModal">购买</button>
   <button wx:if="{{result.type==1}}" class="cu-btn round bg-lightBlue text-white" bindtap="api_326">报名</button>
 </view>
 <!-- 弹出层 s-->
@@ -54,7 +56,8 @@
       </view>
       <view class="cu-bar">
         <button class="cu-btn round bg-gray text-white" bindtap="hideModal">取消</button>
-        <button class="cu-btn round {{num > (result.up_limit - reg_num) ? 'bg-gray' : 'bg-lightBlue'}} text-white" bindtap="api_326">确认提交</button>
+        <button class="cu-btn round {{num > (result.up_limit - reg_num) ? 'bg-gray' : 'bg-lightBlue'}} text-white"
+          bindtap="api_326">确认提交</button>
       </view>
     </view>
   </view>

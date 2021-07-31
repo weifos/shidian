@@ -26,7 +26,6 @@
           <input type="text" placeholder="请输搜索入关键词" value="{{keyword}}" bindinput="bindInput" class="input-search" maxlength="30" />
         </view>
 
-
         <view class="activity-list">
           <view class="activity__item" wx:key wx:for="{{courseData[0].list}}">
             <view class="activity__image">
@@ -62,7 +61,7 @@
               <view class="activity__address ellipsis2">上课地点：{{gFilter.cutSubString(sItem.province+sItem.city+sItem.county+sItem.address,28)}}</view>
               <view class="activity__time">{{sItem.start_date}}</view>
               <view class="activity__btns">
-                <button class="cu-btn round bg-lightOrange">查看</button>
+                <button class="cu-btn round bg-lightOrange" bindtap='goUrl'  data-id="{{sItem.id}}">查看</button>
               </view>
             </view>
           </view>

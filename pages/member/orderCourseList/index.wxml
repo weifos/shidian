@@ -3,7 +3,7 @@
 <view class="container page-member-orderlist">
   <!-- i-tab s -->
   <view class="i-tab">
-    <scroll-view scroll-x class="nav tab-t">
+    <scroll-view scroll-x class="nav tab-t" style="display:none;">
       <view class="flex text-center">
         <view class="cu-item flex-sub {{index==tabCur?'bg-lightBlue cur text-white':''}}" wx:for="{{orderData}}" wx:key bindtap="tabSelect" data-id="{{index}}" wx:for-item="item">
           {{item.title}}

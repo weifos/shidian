@@ -23,12 +23,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // let tmp_arr = user.methods.getPushMsg()
+    // if (tmp_arr) {
+    //   wx.requestSubscribeMessage({
+    //     tmplIds: tmp_arr.course_tmp_ids,
+    //     success(res) {
+    //       // console.log('进入success')
+    //       // console.log(res)
+    //     },
+    //     complete(res) { },
+    //     fail(res) { }
+    //   })
+    // }
+
     //支付成功对象
     let data = user.methods.getPaySuccess()
     data.balance = data.balance.toFixed(2)
     this.setData({
       paySuccess: data
     })
+
   },
   /**
     * 生命周期函数--监听页面加载

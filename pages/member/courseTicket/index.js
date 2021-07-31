@@ -19,13 +19,14 @@ Page({
    */
   onLoad: function (opt) {
     //当前课程票据
-    var item = wx.getStorageSync('course_ticket')
-    this.setData({ courseTicket: JSON.parse(item) })
+    var course_str = wx.getStorageSync('course_ticket')
+    var item = JSON.parse(course_str)
+    this.setData({ courseTicket: item })
     //创建付款码
-    this.createQRCode(item.id)
+    this.createQRCode(item.ticket)
     //打开页面一秒后刷新下付款，兼容华为手机
     setTimeout(() => {
-      this.createQRCode(item.id)
+      this.createQRCode(item.ticket)
       this.startSetInter()
     }, 1000)
   },
@@ -40,7 +41,7 @@ Page({
       let numVal = that.data.timer.num + 1
       if (numVal > 60) {
         numVal = 0
-        that.createQRCode(that.data.courseTicket.id)
+        that.createQRCode(that.data.courseTicket.ticket)
       }
       that.setData({
         ['timer.num']: numVal

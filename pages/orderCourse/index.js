@@ -65,6 +65,14 @@ Page({
     }
 
     this.api_327(opt.no)
+
+    let tmp_arr = user.methods.getPushMsg()
+    if (tmp_arr) {
+      wx.requestSubscribeMessage({
+        tmplIds: tmp_arr.course_tmp_ids,
+        success(res) { }
+      })
+    }
   },
 
   /**
@@ -158,6 +166,16 @@ Page({
 
           //写入支付成功对象
           user.methods.setPaySuccess(paySuccess)
+
+          let tmp_arr = user.methods.getPushMsg()
+          if (tmp_arr) {
+            wx.requestSubscribeMessage({
+              tmplIds: tmp_arr.course_tmp_ids,
+              success(res) { },
+              complete(res) { },
+              fail(res) { }
+            })
+          }
 
           //跳转到支付成功页面
           router.goUrl({ url: '../wpaysuccess/index' })
@@ -278,7 +296,15 @@ Page({
 
     //写入支付成功对象
     user.methods.setPaySuccess(paySuccess)
-
+    let tmp_arr = user.methods.getPushMsg()
+    if (tmp_arr) {
+      wx.requestSubscribeMessage({
+        tmplIds: tmp_arr.course_tmp_ids,
+        success(res) { },
+        complete(res) { },
+        fail(res) { }
+      })
+    }
     //跳转到支付成功页面
     router.goUrl({ url: '../wpaysuccess/index' })
   },

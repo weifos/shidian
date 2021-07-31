@@ -1,6 +1,6 @@
 <wxs src='../../modules/wxsGlobal.wxs' module='gFilter' />
 
-<view class="ticket ticket-2 {{ticketInfo.is_used ? 'used' : ''}} " wx:if="{{type == 'into'}}">
+<view class="ticket ticket-2 {{(ticketInfo.is_used || ticketInfo.is_refund) ? 'used' : ''}} " wx:if="{{type == 'into'}}">
   <view class="ticket__baseInfo dib vat">
     <view class="ticket__name ellipsis2">{{ticketInfo.name}}</view>
     <view class="ticket__time">
@@ -9,7 +9,9 @@
     </view>
   </view>
   <view class="ticket__discountInfo tac dib vat">
-    <view class="ticket__discount" data-item="{{ticketInfo}}" bindtap="toUse" data-item="{{ticketInfo}}">点击使用</view>
+    <view class="ticket__discount"  wx:if="{{ticketInfo.is_refund }}" data-item="{{ticketInfo}}" >已退款</view>
+    <view class="ticket__discount"  wx:elif="{{ticketInfo.is_used }}" data-item="{{ticketInfo}}" >已使用</view>
+    <view class="ticket__discount"  wx:else data-item="{{ticketInfo}}" bindtap="toUse">点击使用</view>
     <!-- <view class="ticket__discount" data-item="{{ticketInfo}}" wx:if="{{!ticketInfo.is_used}}">点击使用</view>
     <view class="ticket__discount" data-item="{{ticketInfo}}" wx:else>已使用</view>
     <view class="ticket__quota ticket__tk" wx:if="{{!ticketInfo.is_used && !ticketInfo.is_refund}}" bindtap="appRefund" data-item="{{ticketInfo}}" style="margin-top:5px;">申请退款</view>

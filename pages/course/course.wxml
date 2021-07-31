@@ -39,19 +39,20 @@
               <view class="course__title ellipsis">{{item.name}}</view>
               <view class="course__name ellipsis" style="height:34rpx;">{{item.teacher_name}}·{{item.teacher_title}}
               </view>
-              <view class="course__name ellipsis" style="height:34rpx;">
+              <!-- <view class="course__name ellipsis" style="height:34rpx;">
                 {{gFilter.cutSubString(item.intro,36)}}
-              </view>
+              </view> -->
               <view wx:if="{{item.address == null || item.address == '' }}">
-                <view class="course__address ellipsis" style="height:34rpx;">上课地点：{{item.store_name}}</view>
+                <!-- <view class="course__address ellipsis" style="height:34rpx;">上课地点：{{item.store_name}}</view> -->
+                <view class="course__address ellipsis" style="height:34rpx;">}</view>
               </view>
               <view wx:else>
-                <view class="course__address ellipsis" style="height:34rpx;">上课地点：{{item.address}}</view>
+                <!-- <view class="course__address ellipsis" style="height:34rpx;">上课地点：{{item.address}}</view> -->
+                <view class="course__address ellipsis" style="height:34rpx;"></view>
               </view>
-              <view class="course__address ellipsis" style="height:34rpx;color:red;">￥{{item.sale_price}},
-                <text style="color:red;"
-                  wx:if="{{item.vip_sale_price == undefined || item.vip_sale_price == null || item.vip_sale_price ==0}}">会员价：--</text>
-                <text wx:else>会员价格：{{item.vip_sale_price}}</text>
+              <view class="course__address ellipsis" style="height:34rpx;color: #9bbaff;">非会员价：￥{{item.sale_price}},
+                <text style="color: #9bbaff;" wx:if="{{item.vip_sale_price == undefined || item.vip_sale_price == null || item.vip_sale_price ==0}}">会员价：--</text>
+                <text style="color: #9bbaff;" wx:else>会员价：{{item.vip_sale_price}}</text>
               </view>
               <view class="course__time">{{item.start_date}}</view>
               <view class="course__btns">

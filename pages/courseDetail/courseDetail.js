@@ -239,7 +239,7 @@ Page({
 
     if (that.data.applyIng) return
     this.setData({ applyIng: true })
-
+ 
     api.post(api.api_326, api.getSign({
       Order: order
     }), function (app, res) {
@@ -254,12 +254,6 @@ Page({
         let param = '?no=' + res.data.Result.serial_no + '&store_id=' + res.data.Result.store_id
         //课程
         if (that.data.result.type == 5) {
-          if (tmp_arr) {
-            wx.requestSubscribeMessage({
-              tmplIds: tmp_arr.course_tmp_ids,
-              success(res) { }
-            })
-          }
           router.goUrl({
             url: '../orderCourse/index' + param
           })

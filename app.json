@@ -11,6 +11,7 @@
     "pages/logs/logs",
     "pages/coffee/coffee",
     "pages/activity/activity",
+    "pages/orderCourse/index",
     "pages/wpaysuccess/index"
   ],
   "subpackages": [
