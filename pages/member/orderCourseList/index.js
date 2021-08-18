@@ -109,10 +109,10 @@ Page({
     let item = e.currentTarget.dataset.item
     //1：活动
     if (item.type == 1) {
-      url = '../../activity/activity?id='
+      url = '../../courseDetail/courseDetail?id='
       //5：课程
     } else if (item.type == 5) {
-      url = '../../course/course?id='
+      url = '../../courseDetail/courseDetail?id='
     }
     router.goUrl({
       url: url + item.course_id

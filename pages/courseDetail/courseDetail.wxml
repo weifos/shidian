@@ -44,7 +44,7 @@
           <view class="t-detail">
             <view class="van-stepper custom-class">
               <view class="minus-class dib vam" bindtap="sub">-</view>
-              <input class="input-class dib vam" value="{{num}}" bindinput="onInput" />
+              <input class="input-class dib vam" value="{{num}}" bindinput="onInput" type="number" />
               <view class="plus-class dib vam" bindtap="add">+</view>
             </view>
           </view>

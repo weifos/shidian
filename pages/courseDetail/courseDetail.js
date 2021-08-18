@@ -107,6 +107,24 @@ Page({
     }
   },
 
+  onInput: function (e) {
+    var tmp = parseInt(e.detail.value)
+    //不能小于1
+    if (tmp <= 1) {
+      this.setData({
+        num: 0
+      })
+      return
+    }
+    //不能大于99,或者当前报名人数加上已报名人数大于该课程报名上限
+    if (tmp > 99 || tmp + 1 + this.data.reg_num > this.data.result.up_limit) return
+    this.setData({
+      num: tmp
+    })
+    this.checkUpdate()
+  },
+
+
   //加
   add(e) {
     let tmp = this.data.num
@@ -209,7 +227,6 @@ Page({
    * 提交课程订单
    */
   api_326: function () {
-
     //剩余可报名人数
     let residue_num = this.data.result.up_limit - this.data.reg_num
     if (this.num - residue_num > 0) {
@@ -228,6 +245,15 @@ Page({
       })
     }
 
+    if (that.data.num == 0) {
+      wx.showToast({
+        title: '报名人数不能为0',
+        icon: 'none',
+        duration: 3000
+      })
+      return
+    }
+
     if (that.data.num > that.data.result.single_limit) {
       wx.showToast({
         title: '每人报名人数不能超过' + that.data.result.single_limit,
@@ -239,7 +265,7 @@ Page({
 
     if (that.data.applyIng) return
     this.setData({ applyIng: true })
- 
+
     api.post(api.api_326, api.getSign({
       Order: order
     }), function (app, res) {
