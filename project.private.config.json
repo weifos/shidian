@@ -20,10 +20,9 @@
           "scene": null
         },
         {
-          "id": -1,
           "name": "pages/index/index",
           "pathName": "pages/index/index",
-          "query": "",
+          "query": "query=x",
           "scene": null
         },
         {

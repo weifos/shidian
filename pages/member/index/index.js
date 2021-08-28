@@ -19,24 +19,23 @@ Page({
       card_img_url: '/images/card.png',
     },
     list1: [{
-      "name": "我的会员",
-      "icon": "member"
-    },
-    {
-      "name": "付款码",
-      "icon": "paycode"
-    },
-    {
-      "name": "我的课堂",
-      "icon": "activity"
-    },
-    {
-      "name": "我的活动",
-      "icon": "course"
-    }
-    ],
-    list2: [
+        "name": "我的会员",
+        "icon": "member"
+      },
       {
+        "name": "付款码",
+        "icon": "paycode"
+      },
+      {
+        "name": "我的课堂",
+        "icon": "activity"
+      },
+      {
+        "name": "我的活动",
+        "icon": "course"
+      }
+    ],
+    list2: [{
         "name": "我的积分",
         "icon": "integral"
       },
@@ -238,7 +237,7 @@ Page({
             if (returl != "") {
               wx.removeStorage({
                 key: 'returl',
-                success(res) { }
+                success(res) {}
               })
               //重定向
               router.goUrl({
@@ -272,12 +271,19 @@ Page({
       package: $this.wechatpay.package,
       signType: $this.wechatpay.signType,
       paySign: $this.wechatpay.paySign,
-      success: function (res) { },
-      fail: function (res) { },
-      complete: function (res) { }
+      success: function (res) {},
+      fail: function (res) {},
+      complete: function (res) {}
     })
   },
 
+  // openCustomerServiceChat: function (e) {
+  // wx.openCustomerServiceChat({
+  //   extInfo: {url: 'https://work.weixin.qq.com/kfid/kfc34e80f07f20eb8d5'},
+  //   corpId: 'wwb92641407ccf66b0',
+  //   success(res) {}
+  // })
+// },
   /**
    * 菜单跳转
    */
@@ -290,42 +296,46 @@ Page({
       case "buy":
         url = '../orderList/index'
         break
-      //我的钱包
+        //我的钱包
       case "wallet":
         url = '../memberWallet/index'
         break
-      //会员码
+        //会员码
       case "code":
         url = '../memberCode/index'
         break
-      //付款码
+        //付款码
       case "paycode":
         url = '../memberPayCode/index'
         break
-      //我的活动
+        //我的活动
       case "activity":
         url = '../orderCourseList/index?tid=5'
         break
-      //我的课程
+        //我的课程
       case "course":
         url = '../orderCourseList/index?tid=1'
         break
-      //我的会员卡
+        //我的会员卡
       case "member":
         url = '../memberCard/index'
         break
-      //我的积分
+        //我的积分
       case "integral":
         url = '../memberIntegral/index'
         break
-      //我的优惠券
+        //会员条款
+      case "terms":
+        url = '../terms/index'
+        break
+        //我的优惠券
       case "ticket":
         url = '../ticketList/index'
         let tmp_arr = user.methods.getPushMsg()
         if (tmp_arr) {
           wx.requestSubscribeMessage({
             tmplIds: tmp_arr.coupons_tmp_ids,
-            success(res) { }
+            success(res) {}
           })
         }
         break
@@ -369,12 +379,12 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () { },
+  onPullDownRefresh: function () {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () { },
+  onReachBottom: function () {},
 
   /**
    * 用户点击右上角分享

@@ -154,19 +154,33 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    return {
-      title: "十点书店会员服务",
-      path: "pages/index/index",
-      imageUrl: 'http://res.sdibook.com/DefaultRes/Images/mini_share.png'
-    }
+    // return {
+    //   title: "十点书店会员服务",
+    //   path: "pages/index/index",
+    //   imageUrl: 'http://res.sdibook.com/DefaultRes/Images/mini_share.png'
+    // }
   },
   /**
    * 【会员服务】拉起图书查询&积分兑换小程序
    */
-  toMemberChangeCredit: function () {
+  toMemberChangeCredit: function (e) {
     wx.navigateToMiniProgram({
       appId: 'wxc0bea5f07c0ffc58',
-      path: 'pages/home/home',
+      path:  e.currentTarget.dataset.path,
+      extraData: {
+        foo: 'bar'
+      },
+      envVersion: 'develop',
+      success(res) {
+        // 打开成功
+      }
+    })
+  },
+  toMall:function(e)
+  {
+    wx.navigateToMiniProgram({
+      appId: 'wx14c921e76834ed9c',
+      path:  'pages/common/blank-page/index?scene=402566201',
       extraData: {
         foo: 'bar'
       },

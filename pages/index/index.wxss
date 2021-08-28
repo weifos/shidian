@@ -1,56 +1,125 @@
-.banner{
-  width: 100%;
-  height: 372rpx; 
+.banner {
+  width: 95%;
+  height: 372rpx;
   overflow: hidden;
+  margin: auto;
+  border-radius: 10rpx;
+  margin-top: 20rpx;
 }
-.banner image{
+
+.banner image {
   width: 100%;
   height: 372rpx;
 }
-.swiper-index{
+
+.swiper-index {
   height: 372rpx;
   overflow: hidden;
 }
 
-.menu__item{
-  width:339rpx;
+.menu__item {
+  width: 339rpx;
   overflow: hidden;
-  margin:0 0 20rpx 0;
-  background:#fff;
+  margin: 0 0 20rpx 0;
+  background: #fff;
   position: relative;
   border-radius: 20rpx;
 }
 
-.menu__item image{
+.menu__item image {
   width: 100%;
   height: 202rpx;
   vertical-align: top;
 }
-.menu__title__cn,.menu__title__en{
+
+.menu__title__cn,
+.menu__title__en {
   color: #555555;
   display: block;
 }
-.menu__title{
+
+.menu__title {
   position: relative;
-  height:74rpx;
+  height: 74rpx;
   overflow: hidden;
   text-align: center
 }
 
-.menu__title__cn{
+.menu__title__cn {
   font-size: 31rpx;
   padding-top: 12rpx;
   position: relative;
 }
-.menu__title__en{
+
+.menu__title__en {
   font-size: 18rpx;
   position: relative;
 }
-.menu-list{
-  margin-top:20rpx; 
+
+.menu-list {
+  margin-top: 20rpx;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 0 12px;
   box-sizing: border-box;
+}
+
+.menu_h {
+  margin-top: 25rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.menu_h_img {
+  width: 135rpx;
+  height: 135rpx;
+}
+
+.menu_h_text {
+  font-size: 30rpx;
+  text-align: center;
+  padding: 15rpx 0;
+}
+
+.menu-main {
+  height: 432rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 10px;
+  margin: auto;
+}
+
+.menu-main-l {
+  width: 50%;
+  margin-bottom: -2rpx;
+}
+
+.menu-main-l-img {
+  width: 348rpx;
+  height: 408rpx;
+  margin-left: 20rpx
+}
+
+.menu-main-r {
+  width: 50%;
+  flex-direction: column;
+  display: flex;
+  align-content: space-around
+}
+
+.menu-main-r-img {
+  width: 360rpx;
+  height: 198rpx;
+}
+
+.menu-main-b {
+  text-align: center;
+}
+
+.menu-main-b-img {
+  width: 714rpx;
+  height: 200rpx;
 }

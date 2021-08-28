@@ -30,14 +30,16 @@
 
 
 .cu-bar{
-  min-height: 141rpx;
-
+  min-height: 130rpx;
 }
 .cu-bar.tabbar{
   position: fixed;
-  bottom:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
-  left:0;
+  margin: auto;
+  border-radius: 32rpx 32rpx 0 0;
 }
 .cuIcon-cu-image .cur-img,.cuIcon-cu-image.cur .normal-img{
   display: none;
@@ -50,8 +52,14 @@
   margin-top:5rpx;
 }
 .cur .nav-text{
-  color:#95b9fc;
+  color:#383533;
 }
 .cuIcon-cu-image-3.cur .nav-text{
-  color:#FCA68C;
+  color:#86acbd;
+}
+.cuIcon-cu-image-2.cur .nav-text{
+  color:#86acbd;
+}
+.cuIcon-cu-image-1.cur .nav-text{
+  color:#86acbd;
 }

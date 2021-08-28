@@ -1,15 +1,69 @@
 <!--index.wxml-->
 <view class="container page-main">
   <view class="banner">
-    <swiper class="swiper-index screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+    <swiper class="swiper-index screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="false"
+      circular="true" autoplay="true" interval="5000" duration="500">
       <swiper-item wx:for="{{banners}}" wx:key="imgurl">
         <image src="{{item.imgurl}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
-        <video src="{{item.imgurl}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+        <video src="{{item.imgurl}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}"
+          objectFit="cover" wx:if="{{item.type=='video'}}"></video>
       </swiper-item>
     </swiper>
   </view>
   <!-- menu-list s -->
-  <view class="menu-list">
+  <view class="menu_h">
+    <view bindtap="toMemberChangeCredit" data-path="pages/home/home?menu=booksearch">
+      <image mode="aspectFit" src="http://res.sdibook.com/DefaultRes/Images/MP/banner_01.png" class="menu_h_img">
+      </image>
+      <view class="menu_h_text">图书查询</view>
+    </view>
+    <view data-key="coffee" bindtap='scanCode'>
+      <image mode="aspectFit" src="http://res.sdibook.com/DefaultRes/Images/MP/banner_02.png" class="menu_h_img">
+      </image>
+      <view class="menu_h_text">咖啡点单</view>
+    </view>
+    <view bindtap="toMemberChangeCredit" data-path="pages/home/home?menu=integral">
+      <image mode="aspectFit" src="http://res.sdibook.com/DefaultRes/Images/MP/banner_03.png" class="menu_h_img">
+      </image>
+      <view class="menu_h_text">积分兑换</view>
+    </view>
+    <view data-key="coupon" bindtap="goUrl">
+      <image mode="aspectFit" src="http://res.sdibook.com/DefaultRes/Images/MP/banner_04.png" class="menu_h_img">
+      </image>
+      <view class="menu_h_text">我的优惠</view>
+    </view>
+  </view>
+  <view>
+    <official-account></official-account>
+    <view class="menu-main">
+      <view class="menu-main-l" bindtap="toMall">
+        <image mode="aspectFit" src="http://res.sdibook.com/DefaultRes/Images/MP/banner_05.png" class="menu-main-l-img">
+        </image>
+      </view>
+      <view class="menu-main-r">
+        <view data-key="course" bindtap="goUrl">
+          <image mode="aspectFit" src="http://res.sdibook.com/DefaultRes/Images/MP/banner_06.png"
+            class="menu-main-r-img">
+          </image>
+        </view>
+        <view data-key="appt" bindtap="goUrl" style="margin-top:4rpx;margin-bottom: -4rpx;">
+          <image mode="aspectFit" src="http://res.sdibook.com/DefaultRes/Images/MP/banner_07.png"
+            class="menu-main-r-img">
+          </image>
+        </view>
+      </view>
+    </view>
+
+
+    <view class="menu-main-b" data-key="appt" bindtap="toListenMini">
+      <image mode="aspectFit" class="menu-main-b-img" src="http://res.sdibook.com/DefaultRes/Images/MP/banner_08.png">
+      </image>
+    </view>
+
+    <!-- <view style="padding-top: 10rpx;"></view> -->
+
+  </view>
+  <!-- <view class="menu-list">
     <view class="menu__item" data-key="coffee"  bindtap='scanCode'>
     <image src="http://res.sdibook.com/DefaultRes/Images/i1.png"></image>
       <view class="menu__title">
@@ -46,7 +100,8 @@
         <text class="menu__title__cn">会员优惠券</text>
       </view>
     </view>
-  </view>
+  </view> -->
   <!-- menu-list e -->
 </view>
+
 <i-bottombar></i-bottombar>

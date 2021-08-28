@@ -49,6 +49,22 @@ Component({
         ['app.data.btIndex']: app.data.btIndex
       })
     },
+     /**
+     * 预约
+     */
+    order: function() {
+      wx.navigateToMiniProgram({
+        appId: 'wxc0bea5f07c0ffc58',
+        path:  'pages/space-order/to-order',
+        extraData: {
+          foo: 'bar'
+        },
+        // envVersion: 'develop',
+        success(res) {
+          // 打开成功
+        }
+      })
+    },
     /**
      * 扫码
      */

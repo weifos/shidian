@@ -1668,8 +1668,8 @@ button.cuIcon.lg {
 
 .cu-bar.tabbar {
 	padding: 0;
-	height: calc(100rpx + env(safe-area-inset-bottom) / 2);
-	padding-bottom: calc(env(safe-area-inset-bottom) / 2);
+	height: calc(100rpx + env(safe-area-inset-bottom) / 2.1);
+	padding-bottom: calc(env(safe-area-inset-bottom) / 2.1);
 }
 
 .cu-tabbar-height {
@@ -1693,6 +1693,7 @@ button.cuIcon.lg {
 	margin: 0;
 	background-color: inherit;
 	overflow: initial;
+	border-radius:23rpx;
 }
 
 .cu-bar.tabbar.shop .action {

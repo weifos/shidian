@@ -38,7 +38,7 @@
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.8.0",
+  "libVersion": "2.8.3",
   "appid": "wx675ae5c58ad9058e",
   "projectname": "shidian",
   "debugOptions": {

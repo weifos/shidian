@@ -33,7 +33,8 @@
         "memberCard/index",
         "phone/index",
         "userInfo/index",
-        "courseTicket/index"
+        "courseTicket/index",
+        "terms/index"
       ]
     }
   ],
