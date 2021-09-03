@@ -277,13 +277,13 @@ Page({
     })
   },
 
-  // openCustomerServiceChat: function (e) {
-  // wx.openCustomerServiceChat({
-  //   extInfo: {url: 'https://work.weixin.qq.com/kfid/kfc34e80f07f20eb8d5'},
-  //   corpId: 'wwb92641407ccf66b0',
-  //   success(res) {}
-  // })
-// },
+  openCustomerServiceChat: function (e) {
+  wx.openCustomerServiceChat({
+    extInfo: {url: 'https://work.weixin.qq.com/kfid/kfca4911d11691cfb48'},
+    corpId: 'wwb92641407ccf66b0',
+    success(res) {}
+  })
+},
   /**
    * 菜单跳转
    */

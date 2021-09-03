@@ -37,7 +37,7 @@
         </view>
         <view class="order__price">
           <view class="t-desc">剩余名额</view>
-          <view class="t-detail" style="color:red;">{{result.up_limit - reg_num}}</view>
+          <view class="t-detail" style="color:red;">{{result.up_limit - reg_num<0 ? 0:result.up_limit - reg_num}}</view>
         </view>
         <view class="order__number">
           <view class="t-desc">报名人数</view>

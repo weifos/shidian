@@ -70,12 +70,18 @@
           <text class="text-grey dib vam">会员条款</text>
         </button>
       </view>
-      <view class="cu-item">
+      <view class="cu-item" bindtap="openCustomerServiceChat">
+        <view class="content">
+          <i-icon name="service" class="dib vat i-icon"></i-icon>
+          <text class="text-grey dib vam">在线客服</text>
+        </view>
+      </view>
+      <!-- <view class="cu-item">
         <button class="content" open-type="contact" style="text-align:left;display: flex;">
           <i-icon name="service" class="dib vat i-icon"></i-icon>
           <text class="text-grey dib vam">在线客服</text>
         </button>
-      </view>
+      </view> -->
       <!-- open-type="contact" -->
       <!-- cu-item e -->
     </view>
